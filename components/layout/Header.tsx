@@ -26,48 +26,44 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white shadow-md py-3' : 'bg-white/95 backdrop-blur-sm py-4'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          background: scrolled ? '#06103C' : 'rgba(6,16,60,0.92)',
+          backdropFilter: 'blur(12px)',
+          boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.3)' : 'none',
+          padding: scrolled ? '12px 0' : '16px 0',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Link href="/" className="flex items-center flex-shrink-0">
               <img
                 src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
                 alt="Keentel Engineering"
                 className="h-9 w-auto"
+                style={{ filter: 'brightness(0) invert(1)' }}
               />
             </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1">
-              <div className="flex items-center gap-1 bg-gray-100 rounded-full px-2 py-1.5">
-                <Link href="/" className="px-4 py-1.5 text-sm font-medium text-white bg-[#030DA6] rounded-full transition-all">
+              <div className="flex items-center gap-0.5 rounded-full px-1.5 py-1" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <Link href="/" className="px-4 py-1.5 text-sm font-medium text-white rounded-full transition-all" style={{ background: 'rgba(199,46,158,0.8)' }}>
                   Home
                 </Link>
 
-                <div
-                  className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
-                >
-                  <button className="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-[#030DA6] rounded-full hover:bg-white transition-all flex items-center gap-1">
+                <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+                  <button className="px-4 py-1.5 text-sm font-medium rounded-full transition-all flex items-center gap-1 hover:bg-white/10" style={{ color: 'rgba(255,255,255,0.8)' }}>
                     Services
                     <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -75,13 +71,9 @@ export default function Header() {
                   </button>
 
                   {servicesOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                    <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl shadow-2xl py-2 z-50" style={{ background: '#06103C', border: '1px solid rgba(255,255,255,0.1)' }}>
                       {services.map((s) => (
-                        <Link
-                          key={s.href}
-                          href={s.href}
-                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#030DA6] transition-colors"
-                        >
+                        <Link key={s.href} href={s.href} className="block px-4 py-2.5 text-sm transition-colors hover:bg-white/5" style={{ color: 'rgba(255,255,255,0.7)' }}>
                           {s.name}
                         </Link>
                       ))}
@@ -89,16 +81,22 @@ export default function Header() {
                   )}
                 </div>
 
-                <Link href="/industries" className="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-[#030DA6] rounded-full hover:bg-white transition-all">Industries</Link>
-                <Link href="/blog" className="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-[#030DA6] rounded-full hover:bg-white transition-all">Grid IQ</Link>
-                <Link href="/about" className="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-[#030DA6] rounded-full hover:bg-white transition-all">About</Link>
-                <Link href="/contact" className="px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-[#030DA6] rounded-full hover:bg-white transition-all">Contact</Link>
+                {['Industries', 'Grid IQ', 'About', 'Contact'].map((item) => (
+                  <Link
+                    key={item}
+                    href={`/${item === 'Grid IQ' ? 'blog' : item.toLowerCase()}`}
+                    className="px-4 py-1.5 text-sm font-medium rounded-full transition-all hover:bg-white/10"
+                    style={{ color: 'rgba(255,255,255,0.8)' }}
+                  >
+                    {item}
+                  </Link>
+                ))}
               </div>
             </nav>
 
             {/* Right side */}
             <div className="hidden lg:flex items-center gap-3">
-              <a href="tel:813-389-7871" className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#030DA6] transition-colors">
+              <a href="tel:813-389-7871" className="flex items-center gap-2 text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.65)' }}>
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
@@ -108,141 +106,77 @@ export default function Header() {
                 href="https://calendly.com/keentel-engineering/15min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#030DA6] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#020a8a] transition-all hover:shadow-lg hover:shadow-blue-200"
+                className="text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all hover:-translate-y-0.5"
+                style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}
               >
                 Schedule Consultation
               </a>
             </div>
 
-            {/* Mobile hamburger */}
+            {/* Hamburger */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative z-[60] p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+              className="lg:hidden relative z-[60] p-2 rounded-lg transition-colors"
               aria-label="Toggle menu"
+              style={{ color: 'rgba(255,255,255,0.8)' }}
             >
               <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`block h-0.5 bg-gray-800 rounded-full transition-all duration-300 origin-left ${isOpen ? 'rotate-45 translate-y-px' : ''}`} />
-                <span className={`block h-0.5 bg-gray-800 rounded-full transition-all duration-300 ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                <span className={`block h-0.5 bg-gray-800 rounded-full transition-all duration-300 origin-left ${isOpen ? '-rotate-45 -translate-y-px' : ''}`} />
+                <span className={`block h-0.5 rounded-full bg-white transition-all duration-300 origin-left ${isOpen ? 'rotate-45 translate-y-px' : ''}`} />
+                <span className={`block h-0.5 rounded-full bg-white transition-all duration-300 ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
+                <span className={`block h-0.5 rounded-full bg-white transition-all duration-300 origin-left ${isOpen ? '-rotate-45 -translate-y-px' : ''}`} />
               </div>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Full-Screen Menu Overlay */}
-      <div
-        className={`fixed inset-0 z-[55] lg:hidden transition-all duration-500 ease-in-out ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => setIsOpen(false)}
-        />
+      {/* Mobile overlay */}
+      <div className={`fixed inset-0 z-[55] lg:hidden transition-all duration-500 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+        <div className={`absolute top-0 right-0 h-full w-full sm:w-96 flex flex-col transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ background: '#06103C' }}>
 
-        {/* Slide-in panel */}
-        <div
-          className={`absolute top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl transition-transform duration-500 ease-in-out flex flex-col ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          {/* Panel header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-            <img
-              src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
-              alt="Keentel Engineering"
-              className="h-8 w-auto"
-            />
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+          <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+            <img src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png" alt="Keentel Engineering" className="h-8 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
+            <button onClick={() => setIsOpen(false)} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)' }}>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
 
-          {/* Nav links */}
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-1">
-            {[
-              { label: 'Home', href: '/' },
-              { label: 'About', href: '/about' },
-              { label: 'Industries', href: '/industries' },
-              { label: 'Grid IQ Blog', href: '/blog' },
-              { label: 'Contact', href: '/contact' },
-            ].map((link, i) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-between px-4 py-3.5 text-base font-medium text-gray-800 hover:text-[#030DA6] hover:bg-blue-50 rounded-2xl transition-all"
-                style={{ transitionDelay: isOpen ? `${i * 50}ms` : '0ms' }}
-              >
+            {[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Industries', href: '/industries' }, { label: 'Grid IQ Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }].map((link) => (
+              <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)}
+                className="flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-2xl transition-all hover:bg-white/5"
+                style={{ color: 'rgba(255,255,255,0.8)' }}>
                 {link.label}
-                <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <svg className="w-4 h-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </Link>
             ))}
 
-            {/* Services accordion */}
             <div>
-              <button
-                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="w-full flex items-center justify-between px-4 py-3.5 text-base font-medium text-gray-800 hover:text-[#030DA6] hover:bg-blue-50 rounded-2xl transition-all"
-              >
+              <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="w-full flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-2xl transition-all hover:bg-white/5"
+                style={{ color: 'rgba(255,255,255,0.8)' }}>
                 Services
-                <svg
-                  className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${mobileServicesOpen ? 'rotate-180' : ''}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <svg className={`w-4 h-4 opacity-40 transition-transform duration-300 ${mobileServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
               </button>
-
-              {/* Smooth accordion */}
-              <div
-                className="overflow-hidden transition-all duration-400 ease-in-out"
-                style={{ maxHeight: mobileServicesOpen ? `${services.length * 52}px` : '0px' }}
-              >
-                <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-[#030DA6]/20 pl-4">
+              <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: mobileServicesOpen ? `${services.length * 48}px` : '0px' }}>
+                <div className="ml-4 mt-1 space-y-0.5 pl-4" style={{ borderLeft: '2px solid rgba(199,46,158,0.3)' }}>
                   {services.map((s) => (
-                    <Link
-                      key={s.href}
-                      href={s.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block py-2.5 text-sm text-gray-600 hover:text-[#030DA6] transition-colors"
-                    >
-                      {s.name}
-                    </Link>
+                    <Link key={s.href} href={s.href} onClick={() => setIsOpen(false)} className="block py-2.5 text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.55)' }}>{s.name}</Link>
                   ))}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom CTA */}
-          <div className="px-6 py-6 border-t border-gray-100 space-y-3">
-            <a
-              href="tel:813-389-7871"
-              className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-2xl text-gray-700 font-medium text-sm hover:bg-gray-100 transition-colors"
-            >
-              <div className="w-8 h-8 bg-[#030DA6]/10 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-[#030DA6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
+          <div className="px-6 py-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            <a href="tel:813-389-7871" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.7)' }}>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               813-389-7871
             </a>
-            <a
-              href="https://calendly.com/keentel-engineering/15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full bg-[#030DA6] text-white text-sm font-semibold px-5 py-4 rounded-2xl text-center hover:bg-[#020a8a] transition-colors"
-            >
+            <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
+              className="block w-full text-white text-sm font-semibold px-5 py-4 rounded-2xl text-center"
+              style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
               Schedule Consultation
             </a>
           </div>

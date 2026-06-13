@@ -6,27 +6,19 @@ export default function Precision() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+        <div className="flex flex-col lg:flex-row gap-14 lg:gap-20 items-center">
 
-          {/* Left text */}
           <div className="lg:w-2/5 flex-shrink-0">
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-gray-900 leading-[1.1] mb-5">
-              Electrical Power{' '}
-              <span className="relative inline-block">
-                Engineering
-                <span className="absolute -bottom-1 left-0 right-0 h-3 bg-[#030DA6]/15 -z-10 rounded" />
-              </span>
-              {' '}with<br />
-              Precision &<br />Compliance
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Edge</p>
+            <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1] mb-5" style={{ color: '#0B1230' }}>
+              Electrical Power Engineering with Precision and Compliance
             </h2>
-
-            <p className="text-gray-500 font-jost text-base leading-relaxed mb-6">
+            <p className="text-base font-jost leading-relaxed mb-4" style={{ color: '#6B7280' }}>
               Our comprehensive engineering services handle every stage of your power project with precision, from grid interconnection and substation design to full NERC compliance and renewable energy integration.
             </p>
-            <p className="text-gray-500 font-jost text-base leading-relaxed mb-8">
+            <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#6B7280' }}>
               Trusted by utilities, developers, EPCs, and public agencies across the U.S. for over 30 years.
             </p>
-
             <ul className="space-y-3 mb-8">
               {[
                 'Grid-ready designs rooted in field experience',
@@ -34,20 +26,20 @@ export default function Precision() {
                 'Expert modeling with ETAP, SKM, PSCAD, and GIS tools',
                 'IEC 61850 implementation and SCADA integration',
                 'HVDC consulting for modernized transmission',
-                'IBR & DER grid interconnection queue navigation',
+                'IBR and DER grid interconnection queue navigation',
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-gray-600 text-sm font-jost">
-                  <svg className="w-4 h-4 text-[#030DA6] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <li key={item} className="flex items-start gap-3 text-sm font-jost" style={{ color: '#4B5563' }}>
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#A8228A' }}>
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   {item}
                 </li>
               ))}
             </ul>
-
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 bg-gray-900 text-white font-semibold px-7 py-4 rounded-full hover:bg-[#030DA6] transition-all group"
+              className="inline-flex items-center gap-2 text-white font-semibold px-7 py-4 rounded-full transition-all hover:-translate-y-0.5 group"
+              style={{ background: '#0B1A5B' }}
             >
               Explore Services
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,75 +48,60 @@ export default function Precision() {
             </Link>
           </div>
 
-          {/* Right — lightning bolt shaped image collage */}
-          <div className="lg:w-3/5 relative h-[500px] sm:h-[560px]">
+          {/* Right - image collage with Unsplash niche images */}
+          <div className="lg:w-3/5 relative h-[520px]">
 
-            {/* Lightning bolt SVG clipping background accent */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-5"
-              viewBox="0 0 400 500"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M220 20L60 280H200L140 480L360 200H220L280 20Z"
-                fill="#030DA6"
-              />
-            </svg>
-
-            {/* Large image top-right */}
-            <div className="absolute top-0 right-0 w-[58%] h-[52%] rounded-3xl overflow-hidden shadow-xl">
+            {/* Top right - substation */}
+            <div className="absolute top-0 right-0 w-[57%] h-[50%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-455w.jpg"
-                alt="Power engineering"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-[#030DA6]/20 to-transparent" />
-            </div>
-
-            {/* Medium image left */}
-            <div className="absolute top-[8%] left-0 w-[44%] h-[44%] rounded-3xl overflow-hidden shadow-xl">
-              <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10002+%282%29-455w.png"
-                alt="Substation design"
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80"
+                alt="Electrical substation"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
 
-            {/* Center overlap card - blue accent */}
-            <div className="absolute top-[38%] left-[28%] z-10 bg-[#030DA6] text-white rounded-2xl p-5 shadow-2xl w-48">
+            {/* Top left - power lines */}
+            <div className="absolute top-[5%] left-0 w-[43%] h-[43%] rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="https://images.unsplash.com/photo-1524168272322-bf73616d9cb5?w=600&q=80"
+                alt="Power transmission lines"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Center accent card */}
+            <div className="absolute top-[38%] left-[26%] z-10 rounded-2xl p-5 shadow-2xl w-52" style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
               <div className="flex items-center gap-2 mb-2">
-                <svg className="w-5 h-5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#C72E9E' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                 </svg>
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/70">Our Edge</span>
+                <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.6)' }}>Our Edge</span>
               </div>
-              <p className="font-urbanist font-bold text-lg leading-tight">Precision. Compliance. Results.</p>
+              <p className="font-urbanist font-bold text-white text-lg leading-tight">Precision. Compliance. Results.</p>
             </div>
 
-            {/* Bottom-left image */}
-            <div className="absolute bottom-0 left-0 w-[44%] h-[40%] rounded-3xl overflow-hidden shadow-xl">
+            {/* Bottom left - solar */}
+            <div className="absolute bottom-0 left-0 w-[43%] h-[38%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10005-455w.jpg"
-                alt="NERC compliance"
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80"
+                alt="Solar power farm"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
 
-            {/* Bottom-right image */}
-            <div className="absolute bottom-0 right-0 w-[54%] h-[40%] rounded-3xl overflow-hidden shadow-xl">
+            {/* Bottom right - control room */}
+            <div className="absolute bottom-0 right-0 w-[53%] h-[38%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10003-455w.jpg"
-                alt="Solar power engineering"
+                src="https://images.unsplash.com/photo-1413882353314-73389f63b6fd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Power engineering control room"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-tl from-[#8C1D1C]/20 to-transparent" />
             </div>
 
-            {/* Floating stat badge */}
-            <div className="absolute top-[54%] right-2 z-10 bg-white rounded-2xl p-4 shadow-xl border border-gray-100">
-              <p className="font-urbanist font-black text-3xl text-gray-900">30+</p>
-              <p className="text-gray-500 text-xs font-jost">Years Experience</p>
+            {/* Floating stat */}
+            <div className="absolute top-[52%] right-1 z-10 rounded-2xl p-4 shadow-xl" style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
+              <p className="font-urbanist font-black text-3xl" style={{ color: '#0B1A5B' }}>30+</p>
+              <p className="text-xs font-jost" style={{ color: '#6B7280' }}>Years Experience</p>
             </div>
 
           </div>

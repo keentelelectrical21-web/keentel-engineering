@@ -1,99 +1,73 @@
 'use client'
 
 const tools = [
-  { name: 'AutoCAD', years: '27+', color: '#E51B24', textColor: 'white', desc: 'Drafting & design' },
-  { name: 'DIgSILENT', years: '8+', color: '#7B2D8B', textColor: 'white', desc: 'Power system analysis' },
-  { name: 'ETAP', years: '15+', color: '#E31937', textColor: 'white', desc: 'Electrical analysis' },
-  { name: 'PSS/E', years: '14+', color: '#00A9CE', textColor: 'white', desc: 'Transmission planning' },
-  { name: 'Bentley', years: '14+', color: '#1B7B3D', textColor: 'white', desc: 'Infrastructure design' },
-  { name: 'SEL', years: '27+', color: '#003087', textColor: 'white', desc: 'Relay protection' },
-  { name: 'EasyPower', years: '10+', color: '#6B7280', textColor: 'white', desc: 'Arc flash & coordination' },
-  { name: 'PSCAD', years: '5+', color: '#F59E0B', textColor: '#111', desc: 'EMT simulation' },
-  { name: 'SKM', years: '15+', color: '#D97706', textColor: 'white', desc: 'Power tools analysis' },
-  { name: 'CYME', years: '27+', color: '#0EA5E9', textColor: 'white', desc: 'Distribution analysis' },
+  { name: 'AutoCAD', years: '27+', desc: 'Drafting & design', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10007-232w.png' },
+  { name: 'DIgSILENT', years: '8+', desc: 'Power system analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10008-232w.png' },
+  { name: 'ETAP', years: '15+', desc: 'Electrical analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10009-232w.png' },
+  { name: 'PSS/E', years: '14+', desc: 'Transmission planning', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10010-232w.png' },
+  { name: 'Bentley', years: '14+', desc: 'Infrastructure design', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-232w.png' },
+  { name: 'SEL', years: '27+', desc: 'Relay protection', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10011-232w.png' },
+  { name: 'EasyPower', years: '10+', desc: 'Arc flash & coordination', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10012-232w.png' },
+  { name: 'PSCAD', years: '5+', desc: 'EMT simulation', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10013-232w.png' },
+  { name: 'SKM PowerTools', years: '15+', desc: 'Power tools analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10014-232w.png' },
+  { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10015-232w.png' },
 ]
 
 export default function SoftwareTools() {
   return (
-    <section className="py-24 bg-gray-950 overflow-hidden">
+    <section className="py-24 overflow-hidden" style={{ background: '#06103C' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3">
-            Industry-Leading Software
-          </span>
+        <div className="text-center mb-14">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>Industry-Leading Software</p>
           <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-4">
             Our Engineering Tools
           </h2>
-          <p className="text-gray-400 font-jost text-lg max-w-2xl mx-auto">
-            Precision modeling using the industry's most trusted power engineering software platforms — with decades of hands-on expertise.
+          <p className="text-lg font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            Precision modeling using the industry's most trusted power engineering software platforms, with decades of hands-on expertise.
           </p>
         </div>
 
-        {/* Tools grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10">
           {tools.map((tool, i) => (
             <div
               key={i}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
+              className="group rounded-2xl p-5 flex flex-col gap-4 hover:scale-[1.03] transition-all duration-300 cursor-default"
+              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
             >
-              {/* Background */}
-              <div
-                className="absolute inset-0 opacity-90"
-                style={{ backgroundColor: tool.color }}
-              />
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 70% 30%, white 1px, transparent 1px)`,
-                  backgroundSize: '20px 20px',
-                }}
-              />
-
-              <div className="relative p-5 flex flex-col h-32">
-                <div className="flex items-start justify-between mb-auto">
-                  <span
-                    className="text-xs font-bold px-2 py-0.5 rounded-full"
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.2)',
-                      color: tool.textColor,
-                    }}
-                  >
-                    {tool.years} yrs
+              {/* Logo - natural dimensions, no filter forcing */}
+              <div className="h-14 flex items-center justify-start">
+                <img
+                  src={tool.logo}
+                  alt={tool.name}
+                  className="max-h-10 w-auto object-contain group-hover:opacity-100 transition-opacity"
+                  style={{ opacity: 0.85, maxWidth: '100%' }}
+                />
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="font-urbanist font-bold text-white text-sm">{tool.name}</p>
+                  <span className="text-xs font-bold px-1.5 py-0.5 rounded-md" style={{ background: 'rgba(199,46,158,0.18)', color: '#C72E9E' }}>
+                    {tool.years}yr
                   </span>
                 </div>
-                <div>
-                  <p
-                    className="font-urbanist font-black text-xl leading-none mb-0.5"
-                    style={{ color: tool.textColor }}
-                  >
-                    {tool.name}
-                  </p>
-                  <p
-                    className="text-xs font-jost"
-                    style={{ color: tool.textColor, opacity: 0.7 }}
-                  >
-                    {tool.desc}
-                  </p>
-                </div>
+                <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.4)' }}>{tool.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
             { val: '10', label: 'Software Platforms', sub: 'Industry-leading tools' },
-            { val: '27+', label: 'Years AutoCAD Expertise', sub: 'Since inception' },
+            { val: '27+', label: 'Years AutoCAD', sub: 'Since inception' },
             { val: '100%', label: 'In-House Capability', sub: 'No outsourcing' },
             { val: 'All 3', label: 'U.S. Interconnections', sub: 'WECC, ERCOT, Eastern' },
           ].map((s, i) => (
-            <div key={i} className="bg-gray-900 rounded-2xl p-6 border border-gray-800 hover:border-gray-600 transition-colors">
+            <div key={i} className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
               <p className="font-urbanist font-black text-3xl text-white mb-1">{s.val}</p>
-              <p className="text-white font-semibold text-sm mb-0.5">{s.label}</p>
-              <p className="text-gray-500 text-xs font-jost">{s.sub}</p>
+              <p className="font-semibold text-sm text-white mb-0.5">{s.label}</p>
+              <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.sub}</p>
             </div>
           ))}
         </div>

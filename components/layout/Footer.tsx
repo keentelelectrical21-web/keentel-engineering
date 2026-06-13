@@ -25,165 +25,101 @@ const resources = [
   { name: 'Case Studies', href: '/case-studies' },
 ]
 
-const utility = [
+const legal = [
   { name: 'Privacy Policy', href: '/privacy-policy' },
   { name: 'Terms of Service', href: '/terms-and-conditions' },
   { name: 'Legal Disclaimer', href: '/legal-disclaimer' },
   { name: 'Sitemap', href: '/sitemap' },
 ]
 
+const locations = [
+  { name: 'Headquarters', city: 'Tampa, FL', address: '400 N Ashley Dr STE #2600, Tampa, FL 33602' },
+  { name: 'Austin Office', city: 'Austin, TX', address: '5900 Balcones Drive STE 100, Austin, TX 78731 USA' },
+  { name: 'Sacramento Office', city: 'Sacramento, CA', address: '1401 21st St Ste R, Sacramento, CA 95811 USA' },
+]
+
 const socials = [
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/keentelengineering',
-    icon: (
-      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/keentel-engineering/',
-    icon: (
-      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'YouTube',
-    href: 'https://www.youtube.com/@KeentelEngineering',
-    icon: (
-      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" />
-        <polygon fill="white" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
-      </svg>
-    ),
-  },
-  {
-    name: 'X / Twitter',
-    href: 'https://twitter.com/keenteleng',
-    icon: (
-      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-  },
+  { name: 'Facebook', href: 'https://www.facebook.com/keentelengineering', icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" /></svg> },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/keentel-engineering/', icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" /></svg> },
+  { name: 'YouTube', href: 'https://www.youtube.com/@KeentelEngineering', icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z" /><polygon fill="white" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" /></svg> },
+  { name: 'X', href: 'https://twitter.com/keenteleng', icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg> },
 ]
 
 const marqueeText = ['Power System Engineering', 'NERC Compliance', 'Substation Design', 'Grid Reliability', 'Renewable Energy', 'IBR Modeling', 'POI Interconnection', 'BESS Engineering']
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-white overflow-hidden">
+    <footer className="text-white overflow-hidden" style={{ background: '#06103C' }}>
 
-      {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
 
-          {/* Brand column */}
+          {/* Brand */}
           <div className="lg:col-span-3">
             <Link href="/" className="inline-block mb-4">
-              <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/zeeshan+2nd+logo+%281%29-417w.png"
-                alt="Keentel Engineering"
-                className="h-10 w-auto brightness-0 invert"
-              />
+              <img src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/zeeshan+2nd+logo+%281%29-417w.png" alt="Keentel Engineering" className="h-10 w-auto brightness-0 invert" />
             </Link>
-            <p className="text-gray-400 text-sm font-jost leading-relaxed mb-6">
+            <p className="text-sm font-jost leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.5)' }}>
               Together, we power the future of reliable and compliant electrical infrastructure across the United States.
             </p>
-
-            {/* Email subscribe */}
             <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="flex-1 bg-gray-800 border border-gray-700 text-white text-sm px-4 py-2.5 rounded-full placeholder-gray-500 focus:outline-none focus:border-[#030DA6]"
-              />
-              <button className="bg-[#030DA6] text-white text-sm font-semibold px-4 py-2.5 rounded-full hover:bg-blue-700 transition-colors whitespace-nowrap">
-                Submit
-              </button>
+              <input type="email" placeholder="Your Email" className="flex-1 text-sm px-4 py-2.5 rounded-full focus:outline-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#fff' }} />
+              <button className="text-white text-sm font-semibold px-4 py-2.5 rounded-full whitespace-nowrap" style={{ background: '#A8228A' }}>Submit</button>
             </div>
           </div>
 
           {/* Company */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-urbanist font-semibold text-sm uppercase tracking-wider mb-4">Company</h4>
-            <ul className="space-y-2.5">
-              {company.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-gray-400 text-sm font-jost hover:text-white transition-colors">
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4 text-white">Company</h4>
+            <ul className="space-y-2.5">{company.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h4 className="text-white font-urbanist font-semibold text-sm uppercase tracking-wider mb-4">Services</h4>
-            <ul className="space-y-2.5">
-              {services.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-gray-400 text-sm font-jost hover:text-white transition-colors">
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4 text-white">Services</h4>
+            <ul className="space-y-2.5">{services.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
           {/* Resources */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-urbanist font-semibold text-sm uppercase tracking-wider mb-4">Resources</h4>
-            <ul className="space-y-2.5">
-              {resources.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-gray-400 text-sm font-jost hover:text-white transition-colors">
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4 text-white">Resources</h4>
+            <ul className="space-y-2.5">{resources.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
-          {/* Utility */}
+          {/* Legal */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-urbanist font-semibold text-sm uppercase tracking-wider mb-4">Legal</h4>
-            <ul className="space-y-2.5">
-              {utility.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-gray-400 text-sm font-jost hover:text-white transition-colors">
-                    {l.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4 text-white">Legal</h4>
+            <ul className="space-y-2.5">{legal.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
         </div>
 
-        {/* Divider + bottom bar */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-xs font-jost">
-            Copyright 1995–2026 Keentel Engineering · All Rights Reserved
-          </p>
+        {/* Locations */}
+        <div className="mb-10">
+          <p className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: '#C72E9E' }}>Our Locations</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {locations.map((loc) => (
+              <div key={loc.name} className="rounded-2xl p-5 flex items-start gap-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.15)' }}>
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#C72E9E' }}>
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-urbanist font-bold text-white text-sm mb-0.5">{loc.name}</p>
+                  <p className="text-xs font-jost leading-snug" style={{ color: 'rgba(255,255,255,0.45)' }}>{loc.address}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          {/* Socials */}
+        {/* Bottom bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>Copyright 1995-2026 Keentel Engineering · All Rights Reserved</p>
           <div className="flex items-center gap-2">
             {socials.map((s) => (
-              <a
-                key={s.name}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.name}
-                className="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
-              >
+              <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name} className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:text-white" style={{ border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.45)' }}>
                 {s.icon}
               </a>
             ))}
@@ -191,16 +127,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Big marquee text bottom */}
-      <div className="border-t border-gray-800 overflow-hidden py-4">
+      {/* Marquee */}
+      <div className="overflow-hidden py-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="flex animate-marquee-left whitespace-nowrap" style={{ width: 'max-content' }}>
           {[...marqueeText, ...marqueeText].map((item, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-4 mx-6 font-urbanist font-black text-5xl sm:text-7xl text-gray-800 select-none"
-            >
+            <span key={i} className="inline-flex items-center gap-4 mx-6 font-urbanist font-black select-none" style={{ fontSize: 'clamp(40px,5vw,72px)', color: 'rgba(255,255,255,0.05)' }}>
               {item}
-              <span className="text-[#030DA6] text-4xl">✦</span>
+              <span style={{ color: '#A8228A', fontSize: '60%' }}>✦</span>
             </span>
           ))}
         </div>

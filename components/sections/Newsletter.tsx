@@ -2,20 +2,6 @@
 
 import { useState } from 'react'
 
-const avatars = [
-  { initials: 'JT', bg: 'bg-blue-200' },
-  { initials: 'SR', bg: 'bg-purple-200' },
-  { initials: 'AM', bg: 'bg-green-200' },
-  { initials: 'DP', bg: 'bg-orange-200' },
-]
-
-const cornerAvatars = [
-  { initials: 'TK', bg: 'bg-rose-200', position: 'top-4 left-4' },
-  { initials: 'LE', bg: 'bg-cyan-200', position: 'top-4 right-4' },
-  { initials: 'NM', bg: 'bg-amber-200', position: 'bottom-4 left-4' },
-  { initials: 'PS', bg: 'bg-indigo-200', position: 'bottom-4 right-4' },
-]
-
 export default function Newsletter() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -25,99 +11,65 @@ export default function Newsletter() {
     e.preventDefault()
     if (!email) return
     setLoading(true)
-    // Simulate API call
     await new Promise((r) => setTimeout(r, 800))
     setSubmitted(true)
     setLoading(false)
   }
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        <div className="relative bg-[#f5f5f7] rounded-3xl overflow-hidden px-6 py-14 sm:py-16">
+        <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Grid IQ Newsletter</p>
+        <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-tight mb-4" style={{ color: '#0B1230' }}>
+          Stay Updated with Keentel's <span style={{ color: '#0B1A5B' }}>Grid IQ</span> Newsletter
+        </h2>
+        <p className="text-base font-jost leading-relaxed mb-10 max-w-xl mx-auto" style={{ color: '#6B7280' }}>
+          Monthly insights on NERC compliance, IEEE standards, renewable energy integration, and power system engineering — straight from our expert team.
+        </p>
 
-          {/* Corner avatars */}
-          {cornerAvatars.map((a, i) => (
-            <div
-              key={i}
-              className={`absolute ${a.position} w-12 h-12 rounded-full ${a.bg} flex items-center justify-center hidden sm:flex`}
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-6">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="name@email.com"
+              required
+              className="flex-1 px-5 py-4 rounded-full text-sm font-jost focus:outline-none"
+              style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F6F7FB' }}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="text-white font-semibold text-sm px-7 py-4 rounded-full transition-all disabled:opacity-70 flex items-center justify-center gap-2 whitespace-nowrap"
+              style={{ background: '#0B1A5B' }}
             >
-              <span className="text-xs font-bold text-gray-700">{a.initials}</span>
+              {loading ? (
+                <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+              ) : (
+                <>Subscribe Now <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></>
+              )}
+            </button>
+          </form>
+        ) : (
+          <div className="flex items-center justify-center gap-3 mb-6 py-4">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(167,34,138,0.1)' }}>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#A8228A' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
             </div>
-          ))}
-
-          {/* Center content */}
-          <div className="relative max-w-xl mx-auto text-center">
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-gray-900 leading-tight mb-4">
-              Stay Updated with Keentel's{' '}
-              <span className="text-[#030DA6]">Grid IQ</span>{' '}
-              Newsletter!
-            </h2>
-            <p className="text-gray-500 font-jost text-base leading-relaxed mb-8">
-              Monthly insights on NERC compliance, IEEE standards, renewable energy integration, and power system engineering — straight from our expert team.
-            </p>
-
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto mb-6">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@email.com"
-                  required
-                  className="flex-1 px-5 py-3.5 rounded-full border border-gray-200 bg-white text-gray-900 text-sm font-jost placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#030DA6]/30 focus:border-[#030DA6]"
-                />
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-[#030DA6] transition-all disabled:opacity-70 whitespace-nowrap flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                  ) : (
-                    <>
-                      Subscribe Now
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-              </form>
-            ) : (
-              <div className="flex items-center justify-center gap-3 mb-6 py-4">
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <p className="text-gray-900 font-semibold font-jost">You're subscribed! Welcome to Grid IQ.</p>
-              </div>
-            )}
-
-            {/* Social proof */}
-            <div className="flex items-center justify-center gap-3">
-              <div className="flex -space-x-2">
-                {avatars.map((a, i) => (
-                  <div
-                    key={i}
-                    className={`w-8 h-8 rounded-full ${a.bg} border-2 border-white flex items-center justify-center`}
-                  >
-                    <span className="text-xs font-bold text-gray-700">{a.initials}</span>
-                  </div>
-                ))}
-              </div>
-              <span className="text-gray-500 text-sm font-jost">
-                <span className="text-gray-900 font-semibold">500+</span> Engineers Already Subscribed
-              </span>
-            </div>
+            <p className="font-semibold font-jost" style={{ color: '#0B1230' }}>You're subscribed! Welcome to Grid IQ.</p>
           </div>
+        )}
 
-        </div>
+        <p className="text-sm font-jost" style={{ color: '#9CA3AF' }}>
+          500+ engineers already subscribed. No spam. Unsubscribe anytime.
+        </p>
+
       </div>
     </section>
   )

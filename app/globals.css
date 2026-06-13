@@ -5,27 +5,61 @@
 @tailwind utilities;
 
 :root {
-  --blue: #030DA6;
-  --red: #8C1D1C;
+  --navy-deep: #06103C;
+  --navy: #0B1A5B;
+  --purple: #5B2A86;
+  --magenta: #A8228A;
+  --hot-pink: #C72E9E;
+  --surface: #F6F7FB;
+  --white: #FFFFFF;
+  --ink: #0B1230;
+  --muted: #E6E8F0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Jost', sans-serif; color: #111; background: #fff; overflow-x: hidden; }
-h1,h2,h3,h4,h5,h6 { font-family: 'Urbanist', sans-serif; }
-::selection { background: #030DA6; color: white; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Urbanist', sans-serif;
+}
+
+::selection { background: var(--hot-pink); color: white; }
 
 @keyframes marquee-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 @keyframes marquee-up {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
 }
-.animate-marquee-left { animation: marquee-left 30s linear infinite; }
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-marquee-left { animation: marquee-left 35s linear infinite; }
 .animate-marquee-up { animation: marquee-up 25s linear infinite; }
-.animate-marquee-up-slow { animation: marquee-up 35s linear infinite; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #030DA6; border-radius: 3px; }
+
+.gradient-text {
+  background: linear-gradient(90deg, #C72E9E, #5B2A86, #A8228A, #C72E9E);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F6F7FB; }
+::-webkit-scrollbar-thumb { background: #0B1A5B; border-radius: 3px; }
