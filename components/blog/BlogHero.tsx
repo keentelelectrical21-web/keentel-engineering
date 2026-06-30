@@ -27,7 +27,7 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
-  const debounceRef = useRef<NodeJS.Timeout>()
+  const debounceRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Open search
   function openSearch() {
