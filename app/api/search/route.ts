@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         category,
         "featuredImage": featuredImage.asset->url
       }
-    `, { query: `*${q}*` })
+    `, { query: `*${q}*` } as any)
 
     return NextResponse.json({ results: results || [] })
   } catch(e) {
