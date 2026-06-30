@@ -1,0 +1,189 @@
+'use client'
+// ============================================================
+// FILE: components/blog/BlogGrid.tsx  — REPLACE ENTIRE FILE
+// ============================================================
+
+import { useState, useMemo } from 'react'
+import Link from 'next/link'
+
+interface Post {
+  _id: string
+  title: string
+  slug: { current: string }
+  publishedAt: string
+  excerpt: string
+  category: string
+  featuredImage?: string
+}
+
+const CATEGORIES = [
+  'All',
+  'NERC Compliance',
+  'IEEE 2800',
+  'Power System Studies',
+  'Renewable Energy',
+  'Substation Design',
+  'Grid Modernization',
+]
+
+const POSTS_PER_PAGE = 12
+
+function BlogCard({ post }: { post: Post }) {
+  const slug = post.slug?.current || ''
+  const sources = [
+    `/images/blog/${slug}-featured.jpg`,
+    `/images/blog/${slug}-featured.png`,
+    `/images/blog/${slug}-featured.jpeg`,
+    `/images/blog/${slug}-featured.webp`,
+  ]
+  const [idx, setIdx] = useState(0)
+  const [failed, setFailed] = useState(false)
+
+  function formatDate(dateStr: string) {
+    if (!dateStr) return ''
+    try {
+      return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    } catch { return '' }
+  }
+
+  return (
+    <Link
+      href={`/blog/${slug}`}
+      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+    >
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
+        {!failed && (
+          <img
+            src={sources[idx]}
+            alt={post.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={() => {
+              if (idx + 1 < sources.length) {
+                setIdx(i => i + 1)
+              } else {
+                setFailed(true)
+              }
+            }}
+          />
+        )}
+        {failed && (
+          <div className="w-full h-full flex items-center justify-center">
+            <span style={{ color: 'rgba(255,255,255,0.08)', fontSize: '2.5rem', fontWeight: 900 }}>K</span>
+          </div>
+        )}
+        {/* Category badge */}
+        <div className="absolute top-3 left-3">
+          <span className="font-jost text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(6,16,60,0.85)', color: '#fff' }}>
+            {post.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1">
+        <p className="font-jost text-xs text-gray-400 mb-2">{formatDate(post.publishedAt)}</p>
+        <h3 className="font-urbanist font-bold text-base leading-snug mb-3 group-hover:text-[#A8228A] transition-colors line-clamp-2 flex-1" style={{ color: '#06103C' }}>
+          {post.title}
+        </h3>
+        <p className="font-jost text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4">
+          {post.excerpt}
+        </p>
+        <div className="flex items-center gap-1.5 font-jost text-sm font-semibold mt-auto" style={{ color: '#A8228A' }}>
+          Read More
+          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+export default function BlogGrid({ posts }: { posts: Post[] }) {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE)
+
+  const filtered = useMemo(() => {
+    if (activeCategory === 'All') return posts
+    return posts.filter(p => p.category === activeCategory)
+  }, [posts, activeCategory])
+
+  const visible = filtered.slice(0, visibleCount)
+  const hasMore = visibleCount < filtered.length
+
+  function handleCategoryChange(cat: string) {
+    setActiveCategory(cat)
+    setVisibleCount(POSTS_PER_PAGE)
+  }
+
+  return (
+    <section className="py-16" style={{ background: '#F6F7FB' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Category filters */}
+        <div className="mb-10 flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => {
+            const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
+            const isActive = activeCategory === cat
+            return (
+              <button
+                key={cat}
+                onClick={() => handleCategoryChange(cat)}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full font-jost font-semibold text-sm transition-all duration-200"
+                style={isActive
+                  ? { background: '#06103C', color: '#fff' }
+                  : { background: '#fff', color: '#555', border: '1.5px solid #E6E8F0' }
+                }
+              >
+                {cat}
+                <span
+                  className="text-xs px-1.5 py-0.5 rounded-full font-normal"
+                  style={isActive
+                    ? { background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }
+                    : { background: '#F0F1F8', color: '#999' }
+                  }
+                >
+                  {count}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Results count */}
+        <p className="font-jost text-gray-500 text-sm mb-6">
+          Showing <span className="font-semibold text-gray-800">{visible.length}</span> of <span className="font-semibold text-gray-800">{filtered.length}</span> articles
+          {activeCategory !== 'All' && <span> in <span className="font-semibold" style={{ color: '#A8228A' }}>{activeCategory}</span></span>}
+        </p>
+
+        {/* Grid */}
+        {visible.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="font-jost text-gray-400 text-lg">No articles in this category yet</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {visible.map((post) => (
+              <BlogCard key={post._id} post={post} />
+            ))}
+          </div>
+        )}
+
+        {/* Load more */}
+        {hasMore && (
+          <div className="text-center mt-12">
+            <button
+              onClick={() => setVisibleCount(v => v + POSTS_PER_PAGE)}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:shadow-lg"
+              style={{ borderColor: '#06103C', color: '#06103C' }}
+            >
+              Load More Articles
+              <span className="text-sm font-normal opacity-60">({filtered.length - visibleCount} remaining)</span>
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
