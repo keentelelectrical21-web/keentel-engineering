@@ -36,9 +36,9 @@ async function getRelatedPosts(category: string, currentSlug: string) {
   try {
     const posts = await client.fetch(
       `*[_type == "blogPost" && category->title == $category && slug.current != $currentSlug] | order(publishedAt desc) [0...3] {
-        _id, title, slug, publishedAt, excerpt, category
+        _id, title, slug, publishedAt, excerpt, "category": category->title
       }`,
-      { "category": category->title, currentSlug }
+      { category, currentSlug }
     )
     return posts || []
   } catch(e) {
