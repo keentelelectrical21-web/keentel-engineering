@@ -169,8 +169,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
             <img
               src={authorImg}
               alt={post.authorName || 'Sonny Patel'}
-              className="w-16 h-16 rounded-xl object-cover object-top flex-shrink-0 ring-2"
-              style={{ ringColor: '#A8228A' }}
+              className="w-16 h-16 rounded-xl object-cover object-top flex-shrink-0 ring-2 ring-[#A8228A]"
               onError={(e) => {
                 const img = e.target as HTMLImageElement
                 img.style.display = 'none'
