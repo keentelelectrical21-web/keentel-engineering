@@ -37,12 +37,12 @@ function RelatedCard({ post }: { post: RelatedPost }) {
   return (
     <Link href={`/blog/${slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
       {/* Image */}
-      <div className="h-44 overflow-hidden flex-shrink-0" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
+      <div className="overflow-hidden w-full" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)', minHeight: '160px' } : {}}>
         {!failed ? (
           <img
             src={sources[idx]}
             alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
             onError={() => {
               if (idx + 1 < sources.length) setIdx(i => i + 1)
               else setFailed(true)
