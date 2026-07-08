@@ -148,7 +148,7 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
       </section>
 
       {/* ── FULL IMAGE ─────────────────────────────────────── */}
-      <div className="max-w-4xl mx-auto px-6 -mt-0">
+      <div className="max-w-4xl mx-auto px-6 py-10">
         <div
           className="w-full overflow-hidden rounded-b-2xl shadow-2xl"
           style={imgFailed
