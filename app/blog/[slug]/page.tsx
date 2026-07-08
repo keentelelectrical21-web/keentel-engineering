@@ -11,7 +11,7 @@ async function getPost(slug: string) {
   try {
     const post = await client.fetch(
       `*[_type == "blogPost" && slug.current == $slug][0] {
-        _id, title, slug, publishedAt, excerpt, category, body,
+        _id, title, slug, publishedAt, excerpt, "category": category->title, body,
         metaTitle, metaDescription,
         authorName, authorTitle, authorBio,
         "authorImage": authorImage.asset->url,
@@ -35,10 +35,10 @@ async function getPost(slug: string) {
 async function getRelatedPosts(category: string, currentSlug: string) {
   try {
     const posts = await client.fetch(
-      `*[_type == "blogPost" && category == $category && slug.current != $currentSlug] | order(publishedAt desc) [0...3] {
+      `*[_type == "blogPost" && category->title == $category && slug.current != $currentSlug] | order(publishedAt desc) [0...3] {
         _id, title, slug, publishedAt, excerpt, category
       }`,
-      { category, currentSlug }
+      { "category": category->title, currentSlug }
     )
     return posts || []
   } catch(e) {
