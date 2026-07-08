@@ -7,6 +7,7 @@ import industryPage from './sanity/schemas/industryPage'
 import caseStudy from './sanity/schemas/caseStudy'
 import whitePaper from './sanity/schemas/whitePaper'
 import newsletter from './sanity/schemas/newsletter'
+import category from './sanity/schemas/category'
 
 export default defineConfig({
   name: 'keentel-engineering',
@@ -15,6 +16,6 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   plugins: [structureTool(), visionTool()],
   schema: {
-    types: [blogPost, servicePage, industryPage, caseStudy, whitePaper, newsletter],
+    types: [blogPost, servicePage, industryPage, caseStudy, whitePaper, newsletter, category],
   },
 })
