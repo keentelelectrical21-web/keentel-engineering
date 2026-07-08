@@ -16,7 +16,7 @@ async function getBlogPosts() {
         slug,
         publishedAt,
         excerpt,
-        category,
+        "category": category->title,
         "featuredImage": featuredImage.asset->url
       }
     `)
