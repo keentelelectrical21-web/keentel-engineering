@@ -60,12 +60,12 @@ export default async function OurWorkPage() {
                   className="group rounded-2xl border overflow-hidden bg-white hover:shadow-xl hover:-translate-y-1 transition-all"
                   style={{ borderColor: '#E6E8F0' }}
                 >
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <div className="aspect-[4/3] overflow-hidden flex items-center justify-center p-3" style={{ background: '#F6F7FB' }}>
                     {cs.cardImage && (
                       <img
                         src={cs.cardImage}
                         alt={cs.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
                   </div>
@@ -95,12 +95,12 @@ export default async function OurWorkPage() {
                   className="group rounded-2xl border overflow-hidden bg-white hover:shadow-xl hover:-translate-y-1 transition-all"
                   style={{ borderColor: '#E6E8F0' }}
                 >
-                  <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <div className="aspect-[4/3] overflow-hidden flex items-center justify-center p-3 bg-white">
                     {cs.cardImage && (
                       <img
                         src={cs.cardImage}
                         alt={cs.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
                   </div>
