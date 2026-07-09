@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const data = await client.fetch(
       `*[_type == "caseStudy"] | order(category asc, order asc) {
-        _id, title, subtitle, category, cardImage, slug, outcome, client, region
+        _id, title, subtitle, "category": category->title, cardImage, slug, outcome, client, region
       }`
     )
     return NextResponse.json(data || [])
