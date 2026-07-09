@@ -104,7 +104,7 @@ const faqs = [
 export default function OwnersEngineerPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([])
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([])
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   useEffect(() => {
@@ -150,7 +150,7 @@ export default function OwnersEngineerPage() {
           message: formData.message, source: 'owners-engineer',
         }),
       })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' }) }
+      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
       else setFormStatus('error')
     } catch { setFormStatus('error') }
   }
