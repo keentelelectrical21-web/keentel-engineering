@@ -80,7 +80,7 @@ export default function Header() {
             {/* Logo — original colors, no filter */}
             <Link href="/" className="flex items-center flex-shrink-0">
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
+                src="/images/home/logo.png"
                 alt="Keentel Engineering"
                 className="h-8 lg:h-10 w-auto"
               />
@@ -190,7 +190,7 @@ export default function Header() {
         <div className={`absolute top-0 right-0 h-full w-full sm:w-96 flex flex-col transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ background: '#fff', borderLeft: '1px solid #E6E8F0' }}>
 
           <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: '1px solid #E6E8F0' }}>
-            <img src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png" alt="Keentel Engineering" className="h-8 w-auto" />
+            <img src="/images/home/logo.png" alt="Keentel Engineering" className="h-8 w-auto" />
             <button onClick={() => setIsOpen(false)} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#F4F5F9', color: '#0B1A5B' }}>
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>

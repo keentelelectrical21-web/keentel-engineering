@@ -11,7 +11,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10005-1920w.jpg"
+          src="/images/home/hero-bg.jpg"
           alt="Keentel Engineering power systems"
           className="w-full h-full object-cover object-center"
         />
@@ -68,7 +68,7 @@ export default function Hero() {
             <div>
               <p className="text-white/40 text-xs uppercase tracking-widest mb-4">Trusted and Certified</p>
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-670w.png"
+                src="/images/home/certifications.png"
                 alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
                 className="w-auto object-contain opacity-90"
                 style={{ height: '64px', maxWidth: '420px', filter: 'brightness(0) invert(1)' }}

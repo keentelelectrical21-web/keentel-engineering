@@ -58,7 +58,7 @@ export default function EPCBanner() {
           <div className="lg:w-1/2 flex items-start justify-center lg:justify-end">
             <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100 w-full">
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Screenshot+2026-06-09+120731-652w.png"
+                src="/images/home/nerc-alert.png"
                 alt="EPC Energy Projects Conference 2026 - Keentel Engineering"
                 className="w-full h-auto block"
                 style={{ display: 'block', maxWidth: '100%' }}

@@ -67,7 +67,7 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-4">
               {/* Original logo color — no filter */}
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
+                src="/images/home/logo.png"
                 alt="Keentel Engineering"
                 className="h-12 w-auto"
               />

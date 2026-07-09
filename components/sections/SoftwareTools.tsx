@@ -1,16 +1,16 @@
 'use client'
 
 const tools = [
-  { name: 'AutoCAD', years: '27+', desc: 'Drafting & design', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10007-232w.png' },
-  { name: 'DIgSILENT', years: '8+', desc: 'Power system analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10008-232w.png' },
-  { name: 'ETAP', years: '15+', desc: 'Electrical analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10009-232w.png' },
-  { name: 'PSS/E', years: '14+', desc: 'Transmission planning', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10010-232w.png' },
-  { name: 'Bentley', years: '14+', desc: 'Infrastructure design', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-232w.png' },
-  { name: 'SEL', years: '27+', desc: 'Relay protection', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10011-232w.png' },
-  { name: 'EasyPower', years: '10+', desc: 'Arc flash & coordination', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10012-232w.png' },
-  { name: 'PSCAD', years: '5+', desc: 'EMT simulation', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10013-232w.png' },
-  { name: 'SKM PowerTools', years: '15+', desc: 'Power tools analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10014-232w.png' },
-  { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10015-232w.png' },
+  { name: 'AutoCAD', years: '27+', desc: 'Drafting & design', logo: '/images/software-logos/autocad.png' },
+  { name: 'DIgSILENT', years: '8+', desc: 'Power system analysis', logo: '/images/software-logos/digsilent.png' },
+  { name: 'ETAP', years: '15+', desc: 'Electrical analysis', logo: '/images/software-logos/etap.png' },
+  { name: 'PSS/E', years: '14+', desc: 'Transmission planning', logo: '/images/software-logos/psse.png' },
+  { name: 'Bentley', years: '14+', desc: 'Infrastructure design', logo: '/images/software-logos/bentley.png' },
+  { name: 'SEL', years: '27+', desc: 'Relay protection', logo: '/images/software-logos/sel.png' },
+  { name: 'EasyPower', years: '10+', desc: 'Arc flash & coordination', logo: '/images/software-logos/easypower.png' },
+  { name: 'PSCAD', years: '5+', desc: 'EMT simulation', logo: '/images/software-logos/pscad.png' },
+  { name: 'SKM PowerTools', years: '15+', desc: 'Power tools analysis', logo: '/images/software-logos/skm.png' },
+  { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: '/images/software-logos/cyme.png' },
 ]
 
 export default function SoftwareTools() {

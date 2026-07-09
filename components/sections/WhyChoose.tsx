@@ -49,7 +49,7 @@ export default function WhyChoose() {
             <div className="lg:col-span-7">
               <div className="group relative rounded-2xl overflow-hidden cursor-pointer h-full min-h-[280px]">
                 <img
-                  src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/WhatsApp+Image+2026-05-02+at+10.14.11+AM-788w.jpeg"
+                  src="/images/home/team-photo.jpeg"
                   alt="Keentel Engineering team"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />

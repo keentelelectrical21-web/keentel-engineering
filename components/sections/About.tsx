@@ -70,7 +70,7 @@ export default function About() {
             <span className="font-urbanist font-black text-2xl block mb-6" style={{ color: '#0B1230' }}>Keentel.</span>
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E6E8F0' }}>
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-b7a9735b-907h.jpg"
+                src="/images/home/about-engineering.jpg"
                 alt="Keentel Engineering power systems work"
                 className="w-full h-auto object-cover"
               />
