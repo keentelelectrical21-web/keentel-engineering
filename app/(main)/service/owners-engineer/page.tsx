@@ -16,8 +16,58 @@ interface BlogPost {
   mainImage?: { asset: { url: string } }
 }
 
+interface CaseStudy {
+  _id: string
+  title: string
+  slug: { current: string }
+  category: string
+  cardImage?: string
+  excerpt?: string
+}
+
 function Img({ src, fallback, alt, className }: { src: string; fallback: string; alt: string; className?: string }) {
   return <img src={src} alt={alt} className={className} onError={(e) => { (e.target as HTMLImageElement).src = fallback }} />
+}
+
+function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer" style={{ border: `1.5px solid ${open ? '#A8228A' : '#E6E8F0'}`, boxShadow: open ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }} onClick={() => setOpen(!open)}>
+      <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>{String(index + 1).padStart(2, '0')}</span>
+        <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
+        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300" style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
+        </div>
+      </div>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+        <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
+      </div>
+    </div>
+  )
+}
+
+function FaqSection({ eyebrow, heading, headingLine2, intro, items }: { eyebrow: string; heading: string; headingLine2?: string; intro: string; items: { q: string; a: string }[] }) {
+  return (
+    <section className="py-16 sm:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-4 lg:sticky lg:top-28">
+            <p className="text-xs font-bold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>{eyebrow}</p>
+            <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6" style={{ color: '#0B1230' }}>{heading}{headingLine2 && <><br />{headingLine2}</>}</h2>
+            <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>{intro}</p>
+            <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-jost font-semibold text-white px-7 py-4 rounded-full transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+              Ask Us Directly
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+          </div>
+          <div className="lg:col-span-8 flex flex-col gap-3">
+            {items.map((item, i) => <FaqAccordionItem key={i} q={item.q} a={item.a} index={i} />)}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 const whyChoose = [
@@ -47,17 +97,13 @@ const faqs = [
   { q: 'What types of renewable energy power plants do you provide Owner\u2019s Engineer services for?', a: 'Solar PV power plants, wind power plants, hydropower, hybrid/standalone BESS projects, biomass energy plants, and geothermal power plants — covering the full lifecycle from concept through commissioning.' },
   { q: 'Why do I need an Owner\u2019s Engineer for my renewable power plant project?', a: 'An Owner\u2019s Engineer ensures the project is executed efficiently and in line with the owner\u2019s objectives, providing expert technical guidance, mitigating risks, and managing project complexities.' },
   { q: 'Do you assist with the procurement of equipment and contractors?', a: 'Yes, we assist in selecting the right contractors, equipment, and materials — evaluating bids, assessing vendor capabilities, and negotiating contracts for cost-effective, technically sound purchases.' },
-  { q: 'How do you ensure the commissioning and testing processes are completed successfully?', a: 'We provide oversight throughout commissioning and testing, reviewing test protocols, ensuring proper system integration, and confirming performance benchmarks before handover.' },
-  { q: 'Can you help with risk management for renewable power plant projects?', a: 'Yes, we identify potential technical, financial, or regulatory risks throughout the project lifecycle and work proactively to mitigate them.' },
   { q: 'What\u2019s the difference between an Owner\u2019s Engineer and an EPC contractor?', a: 'An Owner\u2019s Engineer represents the project owner and provides independent oversight, while an EPC contractor handles design, procurement, and construction. The Owner\u2019s Engineer ensures the EPC\u2019s work meets standards without conflicts of interest.' },
   { q: 'When should I bring in an Owner\u2019s Engineer during project development?', a: 'Ideally at the feasibility or conceptual design stage — early involvement ensures better technical planning, smoother interconnection applications, and fewer design revisions during EPC execution.' },
-  { q: 'Does an Owner\u2019s Engineer help with NERC compliance or utility coordination?', a: 'Yes. A qualified Owner\u2019s Engineer assists with NERC compliance support, relay and protection studies, and navigating utility interconnection standards.' },
-  { q: 'Can an Owner\u2019s Engineer support both AC and HVDC power projects?', a: 'Absolutely. Our Owner\u2019s Engineer services cover both traditional AC transmission systems and HVDC tasks such as converter station reviews, grounding analysis, and grid interface modeling.' },
 ]
 
 export default function OwnersEngineerPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([])
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([])
   const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -79,6 +125,14 @@ export default function OwnersEngineerPage() {
         }`
       ).then(setBlogs).catch(() => {})
     }).catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    client.fetch<CaseStudy[]>(
+      `*[_type == "caseStudy" && category == "owners-engineer"] | order(_createdAt desc) [0...3] {
+        _id, title, slug, category, cardImage, excerpt
+      }`
+    ).then(setCaseStudies).catch(() => {})
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -106,204 +160,300 @@ export default function OwnersEngineerPage() {
       <Header />
       <main>
 
-        {/* 1. HERO */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-25">
+        {/* ═══ 1. HERO ═══ */}
+        <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-45">
             <source src="/videos/power-system-hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%)' }} />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 w-full">
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
-              <div className="flex items-center gap-2 mb-8">
-                <Link href="/services" className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#A8228A' }}>Services</Link>
+              <div className="flex items-center gap-2 mb-6 sm:mb-8">
+                <Link href="/services" className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#C72E9E' }}>Services</Link>
                 <span className="text-white/30">/</span>
                 <span className="text-white/50 text-xs font-jost">Owner&apos;s Engineer Services</span>
               </div>
-              <h1 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}>
-                Owner&apos;s Engineer Services for Power &amp; Renewable Projects
-              </h1>
-              <p className="font-jost text-white/70 text-lg mb-4 max-w-3xl leading-relaxed">
-                At Keentel Engineering, we provide comprehensive owner&apos;s engineer services for utility-scale power and renewable energy projects across the U.S. Our team acts as your engineering owner representative ensuring performance, safety, compliance, and cost-efficiency from concept to commissioning.
-              </p>
-              <p className="font-jost text-white/60 text-base mb-10 max-w-3xl leading-relaxed">
-                With over 30 years of industry expertise, we deliver trusted owner&apos;s engineering services designed to optimize every stage of the project lifecycle.
+              <h1 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2.1rem, 4.5vw, 3.5rem)' }}>Owner&apos;s Engineer Services for Power &amp; Renewable Projects</h1>
+              <p className="font-jost text-white/90 mb-10 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)' }}>
+                We provide comprehensive owner&apos;s engineer services for utility-scale power and renewable energy projects across the U.S. — acting as your engineering owner representative to ensure performance, safety, compliance, and cost-efficiency from concept to commissioning.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                  Schedule A Call
-                </Link>
-                <a href="/files/owners-engineer.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/20 hover:border-white/50 transition-all">
-                  Download The Flyer
-                </a>
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
+                <a href="/files/owners-engineer.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. WHY CHOOSE */}
-        <section className="py-20 bg-white">
+        {/* ═══ 2. WHY CHOOSE — branded two-column ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Why Choose Keentel for Owner&apos;s Engineer Services</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12">Choosing the right owner&apos;s engineer services provider is critical to your project&apos;s long-term performance. At Keentel Engineering, we bring decades of hands-on experience in complex power systems, renewable integration, and utility-scale owner&apos;s engineer support.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {whyChoose.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-8 border" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 font-urbanist font-black text-white" style={{ background: '#A8228A' }}>{i + 1}</div>
-                  <h3 className="font-urbanist font-bold text-lg mb-3" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-5">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Why Keentel</span>
+                <h2 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Keentel for Owner&apos;s Engineer Services</h2>
+                <p className="font-jost text-white/70 text-lg leading-relaxed mb-8">Choosing the right owner&apos;s engineer services provider is critical to your project&apos;s long-term performance. We bring decades of hands-on experience in complex power systems, renewable integration, and utility-scale owner&apos;s engineer support.</p>
+                <Link href="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+                  Learn More About Us
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              </div>
+              <div className="lg:col-span-7 rounded-2xl p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, rgba(168,34,138,0.12), rgba(91,42,134,0.12))', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div className="space-y-4">
+                  {whyChoose.map((c, i) => (
+                    <div key={i} className="flex items-start gap-4 p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 font-urbanist font-black text-white" style={{ background: '#A8228A' }}>{i + 1}</div>
+                      <div>
+                        <p className="font-urbanist font-bold text-white text-base sm:text-lg mb-1">{c.t}</p>
+                        <p className="font-jost text-white/65 text-sm leading-relaxed">{c.d}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <p className="font-jost text-gray-500 text-sm mt-8">Want to see how we support deeper system reliability? Explore our <Link href="/service/power-system-studies" className="underline" style={{ color: '#A8228A' }}>Power System Studies</Link> capabilities.</p>
-            <div className="mt-6">
-              <Link href="/about" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Learn More About Us</Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 3. CONTACT FORM */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black text-center mb-10" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Let&apos;s Discuss How to Optimize Your Next Project</h2>
-            {formStatus === 'success' ? (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-green-700 font-jost text-center">Message Received — Thank you for contacting us. We will get back to you as soon as possible.</div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <input required placeholder="First Name" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                  <input placeholder="Last Name" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <input required type="tel" placeholder="Phone" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                </div>
-                <textarea placeholder="Message" value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} rows={4} className="w-full border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                <button type="submit" disabled={formStatus === 'loading'} className="w-full px-8 py-4 rounded-full font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                  {formStatus === 'loading' ? 'Sending...' : 'Submit'}
-                </button>
-                {formStatus === 'error' && <p className="text-red-500 text-sm font-jost text-center">Oops, there was an error. Please try again.</p>}
-              </form>
-            )}
-          </div>
-        </section>
-
-        {/* 4. WHAT IS OWNER'S ENGINEER */}
-        <section className="py-20 bg-white">
+        {/* ═══ 3. WHAT IS OWNER'S ENGINEER ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-6" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>What Is an Owner&apos;s Engineer and Why It Matters</h2>
-            <p className="font-jost text-gray-600 mb-4 leading-relaxed">An Owner&apos;s Engineer is your technical advocate throughout the lifecycle of an energy infrastructure project. From power plant owner&apos;s engineering to construction QA/QC and system commissioning, this role ensures that your contractors, vendors, and EPC teams meet performance expectations, safety codes, and regulatory standards.</p>
-            <p className="font-jost text-gray-600 mb-4 leading-relaxed">At Keentel, we specialize in owner&apos;s engineer services for power plants, transmission systems, and renewable energy projects. Our approach reduces risk, improves accountability, and ensures your project remains on schedule and within budget.</p>
-            <p className="font-jost text-gray-600 leading-relaxed">We support compliance with regulatory frameworks such as <Link href="/service/nerc-compliance" className="underline" style={{ color: '#A8228A' }}>NERC compliance requirements</Link> and deliver proven results across a wide range of utility environments. Learn more about our technical experience in <Link href="/service/substation-design" className="underline" style={{ color: '#A8228A' }}>Substation Design</Link> and <Link href="/service/poi-interconnection-engineering-support" className="underline" style={{ color: '#A8228A' }}>POI Interconnection Engineering Support</Link> — services often coordinated with our Owner&apos;s Engineer role.</p>
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
+            <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>What Is an Owner&apos;s Engineer and Why It Matters</h2>
+            <p className="font-jost text-gray-600 mb-4 leading-relaxed text-lg">An Owner&apos;s Engineer is your technical advocate throughout the lifecycle of an energy infrastructure project. From power plant owner&apos;s engineering to construction QA/QC and system commissioning, this role ensures that your contractors, vendors, and EPC teams meet performance expectations, safety codes, and regulatory standards.</p>
+            <p className="font-jost text-gray-600 mb-4 leading-relaxed text-lg">We specialize in owner&apos;s engineer services for power plants, transmission systems, and renewable energy projects. Our approach reduces risk, improves accountability, and ensures your project remains on schedule and within budget.</p>
+            <p className="font-jost text-gray-600 leading-relaxed text-lg">We support compliance with regulatory frameworks such as <Link href="/service/nerc-compliance" className="underline font-semibold" style={{ color: '#A8228A' }}>NERC compliance requirements</Link> and deliver proven results across a wide range of utility environments. Learn more about our technical experience in <Link href="/service/substation-design" className="underline font-semibold" style={{ color: '#A8228A' }}>Substation Design</Link> and <Link href="/service/poi-interconnection-engineering-support" className="underline font-semibold" style={{ color: '#A8228A' }}>POI Interconnection Engineering Support</Link>.</p>
           </div>
         </section>
 
-        {/* 5. FULL SCOPE */}
-        <section className="py-20" style={{ background: '#06103C' }}>
+        {/* ═══ 4. FULL SCOPE ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-10 text-white text-center" style={{ fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Full Scope of Our Owner&apos;s Engineering Support</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h2 className="font-urbanist font-black mb-10 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Full Scope of Our Owner&apos;s Engineering Support</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {fullScope.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6">
+                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <h3 className="font-urbanist font-bold text-lg mb-3 border-l-4 pl-3" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 6. HVDC/SOLAR/WIND SEGMENTS */}
-        <section className="py-20 bg-white">
+        {/* ═══ 5. HVDC/SOLAR/WIND SEGMENTS ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>HVDC, Solar &amp; Wind Owner&apos;s Engineer Support</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center">Keentel Engineering supports a wide range of utility-scale and renewable energy projects with dedicated owner&apos;s engineer services, tailored to the specific requirements of each technology type and grid interconnection model.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>HVDC, Solar &amp; Wind Owner&apos;s Engineer Support</h2>
+            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center text-lg leading-relaxed">Keentel Engineering supports a wide range of utility-scale and renewable energy projects with dedicated owner&apos;s engineer services, tailored to the specific requirements of each technology type and grid interconnection model.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {segments.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
+                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <h3 className="font-urbanist font-bold text-lg mb-3" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 7. WHY CHOOSE KEENTEL (icons row) */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
+        {/* ═══ 6. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-10 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Why Choose Keentel Engineering?</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
+            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
+            <p className="font-jost text-gray-600 text-lg mb-12">Owner&apos;s Engineer Services by Keentel Engineering</p>
+            {caseStudies.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                {caseStudies.map((cs) => (
+                  <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white" style={{ borderColor: '#E6E8F0' }}>
+                    <div className="relative h-52 overflow-hidden flex items-center justify-center" style={{ background: '#F6F7FB' }}>
+                      {cs.cardImage && (
+                        <img src={cs.cardImage} alt={cs.title} className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500" />
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-urbanist font-bold text-lg mb-3 leading-snug" style={{ color: '#06103C' }}>{cs.title}</h3>
+                      {cs.excerpt && <p className="font-jost text-gray-500 text-sm leading-relaxed mb-5 line-clamp-3">{cs.excerpt}</p>}
+                      <span className="inline-flex items-center gap-2 text-sm font-semibold font-jost" style={{ color: '#A8228A' }}>
+                        See Full Case Study
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="font-jost text-gray-400 mb-10">Case studies coming soon.</p>
+            )}
+            <div className="text-center">
+              <Link href="/our-work" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:bg-white" style={{ borderColor: '#06103C', color: '#06103C' }}>
+                See All Case Studies
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ 7. GET IN TOUCH — full redesign ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-5">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Get in Touch</span>
+                <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Let&apos;s Discuss How to Optimize Your Next Project</h2>
+                <p className="font-jost text-gray-600 text-lg leading-relaxed mb-8">Tell us about your project and where you are in the lifecycle. A licensed engineer will follow up to discuss scope.</p>
+                <div className="rounded-2xl p-6" style={{ background: '#06103C' }}>
+                  <p className="font-urbanist font-bold text-white text-lg mb-1">Prefer to talk now?</p>
+                  <Link href="tel:813-389-7871" className="font-jost text-2xl font-bold" style={{ color: '#C72E9E' }}>813-389-7871</Link>
+                </div>
+              </div>
+              <div className="lg:col-span-7 rounded-2xl shadow-xl p-6 sm:p-10" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
+                {formStatus === 'success' ? (
+                  <div className="text-center py-16">
+                    <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(168,34,138,0.1)' }}>
+                      <svg className="w-8 h-8" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <h3 className="font-urbanist font-bold text-2xl mb-2" style={{ color: '#06103C' }}>Message Received</h3>
+                    <p className="font-jost text-gray-500">Thank you for contacting Keentel Engineering. We will get back to you as soon as possible.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>First Name *</label>
+                        <input required type="text" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#fff' }} onFocus={e => { e.target.style.borderColor = '#A8228A' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0' }} />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Last Name</label>
+                        <input type="text" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#fff' }} onFocus={e => { e.target.style.borderColor = '#A8228A' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0' }} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
+                        <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#fff' }} onFocus={e => { e.target.style.borderColor = '#A8228A' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0' }} />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
+                        <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#fff' }} onFocus={e => { e.target.style.borderColor = '#A8228A' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0' }} />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#06103C' }}>What Services Are You Interested In?</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {['POI Interconnection Engineering Support', 'Substation Design Services', 'EHV, HV, MV Power System Studies', 'Owners Engineering Services', 'NERC O&P 693 Compliance Services', 'Utility Scale Solar Farm Engineering'].map((svc) => (
+                          <label key={svc} className="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all" style={{ borderColor: formData.service === svc ? '#A8228A' : '#E6E8F0', background: formData.service === svc ? 'rgba(168,34,138,0.05)' : '#F6F7FB' }}>
+                            <input type="radio" name="service" value={svc} checked={formData.service === svc} onChange={e => setFormData(p => ({ ...p, service: e.target.value }))} className="accent-pink-600" />
+                            <span className="font-jost text-sm text-gray-700">{svc}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
+                      <textarea value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none transition-all" style={{ borderColor: '#E6E8F0', background: '#fff' }} onFocus={e => { e.target.style.borderColor = '#A8228A' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0' }} />
+                    </div>
+                    {formStatus === 'error' && <p className="text-sm text-red-500 font-jost p-3 rounded-xl border border-red-100 bg-red-50">Failed to send. Please try again.</p>}
+                    <button type="submit" disabled={formStatus === 'loading'} className="w-full py-4 rounded-full font-jost font-semibold text-white text-lg transition-all hover:opacity-90 disabled:opacity-60" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+                      {formStatus === 'loading' ? 'Sending...' : 'Submit Request →'}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ 8. WHY CHOOSE KEENTEL ENGINEERING? — moved down one section per brief, icon row ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="font-urbanist font-black mb-10 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Keentel Engineering?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { t: 'Expertise', d: 'Our team brings years of industry experience and expertise to every project we undertake.' },
                 { t: 'Tailored Solutions', d: 'We understand that every project is unique, offering customized solutions tailored to your needs.' },
                 { t: 'Commitment to Quality', d: 'We deliver exceptional results, ensuring every project meets the highest standards of quality.' },
                 { t: 'Dedicated Support', d: 'From start to finish, our team provides the support and guidance you need to achieve success.' },
               ].map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border text-center" style={{ borderColor: '#E6E8F0' }}>
+                <div key={i} className="bg-white rounded-2xl p-6 border text-center hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 font-urbanist font-black text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>{i + 1}</div>
                   <h4 className="font-urbanist font-bold text-sm mb-2" style={{ color: '#06103C' }}>{c.t}</h4>
-                  <p className="font-jost text-gray-500 text-xs leading-relaxed">{c.d}</p>
+                  <p className="font-jost text-gray-600 text-xs leading-relaxed">{c.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 8. CLIENTS */}
-        <section className="py-16 bg-white">
+        {/* ═══ 9. OUR CLIENTS ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-2" style={{ color: '#06103C', fontSize: 'clamp(1.5rem,2.5vw,2rem)' }}>Our Clients</h2>
-            <p className="font-jost text-gray-600 mb-8">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {['RRC-ae225119', 'PAE-864f5ced', '49-752adf6f', '48-816ccd8f', '47-363a19ec', '46-ff7bc11f', '45-dfb687e0', '44-18370d1d', '43-10240e91'].map((slug, i) => (
-                <div key={i} className="border-2 rounded-2xl flex items-center justify-center p-8" style={{ borderColor: '#E6E8F0', minHeight: 150 }}>
-                  <img src={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${slug}-1920w.png`} alt="Client" className="max-h-24 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+            <div className="mb-12 text-center">
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Trusted By</span>
+              <h2 className="font-urbanist font-black text-3xl sm:text-4xl" style={{ color: '#06103C' }}>Our Clients</h2>
+              <p className="font-jost text-gray-600 mt-3 max-w-2xl mx-auto text-lg">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+              {[
+                { src: '/images/clients/rrc-companies.webp', alt: 'RRC Companies' },
+                { src: '/images/clients/pae-engineers.webp', alt: 'PAE Engineers' },
+                { src: '/images/clients/edf-power-solutions.webp', alt: 'EDF Power Solutions' },
+                { src: '/images/clients/pike-engineering.webp', alt: 'Pike Engineering' },
+                { src: '/images/clients/risk-work.webp', alt: 'Risk Work' },
+                { src: '/images/clients/siemens-energy-1.webp', alt: 'Siemens Energy' },
+                { src: '/images/clients/avangrid.webp', alt: 'Avangrid' },
+                { src: '/images/clients/siemens-energy-2.webp', alt: 'Siemens Energy' },
+                { src: '/images/clients/aypa-power.webp', alt: 'AYPA Power' },
+              ].map((logo, i) => (
+                <div key={i} className="bg-white rounded-xl p-5 flex items-center justify-center shadow-sm hover:shadow-md transition-all h-24" style={{ border: '1px solid #E6E8F0' }}>
+                  <img src={logo.src} alt={logo.alt} className="max-h-12 max-w-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 9. FAQ */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-10" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>FAQ for Owner&apos;s Engineer Services</h2>
-            <div className="space-y-3">
-              {faqs.map((f, i) => (
-                <div key={i} className="bg-white border rounded-xl overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
-                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center gap-4 p-5 text-left">
-                    <span className="font-urbanist font-bold text-sm" style={{ color: '#06103C' }}>{i + 1}. {f.q}</span>
-                    <span className="flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center text-xs" style={{ borderColor: '#E6E8F0', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>▾</span>
-                  </button>
-                  {openFaq === i && <div className="px-5 pb-5 font-jost text-sm text-gray-600 leading-relaxed">{f.a}</div>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* ═══ 10. FAQ — homepage match ═══ */}
+        <FaqSection
+          eyebrow="Questions We Hear"
+          heading="Answers,"
+          headingLine2="before you ask."
+          intro="The Owner's Engineer questions clients ask us most."
+          items={faqs}
+        />
 
-        {/* 10. BLOGS */}
+        {/* ═══ 11. BLOGS — prominent date, full image ═══ */}
         {blogs.length > 0 && (
-          <section className="py-24 bg-white">
+          <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
                 <div>
                   <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Technical Reading</span>
-                  <h2 className="font-urbanist font-black text-4xl sm:text-5xl" style={{ color: '#06103C' }}>Owner&apos;s Engineer – Blogs</h2>
+                  <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>Owner&apos;s Engineer – Blogs</h2>
                 </div>
-                <Link href="/blog" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>View All Articles</Link>
+                <Link href="/blog" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
+                  View All Articles
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogs.map((post) => (
-                  <Link key={post._id} href={`/blog/${post.slug.current}`} className="group block bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                    <div className="relative h-44 overflow-hidden">
+                  <Link key={post._id} href={`/blog/${post.slug.current}`} className="group block bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
+                    <div className="relative w-full aspect-[16/10] overflow-hidden">
                       <img src={blogImageUrl(post)} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-96f20648-1920w.png' }} />
+                      <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full font-jost text-xs font-bold text-white" style={{ background: '#A8228A' }}>
+                        {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </div>
                     </div>
-                    <div className="p-5">
-                      <p className="font-jost text-xs text-gray-400 mb-2 uppercase tracking-wide">{post.category} · {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
-                      <h3 className="font-urbanist font-bold text-base mb-2 leading-snug line-clamp-2" style={{ color: '#06103C' }}>{post.title}</h3>
-                      <p className="font-jost text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4">{post.excerpt}</p>
-                      <span className="font-jost text-sm font-semibold" style={{ color: '#A8228A' }}>Read More</span>
+                    <div className="p-6">
+                      <p className="font-jost text-xs text-gray-400 mb-2 uppercase tracking-wide font-semibold">{post.category}</p>
+                      <h3 className="font-urbanist font-bold text-lg mb-3 leading-snug line-clamp-2" style={{ color: '#06103C' }}>{post.title}</h3>
+                      <p className="font-jost text-gray-600 text-sm leading-relaxed line-clamp-3 mb-5">{post.excerpt}</p>
+                      <span className="inline-flex items-center gap-2 font-jost text-sm font-semibold" style={{ color: '#A8228A' }}>
+                        Read More
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      </span>
                     </div>
                   </Link>
                 ))}

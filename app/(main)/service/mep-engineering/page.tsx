@@ -16,6 +16,56 @@ interface BlogPost {
   mainImage?: { asset: { url: string } }
 }
 
+interface CaseStudy {
+  _id: string
+  title: string
+  slug: { current: string }
+  category: string
+  cardImage?: string
+  excerpt?: string
+}
+
+function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer" style={{ border: `1.5px solid ${open ? '#A8228A' : '#E6E8F0'}`, boxShadow: open ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }} onClick={() => setOpen(!open)}>
+      <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>{String(index + 1).padStart(2, '0')}</span>
+        <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
+        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300" style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
+        </div>
+      </div>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+        <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
+      </div>
+    </div>
+  )
+}
+
+function FaqSection({ eyebrow, heading, headingLine2, intro, items }: { eyebrow: string; heading: string; headingLine2?: string; intro: string; items: { q: string; a: string }[] }) {
+  return (
+    <section className="py-16 sm:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-4 lg:sticky lg:top-28">
+            <p className="text-xs font-bold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>{eyebrow}</p>
+            <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6" style={{ color: '#0B1230' }}>{heading}{headingLine2 && <><br />{headingLine2}</>}</h2>
+            <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>{intro}</p>
+            <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-jost font-semibold text-white px-7 py-4 rounded-full transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+              Ask Us Directly
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+          </div>
+          <div className="lg:col-span-8 flex flex-col gap-3">
+            {items.map((item, i) => <FaqAccordionItem key={i} q={item.q} a={item.a} index={i} />)}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const whyChoose = [
   { t: 'Multidisciplinary Delivery', d: 'In-house experts across HVAC, electrical, and plumbing ensure cohesive designs that reduce coordination delays and costly field changes.' },
   { t: 'BIM-Driven Coordination', d: 'Our Revit-based workflows and clash detection modeling improve constructability, reduce RFIs, and align MEP systems with architectural and structural elements.' },
@@ -24,61 +74,32 @@ const whyChoose = [
   { t: 'Client-First Process', d: 'From concept through commissioning, our team communicates transparently, resolves technical risks early, and tailors every solution to your facility\u2019s unique needs.' },
 ]
 
-const mechanicalCaps = [
-  { t: 'MEP BIM Modeling', items: ['3D modeling of MEP systems using Revit', 'Coordinated layouts integrated with architectural and structural models', 'Clash detection and resolution using Navisworks', 'Supports modular construction and prefabrication'] },
-  { t: 'Mechanical Design Services', items: ['HVAC system modeling including ductwork, air terminals, and equipment', 'Load calculations and equipment sizing integrated with simulation tools', 'Hydronic piping and VRF system layout', 'Optimized for energy-efficient mechanical design and ASHRAE compliance'] },
-  { t: 'Electrical Design Services', items: ['Power distribution layouts: panels, feeders, receptacles, grounding', 'Lighting system design with photometric analysis', 'Fire alarm, low voltage, and emergency power system layouts', 'Conduit and cable tray routing modeled to avoid architectural conflicts'] },
-]
-
-const docCaps = [
-  { t: 'Plumbing and Fire Protection Design', items: ['Domestic water, sanitary, and vent piping modeled for efficiency', 'Storm drainage and natural gas piping systems integrated into overall MEP layout', 'Fire sprinkler systems modeled per NFPA standards (wet, dry, standpipe)', 'Designed to meet plumbing code compliance across jurisdictions'] },
-  { t: 'Construction Documentation', items: ['Generation of fully detailed construction documents from Revit models', 'Floor plans, sections, elevations, and 2D/3D detail drawings', 'Sheet set management, legend standardization, and annotation compliance', 'Improves construction coordination and inspection readiness'] },
-  { t: 'Quantity Takeoffs and Cost Estimation', items: ['Automated takeoffs for ducts, pipes, fixtures, and equipment', 'Schedule extraction linked to estimation software for budgeting accuracy', 'Helps owners evaluate cost-effective MEP design decisions early', 'Useful in both warehouse retrofits and new industrial builds'] },
-]
-
 const mechanicalCards = [
   { t: 'HVAC System Design', d: 'We specialize in HVAC system design for temperature control, air quality, and long-term energy savings — from ductwork layout to system sizing and VRF integration.' },
-  { t: 'Plumbing Systems Engineering', d: 'Full-scope plumbing design — from sanitary drainage to stormwater and natural gas systems, prioritizing low-maintenance plumbing and IPC code compliance.' },
   { t: 'Mechanical Systems Analysis & Optimization', d: 'We use advanced software tools to simulate and assess mechanical performance, recommending data-driven improvements that boost efficiency and extend asset life.' },
   { t: 'Energy-Efficient Mechanical Design', d: 'Our systems incorporate renewable energy, green building practices, and energy modeling tools to meet LEED and sustainability goals.' },
   { t: 'Regulatory Code Compliance', d: 'Every mechanical design follows the latest ASHRAE, IECC, and local mechanical codes, ensuring approval readiness for inspections and permitting.' },
-  { t: 'Quality Assurance & Safety', d: 'From design review to commissioning, Keentel applies rigorous QA/QC protocols across each project phase.' },
-]
-
-const electricalCards = [
-  { t: 'Electrical System Design', d: 'Comprehensive electrical system design for new facilities, retrofits, and automation projects — smart-ready, load-optimized systems for data centers, warehouses, and manufacturing.' },
-  { t: 'Power Distribution Solutions', d: 'From main switchgear to branch circuit panels, our power distribution systems ensure safe, reliable energy delivery with flexibility for future scalability.' },
-  { t: 'Lighting Systems & Smart Controls', d: 'High-efficiency LED lighting, motion sensors, and smart controls integrated with photometric analysis for code-compliant, energy-efficient illumination.' },
-  { t: 'Electrical Code Compliance', d: 'Designs follow all relevant national and local codes — NEC, NFPA, and state-specific energy regulations — helping clients pass inspections smoothly.' },
-  { t: 'Emergency Power & Backup Systems', d: 'Robust backup solutions featuring generators, UPS systems, and ATS panels to ensure operational continuity during grid failures or storm events.' },
-  { t: 'Electrical System Analysis & Optimization', d: 'Detailed audits identify voltage drops, overloaded circuits, or harmonic distortion, with targeted recommendations for enhanced reliability.' },
 ]
 
 const plumbingCards = [
   { t: 'Plumbing System Design', d: 'Complete plumbing system designs ensuring balanced water pressure, optimal flow rates, and effective drainage tailored to each facility.' },
   { t: 'Water Conservation & Sustainable Design', d: 'Low-impact development with low-flow fixtures, greywater reuse systems, and water-efficient layouts supporting LEED certifications.' },
-  { t: 'Sanitary & Drainage Systems', d: 'Code-compliant, hydraulically balanced sanitary, stormwater, and vent systems that eliminate backups and minimize maintenance.' },
   { t: 'Fire Protection Systems', d: 'Wet and dry sprinkler systems, standpipes, and fire pumps designed and coordinated to meet NFPA-compliant life safety requirements.' },
-  { t: 'Gas Piping Systems', d: 'Robust gas piping design for labs, kitchens, and industrial use cases, ensuring pressure control and leak prevention.' },
   { t: 'Plumbing Code Compliance', d: 'Expertise in IPC, UPC, and local plumbing codes ensures every project passes inspection without delays.' },
 ]
 
 const faqs = [
   { q: 'What is MEP engineering?', a: 'MEP engineering refers to the integrated design and management of the Mechanical, Electrical, and Plumbing systems within a building or infrastructure project, ensuring comfort, safety, and functionality.' },
-  { q: 'What MEP engineering services do you offer?', a: 'System design & engineering, energy modeling, HVAC design & optimization, electrical distribution & lighting design, plumbing & drainage systems, fire protection & life safety systems, sustainability consulting, and construction administration support.' },
   { q: 'Why is MEP engineering important for construction projects?', a: 'It ensures comfort, optimizes energy use, enhances safety, ensures regulatory compliance, and supports sustainable building practices.' },
   { q: 'What types of projects require MEP engineering services?', a: 'Commercial buildings, residential buildings, industrial facilities, healthcare facilities, educational institutions, public infrastructure, and data centers.' },
   { q: 'How do you ensure energy efficiency in MEP designs?', a: 'Through optimized HVAC systems, energy-efficient lighting, building energy modeling, water efficiency measures, and renewable energy integration.' },
-  { q: 'How do you ensure compliance with building codes and regulations?', a: 'By continuously monitoring code changes, conducting thorough code reviews, collaborating with other disciplines, and preparing required permitting documentation.' },
-  { q: 'Do you provide ongoing support after MEP systems are installed?', a: 'Yes, including system monitoring, preventive maintenance plans, and troubleshooting & upgrade recommendations.' },
   { q: 'How much do MEP design services cost for a warehouse or industrial facility?', a: 'Pricing typically ranges from $1.50 to $3.00 per square foot depending on project size, complexity, and system requirements. Contact us for a detailed quote.' },
-  { q: 'What is included in a full-scope MEP engineering service?', a: 'HVAC design, electrical power and lighting systems, plumbing and drainage plans, fire protection, BIM modeling, code compliance checks, quantity takeoffs, and construction documentation.' },
-  { q: 'How long does it take to complete MEP engineering plans?', a: 'Typical designs take 2–6 weeks depending on project size, coordination needs, and permitting timelines. Fast-track delivery is available for urgent projects.' },
+  { q: 'How long does it take to complete MEP engineering plans?', a: 'Typical designs take 2\u20136 weeks depending on project size, coordination needs, and permitting timelines. Fast-track delivery is available for urgent projects.' },
 ]
 
 export default function MEPEngineeringPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([])
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([])
   const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -100,6 +121,14 @@ export default function MEPEngineeringPage() {
         }`
       ).then(setBlogs).catch(() => {})
     }).catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    client.fetch<CaseStudy[]>(
+      `*[_type == "caseStudy" && category == "mep-engineering"] | order(_createdAt desc) [0...3] {
+        _id, title, slug, category, cardImage, excerpt
+      }`
+    ).then(setCaseStudies).catch(() => {})
   }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -127,37 +156,33 @@ export default function MEPEngineeringPage() {
       <Header />
       <main>
 
-        {/* 1. HERO */}
-        <section className="relative min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-25">
+        {/* ═══ 1. HERO ═══ */}
+        <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-45">
             <source src="/videos/power-system-hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%)' }} />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 w-full">
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
-              <div className="flex items-center gap-2 mb-8">
-                <Link href="/services" className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#A8228A' }}>Services</Link>
+              <div className="flex items-center gap-2 mb-6 sm:mb-8">
+                <Link href="/services" className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#C72E9E' }}>Services</Link>
                 <span className="text-white/30">/</span>
                 <span className="text-white/50 text-xs font-jost">MEP Engineering Services</span>
               </div>
-              <h1 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}>
-                MEP Engineering Services
-              </h1>
-              <p className="font-jost text-white/70 text-lg mb-10 max-w-3xl leading-relaxed">
-                From HVAC and electrical systems to plumbing, fire protection, and energy modeling, Keentel delivers high-quality MEPF engineering services across North America — optimized for warehouse, industrial, and commercial facilities, including retrofitting, upgrades, and sustainable systems.
+              <h1 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2.1rem, 4.5vw, 3.5rem)' }}>MEP Engineering Services</h1>
+              <p className="font-jost text-white/90 mb-10 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)' }}>
+                From HVAC and electrical systems to plumbing, fire protection, and energy modeling, we deliver high-quality MEPF engineering services across North America — optimized for warehouse, industrial, and commercial facilities, including retrofitting, upgrades, and sustainable systems.
               </p>
-              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                Schedule A Call
-              </Link>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
             </div>
           </div>
         </section>
 
-        {/* 2. OVERVIEW */}
-        <section className="py-16 bg-white">
+        {/* ═══ 2. OVERVIEW ═══ */}
+        <section className="py-16 sm:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-4 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.5rem,2.5vw,2rem)' }}>MEP Engineering Services for Industrial and Warehouse Facilities</h2>
-            <p className="font-jost text-gray-600 leading-relaxed mb-4 text-center">Keentel specializes in MEP engineering services for industrial plants, warehouse buildings, and large-scale commercial projects. From retrofitting MEP systems to energy efficiency upgrades, we design infrastructure that meets operational demands and evolving energy codes.</p>
+            <h2 className="font-urbanist font-black mb-5 text-center leading-tight" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>MEP Engineering Services for Industrial and Warehouse Facilities</h2>
+            <p className="font-jost text-gray-600 leading-relaxed mb-6 text-center text-lg">We specialize in MEP engineering services for industrial plants, warehouse buildings, and large-scale commercial projects. From retrofitting MEP systems to energy efficiency upgrades, we design infrastructure that meets operational demands and evolving energy codes.</p>
             <ul className="space-y-2 font-jost text-sm text-gray-600 max-w-xl mx-auto">
               {['Custom MEP layouts for warehouse cooling and ventilation', 'High-load electrical system coordination for industrial sites', 'Stormwater, gas piping, and sanitary design', 'BIM-based modeling, clash detection, and design optimization'].map((t, i) => (
                 <li key={i} className="flex gap-2"><span style={{ color: '#A8228A' }}>•</span>{t}</li>
@@ -166,196 +191,265 @@ export default function MEPEngineeringPage() {
           </div>
         </section>
 
-        {/* 3. WHY CHOOSE */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
+        {/* ═══ 3. WHY CHOOSE — branded two-column ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Why Choose Keentel for MEP Engineering Services</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12">At Keentel Engineering, we bring 30+ years of cross-discipline expertise to every MEP engineering project, delivering fully integrated mechanical, electrical, and plumbing solutions.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {whyChoose.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-5">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Why Keentel</span>
+                <h2 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Keentel for MEP Engineering Services</h2>
+                <p className="font-jost text-white/70 text-lg leading-relaxed mb-8">We bring 30+ years of cross-discipline expertise to every MEP engineering project, delivering fully integrated mechanical, electrical, and plumbing solutions.</p>
+                <Link href="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+                  Learn More About Us
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              </div>
+              <div className="lg:col-span-7 rounded-2xl p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, rgba(168,34,138,0.12), rgba(91,42,134,0.12))', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div className="space-y-4">
+                  {whyChoose.map((c, i) => (
+                    <div key={i} className="flex items-start gap-4 p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 font-urbanist font-black text-white" style={{ background: '#A8228A' }}>{i + 1}</div>
+                      <div>
+                        <p className="font-urbanist font-bold text-white text-base sm:text-lg mb-1">{c.t}</p>
+                        <p className="font-jost text-white/65 text-sm leading-relaxed">{c.d}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-10">
-              <Link href="/about" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Learn More About Us</Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 4. CONTACT FORM */}
-        <section className="py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black text-center mb-10" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Let&apos;s Discuss How to Optimize Your Next Project</h2>
-            {formStatus === 'success' ? (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-green-700 font-jost text-center">Message Received — Thank you for contacting us. We will get back to you as soon as possible.</div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <input required placeholder="First Name" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                  <input placeholder="Last Name" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <input required type="tel" placeholder="Phone" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                  <input required type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                </div>
-                <textarea placeholder="Message" value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} rows={4} className="w-full border rounded-lg px-4 py-3 font-jost text-sm" style={{ borderColor: '#E6E8F0' }} />
-                <button type="submit" disabled={formStatus === 'loading'} className="w-full px-8 py-4 rounded-full font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                  {formStatus === 'loading' ? 'Sending...' : 'Submit'}
-                </button>
-                {formStatus === 'error' && <p className="text-red-500 text-sm font-jost text-center">Oops, there was an error. Please try again.</p>}
-              </form>
-            )}
-          </div>
-        </section>
-
-        {/* 5. INTEGRATED MEP CAPABILITIES */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
+        {/* ═══ 4. MECHANICAL ENGINEERING SERVICES ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Integrated MEP Engineering Services for Complex Facility Projects</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center">Keentel Engineering offers full-scope MEP engineering services for industrial, warehouse, and commercial facilities across the United States.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {mechanicalCaps.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-3 border-l-4 pl-3" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
-                  <ul className="space-y-2 font-jost text-sm text-gray-500">
-                    {c.items.map((it, j) => (<li key={j} className="flex gap-2"><span style={{ color: '#A8228A' }}>•</span>{it}</li>))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-              {docCaps.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-3 border-l-4 pl-3" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
-                  <ul className="space-y-2 font-jost text-sm text-gray-500">
-                    {c.items.map((it, j) => (<li key={j} className="flex gap-2"><span style={{ color: '#A8228A' }}>•</span>{it}</li>))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6. MECHANICAL */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Mechanical Engineering Services<br/><span className="text-lg font-bold">For Industrial, Warehouse &amp; Commercial Facilities</span></h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-4 text-center">At Keentel Engineering, we deliver high-performance mechanical engineering services for industrial, warehouse, and commercial clients across the United States.</p>
-            <p className="font-jost text-gray-500 text-sm text-center mb-12 italic">Also explore our <Link href="/service/power-system-studies" className="underline" style={{ color: '#A8228A' }}>Power System Studies</Link> to support integrated energy modeling and system analysis.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#A8228A' }}>Mechanical</span>
+            <h2 className="font-urbanist font-black mb-3 text-center leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Mechanical Engineering Services<br /><span className="text-lg font-bold" style={{ color: '#5B2A86' }}>For Industrial, Warehouse &amp; Commercial Facilities</span></h2>
+            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center text-lg leading-relaxed">We deliver high-performance mechanical engineering services for industrial, warehouse, and commercial clients across the United States.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {mechanicalCards.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
+                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 7. ELECTRICAL */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
+        {/* ═══ 5. PLUMBING ENGINEERING SERVICES ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Electrical Engineering Services<br/><span className="text-lg font-bold">Power-Focused, Future-Ready Solutions</span></h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-4 text-center">At Keentel Engineering, our electrical engineering team delivers scalable, code-compliant electrical systems for industrial, commercial, and warehouse facilities across the U.S.</p>
-            <p className="font-jost text-gray-500 text-sm text-center mb-12 italic">Explore our <Link href="/service/substation-design" className="underline" style={{ color: '#A8228A' }}>Substation Design Services</Link> or <Link href="/service/power-system-studies" className="underline" style={{ color: '#A8228A' }}>Power System Studies</Link> to optimize your electrical infrastructure.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {electricalCards.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 8. PLUMBING */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Plumbing Engineering Services<br/><span className="text-lg font-bold">Sustainable, Code-Compliant Solutions</span></h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center">At Keentel Engineering, we deliver comprehensive plumbing engineering services for industrial, commercial, and specialized facilities across the U.S.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#A8228A' }}>Plumbing</span>
+            <h2 className="font-urbanist font-black mb-3 text-center leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Plumbing Engineering Services<br /><span className="text-lg font-bold" style={{ color: '#5B2A86' }}>Sustainable, Code-Compliant Solutions</span></h2>
+            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center text-lg leading-relaxed">We deliver comprehensive plumbing engineering services for industrial, commercial, and specialized facilities across the U.S.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {plumbingCards.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border" style={{ borderColor: '#E6E8F0' }}>
+                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-500 text-sm leading-relaxed">{c.d}</p>
+                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 9. CLIENTS */}
-        <section className="py-16" style={{ background: '#F7F8FC' }}>
+        {/* ═══ 6. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-2" style={{ color: '#06103C', fontSize: 'clamp(1.5rem,2.5vw,2rem)' }}>Our Clients</h2>
-            <p className="font-jost text-gray-600 mb-8">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {['RRC-ae225119', 'PAE-864f5ced', '49-752adf6f', '48-816ccd8f', '47-363a19ec', '46-ff7bc11f', '45-dfb687e0', '44-18370d1d', '43-10240e91'].map((slug, i) => (
-                <div key={i} className="border-2 rounded-2xl flex items-center justify-center p-8 bg-white" style={{ borderColor: '#E6E8F0', minHeight: 150 }}>
-                  <img src={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${slug}-1920w.png`} alt="Client" className="max-h-24 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
+            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
+            <p className="font-jost text-gray-600 text-lg mb-12">MEP Engineering by Keentel Engineering</p>
+            {caseStudies.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                {caseStudies.map((cs) => (
+                  <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
+                    <div className="relative h-52 overflow-hidden flex items-center justify-center" style={{ background: '#F6F7FB' }}>
+                      {cs.cardImage ? (
+                        <img src={cs.cardImage} alt={cs.title} className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #06103C, #1a1050)' }}>
+                          <span className="font-urbanist font-black text-white/20 text-6xl">MEP</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-urbanist font-bold text-lg mb-3 leading-snug" style={{ color: '#06103C' }}>{cs.title}</h3>
+                      {cs.excerpt && <p className="font-jost text-gray-500 text-sm leading-relaxed mb-5 line-clamp-3">{cs.excerpt}</p>}
+                      <span className="inline-flex items-center gap-2 text-sm font-semibold font-jost" style={{ color: '#A8228A' }}>
+                        See Full Case Study
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="font-jost text-gray-400 mb-10">Case studies coming soon.</p>
+            )}
+            <div className="text-center">
+              <Link href="/our-work" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:bg-gray-50" style={{ borderColor: '#06103C', color: '#06103C' }}>
+                See All Case Studies
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ 7. GET IN TOUCH — full redesign ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: 'linear-gradient(180deg, #F6F7FB 0%, #ffffff 100%)' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              <div className="lg:col-span-5">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Get in Touch</span>
+                <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Let&apos;s Discuss How to Optimize Your Next Project</h2>
+                <p className="font-jost text-gray-600 text-lg leading-relaxed mb-8">Tell us about your facility and timeline. A licensed engineer will follow up to discuss scope.</p>
+                <div className="rounded-2xl p-6" style={{ background: '#06103C' }}>
+                  <p className="font-urbanist font-bold text-white text-lg mb-1">Prefer to talk now?</p>
+                  <Link href="tel:813-389-7871" className="font-jost text-2xl font-bold" style={{ color: '#C72E9E' }}>813-389-7871</Link>
+                </div>
+              </div>
+              <div className="lg:col-span-7 bg-white rounded-2xl shadow-xl p-6 sm:p-10" style={{ border: '1px solid #E6E8F0' }}>
+                {formStatus === 'success' ? (
+                  <div className="text-center py-16">
+                    <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(168,34,138,0.1)' }}>
+                      <svg className="w-8 h-8" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <h3 className="font-urbanist font-bold text-2xl mb-2" style={{ color: '#06103C' }}>Message Received</h3>
+                    <p className="font-jost text-gray-500">Thank you for contacting Keentel Engineering. We will get back to you as soon as possible.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>First Name *</label>
+                        <input required type="text" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Last Name</label>
+                        <input type="text" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
+                        <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
+                        <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#06103C' }}>What Services Are You Interested In?</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {['POI Interconnection Engineering Support', 'Substation Design Services', 'EHV, HV, MV Power System Studies', 'Owners Engineering Services', 'NERC O&P 693 Compliance Services', 'Utility Scale Solar Farm Engineering'].map((svc) => (
+                          <label key={svc} className="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all" style={{ borderColor: formData.service === svc ? '#A8228A' : '#E6E8F0', background: formData.service === svc ? 'rgba(168,34,138,0.05)' : '#F6F7FB' }}>
+                            <input type="radio" name="service" value={svc} checked={formData.service === svc} onChange={e => setFormData(p => ({ ...p, service: e.target.value }))} className="accent-pink-600" />
+                            <span className="font-jost text-sm text-gray-700">{svc}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
+                      <textarea value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
+                    </div>
+                    {formStatus === 'error' && <p className="text-sm text-red-500 font-jost p-3 rounded-xl border border-red-100 bg-red-50">Failed to send. Please try again.</p>}
+                    <button type="submit" disabled={formStatus === 'loading'} className="w-full py-4 rounded-full font-jost font-semibold text-white text-lg transition-all hover:opacity-90 disabled:opacity-60" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+                      {formStatus === 'loading' ? 'Sending...' : 'Submit Request →'}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ 8. OUR CLIENTS — redesigned ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Trusted By</span>
+              <h2 className="font-urbanist font-black text-3xl sm:text-4xl" style={{ color: '#06103C' }}>Our Clients</h2>
+              <p className="font-jost text-gray-600 mt-3 max-w-2xl mx-auto text-lg">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+              {[
+                { src: '/images/clients/rrc-companies.webp', alt: 'RRC Companies' },
+                { src: '/images/clients/pae-engineers.webp', alt: 'PAE Engineers' },
+                { src: '/images/clients/edf-power-solutions.webp', alt: 'EDF Power Solutions' },
+                { src: '/images/clients/pike-engineering.webp', alt: 'Pike Engineering' },
+                { src: '/images/clients/risk-work.webp', alt: 'Risk Work' },
+                { src: '/images/clients/siemens-energy-1.webp', alt: 'Siemens Energy' },
+                { src: '/images/clients/avangrid.webp', alt: 'Avangrid' },
+                { src: '/images/clients/siemens-energy-2.webp', alt: 'Siemens Energy' },
+                { src: '/images/clients/aypa-power.webp', alt: 'AYPA Power' },
+              ].map((logo, i) => (
+                <div key={i} className="bg-white rounded-xl p-5 flex items-center justify-center shadow-sm hover:shadow-md transition-all h-24" style={{ border: '1px solid #E6E8F0' }}>
+                  <img src={logo.src} alt={logo.alt} className="max-h-12 max-w-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 10. FINAL CTA */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Ready to Power Your Next Facility with Precision-Engineered MEP Solutions?</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-8">Whether you&apos;re planning a new industrial plant, retrofitting a warehouse, or upgrading commercial infrastructure, Keentel Engineering delivers cost-effective, code-compliant, and energy-efficient MEPF engineering services tailored to your project&apos;s demands.</p>
+        {/* ═══ 9. FINAL CTA — prominent desc ═══ */}
+        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Get Started</span>
+            <h2 className="font-urbanist font-black mb-5 text-white leading-tight" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Ready to Power Your Next Facility with Precision-Engineered MEP Solutions?</h2>
+            <p className="font-jost text-white/85 max-w-3xl mx-auto mb-8 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)' }}>
+              Whether you&apos;re planning a new industrial plant, retrofitting a warehouse, or upgrading commercial infrastructure, we deliver cost-effective, code-compliant, and energy-efficient MEPF engineering services tailored to your project&apos;s demands.
+            </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Consultation</Link>
-              <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2" style={{ borderColor: '#06103C', color: '#06103C' }}>813-389-7871</Link>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Consultation</Link>
+              <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">813-389-7871</Link>
             </div>
           </div>
         </section>
 
-        {/* 11. FAQ */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-10" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>FAQ for MEP (Mechanical, Electrical, and Plumbing) Engineering Services</h2>
-            <div className="space-y-3">
-              {faqs.map((f, i) => (
-                <div key={i} className="bg-white border rounded-xl overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
-                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center gap-4 p-5 text-left">
-                    <span className="font-urbanist font-bold text-sm" style={{ color: '#06103C' }}>{i + 1}. {f.q}</span>
-                    <span className="flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center text-xs" style={{ borderColor: '#E6E8F0', transform: openFaq === i ? 'rotate(180deg)' : 'none' }}>▾</span>
-                  </button>
-                  {openFaq === i && <div className="px-5 pb-5 font-jost text-sm text-gray-600 leading-relaxed">{f.a}</div>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* ═══ 10. FAQ — homepage match ═══ */}
+        <FaqSection
+          eyebrow="Questions We Hear"
+          heading="Answers,"
+          headingLine2="before you ask."
+          intro="The MEP engineering questions facility owners and developers ask us most."
+          items={faqs}
+        />
 
-        {/* 12. BLOGS */}
+        {/* ═══ 11. BLOGS — prominent date, full image ═══ */}
         {blogs.length > 0 && (
-          <section className="py-24 bg-white">
+          <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
                 <div>
                   <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Technical Reading</span>
-                  <h2 className="font-urbanist font-black text-4xl sm:text-5xl" style={{ color: '#06103C' }}>MEP Engineering – Blogs</h2>
+                  <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>MEP Engineering – Blogs</h2>
                 </div>
-                <Link href="/blog" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>View All Articles</Link>
+                <Link href="/blog" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
+                  View All Articles
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogs.map((post) => (
-                  <Link key={post._id} href={`/blog/${post.slug.current}`} className="group block bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                    <div className="relative h-44 overflow-hidden">
+                  <Link key={post._id} href={`/blog/${post.slug.current}`} className="group block bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
+                    <div className="relative w-full aspect-[16/10] overflow-hidden">
                       <img src={blogImageUrl(post)} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-96f20648-1920w.png' }} />
+                      <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full font-jost text-xs font-bold text-white" style={{ background: '#A8228A' }}>
+                        {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </div>
                     </div>
-                    <div className="p-5">
-                      <p className="font-jost text-xs text-gray-400 mb-2 uppercase tracking-wide">{post.category} · {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
-                      <h3 className="font-urbanist font-bold text-base mb-2 leading-snug line-clamp-2" style={{ color: '#06103C' }}>{post.title}</h3>
-                      <p className="font-jost text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4">{post.excerpt}</p>
-                      <span className="font-jost text-sm font-semibold" style={{ color: '#A8228A' }}>Read More</span>
+                    <div className="p-6">
+                      <p className="font-jost text-xs text-gray-400 mb-2 uppercase tracking-wide font-semibold">{post.category}</p>
+                      <h3 className="font-urbanist font-bold text-lg mb-3 leading-snug line-clamp-2" style={{ color: '#06103C' }}>{post.title}</h3>
+                      <p className="font-jost text-gray-600 text-sm leading-relaxed line-clamp-3 mb-5">{post.excerpt}</p>
+                      <span className="inline-flex items-center gap-2 font-jost text-sm font-semibold" style={{ color: '#A8228A' }}>
+                        Read More
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      </span>
                     </div>
                   </Link>
                 ))}
