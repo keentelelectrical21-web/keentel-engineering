@@ -67,7 +67,7 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-4">
               {/* Original logo color — no filter */}
               <img
-                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/zeeshan+2nd+logo+%281%29-417w.png"
+                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
                 alt="Keentel Engineering"
                 className="h-12 w-auto"
               />
@@ -154,7 +154,7 @@ export default function Footer() {
       {/* Marquee */}
       <div className="overflow-hidden py-4" style={{ borderTop: '1px solid #E6E8F0' }}>
         <div className="flex animate-marquee-left whitespace-nowrap" style={{ width: 'max-content' }}>
-          {[...marqueeText, ...marqueeText].map((item, i) => (
+          {[...marqueeText, ...marqueeText, ...marqueeText, ...marqueeText].map((item, i) => (
             <span key={i} className="inline-flex items-center gap-4 mx-6 font-urbanist font-black select-none" style={{ fontSize: 'clamp(40px,5vw,72px)', color: 'rgba(11,26,91,0.05)' }}>
               {item}
               <span style={{ color: '#A8228A', fontSize: '60%' }}>✦</span>
