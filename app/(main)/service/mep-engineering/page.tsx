@@ -125,8 +125,10 @@ export default function MEPEngineeringPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && category == "mep-engineering"] | order(_createdAt desc) [0...3] {
-        _id, title, slug, category, cardImage, excerpt
+      `*[_type == "caseStudy" && (lower(relatedService) match "*mep*" || lower(relatedService) match "*mechanical*" || lower(relatedService) match "*plumbing*")] | order(_createdAt desc) [0...3] {
+        _id, title, slug, relatedService,
+        "cardImage": featuredImage.asset->url,
+        "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})
   }, [])

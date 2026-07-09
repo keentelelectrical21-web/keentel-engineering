@@ -139,8 +139,10 @@ export default function NercCompliancePage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && category == "nerc-compliance"] | order(_createdAt desc) [0...3] {
-        _id, title, slug, category, cardImage, excerpt
+      `*[_type == "caseStudy" && (lower(relatedService) match "*nerc*" || lower(relatedService) match "*compliance*")] | order(_createdAt desc) [0...3] {
+        _id, title, slug, relatedService,
+        "cardImage": featuredImage.asset->url,
+        "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})
   }, [])

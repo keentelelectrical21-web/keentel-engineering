@@ -259,8 +259,10 @@ export default function PowerSystemStudiesPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && category == "power-system"] | order(_createdAt desc) [0...3] {
-        _id, title, slug, category, cardImage, excerpt
+      `*[_type == "caseStudy" && (lower(relatedService) match "*power system*" || lower(relatedService) match "*power-system*")] | order(_createdAt desc) [0...3] {
+        _id, title, slug, relatedService,
+        "cardImage": featuredImage.asset->url,
+        "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})
   }, [])
