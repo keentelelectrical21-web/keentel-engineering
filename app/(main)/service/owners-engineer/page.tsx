@@ -129,7 +129,7 @@ export default function OwnersEngineerPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && (lower(relatedService) match "*owner*")] | order(_createdAt desc) [0...3] {
+      `*[_type == "caseStudy" && (relatedService == "owners-engineer")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
         "cardImage": featuredImage.asset->url,
         "excerpt": challenge

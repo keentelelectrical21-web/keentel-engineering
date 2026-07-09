@@ -138,7 +138,7 @@ export default function UtilityScaleRenewableEnergyPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && (lower(relatedService) match "*solar*" || lower(relatedService) match "*renewable*" || lower(relatedService) match "*wind*" || lower(relatedService) match "*bess*" || lower(relatedService) match "*utility scale*")] | order(_createdAt desc) [0...3] {
+      `*[_type == "caseStudy" && (relatedService == "utility-scale-renewable-energy")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
         "cardImage": featuredImage.asset->url,
         "excerpt": challenge

@@ -154,7 +154,7 @@ export default function POIInterconnectionPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && (lower(relatedService) match "*poi*" || lower(relatedService) match "*interconnection*")] | order(_createdAt desc) [0...3] {
+      `*[_type == "caseStudy" && (relatedService == "poi-interconnection-engineering-support")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
         "cardImage": featuredImage.asset->url,
         "excerpt": challenge
