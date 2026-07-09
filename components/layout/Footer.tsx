@@ -57,7 +57,7 @@ const marqueeText = ['Power System Engineering', 'NERC Compliance', 'Substation 
 
 export default function Footer() {
   return (
-    <footer className="overflow-hidden" style={{ background: '#F4F5F9', color: '#0B1230' }}>
+    <footer className="overflow-hidden" style={{ background: '#06103C', color: '#fff' }}>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
@@ -67,42 +67,42 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-4">
               {/* Original logo color — no filter */}
               <img
-                src="/images/home/logo.png"
+                src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"
                 alt="Keentel Engineering"
-                className="h-12 w-auto"
+                className="h-12 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="text-sm font-jost leading-relaxed mb-6" style={{ color: '#6B7280' }}>
+            <p className="text-sm font-jost leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.5)' }}>
               Together, we power the future of reliable and compliant electrical infrastructure across the United States.
             </p>
             <div className="flex gap-2">
-              <input type="email" placeholder="Your Email" className="flex-1 text-sm px-4 py-2.5 rounded-full focus:outline-none" style={{ background: '#fff', border: '1px solid #E6E8F0', color: '#0B1230' }} />
+              <input type="email" placeholder="Your Email" className="flex-1 text-sm px-4 py-2.5 rounded-full focus:outline-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#fff' }} />
               <button className="text-white text-sm font-semibold px-4 py-2.5 rounded-full whitespace-nowrap" style={{ background: '#A8228A' }}>Subscribe</button>
             </div>
           </div>
 
           {/* Company */}
           <div className="lg:col-span-2">
-            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#0B1230' }}>Company</h4>
-            <ul className="space-y-2.5">{company.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-[#A8228A] transition-colors" style={{ color: '#6B7280' }}>{l.name}</Link></li>)}</ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Company</h4>
+            <ul className="space-y-2.5">{company.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#0B1230' }}>Services</h4>
-            <ul className="space-y-2.5">{services.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-[#A8228A] transition-colors" style={{ color: '#6B7280' }}>{l.name}</Link></li>)}</ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Services</h4>
+            <ul className="space-y-2.5">{services.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
           {/* Resources */}
           <div className="lg:col-span-2">
-            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#0B1230' }}>Resources</h4>
-            <ul className="space-y-2.5">{resources.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-[#A8228A] transition-colors" style={{ color: '#6B7280' }}>{l.name}</Link></li>)}</ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Resources</h4>
+            <ul className="space-y-2.5">{resources.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
           {/* Legal */}
           <div className="lg:col-span-2">
-            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#0B1230' }}>Legal</h4>
-            <ul className="space-y-2.5">{legal.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-[#A8228A] transition-colors" style={{ color: '#6B7280' }}>{l.name}</Link></li>)}</ul>
+            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Legal</h4>
+            <ul className="space-y-2.5">{legal.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
         </div>
@@ -112,15 +112,15 @@ export default function Footer() {
           <p className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: '#C72E9E' }}>Our Locations</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {locations.map((loc) => (
-              <div key={loc.name} className="rounded-2xl p-5 flex items-start gap-4" style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.1)' }}>
+              <div key={loc.name} className="rounded-2xl p-5 flex items-start gap-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.15)' }}>
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#C72E9E' }}>
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-urbanist font-bold text-sm mb-0.5" style={{ color: '#0B1230' }}>{loc.name}</p>
-                  <p className="text-xs font-jost leading-snug" style={{ color: '#9CA3AF' }}>{loc.address}</p>
+                  <p className="font-urbanist font-bold text-sm mb-0.5" style={{ color: '#fff' }}>{loc.name}</p>
+                  <p className="text-xs font-jost leading-snug" style={{ color: 'rgba(255,255,255,0.45)' }}>{loc.address}</p>
                 </div>
               </div>
             ))}
@@ -128,13 +128,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid #E6E8F0' }}>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex flex-col sm:flex-row items-center gap-3">
-            <p className="text-xs font-jost" style={{ color: '#9CA3AF' }}>Copyright 1995-2026 Keentel Engineering · All Rights Reserved</p>
-            <span className="hidden sm:block text-xs text-gray-300">·</span>
-            <p className="text-xs font-jost" style={{ color: '#9CA3AF' }}>
+            <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>Copyright 1995-2026 Keentel Engineering · All Rights Reserved</p>
+            <span className="hidden sm:block text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>·</span>
+            <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>
               Developed & managed by{' '}
-              <a href="https://dexoradigital.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#A8228A] transition-colors" style={{ color: '#6B7280' }}>
+              <a href="https://dexoradigital.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>
                 Dexora Digital
               </a>
             </p>
@@ -143,7 +143,7 @@ export default function Footer() {
             {socials.map((s) => (
               <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name}
                 className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#A8228A] hover:text-white hover:border-[#A8228A]"
-                style={{ border: '1px solid #E6E8F0', color: '#9CA3AF' }}>
+                style={{ border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.45)' }}>
                 {s.icon}
               </a>
             ))}
@@ -152,10 +152,10 @@ export default function Footer() {
       </div>
 
       {/* Marquee */}
-      <div className="overflow-hidden py-4" style={{ borderTop: '1px solid #E6E8F0' }}>
+      <div className="overflow-hidden py-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="flex animate-marquee-left whitespace-nowrap" style={{ width: 'max-content' }}>
           {[...marqueeText, ...marqueeText, ...marqueeText, ...marqueeText].map((item, i) => (
-            <span key={i} className="inline-flex items-center gap-4 mx-6 font-urbanist font-black select-none" style={{ fontSize: 'clamp(40px,5vw,72px)', color: 'rgba(11,26,91,0.05)' }}>
+            <span key={i} className="inline-flex items-center gap-4 mx-6 font-urbanist font-black select-none" style={{ fontSize: 'clamp(40px,5vw,72px)', color: 'rgba(255,255,255,0.05)' }}>
               {item}
               <span style={{ color: '#A8228A', fontSize: '60%' }}>✦</span>
             </span>
