@@ -76,14 +76,14 @@ export default function UtilityScaleRenewableEnergyPage() {
         category match "*renewable*" || category match "*Renewable*"
         || category match "*solar*" || category match "*wind*" || category match "*BESS*" || category match "*battery*"
       )] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, category,
+        _id, title, slug, publishedAt, excerpt, "category": category->title,
         "mainImage": mainImage { asset->{ url } }
       }`
     ).then(data => {
       if (data.length >= 3) { setBlogs(data); return }
       client.fetch<BlogPost[]>(
         `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-          _id, title, slug, publishedAt, excerpt, category,
+          _id, title, slug, publishedAt, excerpt, "category": category->title,
           "mainImage": mainImage { asset->{ url } }
         }`
       ).then(setBlogs).catch(() => {})

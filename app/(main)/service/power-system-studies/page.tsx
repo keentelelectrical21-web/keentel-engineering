@@ -191,7 +191,7 @@ export default function PowerSystemStudiesPage() {
         || category match "*System*" || category match "*study*" || category match "*Study*"
         || category match "*harmonic*" || category match "*protection*" || category match "*relay*"
       )] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, category,
+        _id, title, slug, publishedAt, excerpt, "category": category->title,
         "mainImage": mainImage { asset->{ url } }
       }`
     ).then(data => {
@@ -199,7 +199,7 @@ export default function PowerSystemStudiesPage() {
       // Fallback: any blogs
       client.fetch<BlogPost[]>(
         `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-          _id, title, slug, publishedAt, excerpt, category,
+          _id, title, slug, publishedAt, excerpt, "category": category->title,
           "mainImage": mainImage { asset->{ url } }
         }`
       ).then(setBlogs).catch(() => {})
