@@ -34,7 +34,7 @@ export default function Hero() {
               Electrical Power Engineering
             </h1>
 
-            <p className="text-white/65 text-lg sm:text-xl font-jost font-light leading-relaxed mb-8 max-w-2xl">
+            <p className="text-white/80 text-xl sm:text-2xl font-jost font-light leading-relaxed mb-10 max-w-2xl">
               From substation design and POI interconnection to utility-scale solar, wind, and BESS engineering. NERC-compliant, future-ready infrastructure across the U.S.
             </p>
 
@@ -64,14 +64,14 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Certification logo - no box, no border, just the image */}
+            {/* Certification logos — prominent */}
             <div>
-              <p className="text-white/35 text-xs uppercase tracking-widest mb-3">Trusted and Certified</p>
+              <p className="text-white/40 text-xs uppercase tracking-widest mb-4">Trusted and Certified</p>
               <img
                 src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-670w.png"
                 alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
-                className="h-10 w-auto object-contain opacity-80"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className="w-auto object-contain opacity-90"
+                style={{ height: '64px', maxWidth: '420px', filter: 'brightness(0) invert(1)' }}
               />
             </div>
 

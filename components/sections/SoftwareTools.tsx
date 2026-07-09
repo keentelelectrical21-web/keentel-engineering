@@ -15,7 +15,7 @@ const tools = [
 
 export default function SoftwareTools() {
   return (
-    <section className="py-24 overflow-hidden" style={{ background: '#06103C' }}>
+    <section className="py-20 overflow-hidden" style={{ background: '#06103C' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-14">
@@ -23,7 +23,7 @@ export default function SoftwareTools() {
           <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-4">
             Our Engineering Tools
           </h2>
-          <p className="text-lg font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          <p className="text-xl font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.75)' }}>
             Precision modeling using the industry's most trusted power engineering software platforms, with decades of hands-on expertise.
           </p>
         </div>
@@ -32,26 +32,24 @@ export default function SoftwareTools() {
           {tools.map((tool, i) => (
             <div
               key={i}
-              className="group rounded-2xl p-5 flex flex-col gap-4 hover:scale-[1.03] transition-all duration-300 cursor-default"
-              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+              className="group rounded-2xl p-5 flex flex-col gap-4 hover:scale-[1.03] hover:shadow-xl transition-all duration-300 cursor-default bg-white"
             >
-              {/* Logo - natural dimensions, no filter forcing */}
               <div className="h-14 flex items-center justify-start">
                 <img
                   src={tool.logo}
                   alt={tool.name}
-                  className="max-h-10 w-auto object-contain group-hover:opacity-100 transition-opacity"
-                  style={{ opacity: 0.85, maxWidth: '100%' }}
+                  className="max-h-10 w-auto object-contain transition-opacity"
+                  style={{ maxWidth: '100%' }}
                 />
               </div>
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <p className="font-urbanist font-bold text-white text-sm">{tool.name}</p>
-                  <span className="text-xs font-bold px-1.5 py-0.5 rounded-md" style={{ background: 'rgba(199,46,158,0.18)', color: '#C72E9E' }}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <p className="font-urbanist font-bold text-sm" style={{ color: '#0B1230' }}>{tool.name}</p>
+                  <span className="text-xs font-bold px-1.5 py-0.5 rounded-md" style={{ background: 'rgba(168,34,138,0.1)', color: '#A8228A' }}>
                     {tool.years}yr
                   </span>
                 </div>
-                <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.4)' }}>{tool.desc}</p>
+                <p className="text-sm font-jost font-medium" style={{ color: '#4B5563' }}>{tool.desc}</p>
               </div>
             </div>
           ))}
@@ -64,10 +62,10 @@ export default function SoftwareTools() {
             { val: '100%', label: 'In-House Capability', sub: 'No outsourcing' },
             { val: 'All 3', label: 'U.S. Interconnections', sub: 'WECC, ERCOT, Eastern' },
           ].map((s, i) => (
-            <div key={i} className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+            <div key={i} className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <p className="font-urbanist font-black text-3xl text-white mb-1">{s.val}</p>
-              <p className="font-semibold text-sm text-white mb-0.5">{s.label}</p>
-              <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>{s.sub}</p>
+              <p className="font-semibold text-base text-white mb-0.5">{s.label}</p>
+              <p className="text-sm font-jost" style={{ color: 'rgba(255,255,255,0.5)' }}>{s.sub}</p>
             </div>
           ))}
         </div>

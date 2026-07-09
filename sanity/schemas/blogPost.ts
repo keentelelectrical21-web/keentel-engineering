@@ -1,6 +1,4 @@
-// ============================================================
-// FILE: sanity/schemas/blogPost.ts  — REPLACE EXISTING FILE
-// ============================================================
+// sanity/schemas/blogPost.ts
 import { defineType, defineField } from 'sanity'
 
 export default defineType({
@@ -17,19 +15,9 @@ export default defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
-      options: {
-        list: [
-          'NERC Compliance',
-          'IEEE 2800',
-          'Power System Studies',
-          'Renewable Energy',
-          'Substation Design',
-          'Grid Modernization',
-          'Case Study',
-          'Newsletter',
-        ]
-      }
+      type: 'reference',
+      to: [{ type: 'category' }],
+      validation: Rule => Rule.required(),
     }),
     defineField({ name: 'body', title: 'Body', type: 'array', of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }] }),
 
@@ -66,7 +54,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'category',
+      subtitle: 'category.title',
       media: 'featuredImage',
     },
   },

@@ -1,75 +1,129 @@
 'use client'
 
-const testimonials = [
-  { name: 'Michael Torres', role: 'Project Director', company: 'SunPath Energy', text: 'Keentel delivered our 250MW solar farm power system studies on time and with zero compliance issues. Their NERC expertise saved us months of back-and-forth with the utility.', rating: 5, avatar: 'MT' },
-  { name: 'Jennifer Walsh', role: 'VP Engineering', company: 'GridTech Solutions', text: 'Their POI interconnection team is second to none. The PSCAD modeling work they did for our 500kV substation was exceptional. Highly recommend for complex transmission projects.', rating: 5, avatar: 'JW' },
-  { name: 'David Chen', role: 'Director of Operations', company: 'Western Renewables LLC', text: 'Keentel handled our NERC compliance audit prep flawlessly. Their documentation was thorough and their pre-audit support gave us complete confidence walking in.', rating: 5, avatar: 'DC' },
-  { name: 'Sarah Mitchell', role: 'Chief Engineer', company: 'NovaPower Utilities', text: 'We have worked with many engineering firms, but Keentel stands out for their technical depth and regulatory knowledge. Our BESS integration project was completed ahead of schedule.', rating: 5, avatar: 'SM' },
-  { name: 'Robert Perez', role: 'Senior PM', company: 'Trident EPC Group', text: 'Outstanding substation design work for our 345kV project. Keentel attention to detail and proactive communication made this one of our smoothest projects to date.', rating: 5, avatar: 'RP' },
-  { name: 'Amanda Foster', role: 'Director of Development', company: 'BlueSky Wind Partners', text: 'Their relay protection engineering team is world-class. They handled our complex protection coordination challenges with ease and delivered results that exceeded our expectations.', rating: 5, avatar: 'AF' },
-  { name: 'Thomas Grant', role: 'Operations Manager', company: 'PacificGrid Corp', text: 'Keentel ETAP and PSCAD work for our fault analysis was incredibly detailed. Their compliance-first mindset aligns perfectly with how we operate. A true technical partner.', rating: 5, avatar: 'TG' },
-  { name: 'Lisa Hartman', role: 'President', company: 'Hartman Electric', text: 'We engaged Keentel for MEP engineering on a major data center project. Their integration of electrical systems with mechanical was seamless. Exceptional professionalism.', rating: 5, avatar: 'LH' },
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+
+interface CaseStudy {
+  _id: string
+  title: string
+  subtitle?: string
+  category: string
+  cardImage?: string
+  slug: { current: string }
+  outcome?: string[]
+  client?: string
+  region?: string
+}
+
+const INTENT_COLORS: Record<string, string> = {
+  substation: '#0B1A5B',
+  'power-system': '#A8228A',
+}
+
+const fallback: CaseStudy[] = [
+  { _id: '1', title: '110 kV Outdoor Grid Substation', subtitle: 'Rural electrification across extreme environments.', category: 'substation', slug: { current: 'substation-110kv-outdoor-rural-electrification' }, outcome: ['Stable power distribution achieved with improved grid resilience.'] },
+  { _id: '2', title: 'Grid Interconnection & Renewable Penetration Study', subtitle: 'ISO-approved interconnection results for a major renewable developer.', category: 'power-system', slug: { current: 'power-system-grid-interconnection-renewable-penetration' }, client: 'Confidential Renewable Developer', region: 'ERCOT' },
+  { _id: '3', title: '230 kV Renewable POI Collector Substation', subtitle: 'Utility-scale renewable interconnection hub.', category: 'substation', slug: { current: 'substation-230kv-renewable-poi-collector' } },
+  { _id: '4', title: 'Insulation Coordination & Lightning Study', subtitle: 'Equipment protection for high-voltage substation.', category: 'power-system', slug: { current: 'power-system-insulation-coordination-lightning-tov-trv' }, region: 'Southeast U.S.' },
+  { _id: '5', title: 'BESS Substation 138 kV', subtitle: 'Grid stabilization through fast-response energy storage.', category: 'substation', slug: { current: 'substation-bess-138kv' } },
+  { _id: '6', title: 'Solar & Wind Farm Electrical Design', subtitle: 'Full compliance engineering for a hybrid solar-wind facility.', category: 'power-system', slug: { current: 'power-system-solar-wind-farm-electrical-design' }, client: 'Confidential IPP', region: 'Southwest U.S.' },
 ]
 
-const avatarColors = ['#0B1A5B', '#5B2A86', '#A8228A', '#C72E9E', '#0B1A5B', '#5B2A86', '#A8228A', '#C72E9E']
-
-function TestimonialCard({ t, idx }: { t: typeof testimonials[0]; idx: number }) {
+function CaseCard({ cs }: { cs: CaseStudy }) {
+  const isSubstation = cs.category === 'substation'
   return (
-    <div
-      className="flex-shrink-0 w-[340px] rounded-2xl p-6 mx-3"
-      style={{ background: '#fff', border: '1px solid #E6E8F0' }}
+    <Link
+      href={`/our-work/${cs.slug.current}`}
+      className="flex-shrink-0 w-[340px] rounded-2xl overflow-hidden mx-3 group hover:-translate-y-1 transition-all duration-300"
+      style={{ background: '#fff', border: '1px solid #E6E8F0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
     >
-      <div className="flex gap-0.5 mb-4">
-        {Array(t.rating).fill(null).map((_, i) => (
-          <svg key={i} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#C72E9E' }}>
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        ))}
+      {/* Top color bar */}
+      <div className="h-1.5 w-full" style={{ background: isSubstation ? 'linear-gradient(90deg, #0B1A5B, #5B2A86)' : 'linear-gradient(90deg, #A8228A, #C72E9E)' }} />
+
+      <div className="p-6">
+        {/* Category badge */}
+        <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style={{ background: isSubstation ? 'rgba(11,26,91,0.08)' : 'rgba(168,34,138,0.08)', color: isSubstation ? '#0B1A5B' : '#A8228A' }}>
+          {isSubstation ? 'Substation Engineering' : 'Power System Studies'}
+        </span>
+
+        <h3 className="font-urbanist font-black text-base leading-snug mb-2 group-hover:text-[#A8228A] transition-colors" style={{ color: '#0B1230' }}>
+          {cs.title}
+        </h3>
+
+        {cs.subtitle && (
+          <p className="text-sm font-jost leading-relaxed mb-4" style={{ color: '#6B7280' }}>
+            {cs.subtitle}
+          </p>
+        )}
+
+        {(cs.client || cs.region) && (
+          <div className="flex gap-4 mt-3 pt-3" style={{ borderTop: '1px solid #F0F1F5' }}>
+            {cs.client && (
+              <div>
+                <p className="text-[10px] uppercase tracking-wider font-semibold mb-0.5" style={{ color: '#9CA3AF' }}>Client</p>
+                <p className="text-xs font-jost font-medium" style={{ color: '#4B5563' }}>{cs.client}</p>
+              </div>
+            )}
+            {cs.region && (
+              <div>
+                <p className="text-[10px] uppercase tracking-wider font-semibold mb-0.5" style={{ color: '#9CA3AF' }}>Region</p>
+                <p className="text-xs font-jost font-medium" style={{ color: '#4B5563' }}>{cs.region}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {cs.outcome && cs.outcome[0] && (
+          <p className="text-xs font-jost mt-3 pt-3 leading-relaxed" style={{ color: '#6B7280', borderTop: '1px solid #F0F1F5' }}>
+            <span className="font-semibold" style={{ color: '#A8228A' }}>Outcome: </span>{cs.outcome[0]}
+          </p>
+        )}
       </div>
-      <p className="text-sm font-jost leading-relaxed mb-5" style={{ color: '#4B5563' }}>"{t.text}"</p>
-      <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: avatarColors[idx % avatarColors.length] }}>
-          <span className="text-xs font-bold text-white">{t.avatar}</span>
-        </div>
-        <div>
-          <p className="font-urbanist font-semibold text-sm" style={{ color: '#0B1230' }}>{t.name}</p>
-          <p className="text-xs font-jost" style={{ color: '#9CA3AF' }}>{t.role} · {t.company}</p>
-        </div>
-      </div>
-    </div>
+    </Link>
   )
 }
 
 export default function Testimonials() {
-  const doubled = [...testimonials, ...testimonials]
+  const [cases, setCases] = useState<CaseStudy[]>(fallback)
+
+  useEffect(() => {
+    fetch('/api/case-studies')
+      .then((r) => r.json())
+      .then((data) => { if (data?.length > 0) setCases(data) })
+      .catch(() => {})
+  }, [])
+
+  const doubled = [...cases, ...cases]
 
   return (
-    <section className="py-24 overflow-hidden" style={{ background: '#F6F7FB' }}>
-      <div className="mb-14 text-center px-4">
-        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Client Stories</p>
-        <h2 className="font-urbanist font-black text-4xl sm:text-5xl mb-4" style={{ color: '#0B1230' }}>What Our Clients Say</h2>
-        <p className="text-lg font-jost max-w-xl mx-auto" style={{ color: '#6B7280' }}>
-          Trusted by utilities, developers, and EPCs across the United States for over three decades.
+    <section className="py-20 overflow-hidden" style={{ background: '#F6F7FB' }}>
+      <div className="mb-12 text-center px-4">
+        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Project Portfolio</p>
+        <h2 className="font-urbanist font-black text-4xl sm:text-5xl mb-4" style={{ color: '#0B1230' }}>Engineering Projects That Delivered</h2>
+        <p className="text-lg font-jost max-w-xl mx-auto" style={{ color: '#4B5563' }}>
+          Substation engineering and power system studies delivered across utilities, developers, and EPCs nationwide.
         </p>
       </div>
 
-      {/* Full width horizontal marquee - no max-width container */}
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #F6F7FB, transparent)' }} />
         <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #F6F7FB, transparent)' }} />
         <div
           className="flex"
-          style={{
-            width: 'max-content',
-            animation: 'marquee-left 40s linear infinite',
-          }}
+          style={{ width: 'max-content', animation: 'marquee-left 50s linear infinite' }}
         >
-          {doubled.map((t, i) => (
-            <TestimonialCard key={i} t={t} idx={i} />
+          {doubled.map((cs, i) => (
+            <CaseCard key={`${cs._id}-${i}`} cs={cs} />
           ))}
         </div>
       </div>
 
+      <div className="text-center mt-12 px-4">
+        <Link href="/our-work" className="inline-flex items-center gap-2 font-jost font-semibold px-8 py-4 rounded-full text-white transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
+          View All Case Studies
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </Link>
+      </div>
     </section>
   )
 }
