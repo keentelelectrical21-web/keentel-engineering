@@ -340,16 +340,22 @@ export default function TransmissionLineDesignPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Sectors</span>
-              <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#06103C' }}>Industries We Serve</h2>
-              <p className="font-jost text-gray-600 text-lg max-w-2xl">Serving the evolving needs of power and infrastructure markets through responsive, high-quality engineering support.</p>
+              <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#06103C' }}>Industries We Support</h2>
+              <p className="font-jost text-gray-600 text-lg max-w-2xl">Keentel Engineering delivers transmission line design for complex electrical environments across multiple sectors.</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {industries.map((item, i) => (
-                <Link key={i} href="/industries" className="group relative rounded-xl overflow-hidden block" style={{ aspectRatio: '3/4' }}>
-                  <Img src={item.img} fallback={item.img} alt={item.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              {[
+                { title: 'Utilities & Transmission Operators', img: '/images/services/power-system-studies/industry-utilities.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/shutterstock_551404123-1920w.jpg', link: '/industries/electric-utilities-transmission' },
+                { title: 'Renewable Energy Developers', img: '/images/services/power-system-studies/industry-renewable.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/GettyImages-2174080781-508c0aae85a94ae6a7c4f9c303eae4f1-1920w.jpg', link: '/industries/renewable-interconnection-engineering' },
+                { title: 'Industrial & Manufacturing Facilities', img: '/images/services/power-system-studies/industry-industrial.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/factory-1920w+%281%29-1920w.webp', link: '/industries/industrial-power-engineering' },
+                { title: 'Oil, Gas & Mining Operations', img: '/images/services/power-system-studies/industry-oil-gas.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Trends-in-Oil-and-Gas-guide-1920w.jpg', link: '/industries/oil-gas-mining' },
+                { title: 'Data Centers & Commercial Infrastructure', img: '/images/services/power-system-studies/industry-data-center.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/corporate-data-center-1920w.jpg', link: '/industries/data-center-electrical' },
+              ].map((item, i) => (
+                <Link key={i} href={item.link} className="group relative rounded-xl overflow-hidden block" style={{ aspectRatio: '3/4' }}>
+                  <Img src={item.img} fallback={item.fallback} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.9) 0%, rgba(6,16,60,0.3) 60%, transparent 100%)' }} />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p className="font-urbanist font-bold text-white text-sm leading-tight">{item.t}</p>
+                    <p className="font-urbanist font-bold text-white text-sm leading-tight">{item.title}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-xs font-jost font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#C72E9E' }}>
                       See More
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
