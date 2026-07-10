@@ -139,7 +139,7 @@ export default function TransmissionLineDesignPage() {
     client.fetch<CaseStudy[]>(
       `*[_type == "caseStudy" && (relatedService == "transmission-line-design")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
-        "cardImage": featuredImage.asset->url,
+        cardImage,
         "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})

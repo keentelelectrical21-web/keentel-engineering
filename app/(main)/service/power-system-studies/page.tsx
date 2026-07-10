@@ -261,7 +261,7 @@ export default function PowerSystemStudiesPage() {
     client.fetch<CaseStudy[]>(
       `*[_type == "caseStudy" && (relatedService == "power-system-studies")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
-        "cardImage": featuredImage.asset->url,
+        cardImage,
         "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})

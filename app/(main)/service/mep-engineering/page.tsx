@@ -127,7 +127,7 @@ export default function MEPEngineeringPage() {
     client.fetch<CaseStudy[]>(
       `*[_type == "caseStudy" && (relatedService == "mep-engineering")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
-        "cardImage": featuredImage.asset->url,
+        cardImage,
         "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})
