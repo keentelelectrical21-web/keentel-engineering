@@ -174,7 +174,7 @@ export default function SubstationDesignPage() {
         {/* ═══ 1. HERO — video visible, overlay contained, big desc ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video ref={videoRef} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-45">
-            <source src="/videos/power-system-hero.mp4" type="video/mp4" />
+            <source src="/videos/substation.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
@@ -813,55 +813,80 @@ export default function SubstationDesignPage() {
 
 function SubstationCaseStudies() {
   const [active, setActive] = useState<number | null>(null)
-  const data = [
-    { title: '110 kV Outdoor Grid Substation – Rural Electrification', subtitle: 'Reliable high-voltage infrastructure designed for extreme environmental conditions and remote grid expansion.', scope: 'Designed to support long-distance rural electrification across high-temperature, high-wind, and dust-prone environments with minimal maintenance dependency.', focus: ['Double-bus with transfer bus configuration', 'Grounding optimized for high soil resistivity', 'Protection coordination for long feeders', 'Utility-grade reliability compliance'], stack: 'PSS®E • ETAP • PSCAD • SKM', outcome: 'Stable power distribution achieved across remote agricultural and industrial zones with improved grid resilience.', img: 'case-01.png', fb: '110+kV+outdoor+grid+substation+to+support+rural+electrification-1920w.png' },
-    { title: 'Upgrade of Aging Indoor Substation – Smart City Infrastructure', subtitle: 'Modernization of legacy electrical infrastructure to support smart city load expansion.', scope: 'Retrofit of an aging indoor substation to improve capacity, reliability, and digital monitoring without full system shutdown.', focus: ['Equipment replacement with modern relays', 'Load capacity expansion', 'SCADA-ready automation', 'Phased upgrade with zero critical downtime'], stack: 'ETAP • SKM • DIgSILENT PowerFactory', outcome: 'Improved operational efficiency and future-ready substation performance for smart city integration.', img: 'case-02.png', fb: 'Indoor+Substation+Retrofit-1920w.png' },
-    { title: 'GIS-Based Urban Substation – Space-Constrained Deployment', subtitle: 'Compact high-voltage GIS substation designed for dense urban environments.', scope: 'Delivered a fully enclosed gas-insulated substation solution optimized for metropolitan deployment.', focus: ['GIS switchgear layout optimization', 'High insulation performance design', 'EMI reduction', 'Urban safety clearance compliance'], stack: 'PSCAD • ETAP • CDEGS', outcome: 'High-capacity power delivery in minimal footprint with enhanced safety and reliability.', img: 'case-03.png', fb: 'GIS+Based+Urban+Substation-1920w.png' },
-    { title: '230 kV Renewable POI Collector Substation', subtitle: 'Utility-scale renewable interconnection hub for stable grid integration.', scope: 'Designed a Point of Interconnection substation for renewable energy evacuation into the transmission network.', focus: ['Grid synchronization', 'Voltage stability under fluctuating input', 'Reactive power management', 'Utility interconnection compliance'], stack: 'PSS®E • PSCAD • PowerWorld', outcome: 'Reliable and compliant integration of renewable energy into the regional transmission grid.', img: 'case-04.png', fb: '230+kv+POI+renewable+collector+substation-1920w.png' },
-    { title: 'Battery Energy Storage System (BESS) Substation – 138 kV', subtitle: 'Grid stabilization infrastructure enabling fast-response energy storage.', scope: 'Engineered a BESS interconnection substation for peak shaving, load balancing, and grid support services.', focus: ['Fast response power injection', 'Frequency regulation support', 'Bidirectional power flow protection', 'Energy dispatch coordination'], stack: 'ETAP • PSCAD • DIgSILENT', outcome: 'Enhanced grid stability and peak load management through scalable storage integration.', img: 'case-05.png', fb: 'Battery+Energy+Storage+System+%28BESS%29+Substation+-+Grid+Support+Asset+%28138+kV%29-1920w.png' },
-    { title: 'Renewable Energy Collector Substation – Solar PV (345/34.5 kV)', subtitle: 'Large-scale solar aggregation system for high-voltage transmission integration.', scope: 'Developed collector infrastructure to aggregate distributed solar PV generation into a centralized transmission interface.', focus: ['Step-up transformer configuration', 'Fault current handling', 'Voltage regulation under intermittent generation', 'Grid export optimization'], stack: 'PSS®E • ETAP • SKM', outcome: 'Efficient solar power evacuation with improved transmission stability and reduced losses.', img: 'case-06.png', fb: 'Image+Renewable+Energy+Collector+Substation+-+Solar+PV+%28345+kV+34.5+kV%29-1920w.png' },
-    { title: 'Medium-Voltage Distribution Substation – Urban Load Growth (115/35 kV)', subtitle: 'Urban distribution infrastructure designed to manage rapid load expansion.', scope: 'Strengthened medium-voltage distribution capacity to support residential and commercial expansion.', focus: ['Load forecasting-based design', 'Voltage drop optimization', 'Distribution reliability improvement', 'Protection coordination enhancement'], stack: 'ETAP • SKM • PowerFactory', outcome: 'Stable voltage delivery and improved distribution efficiency across high-growth urban zones.', img: 'case-07.png', fb: 'Image+for+Medium-Voltage+Distribution+Substation+-+Urban+Load+Growth+%2815+kV+35+kV%29-1920w.png' },
-    { title: '230 kV High-Voltage Transmission Substation – Greenfield Project', subtitle: 'Greenfield transmission infrastructure enabling long-distance bulk power transfer.', scope: 'Designed a new transmission-level substation for regional grid strengthening and future scalability.', focus: ['High-voltage switching configuration', 'Transmission stability analysis', 'Grid expansion readiness', 'Fault level management'], stack: 'PSS®E • PSCAD • ETAP', outcome: 'Reliable long-distance power transmission with scalable infrastructure for future demand growth.', img: 'case-08.png', fb: 'Image+-High-Voltage+Transmission+Substation+-+Greenfield+Utility+Project+%28230+kV%29-1920w.png' },
-  ]
+  const [caseStudies, setCaseStudies] = useState<{
+    _id: string
+    title: string
+    cardImage?: string
+    subtitle?: string
+    background?: string
+    solution?: string[]
+    outcome?: string[]
+    stack?: string
+  }[]>([])
+
+  useEffect(() => {
+    client.fetch(
+      `*[_type == "caseStudy" && relatedService == "substation-design"] | order(_createdAt desc) {
+        _id, title, cardImage, subtitle, background, solution, outcome, stack
+      }`
+    ).then(setCaseStudies).catch(() => {})
+  }, [])
+
   return (
     <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#C72E9E' }}>Real Projects</span>
         <h2 className="font-urbanist font-black text-center mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Substation Engineering Case Studies</h2>
         <p className="font-jost text-white/70 text-center max-w-3xl mx-auto mb-12 text-lg leading-relaxed">Real-world substation engineering delivered across rural electrification, smart cities, renewable energy, and space-constrained urban environments.</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
-          {data.map((d, i) => (
-            <button key={i} onClick={() => setActive(i)} className="group rounded-xl overflow-hidden hover:scale-[1.03] transition-transform relative flex items-center justify-center" style={{ background: '#0B1A5B', minHeight: '14rem' }}>
-              <Img src={`/images/services/substation-design/${d.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${d.fb}`} alt={d.title} className="w-full h-56 sm:h-72 object-contain p-2" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.9), transparent 60%)' }}>
-                <p className="font-urbanist font-bold text-white text-xs text-left leading-snug">{d.title}</p>
-              </div>
-            </button>
-          ))}
-        </div>
+        {caseStudies.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
+            {caseStudies.map((d, i) => (
+              <button key={d._id} onClick={() => setActive(i)} className="group rounded-xl overflow-hidden hover:scale-[1.03] transition-transform relative flex items-center justify-center" style={{ background: '#0B1A5B', minHeight: '14rem' }}>
+                {d.cardImage && (
+                  <img src={d.cardImage} alt={d.title} className="w-full h-56 sm:h-72 object-contain p-2" />
+                )}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.9), transparent 60%)' }}>
+                  <p className="font-urbanist font-bold text-white text-xs text-left leading-snug">{d.title}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="font-jost text-white/60 text-center">Case studies coming soon.</p>
+        )}
       </div>
-      {active !== null && (
+      {active !== null && caseStudies[active] && (
         <div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-10 overflow-y-auto" style={{ background: 'rgba(0,0,0,0.6)' }} onClick={() => setActive(null)}>
           <div className="bg-white rounded-2xl p-8 max-w-2xl w-full relative mb-10" onClick={e => e.stopPropagation()}>
             <button onClick={() => setActive(null)} className="absolute top-4 right-4 text-2xl" style={{ color: '#A8228A' }}>×</button>
-            <h3 className="font-urbanist font-black text-xl mb-2" style={{ color: '#06103C' }}>{data[active].title}</h3>
-            <p className="font-jost text-sm text-gray-500 italic mb-6 pb-4 border-b">{data[active].subtitle}</p>
-            <div className="mb-4 pb-4 border-b">
-              <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Scope</h4>
-              <p className="font-jost text-sm text-gray-600">{data[active].scope}</p>
-            </div>
-            <div className="mb-4 pb-4 border-b">
-              <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Technical Focus</h4>
-              <ul className="font-jost text-sm text-gray-600 space-y-1">{data[active].focus.map((f, j) => <li key={j}>▸ {f}</li>)}</ul>
-            </div>
-            <div className="mb-4 pb-4 border-b">
-              <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Stack</h4>
-              <p className="font-jost text-sm font-bold" style={{ color: '#06103C' }}>{data[active].stack}</p>
-            </div>
-            <div>
-              <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Outcome</h4>
-              <p className="font-jost text-sm text-gray-600">{data[active].outcome}</p>
-            </div>
+            <h3 className="font-urbanist font-black text-xl mb-2" style={{ color: '#06103C' }}>{caseStudies[active].title}</h3>
+            {caseStudies[active].subtitle && (
+              <p className="font-jost text-sm text-gray-500 italic mb-6 pb-4 border-b">{caseStudies[active].subtitle}</p>
+            )}
+            {caseStudies[active].background && (
+              <div className="mb-4 pb-4 border-b">
+                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Scope</h4>
+                <p className="font-jost text-sm text-gray-600">{caseStudies[active].background}</p>
+              </div>
+            )}
+            {caseStudies[active].solution && caseStudies[active].solution!.length > 0 && (
+              <div className="mb-4 pb-4 border-b">
+                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Technical Focus</h4>
+                <ul className="font-jost text-sm text-gray-600 space-y-1">{caseStudies[active].solution!.map((f, j) => <li key={j}>▸ {f}</li>)}</ul>
+              </div>
+            )}
+            {caseStudies[active].stack && (
+              <div className="mb-4 pb-4 border-b">
+                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Stack</h4>
+                <p className="font-jost text-sm font-bold" style={{ color: '#06103C' }}>{caseStudies[active].stack}</p>
+              </div>
+            )}
+            {caseStudies[active].outcome && caseStudies[active].outcome!.length > 0 && (
+              <div>
+                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Outcome</h4>
+                <p className="font-jost text-sm text-gray-600">{caseStudies[active].outcome!.join(' ')}</p>
+              </div>
+            )}
           </div>
         </div>
       )}

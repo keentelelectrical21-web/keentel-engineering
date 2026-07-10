@@ -154,9 +154,9 @@ export default function POIInterconnectionPage() {
 
   useEffect(() => {
     client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && (relatedService == "poi-interconnection-engineering-support")] | order(_createdAt desc) [0...3] {
+      `*[_type == "caseStudy" && (lower(relatedService) match "*poi*" || lower(relatedService) match "*interconnection*")] | order(_createdAt desc) [0...3] {
         _id, title, slug, relatedService,
-        cardImage,
+        "cardImage": featuredImage.asset->url,
         "excerpt": challenge
       }`
     ).then(setCaseStudies).catch(() => {})
@@ -175,7 +175,7 @@ export default function POIInterconnectionPage() {
           message: formData.message, source: 'poi-interconnection',
         }),
       })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
+      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' }) }
       else setFormStatus('error')
     } catch { setFormStatus('error') }
   }
@@ -190,7 +190,7 @@ export default function POIInterconnectionPage() {
         {/* ═══ 1. HERO ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-45">
-            <source src="/videos/power-system-hero.mp4" type="video/mp4" />
+            <source src="/videos/poi.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
