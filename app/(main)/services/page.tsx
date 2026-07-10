@@ -226,7 +226,7 @@ export default function ServicesPage() {
   useEffect(() => {
     client.fetch<BlogPost[]>(
       `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, category
+        _id, title, slug, publishedAt, excerpt, "category": category->title
       }`
     ).then(setBlogs).catch(() => {})
   }, [])
