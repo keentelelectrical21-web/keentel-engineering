@@ -107,6 +107,17 @@ export default function Footer() {
 
         </div>
 
+        {/* Mobile-only: socials above locations */}
+        <div className="flex sm:hidden items-center gap-2 mb-8">
+          {socials.map((s) => (
+            <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#A8228A] hover:text-white hover:border-[#A8228A]"
+              style={{ border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.45)' }}>
+              {s.icon}
+            </a>
+          ))}
+        </div>
+
         {/* Locations — 4 offices */}
         <div className="mb-10">
           <p className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: '#C72E9E' }}>Our Locations</p>
@@ -139,7 +150,7 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2">
             {socials.map((s) => (
               <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name}
                 className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#A8228A] hover:text-white hover:border-[#A8228A]"

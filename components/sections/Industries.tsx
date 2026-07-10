@@ -7,43 +7,36 @@ const industries = [
     title: 'Utilities & Transmission',
     tag: 'Transmission',
     desc: 'Grid reliability, NERC compliance, and transmission planning for PJM, ERCOT, WECC, and CAISO operators.',
-    href: '/industry/utilities-transmission-operators',
+    href: '/industries/electric-utilities-transmission',
     image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80',
   },
   {
     title: 'Renewable Energy Developers',
     tag: 'Utility Scale',
     desc: 'Grid interconnection, IEEE 2800 compliance, IBR modeling, and storage integration for solar, wind, and BESS.',
-    href: '/industry/renewable-energy-developers',
+    href: '/industries/renewable-interconnection-engineering',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=700&q=80',
   },
   {
     title: 'Data Centers & AI Infrastructure',
     tag: 'Mission Critical',
     desc: 'Large load interconnection, grid stability analysis, and power supply design for hyperscale AI facilities.',
-    href: '/industry/data-centers-ai-infrastructure',
+    href: '/industries/data-center-electrical',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=80',
   },
   {
     title: 'Oil & Gas',
     tag: 'Industrial',
     desc: 'Generator protection, power quality analysis, and industrial reliability engineering for oil & gas operations.',
-    href: '/industry/oil-gas',
+    href: '/industries/oil-gas-mining',
     image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=700&q=80',
   },
   {
     title: 'Manufacturing & Industrial',
     tag: 'Industrial',
     desc: 'Equipment protection, fault analysis, and system stability for heavy industrial and chemical plants.',
-    href: '/industry/manufacturing-industrial',
+    href: '/industries/industrial-power-engineering',
     image: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=700&q=80',
-  },
-  {
-    title: 'Public Sector & Infrastructure',
-    tag: 'Infrastructure',
-    desc: 'Regulatory compliance, resilience planning, and infrastructure modernization for municipalities.',
-    href: '/industry/public-sector-infrastructure',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80',
   },
 ]
 
@@ -78,17 +71,12 @@ export default function Industries() {
                 alt={ind.title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
               />
-              {/* Dark gradient overlay - same style as reference image */}
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.95) 0%, rgba(6,16,60,0.6) 45%, rgba(6,16,60,0.15) 100%)' }} />
-
-              {/* Arrow top right */}
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all" style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)' }}>
                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
               </div>
-
-              {/* Content bottom */}
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#C72E9E' }}>{ind.tag}</p>
                 <h3 className="font-urbanist font-bold text-white text-2xl mb-2 leading-tight">{ind.title}</h3>

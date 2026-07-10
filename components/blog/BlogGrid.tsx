@@ -1,7 +1,4 @@
 'use client'
-// ============================================================
-// FILE: components/blog/BlogGrid.tsx  — REPLACE ENTIRE FILE
-// ============================================================
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
@@ -51,7 +48,6 @@ function BlogCard({ post }: { post: Post }) {
       href={`/blog/${slug}`}
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
     >
-      {/* Image */}
       <div className="relative h-48 overflow-hidden flex-shrink-0" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
         {!failed && (
           <img
@@ -72,17 +68,15 @@ function BlogCard({ post }: { post: Post }) {
             <span style={{ color: 'rgba(255,255,255,0.08)', fontSize: '2.5rem', fontWeight: 900 }}>K</span>
           </div>
         )}
-        {/* Category badge */}
-        <div className="absolute top-3 left-3">
-          <span className="font-jost text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(6,16,60,0.85)', color: '#fff' }}>
-            {post.category}
-          </span>
-        </div>
       </div>
 
-      {/* Content */}
       <div className="p-5 flex flex-col flex-1">
-        <p className="font-jost text-xs text-gray-400 mb-2">{formatDate(post.publishedAt)}</p>
+        <div className="flex items-center gap-2 flex-wrap mb-3">
+          <span className="font-jost text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(168,34,138,0.08)', color: '#A8228A' }}>
+            {post.category}
+          </span>
+          <span className="font-jost text-xs text-gray-400">{formatDate(post.publishedAt)}</span>
+        </div>
         <h3 className="font-urbanist font-bold text-base leading-snug mb-3 group-hover:text-[#A8228A] transition-colors line-clamp-2 flex-1" style={{ color: '#06103C' }}>
           {post.title}
         </h3>
@@ -121,8 +115,23 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
     <section className="py-16" style={{ background: '#F6F7FB' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Category filters */}
-        <div className="mb-10 flex flex-wrap gap-2">
+        {/* Mobile dropdown filter */}
+        <div className="mb-10 sm:hidden">
+          <select
+            value={activeCategory}
+            onChange={(e) => handleCategoryChange(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl font-jost font-semibold text-sm border-2 focus:outline-none"
+            style={{ borderColor: '#E6E8F0', color: '#06103C', background: '#fff' }}
+          >
+            {CATEGORIES.map((cat) => {
+              const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
+              return <option key={cat} value={cat}>{cat} ({count})</option>
+            })}
+          </select>
+        </div>
+
+        {/* Desktop filter buttons */}
+        <div className="mb-10 hidden sm:flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => {
             const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
             const isActive = activeCategory === cat
@@ -151,13 +160,11 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           })}
         </div>
 
-        {/* Results count */}
         <p className="font-jost text-gray-500 text-sm mb-6">
           Showing <span className="font-semibold text-gray-800">{visible.length}</span> of <span className="font-semibold text-gray-800">{filtered.length}</span> articles
           {activeCategory !== 'All' && <span> in <span className="font-semibold" style={{ color: '#A8228A' }}>{activeCategory}</span></span>}
         </p>
 
-        {/* Grid */}
         {visible.length === 0 ? (
           <div className="text-center py-20">
             <p className="font-jost text-gray-400 text-lg">No articles in this category yet</p>
@@ -170,7 +177,6 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
           </div>
         )}
 
-        {/* Load more */}
         {hasMore && (
           <div className="text-center mt-12">
             <button

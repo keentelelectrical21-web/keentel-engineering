@@ -174,8 +174,8 @@ export default function ContactPage() {
                 <div className="space-y-3 mb-10">
                   <a href="tel:813-389-7871"
                     className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(11,26,91,0.08)' }}>
+                    style={{ background: 'rgba(11,26,91,0.04)', border: '1px solid #E6E8F0' }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#fff' }}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#06103C' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
@@ -188,8 +188,8 @@ export default function ContactPage() {
 
                   <a href="mailto:contact@keentelengineering.com"
                     className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(168,34,138,0.08)' }}>
+                    style={{ background: 'rgba(168,34,138,0.04)', border: '1px solid #E6E8F0' }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#fff' }}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#A8228A' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
@@ -202,8 +202,8 @@ export default function ContactPage() {
 
                   <a href="mailto:BD@keentelengineering.com"
                     className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(91,42,134,0.08)' }}>
+                    style={{ background: 'rgba(91,42,134,0.04)', border: '1px solid #E6E8F0' }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#fff' }}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#5B2A86' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
@@ -216,8 +216,8 @@ export default function ContactPage() {
 
                   <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.08)' }}>
+                    style={{ background: 'rgba(199,46,158,0.04)', border: '1px solid #E6E8F0' }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#fff' }}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#C72E9E' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
@@ -275,7 +275,7 @@ export default function ContactPage() {
                     </Link>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="rounded-3xl p-8 sm:p-10" style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
+                  <form onSubmit={handleSubmit} className="rounded-3xl p-8 sm:p-10 shadow-lg" style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
                     <h3 className="font-urbanist font-black text-2xl mb-6" style={{ color: '#06103C' }}>Send Us a Message</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                       <div>
@@ -375,7 +375,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {offices.map((office, i) => (
                 <Reveal key={i} delay={i * 100}>
-                  <div className="rounded-2xl p-6 h-full transition-all hover:shadow-lg hover:-translate-y-1" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
+                  <div className="rounded-2xl p-6 h-full transition-all hover:shadow-lg hover:-translate-y-1" style={{ background: 'rgba(11,26,91,0.03)', border: '1px solid #E6E8F0' }}>
                     <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: i === 0 ? '#06103C' : 'rgba(168,34,138,0.1)' }}>
                       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: i === 0 ? '#fff' : '#A8228A' }}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

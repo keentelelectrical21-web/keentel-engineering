@@ -41,7 +41,7 @@ const services = [
   {
     title: 'Utility Scale Solar Farms',
     desc: 'Solar, wind, and BESS engineering. Interconnection. Grid codes. Winterization. From project conception through grid handoff.',
-    href: '/service/utility-scale-solar-farms',
+    href: '/service/utility-scale-renewable-energy',
     image: '/images/home/service-6.png',
     flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/utility+scale+solar+farm.pdf',
   },

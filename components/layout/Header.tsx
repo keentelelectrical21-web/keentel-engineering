@@ -17,7 +17,7 @@ const services = [
 const navLinks = [
   { label: 'Industries', href: '/industries' },
   { label: 'Our Work', href: '/our-work' },
-  { label: 'Grid IQ', href: '/blog' },
+  { label: 'Keentel Grid IQ', href: '/blog' },
   { label: 'Newsletters', href: '/newsletters' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
@@ -28,7 +28,7 @@ const mobileNavLinks = [
   { label: 'About', href: '/about' },
   { label: 'Industries', href: '/industries' },
   { label: 'Our Work', href: '/our-work' },
-  { label: 'Grid IQ Blog', href: '/blog' },
+  { label: 'Keentel Grid IQ', href: '/blog' },
   { label: 'Newsletters', href: '/newsletters' },
   { label: 'Contact', href: '/contact' },
 ]

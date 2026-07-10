@@ -33,29 +33,28 @@ export default function BlogSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
             <article key={post.slug} className="group rounded-2xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-              {/* Full natural image */}
               <div className="relative overflow-hidden w-full">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
                 />
-                <span
-                  className="absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full text-white"
-                  style={{ background: catColors[post.category] || '#0B1A5B' }}
-                >
-                  {post.category}
-                </span>
               </div>
 
-              {/* Content */}
               <div className="p-6">
-                {/* Prominent date */}
-                <div className="flex items-center gap-1.5 mb-3">
-                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#A8228A' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-sm font-jost font-semibold" style={{ color: '#0B1230' }}>{post.date}</span>
+                <div className="flex items-center gap-2 flex-wrap mb-3">
+                  <span
+                    className="text-xs font-bold px-2.5 py-1 rounded-full text-white"
+                    style={{ background: catColors[post.category] || '#0B1A5B' }}
+                  >
+                    {post.category}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-sm font-jost font-semibold" style={{ color: '#0B1230' }}>
+                    <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#A8228A' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {post.date}
+                  </span>
                   <span className="text-sm font-jost" style={{ color: '#9CA3AF' }}>· {post.author}</span>
                 </div>
 
