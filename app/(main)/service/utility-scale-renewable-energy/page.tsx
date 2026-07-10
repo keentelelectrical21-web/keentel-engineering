@@ -159,7 +159,7 @@ export default function UtilityScaleRenewableEnergyPage() {
           message: formData.message, source: 'utility-scale-renewable-energy',
         }),
       })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' }) }
+      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
       else setFormStatus('error')
     } catch { setFormStatus('error') }
   }

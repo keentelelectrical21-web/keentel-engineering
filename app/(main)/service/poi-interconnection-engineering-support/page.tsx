@@ -175,7 +175,7 @@ export default function POIInterconnectionPage() {
           message: formData.message, source: 'poi-interconnection',
         }),
       })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' }) }
+      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
       else setFormStatus('error')
     } catch { setFormStatus('error') }
   }
