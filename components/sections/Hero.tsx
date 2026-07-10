@@ -10,11 +10,16 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/home/hero-bg.jpg"
-          alt="Keentel Engineering power systems"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/home/hero-bg.jpg"
           className="w-full h-full object-cover object-center"
-        />
+        >
+          <source src="/videos/home.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(6,16,60,0.82)' }} />
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 blur-3xl rounded-full" style={{ background: 'radial-gradient(circle, rgba(167,34,138,0.2) 0%, transparent 70%)' }} />
       </div>
