@@ -1,5 +1,5 @@
-// sanity/schemas/blogPost.ts
 import { defineType, defineField } from 'sanity'
+
 
 export default defineType({
   name: 'blogPost',
@@ -19,7 +19,89 @@ export default defineType({
       to: [{ type: 'category' }],
       validation: Rule => Rule.required(),
     }),
-    defineField({ name: 'body', title: 'Body', type: 'array', of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }] }),
+    defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'H2', value: 'h2' },
+            { title: 'H3', value: 'h3' },
+            { title: 'H4', value: 'h4' },
+            { title: 'Quote', value: 'blockquote' },
+          ],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [{ name: 'href', type: 'url', title: 'URL' }],
+              },
+            ],
+          },
+        },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Alt text' },
+            { name: 'caption', type: 'string', title: 'Caption' },
+          ],
+        },
+        {
+          type: 'object',
+          name: 'table',
+          title: 'Table',
+          fields: [
+            {
+              name: 'hasHeader',
+              title: 'First row is header',
+              type: 'boolean',
+              initialValue: true,
+            },
+            {
+              name: 'rows',
+              title: 'Rows',
+              type: 'array',
+              of: [{
+                type: 'object',
+                name: 'row',
+                title: 'Row',
+                fields: [{
+                  name: 'cells',
+                  title: 'Cells',
+                  type: 'array',
+                  of: [{ type: 'string' }],
+                }],
+                preview: {
+                  select: { cells: 'cells' },
+                  prepare: ({ cells }: any) => ({ title: (cells || []).join(' | ') }),
+                },
+              }],
+            },
+          ],
+          preview: {
+            select: { rows: 'rows' },
+            prepare: ({ rows }: any) => ({
+              title: `Table (${(rows || []).length} rows)`,
+            }),
+          },
+        },
+      ],
+    }),
+
 
     // ── AUTHOR ──
     defineField({ name: 'authorName', title: 'Author Name', type: 'string' }),
@@ -27,6 +109,7 @@ export default defineType({
     defineField({ name: 'authorBio', title: 'Author Bio', type: 'text', rows: 3 }),
     defineField({ name: 'authorImage', title: 'Author Photo', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'authorLinkedIn', title: 'Author LinkedIn URL', type: 'string' }),
+
 
     // ── MID-ARTICLE CTA ──
     defineField({ name: 'midCtaEnabled', title: 'Show Mid-Article CTA', type: 'boolean' }),
@@ -37,6 +120,7 @@ export default defineType({
     defineField({ name: 'midCtaSecondaryText', title: 'Mid CTA Secondary Button Text (optional)', type: 'string' }),
     defineField({ name: 'midCtaSecondaryLink', title: 'Mid CTA Secondary Button Link', type: 'string' }),
 
+
     // ── BOTTOM CTA ──
     defineField({ name: 'bottomCtaEnabled', title: 'Show Bottom CTA', type: 'boolean' }),
     defineField({ name: 'bottomCtaHeading', title: 'Bottom CTA Heading', type: 'string' }),
@@ -46,10 +130,12 @@ export default defineType({
     defineField({ name: 'bottomCtaSecondaryText', title: 'Bottom CTA Secondary Button Text (optional)', type: 'string' }),
     defineField({ name: 'bottomCtaSecondaryLink', title: 'Bottom CTA Secondary Button Link', type: 'string' }),
 
+
     // ── SEO ──
     defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
     defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
   ],
+
 
   preview: {
     select: {
@@ -59,3 +145,4 @@ export default defineType({
     },
   },
 })
+mac@macs-MacBook-Pro keentel-engineering %
