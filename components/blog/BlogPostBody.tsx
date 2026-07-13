@@ -1,18 +1,22 @@
 'use client'
 
+
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
+
 
 const JUNK_PATTERNS = [
   /^add a title$/i, /^add a link$/i, /^place an image/i,
   /^add a paragraph/i, /^add your text here/i, /^click to edit/i, /^lorem ipsum/i,
 ]
 
+
 function isJunk(text: string): boolean {
   const t = text?.trim() || ''
   if (t.length < 3) return true
   return JUNK_PATTERNS.some(p => p.test(t))
 }
+
 
 function filterBlocks(blocks: any[]): any[] {
   if (!blocks) return []
@@ -22,6 +26,7 @@ function filterBlocks(blocks: any[]): any[] {
     return !isJunk(text)
   })
 }
+
 
 const ptComponents = {
   block: {
@@ -51,7 +56,54 @@ const ptComponents = {
       <a href={value?.href} target="_blank" rel="noopener noreferrer" className="underline transition-colors" style={{ color: '#A8228A' }}>{children}</a>
     ),
   },
+  types: {
+    table: ({ value }: any) => {
+      const rows: { cells: string[] }[] = value?.rows || []
+      if (!rows.length) return null
+      const hasHeader = value?.hasHeader && rows.length > 0
+      const headerRow = hasHeader ? rows[0] : null
+      const bodyRows = hasHeader ? rows.slice(1) : rows
+      return (
+        <div className="overflow-x-auto my-8 rounded-xl" style={{ border: '1px solid #E6E8F0' }}>
+          <table className="w-full font-jost text-sm border-collapse">
+            {headerRow && (
+              <thead>
+                <tr style={{ background: '#06103C' }}>
+                  {headerRow.cells.map((cell: string, i: number) => (
+                    <th key={i} className="px-4 py-3 text-left font-semibold text-white" style={{ borderRight: i < headerRow.cells.length - 1 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
+                      {cell}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {bodyRows.map((row: { cells: string[] }, ri: number) => (
+                <tr key={ri} style={{ background: ri % 2 === 0 ? '#fff' : '#F9FAFB', borderTop: '1px solid #E6E8F0' }}>
+                  {(row.cells || []).map((cell: string, ci: number) => (
+                    <td key={ci} className="px-4 py-3" style={{ color: '#374151', borderRight: ci < (row.cells?.length || 0) - 1 ? '1px solid #E6E8F0' : 'none' }}>
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    },
+    image: ({ value }: any) => {
+      if (!value?.asset?.url) return null
+      return (
+        <div className="my-8">
+          <img src={value.asset.url} alt={value.alt || ''} className="w-full rounded-xl" />
+          {value.caption && <p className="text-center text-sm mt-2 font-jost" style={{ color: '#9CA3AF' }}>{value.caption}</p>}
+        </div>
+      )
+    },
+  },
 }
+
 
 function BlogCTA({ heading, subheading, primaryText, primaryLink, secondaryText, secondaryLink, variant = 'mid' }: {
   heading?: string, subheading?: string, primaryText?: string, primaryLink?: string,
@@ -89,6 +141,7 @@ function BlogCTA({ heading, subheading, primaryText, primaryLink, secondaryText,
   )
 }
 
+
 // ── Author card at bottom of article ───────────────────────
 function AuthorSection({ name, title, bio, image, linkedIn }: {
   name?: string, title?: string, bio?: string, image?: string, linkedIn?: string
@@ -97,6 +150,7 @@ function AuthorSection({ name, title, bio, image, linkedIn }: {
   const authorTitle = title || 'IEEE Senior Member | Licensed PE & EC, Florida'
   const authorBio   = bio   || "In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois. For three decades he has been shaping the future of engineering as a licensed Professional Engineer across Florida, California, New York, West Virginia, and Minnesota. Founder and CEO of Keentel Engineering."
   const authorImg   = image || '/images/author-sandip.jpeg'
+
 
   return (
     <div className="mt-12 rounded-2xl overflow-hidden" style={{ border: '1px solid #E6E8F0', boxShadow: '0 4px 24px rgba(6,16,60,0.08)' }}>
@@ -144,9 +198,11 @@ function AuthorSection({ name, title, bio, image, linkedIn }: {
   )
 }
 
+
 // ── Sidebar ─────────────────────────────────────────────────
 function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; originalUrl: string }) {
   const authorImg = post.authorImage || '/images/author-sandip.jpeg'
+
 
   const services = [
     { name: 'Power System Studies',    href: '/service/power-system-studies' },
@@ -157,8 +213,10 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
     { name: 'Renewable Energy',        href: '/service/utility-scale-renewable-energy' },
   ]
 
+
   return (
     <div className="space-y-5">
+
 
       {/* ── AUTHOR — most prominent ── */}
       <div className="rounded-2xl overflow-hidden" style={{ boxShadow: '0 8px 32px rgba(6,16,60,0.15)' }}>
@@ -208,6 +266,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
         </div>
       </div>
 
+
       {/* ── CONSULTATION CTA ── */}
       <div className="rounded-2xl p-6" style={{ background: 'linear-gradient(135deg, #A8228A 0%, #5B2A86 100%)' }}>
         <p className="font-urbanist font-black text-white text-lg mb-1 leading-tight">Need Engineering Help?</p>
@@ -222,6 +281,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           Contact Us
         </Link>
       </div>
+
 
       {/* ── OUR SERVICES ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -238,6 +298,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           ))}
         </div>
       </div>
+
 
       {/* ── CASE STUDIES ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -258,6 +319,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           ))}
         </div>
       </div>
+
 
       {/* ── SHARE ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -281,9 +343,11 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
         </div>
       </div>
 
+
     </div>
   )
 }
+
 
 // ── Main Export ─────────────────────────────────────────────
 interface BlogPostBodyProps {
@@ -316,6 +380,7 @@ interface BlogPostBodyProps {
   slug: string
 }
 
+
 export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
   const originalUrl  = `https://keentelengineering.com/blog/${slug}`
   const showMidCta   = post.midCtaEnabled !== false
@@ -326,14 +391,17 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
   const firstHalf    = hasBody ? cleanBody.slice(0, midPoint) : []
   const secondHalf   = hasBody ? cleanBody.slice(midPoint) : []
 
+
   return (
     <section className="py-14" style={{ background: '#F4F5F9' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
+
           {/* MAIN CONTENT */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-7 sm:p-10 shadow-sm" style={{ border: '1px solid #E6E8F0' }}>
+
 
               {!hasBody && (
                 <div className="flex items-start gap-4 p-5 rounded-xl mb-8" style={{ background: 'rgba(6,16,60,0.03)', border: '1px solid #E6E8F0' }}>
@@ -351,30 +419,41 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
                 </div>
               )}
 
+
               {hasBody && firstHalf.length > 0 && (
                 <div className="mb-2"><PortableText value={firstHalf} components={ptComponents} /></div>
               )}
 
+
               {showMidCta && <BlogCTA variant="mid" heading={post.midCtaHeading} subheading={post.midCtaSubheading} primaryText={post.midCtaPrimaryText} primaryLink={post.midCtaPrimaryLink} secondaryText={post.midCtaSecondaryText} secondaryLink={post.midCtaSecondaryLink} />}
+
 
               {hasBody && secondHalf.length > 0 && (
                 <div><PortableText value={secondHalf} components={ptComponents} /></div>
               )}
 
+
               {showBottomCta && <BlogCTA variant="bottom" heading={post.bottomCtaHeading} subheading={post.bottomCtaSubheading} primaryText={post.bottomCtaPrimaryText} primaryLink={post.bottomCtaPrimaryLink} secondaryText={post.bottomCtaSecondaryText} secondaryLink={post.bottomCtaSecondaryLink} />}
 
+
               <AuthorSection name={post.authorName} title={post.authorTitle} bio={post.authorBio} image={post.authorImage} linkedIn={post.authorLinkedIn} />
+
 
             </div>
           </div>
 
+
           {/* SIDEBAR */}
-          <div className="lg:col-span-1 lg:sticky lg:top-28 lg:self-start">
-            <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
+          <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-28">
+              <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
+            </div>
           </div>
+
 
         </div>
       </div>
     </section>
   )
 }
+// sanity/schemas/blogPost.ts

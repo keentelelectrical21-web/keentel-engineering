@@ -1,6 +1,5 @@
 import { defineType, defineField } from 'sanity'
 
-
 export default defineType({
   name: 'blogPost',
   title: 'Blog Posts',
@@ -25,54 +24,45 @@ export default defineType({
       type: 'array',
       of: [
         { type: 'block' },
-        {
-          type: 'image',
-          options: { hotspot: true },
-          fields: [
-            { name: 'alt', type: 'string', title: 'Alt text' },
-            { name: 'caption', type: 'string', title: 'Caption' },
-          ],
-        },
-        {
-          type: 'object',
+        { type: 'image', options: { hotspot: true } },
+        defineField({
           name: 'table',
           title: 'Table',
+          type: 'object',
           fields: [
-            {
-              name: 'hasHeader',
-              title: 'First row is header',
-              type: 'boolean',
-              initialValue: true,
-            },
-            {
+            defineField({ name: 'hasHeader', title: 'First row is header', type: 'boolean', initialValue: true }),
+            defineField({
               name: 'rows',
               title: 'Rows',
               type: 'array',
-              of: [{
-                type: 'object',
-                name: 'row',
-                title: 'Row',
-                fields: [{
-                  name: 'cells',
-                  title: 'Cells',
-                  type: 'array',
-                  of: [{ type: 'string' }],
-                }],
-                preview: {
-                  select: { cells: 'cells' },
-                  prepare: ({ cells }: any) => ({ title: (cells || []).join(' | ') }),
-                },
-              }],
-            },
+              of: [
+                defineField({
+                  name: 'row',
+                  title: 'Row',
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'cells',
+                      title: 'Cells',
+                      type: 'array',
+                      of: [{ type: 'string' }],
+                    }),
+                  ],
+                  preview: {
+                    select: { cells: 'cells' },
+                    prepare: ({ cells }: any) => ({ title: (cells || []).join(' | ') }),
+                  },
+                }),
+              ],
+            }),
           ],
           preview: {
             select: { rows: 'rows' },
             prepare: ({ rows }: any) => ({ title: `Table (${(rows || []).length} rows)` }),
           },
-        },
+        }),
       ],
     }),
-
 
     // ── AUTHOR ──
     defineField({ name: 'authorName', title: 'Author Name', type: 'string' }),
@@ -80,7 +70,6 @@ export default defineType({
     defineField({ name: 'authorBio', title: 'Author Bio', type: 'text', rows: 3 }),
     defineField({ name: 'authorImage', title: 'Author Photo', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'authorLinkedIn', title: 'Author LinkedIn URL', type: 'string' }),
-
 
     // ── MID-ARTICLE CTA ──
     defineField({ name: 'midCtaEnabled', title: 'Show Mid-Article CTA', type: 'boolean' }),
@@ -91,7 +80,6 @@ export default defineType({
     defineField({ name: 'midCtaSecondaryText', title: 'Mid CTA Secondary Button Text (optional)', type: 'string' }),
     defineField({ name: 'midCtaSecondaryLink', title: 'Mid CTA Secondary Button Link', type: 'string' }),
 
-
     // ── BOTTOM CTA ──
     defineField({ name: 'bottomCtaEnabled', title: 'Show Bottom CTA', type: 'boolean' }),
     defineField({ name: 'bottomCtaHeading', title: 'Bottom CTA Heading', type: 'string' }),
@@ -101,12 +89,10 @@ export default defineType({
     defineField({ name: 'bottomCtaSecondaryText', title: 'Bottom CTA Secondary Button Text (optional)', type: 'string' }),
     defineField({ name: 'bottomCtaSecondaryLink', title: 'Bottom CTA Secondary Button Link', type: 'string' }),
 
-
     // ── SEO ──
     defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
     defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
   ],
-
 
   preview: {
     select: {
@@ -116,4 +102,3 @@ export default defineType({
     },
   },
 })
-mac@macs-MacBook-Pro keentel-engineering %
