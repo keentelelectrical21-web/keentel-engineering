@@ -172,8 +172,8 @@ export default function TransmissionLineDesignPage() {
 
         {/* ═══ 1. HERO ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-45">
-            <source src="/videos/power-plant-electricity.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+            <source src="/videos/transmission-line-design.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
@@ -187,9 +187,21 @@ export default function TransmissionLineDesignPage() {
               <p className="font-jost text-white/90 mb-10 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)' }}>
                 Advanced engineering solutions for reliable, efficient, and future-ready power infrastructure, specializing in transmission line design, sag-tension analysis, and high-voltage system optimization.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
                 <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
                 <a href="/files/transmission-line-design.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
+              </div>
+
+              <div className="border-t border-white/10 pt-8">
+                <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
+                <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <img
+                    src="/images/cert-logos.png"
+                    alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
+                    className="h-20 sm:h-24 object-contain"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
+                  />
+                </div>
               </div>
             </div>
           </div>

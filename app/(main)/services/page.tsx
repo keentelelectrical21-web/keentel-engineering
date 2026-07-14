@@ -265,7 +265,7 @@ export default function ServicesPage() {
               <p className="text-white/65 text-lg font-jost leading-relaxed max-w-2xl mb-8">
                 At Keentel Engineering, we strive to provide our clients across industries with the best-in-class services to their complete satisfaction. We deliver promptly, with comprehensive attention to detail.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
                 <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all hover:-translate-y-0.5"
                   style={{ background: 'linear-gradient(135deg, #C72E9E, #5B2A86)' }}>
@@ -273,13 +273,17 @@ export default function ServicesPage() {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               </div>
-              {/* Cert logos */}
-              <div className="mt-8">
-                <p className="text-white/35 text-xs uppercase tracking-widest mb-3">Trusted and Certified</p>
-                <img src="/images/cert-logos.png" alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
-                  className="h-10 w-auto object-contain opacity-80"
-                  style={{ filter: 'brightness(0) invert(1)' }}
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-670w.png' }} />
+
+              <div className="border-t border-white/10 pt-8">
+                <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
+                <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <img
+                    src="/images/cert-logos.png"
+                    alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
+                    className="h-20 sm:h-24 object-contain"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
+                  />
+                </div>
               </div>
             </div>
           </div>

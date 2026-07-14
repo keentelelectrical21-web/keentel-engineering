@@ -208,9 +208,21 @@ export default function SoftwareCapabilitiesFaqsPage() {
             <h1 className="font-urbanist font-black text-white mb-6 leading-tight max-w-4xl" style={{ fontSize: 'clamp(2.1rem, 4.5vw, 3.25rem)' }}>
               Software Capabilities &amp; Engineering Tools FAQs
             </h1>
-            <p className="font-jost text-white/90 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)' }}>
+            <p className="font-jost text-white/90 max-w-3xl leading-relaxed mb-14 sm:mb-16" style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)' }}>
               Answers to the most common questions about the power system simulation and design platforms we use across every Keentel Engineering service — PSS&reg;E, ETAP, PSCAD, PowerWorld, SKM PTW, AutoCAD Electrical, ASPEN, DIgSILENT, and PSLF.
             </p>
+
+            <div className="border-t border-white/10 pt-8">
+              <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
+              <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <img
+                  src="/images/cert-logos.png"
+                  alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
+                  className="h-20 sm:h-24 object-contain"
+                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
+                />
+              </div>
+            </div>
           </div>
         </section>
 

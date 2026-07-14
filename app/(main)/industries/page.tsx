@@ -99,12 +99,16 @@ export default function IndustriesPage() {
         {/* ── HERO ── */}
         <section className="relative min-h-[540px] flex items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              src="/images/industries/hub/industries-hero.jpg"
-              alt="Keentel Engineering industries served"
-              className="w-full h-full object-cover object-center"
-              onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-b7a9735b-907h.jpg' }}
-            />
+          <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  className="absolute inset-0 w-full h-full object-cover"
+>
+  <source src="/videos/industries.mp4" type="video/mp4" />
+</video>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.95) 0%, rgba(91,42,134,0.75) 100%)' }} />
             <div className="absolute bottom-0 right-0 w-96 h-96 blur-3xl rounded-full opacity-25" style={{ background: 'radial-gradient(circle, #A8228A 0%, transparent 70%)' }} />
           </div>
@@ -162,7 +166,8 @@ export default function IndustriesPage() {
                       src={ind.image}
                       alt={ind.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                   
+                   />
                     <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(6,16,60,0.75) 100%)' }} />
                   </div>
                   <div className="p-6">
