@@ -308,10 +308,10 @@ export default function PowerSystemStudiesPage() {
           <video
             ref={videoRef}
             autoPlay muted loop playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-45"
+            className="absolute inset-0 w-full h-full object-cover opacity-100"
             onError={() => {}}
           >
-            <source src="/videos/power-system-hero.mp4" type="video/mp4" />
+            <source src="/videos/power-plant-electricity.mp4" type="video/mp4" />
           </video>
 
           {/* Lighter overlay so video reads through clearly, fully contained to section */}

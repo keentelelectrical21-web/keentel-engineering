@@ -11,16 +11,17 @@ export default function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/home/hero-bg.jpg"
-          className="w-full h-full object-cover object-center"
-        >
-          <source src="/videos/home.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(6,16,60,0.82)' }} />
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  poster="/images/home/hero-bg.jpg"
+  className="w-full h-full object-cover object-center"
+>
+  <source src="/videos/home.mp4" type="video/mp4" />
+</video>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(6,16,60,0.5)' }} />
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 blur-3xl rounded-full" style={{ background: 'radial-gradient(circle, rgba(167,34,138,0.2) 0%, transparent 70%)' }} />
       </div>
 
@@ -76,7 +77,7 @@ export default function Hero() {
                 src="/images/home/certifications.png"
                 alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
                 className="w-auto object-contain opacity-90"
-                style={{ height: '64px', maxWidth: '420px', filter: 'brightness(0) invert(1)' }}
+                style={{ height: '100px', maxWidth: '430px', filter: 'brightness(0) invert(1)' }}
               />
             </div>
 

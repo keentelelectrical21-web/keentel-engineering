@@ -54,7 +54,7 @@ export default function Precision() {
             {/* Top right - substation */}
             <div className="absolute top-0 right-0 w-[57%] h-[50%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80"
+                src="https://smartpowerconsultancy.com/wp-content/uploads/2024/05/electrical-power-engineering-1024x684.jpg"
                 alt="Electrical substation"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
@@ -63,7 +63,7 @@ export default function Precision() {
             {/* Top left - power lines */}
             <div className="absolute top-[5%] left-0 w-[43%] h-[43%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1524168272322-bf73616d9cb5?w=600&q=80"
+                src="https://images.unsplash.com/photo-1758101755915-462eddc23f57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEVsZWN0cmljYWwlMjBQb3dlciUyMEVuZ2luZWVyaW5nJTIwd2l0aCUyMFByZWNpc2lvbiUyMGFuZCUyMENvbXBsaWFuY2V8ZW58MHx8MHx8fDA%3D"
                 alt="Power transmission lines"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
