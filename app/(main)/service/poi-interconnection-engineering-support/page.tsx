@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -599,6 +600,7 @@ export default function POIInterconnectionPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="POI Interconnection" bottomTitle="Seamless Point of Interconnection Engineering" bottomDescription="Navigate the complexity of interconnecting distributed energy resources to the grid. We provide complete engineering studies and coordination." bottomFeatures={['Interconnection study and analysis', 'System impact assessments', 'Utility coordination and communications', 'Technical specifications and drawings', 'Commissioning support', 'Ongoing compliance monitoring']} bottomImage="/images/services/poi-interconnection/overview.png" />
       </main>
       <Footer />
     </>

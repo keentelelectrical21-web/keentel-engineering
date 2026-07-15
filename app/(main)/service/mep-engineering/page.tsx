@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -474,6 +475,7 @@ export default function MEPEngineeringPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="MEP Engineering" bottomTitle="Integrated MEP Engineering Services" bottomDescription="Mechanical, electrical, and plumbing systems coordinated for maximum efficiency. Building systems working seamlessly together." bottomFeatures={['HVAC design and optimization', 'Electrical system design', 'Plumbing and fire protection systems', 'Building automation and controls', 'Energy efficiency analysis', 'Code compliance and permitting']} bottomImage="/images/services/mep-engineering/engineer-sketching.jpg" />
       </main>
       <Footer />
     </>

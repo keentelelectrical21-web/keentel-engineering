@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -476,6 +477,7 @@ export default function OwnersEngineerPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="Owner's Engineer" bottomTitle="Full-Service Owner's Engineer Support" bottomDescription="We represent your interests throughout the entire project lifecycle. Our owner's engineer services ensure quality and schedule adherence." bottomFeatures={['Project oversight and management', 'Budget and schedule monitoring', 'Quality assurance and inspections', 'Contractor coordination', 'Claims and dispute resolution', 'O&M documentation and training']} bottomImage="/images/services/owners-engineer/blueprint-review.jpg" />
       </main>
       <Footer />
     </>

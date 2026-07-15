@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 
 function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
@@ -292,6 +293,7 @@ export default function SoftwareCapabilitiesFaqsPage() {
           </div>
         </section>
 
+        <ServicePageBottomSection serviceName="Software Capabilities" bottomTitle="Advanced Software & Analysis Tools" bottomDescription="We leverage cutting-edge software platforms and analytical tools to deliver superior engineering solutions." bottomFeatures={['Power flow and stability analysis software', 'Protection coordination and modeling', 'Geospatial analysis and mapping', 'Financial and feasibility modeling', 'Real-time monitoring platforms', 'Custom tool development and integration']} bottomImage="/images/services/service-power-system.jpg" />
       </main>
       <Footer />
     </>

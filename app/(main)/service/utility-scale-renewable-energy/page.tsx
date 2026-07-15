@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -515,6 +516,7 @@ export default function UtilityScaleRenewableEnergyPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="Utility Scale Renewable Energy" bottomTitle="Utility-Scale Renewable Energy Solutions" bottomDescription="Design and develop renewable energy projects that generate significant returns, from solar farms to wind installations." bottomFeatures={['Solar and wind resource assessment', 'Detailed project engineering and design', 'Interconnection and grid integration studies', 'Environmental permitting and licensing', 'Construction management and oversight', 'Performance monitoring and optimization']} bottomImage="/images/services/utility-scale-renewable-energy/hero-towers.webp" />
       </main>
       <Footer />
     </>

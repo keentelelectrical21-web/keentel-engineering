@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -817,6 +818,7 @@ export default function SubstationDesignPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="Substation Design" bottomTitle="Expert Substation Design & Engineering" bottomDescription="We design and engineer substations that meet your specific operational requirements. From initial planning through final commissioning, our licensed engineers ensure every project meets the highest standards." bottomFeatures={['Complete substation design from concept to completion', 'Compliance with IEEE and NFPA standards', 'Advanced protection and control systems', 'Environmental assessments and mitigation', 'Project management and supervision', 'Commissioning and testing services']} bottomImage="/images/services/substation-design/type-transmission.png" />
       </main>
       <Footer />
     </>

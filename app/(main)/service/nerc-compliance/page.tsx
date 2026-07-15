@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -561,6 +562,7 @@ export default function NercCompliancePage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="NERC Compliance" bottomTitle="NERC Compliance & Regulatory Excellence" bottomDescription="Stay compliant with NERC standards through our comprehensive compliance programs. We assess your operations and implement solutions." bottomFeatures={['NERC standards assessment and audit', 'Protection system coordination studies', 'Reliability coordinator expertise', 'Documentation and reporting', 'Staff training and awareness programs', 'Ongoing compliance monitoring']} bottomImage="/images/services/nerc-compliance/technicians-server-rack.jpg" />
       </main>
       <Footer />
     </>

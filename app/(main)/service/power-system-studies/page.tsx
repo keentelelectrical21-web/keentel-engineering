@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ServicePageBottomSection from '@/components/ServicePageBottomSection'
 import { client } from '@/lib/sanity'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -939,6 +940,7 @@ export default function PowerSystemStudiesPage() {
           </section>
         )}
 
+        <ServicePageBottomSection serviceName="Power System Studies" bottomTitle="Comprehensive Power System Analysis" bottomDescription="Our power system studies provide detailed analysis of your electrical systems, ensuring optimal performance, reliability, and compliance with industry standards." bottomFeatures={['Load flow analysis and system stability studies', 'Short circuit and fault analysis', 'Transient and harmonic analysis', 'Recommendations for system improvements', 'Compliance with NERC standards', '24/7 post-study support']} bottomImage="/images/services/power-system-studies/overview-engineers.png" />
       </main>
       <Footer />
     </>
