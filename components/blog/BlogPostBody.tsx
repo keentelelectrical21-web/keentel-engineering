@@ -1,22 +1,18 @@
 'use client'
 
-
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
-
 
 const JUNK_PATTERNS = [
   /^add a title$/i, /^add a link$/i, /^place an image/i,
   /^add a paragraph/i, /^add your text here/i, /^click to edit/i, /^lorem ipsum/i,
 ]
 
-
 function isJunk(text: string): boolean {
   const t = text?.trim() || ''
   if (t.length < 3) return true
   return JUNK_PATTERNS.some(p => p.test(t))
 }
-
 
 function filterBlocks(blocks: any[]): any[] {
   if (!blocks) return []
@@ -26,7 +22,6 @@ function filterBlocks(blocks: any[]): any[] {
     return !isJunk(text)
   })
 }
-
 
 const ptComponents = {
   block: {
@@ -93,10 +88,12 @@ const ptComponents = {
       )
     },
     image: ({ value }: any) => {
-      if (!value?.asset?.url) return null
+      // FIX: support both resolved asset object and raw asset ref
+      const url = value?.asset?.url || value?.asset?._ref
+      if (!url) return null
       return (
         <div className="my-8">
-          <img src={value.asset.url} alt={value.alt || ''} className="w-full rounded-xl" />
+          <img src={url} alt={value.alt || ''} className="w-full rounded-xl" />
           {value.caption && <p className="text-center text-sm mt-2 font-jost" style={{ color: '#9CA3AF' }}>{value.caption}</p>}
         </div>
       )
@@ -104,10 +101,9 @@ const ptComponents = {
   },
 }
 
-
 function BlogCTA({ heading, subheading, primaryText, primaryLink, secondaryText, secondaryLink, variant = 'mid' }: {
-  heading?: string, subheading?: string, primaryText?: string, primaryLink?: string,
-  secondaryText?: string, secondaryLink?: string, variant?: 'mid' | 'bottom'
+  heading?: string; subheading?: string; primaryText?: string; primaryLink?: string
+  secondaryText?: string; secondaryLink?: string; variant?: 'mid' | 'bottom'
 }) {
   const isMid = variant === 'mid'
   return (
@@ -141,27 +137,21 @@ function BlogCTA({ heading, subheading, primaryText, primaryLink, secondaryText,
   )
 }
 
-
-// ── Author card at bottom of article ───────────────────────
 function AuthorSection({ name, title, bio, image, linkedIn }: {
-  name?: string, title?: string, bio?: string, image?: string, linkedIn?: string
+  name?: string; title?: string; bio?: string; image?: string; linkedIn?: string
 }) {
   const authorName  = name  || 'Sonny Patel P.E. EC'
   const authorTitle = title || 'IEEE Senior Member | Licensed PE & EC, Florida'
   const authorBio   = bio   || "In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois. For three decades he has been shaping the future of engineering as a licensed Professional Engineer across Florida, California, New York, West Virginia, and Minnesota. Founder and CEO of Keentel Engineering."
   const authorImg   = image || '/images/author-sandip.jpeg'
 
-
   return (
     <div className="mt-12 rounded-2xl overflow-hidden" style={{ border: '1px solid #E6E8F0', boxShadow: '0 4px 24px rgba(6,16,60,0.08)' }}>
-      {/* Header strip */}
       <div className="px-7 py-4" style={{ background: 'linear-gradient(135deg, #06103C, #0B1A5B)' }}>
         <p className="font-jost text-xs font-semibold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Written by</p>
       </div>
-      {/* Body */}
       <div className="bg-white px-7 py-6">
         <div className="flex flex-col sm:flex-row gap-6 items-start">
-          {/* Photo */}
           <div className="flex-shrink-0">
             <img
               src={authorImg}
@@ -174,7 +164,6 @@ function AuthorSection({ name, title, bio, image, linkedIn }: {
               }}
             />
           </div>
-          {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
               <div>
@@ -198,12 +187,8 @@ function AuthorSection({ name, title, bio, image, linkedIn }: {
   )
 }
 
-
-// ── Sidebar ─────────────────────────────────────────────────
 function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; originalUrl: string }) {
   const authorImg = post.authorImage || '/images/author-sandip.jpeg'
-
-
   const services = [
     { name: 'Power System Studies',    href: '/service/power-system-studies' },
     { name: 'NERC Compliance',         href: '/service/nerc-compliance' },
@@ -213,14 +198,11 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
     { name: 'Renewable Energy',        href: '/service/utility-scale-renewable-energy' },
   ]
 
-
   return (
     <div className="space-y-5">
 
-
-      {/* ── AUTHOR — most prominent ── */}
+      {/* ── AUTHOR ── */}
       <div className="rounded-2xl overflow-hidden" style={{ boxShadow: '0 8px 32px rgba(6,16,60,0.15)' }}>
-        {/* Dark header */}
         <div className="px-6 pt-6 pb-5" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
           <p className="font-jost text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>About the Author</p>
           <div className="flex items-center gap-4">
@@ -244,7 +226,6 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
             </div>
           </div>
         </div>
-        {/* White bio area */}
         <div className="bg-white px-6 py-5">
           <p className="font-jost text-gray-500 text-xs leading-relaxed mb-4">
             Founder and CEO of Keentel Engineering. Licensed PE in FL, CA, NY, WV, MN. 30+ years in HV/MV/EHV power engineering and NERC compliance.
@@ -266,7 +247,6 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
         </div>
       </div>
 
-
       {/* ── CONSULTATION CTA ── */}
       <div className="rounded-2xl p-6" style={{ background: 'linear-gradient(135deg, #A8228A 0%, #5B2A86 100%)' }}>
         <p className="font-urbanist font-black text-white text-lg mb-1 leading-tight">Need Engineering Help?</p>
@@ -281,7 +261,6 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           Contact Us
         </Link>
       </div>
-
 
       {/* ── OUR SERVICES ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -298,7 +277,6 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           ))}
         </div>
       </div>
-
 
       {/* ── CASE STUDIES ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -319,7 +297,6 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
           ))}
         </div>
       </div>
-
 
       {/* ── SHARE ── */}
       <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
@@ -343,13 +320,10 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
         </div>
       </div>
 
-
     </div>
   )
 }
 
-
-// ── Main Export ─────────────────────────────────────────────
 interface BlogPostBodyProps {
   post: {
     title: string
@@ -380,80 +354,97 @@ interface BlogPostBodyProps {
   slug: string
 }
 
-
 export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
-  const originalUrl  = `https://keentelengineering.com/blog/${slug}`
-  const showMidCta   = post.midCtaEnabled !== false
+  const originalUrl   = `https://keentelengineering.com/${slug}`
+  const showMidCta    = post.midCtaEnabled !== false
   const showBottomCta = post.bottomCtaEnabled !== false
-  const cleanBody    = filterBlocks(post.body || [])
-  const hasBody      = cleanBody.length > 2
-  const midPoint     = hasBody ? Math.floor(cleanBody.length / 2) : 0
-  const firstHalf    = hasBody ? cleanBody.slice(0, midPoint) : []
-  const secondHalf   = hasBody ? cleanBody.slice(midPoint) : []
-
+  const cleanBody     = filterBlocks(post.body || [])
+  const hasBody       = cleanBody.length > 0
+  const midPoint      = hasBody ? Math.floor(cleanBody.length / 2) : 0
+  const firstHalf     = hasBody ? cleanBody.slice(0, midPoint) : []
+  const secondHalf    = hasBody ? cleanBody.slice(midPoint) : []
 
   return (
     <section className="py-14" style={{ background: '#F4F5F9' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/*
+          STICKY FIX:
+          - Grid uses items-start so both columns are only as tall as their content
+          - Sidebar column also has self-start so it doesn't stretch to match main column
+          - Sticky is on the inner div with top-28 — this works because the parent
+            section is taller than the sidebar (main content is longer)
+          - NO overflow-hidden anywhere on the sticky parent chain
+        */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
-
-          {/* MAIN CONTENT */}
-          <div className="lg:col-span-2">
+          {/* MAIN CONTENT — takes natural height, makes section taller than sidebar */}
+          <div className="lg:col-span-2 min-w-0">
+            {/* NO overflow-hidden here — it breaks sticky */}
             <div className="bg-white rounded-2xl p-7 sm:p-10 shadow-sm" style={{ border: '1px solid #E6E8F0' }}>
 
-
-              {!hasBody && (
-                <div className="flex items-start gap-4 p-5 rounded-xl mb-8" style={{ background: 'rgba(6,16,60,0.03)', border: '1px solid #E6E8F0' }}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: 'rgba(168,34,138,0.1)' }}>
-                    <svg className="w-4 h-4" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  </div>
-                  <div>
-                    <p className="font-jost font-semibold text-sm mb-1" style={{ color: '#06103C' }}>Full article available</p>
-                    <p className="font-jost text-gray-500 text-sm mb-3">Read the complete version with all technical content.</p>
-                    <a href={originalUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-jost text-sm font-semibold hover:underline" style={{ color: '#A8228A' }}>
-                      Read Full Article
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                    </a>
-                  </div>
+              {hasBody && firstHalf.length > 0 && (
+                <div className="mb-2">
+                  <PortableText value={firstHalf} components={ptComponents} />
                 </div>
               )}
 
-
-              {hasBody && firstHalf.length > 0 && (
-                <div className="mb-2"><PortableText value={firstHalf} components={ptComponents} /></div>
+              {showMidCta && (
+                <BlogCTA
+                  variant="mid"
+                  heading={post.midCtaHeading}
+                  subheading={post.midCtaSubheading}
+                  primaryText={post.midCtaPrimaryText}
+                  primaryLink={post.midCtaPrimaryLink}
+                  secondaryText={post.midCtaSecondaryText}
+                  secondaryLink={post.midCtaSecondaryLink}
+                />
               )}
-
-
-              {showMidCta && <BlogCTA variant="mid" heading={post.midCtaHeading} subheading={post.midCtaSubheading} primaryText={post.midCtaPrimaryText} primaryLink={post.midCtaPrimaryLink} secondaryText={post.midCtaSecondaryText} secondaryLink={post.midCtaSecondaryLink} />}
-
 
               {hasBody && secondHalf.length > 0 && (
-                <div><PortableText value={secondHalf} components={ptComponents} /></div>
+                <div>
+                  <PortableText value={secondHalf} components={ptComponents} />
+                </div>
               )}
 
+              {showBottomCta && (
+                <BlogCTA
+                  variant="bottom"
+                  heading={post.bottomCtaHeading}
+                  subheading={post.bottomCtaSubheading}
+                  primaryText={post.bottomCtaPrimaryText}
+                  primaryLink={post.bottomCtaPrimaryLink}
+                  secondaryText={post.bottomCtaSecondaryText}
+                  secondaryLink={post.bottomCtaSecondaryLink}
+                />
+              )}
 
-              {showBottomCta && <BlogCTA variant="bottom" heading={post.bottomCtaHeading} subheading={post.bottomCtaSubheading} primaryText={post.bottomCtaPrimaryText} primaryLink={post.bottomCtaPrimaryLink} secondaryText={post.bottomCtaSecondaryText} secondaryLink={post.bottomCtaSecondaryLink} />}
-
-
-              <AuthorSection name={post.authorName} title={post.authorTitle} bio={post.authorBio} image={post.authorImage} linkedIn={post.authorLinkedIn} />
-
+              <AuthorSection
+                name={post.authorName}
+                title={post.authorTitle}
+                bio={post.authorBio}
+                image={post.authorImage}
+                linkedIn={post.authorLinkedIn}
+              />
 
             </div>
           </div>
 
-
-          {/* SIDEBAR */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-28">
+          {/*
+            SIDEBAR COLUMN — self-start stops it stretching to grid row height.
+            The inner div has position:sticky + top-28.
+            This works because:
+            1. The column is only as tall as the sidebar content (self-start)
+            2. The section/page is much taller (main content)
+            3. No overflow:hidden on any parent
+          */}
+          <div className="lg:col-span-1 self-start">
+            <div className="sticky top-28">
               <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
             </div>
           </div>
-
 
         </div>
       </div>
     </section>
   )
 }
-// sanity/schemas/blogPost.ts

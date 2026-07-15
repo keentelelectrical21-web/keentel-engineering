@@ -1,10 +1,7 @@
 'use client'
-// ============================================================
-// FILE: components/blog/BlogHero.tsx
-// ============================================================
 
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 interface SearchResult {
@@ -17,9 +14,10 @@ interface SearchResult {
 
 interface BlogHeroProps {
   totalPosts: number
+  categories?: string[]
 }
 
-export default function BlogHero({ totalPosts }: BlogHeroProps) {
+export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps) {
   const [searchOpen, setSearchOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
@@ -27,22 +25,22 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+  const searchParams = useSearchParams()
   const debounceRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  // Open search
+  const activeCategory = searchParams.get('category') || 'All'
+
   function openSearch() {
     setSearchOpen(true)
     setTimeout(() => inputRef.current?.focus(), 100)
   }
 
-  // Close search
   function closeSearch() {
     setSearchOpen(false)
     setQuery('')
     setResults([])
   }
 
-  // Close on Escape
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') closeSearch()
@@ -51,7 +49,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  // Live search with debounce
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     if (!query.trim() || query.trim().length < 2) {
@@ -70,7 +67,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
     }, 300)
   }, [query])
 
-  // Submit — go to search results page
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!query.trim()) return
@@ -78,16 +74,36 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
     router.push(`/search?q=${encodeURIComponent(query)}`)
   }
 
-  function getLocalImg(slug: string) {
-    return `/images/blog/${slug}-featured`
+  // FIX: clicking a chip sets ?category= in URL, BlogGrid reads it and filters
+  // Also scrolls down to the grid section smoothly
+  function handleCategoryChip(cat: string) {
+    closeSearch()
+    if (cat === 'All') {
+      router.push('/blog', { scroll: false })
+    } else {
+      router.push(`/blog?category=${encodeURIComponent(cat)}`, { scroll: false })
+    }
+    // Scroll to grid after a short delay so the URL update processes first
+    setTimeout(() => {
+      const grid = document.getElementById('blog-grid')
+      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
   }
+
+  function getLocalImg(slug: string) {
+    return `/images/blog/${slug}-featured.jpg`
+  }
+
+  // Use passed categories or fallback list
+  const chipCategories = categories.length > 0
+    ? categories
+    : ['NERC Compliance', 'IEEE 2800', 'Power System Studies', 'Renewable Energy', 'Substation Design', 'Grid Modernization']
 
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 60%, #06103C 100%)' }}>
         <img src="/images/blog-hero.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
-        {/* Grid pattern */}
         <div className="absolute inset-0 opacity-5" style={{
           backgroundImage: 'linear-gradient(rgba(168,34,138,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(168,34,138,0.6) 1px, transparent 1px)',
           backgroundSize: '50px 50px'
@@ -95,7 +111,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-3xl">
-            {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-0.5" style={{ background: '#A8228A' }} />
               <span className="font-jost text-xs font-semibold uppercase tracking-widest" style={{ color: '#A8228A' }}>
@@ -108,14 +123,14 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
               <span style={{ color: '#C72E9E' }}>Power Engineers</span>
             </h1>
 
-            <p className="font-jost text-white/60 text-lg mb-10 max-w-2xl leading-relaxed">
+            <p className="font-jost text-white/60 text-lg mb-8 max-w-2xl leading-relaxed">
               Expert analysis on NERC compliance, IEEE standards, power system studies, and grid modernization. {totalPosts}+ technical articles.
             </p>
 
-            {/* Search trigger button */}
+            {/* Search trigger */}
             <button
               onClick={openSearch}
-              className="flex items-center gap-3 w-full max-w-xl px-5 py-4 rounded-xl text-left transition-all border border-white/10 hover:border-white/30"
+              className="flex items-center gap-3 w-full max-w-xl px-5 py-4 rounded-xl text-left transition-all border border-white/10 hover:border-white/30 mb-8"
               style={{ background: 'rgba(255,255,255,0.06)' }}
             >
               <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -125,11 +140,38 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
               <span className="font-jost text-xs text-white/20 border border-white/10 px-2 py-0.5 rounded hidden sm:block">ESC to close</span>
             </button>
 
+            {/* FIX: Category chips that actually filter the grid below */}
+            <div className="flex flex-wrap gap-2 mb-10">
+              <button
+                onClick={() => handleCategoryChip('All')}
+                className="px-4 py-2 rounded-full font-jost text-sm font-semibold transition-all"
+                style={activeCategory === 'All'
+                  ? { background: '#A8228A', color: '#fff' }
+                  : { background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)' }
+                }
+              >
+                All
+              </button>
+              {chipCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => handleCategoryChip(cat)}
+                  className="px-4 py-2 rounded-full font-jost text-sm font-semibold transition-all"
+                  style={activeCategory === cat
+                    ? { background: '#A8228A', color: '#fff' }
+                    : { background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)' }
+                  }
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
             {/* Stats */}
-            <div className="flex flex-wrap gap-6 mt-10 pt-10 border-t border-white/10">
+            <div className="flex flex-wrap gap-6 pt-8 border-t border-white/10">
               {[
                 { num: `${totalPosts}+`, label: 'Technical Articles' },
-                { num: '8', label: 'Topic Categories' },
+                { num: `${chipCategories.length}`, label: 'Topic Categories' },
                 { num: '30+', label: 'Years of Expertise' },
               ].map((s, i) => (
                 <div key={i}>
@@ -141,7 +183,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
           </div>
         </div>
 
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-12" style={{ background: 'linear-gradient(to bottom, transparent, #F6F7FB)' }} />
       </section>
 
@@ -153,7 +194,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
           style={{ background: 'rgba(6,16,60,0.97)' }}
           onClick={(e) => { if (e.target === overlayRef.current) closeSearch() }}
         >
-          {/* Search input area */}
           <div className="border-b border-white/10 px-4 sm:px-8 py-6">
             <div className="max-w-3xl mx-auto">
               <form onSubmit={handleSubmit}>
@@ -184,11 +224,9 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
             </div>
           </div>
 
-          {/* Results */}
           <div className="flex-1 overflow-y-auto">
             <div className="max-w-3xl mx-auto px-4 sm:px-8 py-6">
 
-              {/* Live results */}
               {query.trim().length >= 2 && !searching && results.length > 0 && (
                 <>
                   <p className="font-jost text-white/40 text-xs uppercase tracking-widest mb-4">
@@ -198,11 +236,10 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
                     {results.slice(0, 8).map((post) => (
                       <Link
                         key={post._id}
-                        href={`/blog/${post.slug.current}`}
+                        href={`/${post.slug.current}`}
                         onClick={closeSearch}
                         className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors"
                       >
-                        {/* Thumbnail */}
                         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-white/10">
                           <img
                             src={getLocalImg(post.slug.current)}
@@ -215,7 +252,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
                             }}
                           />
                         </div>
-                        {/* Text */}
                         <div className="flex-1 min-w-0">
                           <p className="font-urbanist font-semibold text-white text-sm leading-snug line-clamp-1 group-hover:text-[#C72E9E] transition-colors">
                             {post.title}
@@ -239,7 +275,6 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
                 </>
               )}
 
-              {/* No results */}
               {query.trim().length >= 2 && !searching && results.length === 0 && (
                 <div className="text-center py-12">
                   <p className="font-jost text-white/40 text-lg">No results for "{query}"</p>
@@ -247,20 +282,19 @@ export default function BlogHero({ totalPosts }: BlogHeroProps) {
                 </div>
               )}
 
-              {/* Empty state — show categories */}
+              {/* In-overlay category chips also work the same way */}
               {query.trim().length < 2 && (
                 <div>
                   <p className="font-jost text-white/40 text-xs uppercase tracking-widest mb-4">Browse by category</p>
                   <div className="flex flex-wrap gap-2">
-                    {['NERC Compliance', 'IEEE 2800', 'Power System Studies', 'Renewable Energy', 'Substation Design', 'Grid Modernization'].map((cat) => (
-                      <Link
+                    {chipCategories.map((cat) => (
+                      <button
                         key={cat}
-                        href={`/blog?category=${encodeURIComponent(cat)}`}
-                        onClick={closeSearch}
+                        onClick={() => handleCategoryChip(cat)}
                         className="px-4 py-2 rounded-full font-jost text-sm text-white/60 border border-white/20 hover:border-white/40 hover:text-white transition-all"
                       >
                         {cat}
-                      </Link>
+                      </button>
                     ))}
                   </div>
                 </div>

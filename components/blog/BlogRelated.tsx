@@ -1,7 +1,4 @@
 'use client'
-// ============================================================
-// FILE: components/blog/BlogRelated.tsx  — REPLACE ENTIRE FILE
-// ============================================================
 
 import Link from 'next/link'
 import { useState } from 'react'
@@ -23,6 +20,7 @@ function RelatedCard({ post }: { post: RelatedPost }) {
     `/images/blog/${slug}-featured.png`,
     `/images/blog/${slug}-featured.jpeg`,
     `/images/blog/${slug}-featured.webp`,
+    ...(post.featuredImage ? [post.featuredImage] : []),
   ]
   const [idx, setIdx] = useState(0)
   const [failed, setFailed] = useState(false)
@@ -35,14 +33,14 @@ function RelatedCard({ post }: { post: RelatedPost }) {
   }
 
   return (
-    <Link href={`/blog/${slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      {/* Image */}
-      <div className="overflow-hidden w-full" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
+    // FIX: use /slug not /blog/slug
+    <Link href={`/${slug}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+      <div className="h-48 overflow-hidden" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
         {!failed ? (
           <img
             src={sources[idx]}
             alt={post.title}
-            className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             onError={() => {
               if (idx + 1 < sources.length) setIdx(i => i + 1)
               else setFailed(true)
@@ -54,14 +52,13 @@ function RelatedCard({ post }: { post: RelatedPost }) {
           </div>
         )}
       </div>
-      {/* Content */}
       <div className="p-5">
-        <div className="flex items-center gap-2 mb-2.5">
+        <div className="flex items-center gap-2 mb-2.5 flex-wrap">
           <span className="font-jost text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(168,34,138,0.08)', color: '#A8228A' }}>{post.category}</span>
-          <span className="flex items-center gap-1 font-jost text-xs font-semibold" style={{ color: '#06103C' }}>
-                <svg className="w-3 h-3 flex-shrink-0" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                {formatDate(post.publishedAt)}
-              </span>
+          <span className="flex items-center gap-1 font-jost text-xs" style={{ color: '#999' }}>
+            <svg className="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            {formatDate(post.publishedAt)}
+          </span>
         </div>
         <h3 className="font-urbanist font-bold text-base leading-snug line-clamp-2 group-hover:text-[#A8228A] transition-colors" style={{ color: '#06103C' }}>{post.title}</h3>
         <p className="font-jost text-gray-500 text-sm line-clamp-2 mt-2 leading-relaxed">{post.excerpt}</p>

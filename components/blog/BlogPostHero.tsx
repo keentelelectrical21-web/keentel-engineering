@@ -16,22 +16,22 @@ interface Post {
 }
 
 export default function BlogPostHero({ post, slug }: { post: Post; slug: string }) {
-  const localImg      = `/images/blog/${slug}-featured.jpg`
-  const localImgPng   = `/images/blog/${slug}-featured.png`
-  const localImgWebp  = `/images/blog/${slug}-featured.webp`
-  const fallbackImg   = post.featuredImage || null
-
-  const [imgSrc, setImgSrc]       = useState(localImg)
-  const [triedPng, setTriedPng]   = useState(false)
-  const [triedWebp, setTriedWebp] = useState(false)
-  const [triedSanity, setTriedSanity] = useState(false)
+  const sources = [
+    `/images/blog/${slug}-featured.jpg`,
+    `/images/blog/${slug}-featured.png`,
+    `/images/blog/${slug}-featured.jpeg`,
+    `/images/blog/${slug}-featured.webp`,
+    ...(post.featuredImage ? [post.featuredImage] : []),
+  ]
+  const [idx, setIdx] = useState(0)
   const [imgFailed, setImgFailed] = useState(false)
 
   function handleImgError() {
-    if (!triedPng) { setTriedPng(true); setImgSrc(localImgPng) }
-    else if (!triedWebp) { setTriedWebp(true); setImgSrc(localImgWebp) }
-    else if (!triedSanity && fallbackImg) { setTriedSanity(true); setImgSrc(fallbackImg) }
-    else { setImgFailed(true) }
+    if (idx + 1 < sources.length) {
+      setIdx(i => i + 1)
+    } else {
+      setImgFailed(true)
+    }
   }
 
   function formatDate(dateStr: string) {
@@ -52,8 +52,7 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
       {/* ── DARK NAVY HERO ─────────────────────────────────── */}
       <section
         style={{
-          background:
-            'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.85) 60%, rgba(91,42,134,0.4) 100%), #06103C',
+          background: 'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.85) 60%, rgba(91,42,134,0.4) 100%), #06103C',
         }}
         className="pt-32 pb-12 px-6"
       >
@@ -147,28 +146,27 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
         </div>
       </section>
 
-      {/* ── FULL IMAGE ─────────────────────────────────────── */}
+      {/* ── FULL IMAGE — natural height, no cropping ───────── */}
       <div className="max-w-4xl mx-auto px-6 py-10">
-        <div
-          className="w-full overflow-hidden rounded-b-2xl shadow-2xl"
-          style={imgFailed
-            ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)', minHeight: '320px' }
-            : {}}
-        >
-          {!imgFailed ? (
+        {!imgFailed ? (
+          <div className="w-full overflow-hidden rounded-2xl shadow-2xl">
             <img
-              src={imgSrc}
+              src={sources[idx]}
               alt={post.title}
-              className="w-full object-cover"
-              style={{ maxHeight: '520px', width: '100%', display: 'block' }}
+              // FIX: w-full h-auto so the full image shows at its natural height — no cropping
+              className="w-full h-auto block"
               onError={handleImgError}
             />
-          ) : (
-            <div className="w-full flex items-center justify-center" style={{ minHeight: '320px' }}>
-              <span className="font-urbanist font-black" style={{ color: 'rgba(255,255,255,0.06)', fontSize: '6rem' }}>K</span>
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          // Fallback gradient box when no image available
+          <div
+            className="w-full rounded-2xl shadow-2xl flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #06103C, #0B1A5B)', minHeight: '320px' }}
+          >
+            <span className="font-urbanist font-black" style={{ color: 'rgba(255,255,255,0.06)', fontSize: '6rem' }}>K</span>
+          </div>
+        )}
       </div>
     </div>
   )

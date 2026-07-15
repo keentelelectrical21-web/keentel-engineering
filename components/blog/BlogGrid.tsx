@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 interface Post {
@@ -13,16 +14,6 @@ interface Post {
   featuredImage?: string
 }
 
-const CATEGORIES = [
-  'All',
-  'NERC Compliance',
-  'IEEE 2800',
-  'Power System Studies',
-  'Renewable Energy',
-  'Substation Design',
-  'Grid Modernization',
-]
-
 const POSTS_PER_PAGE = 12
 
 function BlogCard({ post }: { post: Post }) {
@@ -32,6 +23,7 @@ function BlogCard({ post }: { post: Post }) {
     `/images/blog/${slug}-featured.png`,
     `/images/blog/${slug}-featured.jpeg`,
     `/images/blog/${slug}-featured.webp`,
+    ...(post.featuredImage ? [post.featuredImage] : []),
   ]
   const [idx, setIdx] = useState(0)
   const [failed, setFailed] = useState(false)
@@ -45,15 +37,19 @@ function BlogCard({ post }: { post: Post }) {
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/${slug}`}
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
     >
-      <div className="relative h-48 overflow-hidden flex-shrink-0" style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)' } : { background: '#f3f4f6' }}>
+      {/* FIX: natural image height — no fixed h-48, image shows fully at its own height */}
+      <div
+        className="w-full overflow-hidden flex-shrink-0"
+        style={failed ? { background: 'linear-gradient(135deg, #06103C, #0B1A5B)', minHeight: '200px' } : {}}
+      >
         {!failed && (
           <img
             src={sources[idx]}
             alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
             onError={() => {
               if (idx + 1 < sources.length) {
                 setIdx(i => i + 1)
@@ -64,7 +60,7 @@ function BlogCard({ post }: { post: Post }) {
           />
         )}
         {failed && (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center" style={{ minHeight: '200px' }}>
             <span style={{ color: 'rgba(255,255,255,0.08)', fontSize: '2.5rem', fontWeight: 900 }}>K</span>
           </div>
         )}
@@ -95,8 +91,34 @@ function BlogCard({ post }: { post: Post }) {
 }
 
 export default function BlogGrid({ posts }: { posts: Post[] }) {
-  const [activeCategory, setActiveCategory] = useState('All')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // FIX: read active category from URL ?category= param
+  // This means clicking a chip in BlogHero (which sets the URL param) automatically filters here
+  const urlCategory = searchParams.get('category') || 'All'
+  const [activeCategory, setActiveCategory] = useState(urlCategory)
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE)
+
+  // Sync when URL param changes (e.g. hero chip clicked)
+  useEffect(() => {
+    setActiveCategory(urlCategory)
+    setVisibleCount(POSTS_PER_PAGE)
+  }, [urlCategory])
+
+  // Build categories dynamically from actual post data
+  const categories = useMemo(() => {
+    const seen = new Set<string>()
+    const cats: string[] = ['All']
+    for (const p of posts) {
+      if (p.category && !seen.has(p.category)) {
+        seen.add(p.category)
+        cats.push(p.category)
+      }
+    }
+    return cats
+  }, [posts])
 
   const filtered = useMemo(() => {
     if (activeCategory === 'All') return posts
@@ -109,13 +131,21 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
   function handleCategoryChange(cat: string) {
     setActiveCategory(cat)
     setVisibleCount(POSTS_PER_PAGE)
+    // FIX: update URL so hero chips stay in sync
+    const params = new URLSearchParams(searchParams.toString())
+    if (cat === 'All') {
+      params.delete('category')
+    } else {
+      params.set('category', cat)
+    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   return (
-    <section className="py-16" style={{ background: '#F6F7FB' }}>
+    <section id="blog-grid" className="py-16" style={{ background: '#F6F7FB' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Mobile dropdown filter */}
+        {/* Mobile dropdown */}
         <div className="mb-10 sm:hidden">
           <select
             value={activeCategory}
@@ -123,16 +153,16 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
             className="w-full px-4 py-3 rounded-xl font-jost font-semibold text-sm border-2 focus:outline-none"
             style={{ borderColor: '#E6E8F0', color: '#06103C', background: '#fff' }}
           >
-            {CATEGORIES.map((cat) => {
+            {categories.map((cat) => {
               const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
               return <option key={cat} value={cat}>{cat} ({count})</option>
             })}
           </select>
         </div>
 
-        {/* Desktop filter buttons */}
+        {/* Desktop filter chips */}
         <div className="mb-10 hidden sm:flex flex-wrap gap-2">
-          {CATEGORIES.map((cat) => {
+          {categories.map((cat) => {
             const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
             const isActive = activeCategory === cat
             return (
