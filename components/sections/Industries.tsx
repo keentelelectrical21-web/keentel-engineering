@@ -38,6 +38,13 @@ const industries = [
     href: '/industries/industrial-power-engineering',
       image: '/images/industries/hub/industrial-manufacturing.webp',
   },
+  {
+    title: 'EPC Contractors',
+    tag: 'Project Delivery',
+    desc: 'Power engineering, design coordination, studies, and construction-ready deliverables that keep EPC projects moving.',
+    href: '/industries/epc-contractors',
+    image: '/images/services/substation-design/ind-epc.png',
+  },
 ]
 
 export default function Industries() {

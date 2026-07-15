@@ -19,7 +19,7 @@ export default function CaseStudies() {
 
   useEffect(() => {
     client.fetch(
-      `*[_type == "caseStudy" && defined(cardImage)] | order(_createdAt desc) [0...5] {
+      `*[_type == "caseStudy" && defined(cardImage)] | order(_createdAt desc) [0...4] {
         _id, title, slug, cardImage, background, client, region
       }`
     ).then(setStudies).catch(() => {})
@@ -36,7 +36,7 @@ export default function CaseStudies() {
         <div className="mb-12">
           <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>What Success Looks Like</p>
           <h2 className="font-urbanist font-black text-4xl sm:text-5xl" style={{ color: '#0B1230' }}>
-            Engineering Projects That Delivered
+        Engineering Projects That Deliver Results
           </h2>
         </div>
 

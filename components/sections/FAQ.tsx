@@ -22,11 +22,11 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       }}
       onClick={() => setOpen(!open)}
     >
-      <div className="flex items-center gap-5 p-6">
-        <span className="font-urbanist font-black text-2xl flex-shrink-0 w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>
+      <div className="flex items-center gap-3 p-4 sm:gap-5 sm:p-6">
+        <span className="w-7 flex-shrink-0 font-urbanist text-xl font-black sm:w-8 sm:text-2xl" style={{ color: '#000000' }}>
           {String(index + 1).padStart(2, '0')}
         </span>
-        <h4 className="font-urbanist font-bold text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
+        <h4 className="flex-1 font-urbanist text-base font-bold leading-snug sm:text-xl" style={{ color: '#0B1230' }}>{q}</h4>
         <div
           className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
           style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}
@@ -40,7 +40,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         className="overflow-hidden transition-all duration-300"
         style={{ maxHeight: open ? '200px' : '0px' }}
       >
-        <p className="px-6 pb-6 pl-[72px] text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
+        <p className="px-4 pb-5 pl-14 font-jost text-sm leading-relaxed sm:px-6 sm:pb-6 sm:pl-[72px] sm:text-base" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
   )

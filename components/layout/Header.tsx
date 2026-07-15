@@ -12,6 +12,7 @@ const services = [
   { name: "Owner's Engineer Services", href: '/service/owners-engineer' },
   { name: 'MEP Engineering Services', href: '/service/mep-engineering' },
   { name: 'NERC Compliance Services', href: '/service/nerc-compliance' },
+  { name: 'Nuclear Power Plant Engineering', href: '/service/nuclear-power-plant' },
 ]
 
 const navLinks = [

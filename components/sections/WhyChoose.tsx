@@ -11,10 +11,10 @@ export default function WhyChoose() {
             <div className="lg:col-span-3 flex flex-col justify-start pt-2">
               <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Our Difference</p>
               <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.05] mb-4" style={{ color: '#0B1230' }}>
-                Why<br />Choose<br />Keentel
+                Why<br />Choose<br />Keentel Engineering
               </h2>
               <p className="text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>
-                We don't chase every job. Just the right ones, where precision matters, compliance isn't optional, and experience makes the difference.
+              Keentel Engineering delivers specialized electrical power engineering services for utilities, developers, EPC contractors, industrial facilities, and renewable energy projects.
               </p>
             </div>
 
@@ -38,7 +38,7 @@ export default function WhyChoose() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                   </svg>
                 </div>
-                <h3 className="font-urbanist font-bold text-xl mb-3" style={{ color: '#0B1230' }}>30 Years of Experience</h3>
+                <h3 className="font-urbanist font-bold text-xl mb-3" style={{ color: '#0B1230' }}>30+ Years of Experience</h3>
                 <p className="text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>
                   Our team brings decades of success in power system interconnection, transmission line design, and renewable energy engineering including BESS, solar PV, and wind.
                 </p>

@@ -15,6 +15,7 @@ const services = [
   { name: 'NERC Compliance', href: '/service/nerc-compliance' },
   { name: 'Renewable Energy', href: '/service/utility-scale-renewable-energy' },
   { name: "Owner's Engineer", href: '/service/owners-engineer' },
+  { name: 'Nuclear Power Engineering', href: '/service/nuclear-power-plant' },
 ]
 
 const resources = [
@@ -32,10 +33,10 @@ const legal = [
 ]
 
 const locations = [
-  { name: 'Headquarters', address: '400 N Ashley Dr STE #2600, Tampa, FL 33602' },
-  { name: 'Austin Office', address: '5900 Balcones Drive STE 100, Austin, TX 78731 USA' },
-  { name: 'Sacramento Office', address: '1401 21st St Ste R, Sacramento, CA 95811 USA' },
-  { name: 'Baltimore Office', address: '306 W Redwood St, STE 200, Baltimore, MD 21201 USA' },
+  { name: 'Head Office', address: '400 N Ashley Dr STE #2600, Tampa, FL 33602', phone: '(813) 389-7871', phoneHref: 'tel:+18133897871' },
+  { name: 'Austin Office', address: '5900 Balcones Drive STE 100, Austin, TX 78731 USA', phone: '(512) 591-0752', phoneHref: 'tel:+15125910752' },
+  { name: 'Sacramento Office', address: '1401 21st St Ste R, Sacramento, CA 95811 USA', phone: '(916) 913-4524', phoneHref: 'tel:+19169134524' },
+  { name: 'Baltimore Office', address: '306 W Redwood St, STE 200, Baltimore, MD 21201 USA', phone: '(410) 225-2181', phoneHref: 'tel:+14102252181' },
 ]
 
 const socials = [
@@ -75,9 +76,9 @@ export default function Footer() {
             <p className="text-sm font-jost leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.5)' }}>
               Together, we power the future of reliable and compliant electrical infrastructure across the United States.
             </p>
-            <div className="flex gap-2">
-              <input type="email" placeholder="Your Email" className="flex-1 text-sm px-4 py-2.5 rounded-full focus:outline-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#fff' }} />
-              <button className="text-white text-sm font-semibold px-4 py-2.5 rounded-full whitespace-nowrap" style={{ background: '#A8228A' }}>Subscribe</button>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <input type="email" placeholder="Your Email" className="min-w-0 flex-1 text-sm px-4 py-2.5 rounded-full focus:outline-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#fff' }} />
+              <button className="w-full text-white text-sm font-semibold px-4 py-2.5 rounded-full whitespace-nowrap sm:w-auto" style={{ background: '#A8228A' }}>Subscribe</button>
             </div>
           </div>
 
@@ -124,14 +125,17 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {locations.map((loc) => (
               <div key={loc.name} className="rounded-2xl p-5 flex items-start gap-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.15)' }}>
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#C72E9E' }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #C72E9E, #79269A)' }}>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#fff' }}>
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <div>
-                  <p className="font-urbanist font-bold text-sm mb-0.5" style={{ color: '#fff' }}>{loc.name}</p>
-                  <p className="text-xs font-jost leading-snug" style={{ color: 'rgba(255,255,255,0.45)' }}>{loc.address}</p>
+                <div className="min-w-0">
+                  <p className="font-urbanist font-bold text-base mb-1" style={{ color: '#fff' }}>{loc.name}</p>
+                  <p className="text-sm font-jost leading-snug" style={{ color: 'rgba(255,255,255,0.65)' }}>{loc.address}</p>
+                  <a href={loc.phoneHref} className="mt-3 inline-block font-urbanist text-base font-black text-white transition-colors hover:text-[#C72E9E]" aria-label={`Call ${loc.name} at ${loc.phone}`}>
+                    {loc.phone}
+                  </a>
                 </div>
               </div>
             ))}

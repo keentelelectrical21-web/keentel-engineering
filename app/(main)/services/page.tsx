@@ -90,6 +90,14 @@ const services = [
     image: '/images/services/service-wind.jpg',
     fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10002-cc58913c-452w.jpg',
   },
+  {
+    title: 'Nuclear Power Plant Electrical Engineering',
+    desc: 'Lifecycle electrical engineering for nuclear generation, including system studies, protection, modifications, equipment upgrades, compliance support, and plant reliability.',
+    href: '/service/nuclear-power-plant',
+    flyer: '/service/nuclear-power-plant',
+    image: '/images/services/power-system-studies/industry-utilities.jpg',
+    fallback: '/images/services/power-system-studies/industry-utilities.jpg',
+  },
 ]
 
 const whyChoose = [
@@ -239,12 +247,10 @@ export default function ServicesPage() {
         {/* ── HERO ── */}
         <section className="relative min-h-[500px] flex items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              src="/images/services/service-hero.jpeg"
-              alt="Keentel Engineering electrical power services"
-              className="w-full h-full object-cover object-center"
-              onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/pexels-photo-171428-1920w.jpeg' }}
-            />
+            <video autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover object-center" aria-label="Keentel Engineering electrical power services">
+              <source src="/videos/service.mp4" type="video/mp4" />
+              Your browser does not support background video.
+            </video>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,0.95) 0%, rgba(6,16,60,0.6) 60%, rgba(6,16,60,0.3) 100%)' }} />
           </div>
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">

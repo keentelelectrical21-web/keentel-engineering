@@ -3,36 +3,58 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-const servicesList = [
-  'Power System Studies', 'Substation Design', 'POI Interconnection Engineering',
-  "Owner's Engineer Services", 'NERC Compliance Services', 'Utility Scale Renewable Energy',
-  'MEP Engineering', 'Relay Protection Engineering', 'BESS Engineering', 'Other',
+const points = [
+  ['Expertise in HV, MV, and EHV power systems', 'M13 10V3L4 14h7v7l9-11h-7z', 'Grid-ready designs rooted in three decades of hands-on field experience.'],
+  ['Advanced power system modeling capabilities', 'M4 19h16M6 16v-5m4 5V7m4 9V4m4 12V9', 'Expert modeling with ETAP, SKM, PSCAD, and DIgSILENT tools.'],
+  ['Experience with utility and ISO planning requirements', 'M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z', 'Deep understanding of IEEE, NERC, and PJM, ERCOT, and CAISO planning standards.'],
+  ['Deep understanding of NERC reliability standards', 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z', '27+ years navigating NERC standard revisions—not learning them on your project.'],
+  ['Practical solutions for complex power system challenges', 'M5 13l4 4L19 7', 'From interconnection queues to grid mitigation, we find the path that works.'],
+]
+
+const services = [
+  'Power System Studies',
+  'Substation Design Services',
+  'POI Interconnection Engineering Support',
+  "Owner's Engineer Services",
+  'NERC Compliance Services',
+  'Utility Scale Renewable Energy',
+  'MEP Engineering Services',
+  'Transmission Line Design',
+  'Nuclear Power Plant Electrical Engineering',
 ]
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', company: '', message: '' })
+  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', services: [] as string[], message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  function toggleService(service: string) {
+    setForm(current => ({
+      ...current,
+      services: current.services.includes(service)
+        ? current.services.filter(item => item !== service)
+        : [...current.services, service],
+    }))
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: `${form.firstName} ${form.lastName}`.trim(),
           email: form.email,
           phone: form.phone,
-          company: form.company,
-          service: form.service,
+          service: form.services.join(', '),
           message: form.message,
         }),
       })
-      if (!res.ok) throw new Error('Submit failed')
+      if (!response.ok) throw new Error('Submit failed')
       setSubmitted(true)
     } catch {
       setError('Something went wrong. Please call us directly at 813-389-7871.')
@@ -41,166 +63,54 @@ export default function ContactForm() {
     }
   }
 
-  if (submitted) {
-    return (
-      <section className="py-20" style={{ background: '#06103C' }}>
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'rgba(168,34,138,0.2)', border: '2px solid #A8228A' }}>
-            <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#A8228A' }}>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="font-urbanist font-black text-4xl text-white mb-4">Message Received</h3>
-          <p className="font-jost text-lg mb-8" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            Thank you for reaching out to Keentel Engineering. One of our engineers will contact you within one business day.
-          </p>
-          <Link href="/" className="inline-flex items-center gap-2 font-jost font-semibold text-white px-8 py-4 rounded-full" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-            Back to Home
-          </Link>
-        </div>
-      </section>
-    )
-  }
-
   return (
-    <section className="py-20" style={{ background: '#06103C' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>Get In Touch</p>
-          <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-4">
-            Let's Discuss Your Next Project
-          </h2>
-          <p className="text-xl font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.7)' }}>
-            Our licensed engineers are ready to discuss your specific requirements and help you find the best path forward.
-          </p>
+    <section className="relative overflow-hidden px-4 py-20 sm:px-8 sm:py-24" style={{ background: '#FAFBFD' }}>
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full opacity-[0.06] blur-3xl" style={{ background: 'radial-gradient(circle,#A8228A 0%,transparent 70%)' }} />
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-16 lg:grid-cols-2">
+        <div className="flex flex-col">
+          <div className="mb-4 flex items-center gap-2.5"><span className="h-px w-8" style={{ background: '#A8228A' }} /></div>
+          <h2 className="mb-5 font-urbanist text-3xl font-black leading-tight sm:text-4xl" style={{ color: '#0B1A5B' }}>Why Choose Keentel Engineering</h2>
+          <p className="mb-9 font-jost text-base leading-relaxed text-gray-600">Our licensed engineers help utilities, developers, EPC teams, and infrastructure owners reduce technical risk, validate system performance, and move complex projects toward safe, compliant operation.</p>
+          <div className="mb-10 space-y-5">
+            {points.map(([title, path, subtitle], index) => (
+              <div key={title} className="flex items-start gap-4 pb-5" style={{ borderBottom: index < points.length - 1 ? '1px solid #ECEEF4' : 'none' }}>
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl shadow-sm" style={{ background: 'linear-gradient(135deg,#C72E9E,#A8228A)' }}>
+                  <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={path} /></svg>
+                </div>
+                <div><p className="pt-1.5 font-jost text-sm font-semibold leading-snug" style={{ color: '#0B1A5B' }}>{title}</p><p className="mt-1 font-jost text-[13px] leading-snug" style={{ color: '#8891A8' }}>{subtitle}</p></div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full px-7 py-3.5 font-jost text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg" style={{ background: 'linear-gradient(135deg,#A8228A,#5B2A86)' }}>Schedule a Consultation</a>
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-full border-2 px-7 py-3.5 font-jost text-sm font-semibold transition hover:-translate-y-0.5" style={{ borderColor: '#0B1A5B', color: '#0B1A5B' }}>Contact Us</Link>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+        <div className="flex flex-col rounded-3xl border border-[#F0F1F6] bg-white p-6 shadow-[0_30px_70px_-25px_rgba(11,26,91,0.22)] sm:p-10">
+          <p className="mb-3 text-center font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Get In Touch</p>
+          <h2 className="mb-1 text-center font-urbanist text-2xl font-black leading-snug sm:text-3xl" style={{ color: '#0B1A5B' }}>Let&apos;s Discuss Your Next Project</h2>
+          <p className="mb-7 text-center font-jost text-xs text-gray-400">Our engineers typically respond within one business day.</p>
 
-          {/* Left contact info */}
-          <div className="lg:col-span-2 space-y-4">
-            {[
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />,
-                label: 'Phone', value: '813-389-7871', href: 'tel:813-389-7871',
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />,
-                label: 'Email', value: 'contact@keentelengineering.com', href: 'mailto:contact@keentelengineering.com',
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />,
-                label: 'Schedule', value: 'Book a Free Consultation', href: 'https://calendly.com/keentel-engineering/15min',
-              },
-            ].map((item) => (
-              <a key={item.label} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                className="flex items-center gap-4 p-5 rounded-2xl transition-all hover:bg-white/10"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(199,46,158,0.2)' }}>
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#C72E9E' }}>{item.icon}</svg>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide mb-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>{item.label}</p>
-                  <p className="font-urbanist font-bold text-white text-base">{item.value}</p>
-                </div>
-              </a>
-            ))}
-
-            {/* Offices */}
-            <div className="rounded-2xl p-5" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Our Offices</p>
-              <div className="space-y-3">
-                {['Tampa, FL (HQ)', 'Austin, TX', 'Sacramento, CA', 'Baltimore, MD'].map((loc) => (
-                  <div key={loc} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#C72E9E' }} />
-                    <p className="font-jost text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>{loc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right form */}
-          <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="rounded-3xl p-8 sm:p-10" style={{ background: '#fff' }}>
-              <h3 className="font-urbanist font-black text-2xl mb-6" style={{ color: '#0B1230' }}>Send Us a Message</h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>First Name *</label>
-                  <input required value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none transition-all"
-                    style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                    placeholder="John" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Last Name</label>
-                  <input value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none"
-                    style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                    placeholder="Smith" />
-                </div>
+          {submitted ? (
+            <div className="py-12 text-center"><div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full" style={{ background: 'rgba(168,34,138,.12)' }}><svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="#A8228A"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg></div><h3 className="mb-2 font-urbanist text-2xl font-bold" style={{ color: '#0B1A5B' }}>Message Received</h3><p className="font-jost text-gray-600">Thank you. One of our engineers will contact you shortly.</p></div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <label className="font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>First Name *<input required value={form.firstName} onChange={e => setForm({...form, firstName:e.target.value})} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-3 font-jost text-sm outline-none focus:border-[#A8228A]" /></label>
+                <label className="font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>Last Name<input value={form.lastName} onChange={e => setForm({...form, lastName:e.target.value})} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-3 font-jost text-sm outline-none focus:border-[#A8228A]" /></label>
+                <label className="font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>Phone *<input required type="tel" value={form.phone} onChange={e => setForm({...form, phone:e.target.value})} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-3 font-jost text-sm outline-none focus:border-[#A8228A]" /></label>
+                <label className="font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>Email *<input required type="email" value={form.email} onChange={e => setForm({...form, email:e.target.value})} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-3 font-jost text-sm outline-none focus:border-[#A8228A]" /></label>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Phone *</label>
-                  <input required type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none"
-                    style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                    placeholder="+1 (555) 000-0000" />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Email *</label>
-                  <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none"
-                    style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                    placeholder="john@company.com" />
-                </div>
-              </div>
+              <fieldset className="mb-5"><legend className="mb-3 font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>What services are you interested in?</legend><div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">{services.map(service => <label key={service} className="flex cursor-pointer items-start gap-2.5 rounded-lg p-2 transition hover:bg-gray-50"><input type="checkbox" checked={form.services.includes(service)} onChange={() => toggleService(service)} className="mt-0.5 h-4 w-4" style={{ accentColor: '#A8228A' }} /><span className="font-jost text-sm text-gray-600">{service}</span></label>)}</div></fieldset>
 
-              <div className="mb-4">
-                <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Company</label>
-                <input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none"
-                  style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                  placeholder="Your company name" />
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Service Interested In</label>
-                <select value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none appearance-none"
-                  style={{ border: '1.5px solid #E6E8F0', color: form.service ? '#0B1230' : '#9CA3AF', background: '#F9FAFB' }}>
-                  <option value="">Select a service...</option>
-                  {servicesList.map((s) => <option key={s} value={s}>{s}</option>)}
-                </select>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6B7280' }}>Message</label>
-                <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={4} className="w-full px-4 py-3.5 rounded-xl text-base font-jost focus:outline-none resize-none"
-                  style={{ border: '1.5px solid #E6E8F0', color: '#0B1230', background: '#F9FAFB' }}
-                  placeholder="Describe your project, MW scale, grid, timeline..." />
-              </div>
-
-              {error && <p className="text-red-500 text-sm font-jost mb-4">{error}</p>}
-
-              <button type="submit" disabled={loading}
-                className="w-full text-white font-bold text-base py-4 rounded-xl transition-all disabled:opacity-70 flex items-center justify-center gap-2 hover:-translate-y-0.5"
-                style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
-                {loading ? (
-                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
-                ) : (
-                  <>Submit Request <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></>
-                )}
-              </button>
+              <label className="block font-jost text-sm font-semibold" style={{ color: '#0B1A5B' }}>Message<textarea rows={4} value={form.message} onChange={e => setForm({...form, message:e.target.value})} className="mt-2 w-full resize-y rounded-lg border border-gray-300 px-3 py-3 font-jost text-sm outline-none focus:border-[#A8228A]" placeholder="Tell us about your project, timeline, and engineering requirements..." /></label>
+              {error && <p className="mt-4 font-jost text-sm text-red-500">{error}</p>}
+              <button type="submit" disabled={loading} className="mt-6 flex w-full items-center justify-center rounded-xl px-7 py-4 font-jost text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70" style={{ background: 'linear-gradient(135deg,#0B1A5B,#5B2A86)' }}>{loading ? 'Submitting...' : 'Submit Request'}</button>
+              <p className="mt-4 text-center font-jost text-[11px] text-gray-400">Your information is confidential and never shared with third parties.</p>
             </form>
-          </div>
-
+          )}
         </div>
       </div>
     </section>

@@ -366,6 +366,7 @@ function ContactFormInline() {
     'Owners Engineering Services',
     'NERC O&P 693 Compliance Services',
     'Utility Scale Solar Farm Engineering',
+    'Nuclear Power Plant Electrical Engineering',
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

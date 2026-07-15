@@ -70,6 +70,12 @@ const industries = [
     image: '/images/industries/hub/data-centers.jpg',
     href: '/industries/data-center-electrical',
   },
+  {
+    title: 'EPC Contractors',
+    desc: 'Integrated power engineering, utility coordination, and construction-ready packages for complex EPC delivery.',
+    image: '/images/services/substation-design/ind-epc.png',
+    href: '/industries/epc-contractors',
+  },
 ]
 
 const approach = [
@@ -137,7 +143,7 @@ export default function IndustriesPage() {
         {/* ── STATS STRIP ── */}
         <section ref={statsRef} className="py-14" style={{ background: '#06103C' }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatCard value={5} label="Industries Served" delay={0} started={statsStarted} />
+            <StatCard value={6} label="Industries Served" delay={0} started={statsStarted} />
             <StatCard value={30} suffix="+" label="Years of Experience" delay={150} started={statsStarted} />
             <StatCard value={21} label="Licensed Engineers" delay={300} started={statsStarted} />
             <StatCard value={50} label="States Covered" delay={450} started={statsStarted} />
@@ -150,7 +156,7 @@ export default function IndustriesPage() {
             <div className="max-w-2xl mb-14">
               <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Where We Work</p>
               <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1]" style={{ color: '#06103C' }}>
-                Five Industries, One Engineering Standard
+                Six Industries, One Engineering Standard
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

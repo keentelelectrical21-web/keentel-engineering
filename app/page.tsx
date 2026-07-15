@@ -20,7 +20,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <About />
         <NERCAlert />
@@ -32,10 +32,10 @@ export default function HomePage() {
         <CaseStudies />
         <Testimonials />
         <YouTube />
-        <BlogSection />
-        <FAQ />
-        <ContactForm />
         <Newsletter />
+        <ContactForm />
+        <FAQ />
+        <BlogSection />
       </main>
       <Footer />
     </>

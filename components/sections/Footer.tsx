@@ -14,6 +14,7 @@ const services = [
   { name: 'POI Interconnection', href: '/service/poi-interconnection-engineering-support' },
   { name: 'NERC Compliance', href: '/service/nerc-compliance' },
   { name: 'Renewable Energy', href: '/service/utility-scale-renewable-energy' },
+  { name: 'Nuclear Power Engineering', href: '/service/nuclear-power-plant' },
   { name: "Owner's Engineer", href: '/service/owners-engineer' },
 ]
 

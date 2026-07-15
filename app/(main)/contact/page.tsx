@@ -14,6 +14,7 @@ const services = [
   'Utility Scale Solar Farm Engineering',
   'MEP Engineering Services',
   'Utility Scale BESS Engineering',
+  'Nuclear Power Plant Electrical Engineering',
   'Other',
 ]
 

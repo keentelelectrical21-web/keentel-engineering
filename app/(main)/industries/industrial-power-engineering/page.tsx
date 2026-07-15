@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -250,14 +249,12 @@ export default function IndustrialPowerEngineeringPage() {
       <main>
         {/* HERO */}
         <section
-          className="min-h-[70vh] flex items-center"
-          style={{
-            background:
-              'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%), #06103C',
-          }}
+          className="relative min-h-[70vh] flex items-center overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center w-full">
-            <div>
+          <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover"><source src="/videos/Industrial & Manufacturing Facilities.mp4" type="video/mp4" /></video>
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,.96), rgba(6,16,60,.72) 60%, rgba(6,16,60,.35))' }} />
+          <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
+            <div className="max-w-3xl">
               <h1 className="font-urbanist font-black text-3xl md:text-5xl text-white leading-tight mb-6">
                 Reliable Power System Engineering for Industrial Electrical Infrastructure
               </h1>
@@ -272,9 +269,6 @@ export default function IndustrialPowerEngineeringPage() {
               >
                 Schedule a Consultation
               </Link>
-            </div>
-            <div className="hidden md:block">
-              <img src="/images/industries/hub/industrial-power-engineering.png" alt="Industrial power engineering" className="w-full rounded-2xl" />
             </div>
           </div>
         </section>

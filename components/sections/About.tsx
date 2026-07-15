@@ -56,7 +56,13 @@ export default function About() {
     { value: 30, suffix: '+', label: 'Years of Experience', desc: 'Three decades of hands-on power engineering across the U.S.', delay: 0 },
     { value: 98, suffix: '%', label: 'Client Satisfaction', desc: 'Rated 5-stars across platforms. We deliver technical precision every time.', delay: 150 },
     { value: 21, suffix: '', label: 'Licensed Engineers', desc: 'Three specialized groups: designers, grid whisperers, and compliance watchdogs.', delay: 300 },
-    { value: 120, suffix: '+', label: 'Technical Articles', desc: 'Industry-leading thought leadership on NERC, IEEE, and grid modernization.', delay: 450 },
+    {
+  value: 120,
+  suffix: '+',
+  label: 'Projects Delivered',
+  desc: 'Electrical power engineering projects completed for utilities, developers, EPCs, and critical infrastructure clients.',
+  delay: 450,
+}
   ]
 
   return (
@@ -67,7 +73,7 @@ export default function About() {
 
           {/* Left - label + image */}
           <div className="lg:w-1/4 flex-shrink-0">
-            <span className="font-urbanist font-black text-2xl block mb-6" style={{ color: '#0B1230' }}>Keentel.</span>
+            <span className="font-urbanist font-black text-2xl block mb-6" style={{ color: '#0B1230' }}>Keentel Engineering</span>
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E6E8F0' }}>
               <img
                 src="/images/home/about-engineerings.jpg"

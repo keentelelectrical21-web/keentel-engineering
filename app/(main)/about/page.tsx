@@ -99,15 +99,21 @@ export default function AboutPage() {
       <Header />
       <main>
       {/* ── HERO ── */}
-      <section className="relative min-h-[540px] flex items-end overflow-hidden">
+      <section className="relative min-h-[650px] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/about-team.jpg"
+            src="/images/about-teams.jpg"
             alt="Keentel Engineering power systems team"
-            className="w-full h-full object-cover object-center"
+       className="w-full h-full object-cover object-center scale-15"
             onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-b7a9735b-907h.jpg' }}
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.95) 0%, rgba(91,42,134,0.75) 100%)' }} />
+        <div
+  className="absolute inset-0"
+  style={{
+    background:
+      'linear-gradient(135deg, rgba(6,16,60,0.45) 0%, rgba(91,42,134,0.25) 190%)'
+  }}
+/>
           <div className="absolute bottom-0 right-0 w-96 h-96 blur-3xl rounded-full opacity-25" style={{ background: 'radial-gradient(circle, #A8228A 0%, transparent 70%)' }} />
         </div>
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">

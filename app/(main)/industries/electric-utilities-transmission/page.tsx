@@ -282,18 +282,19 @@ export default function ElectricUtilitiesTransmissionPage() {
       <main>
         {/* Hero */}
         <section
-          className="min-h-[70vh] flex items-center relative"
+          className="min-h-[70vh] flex items-center relative overflow-hidden"
           style={{ background: '#06103C' }}
         >
+          <video src="/videos/Utilities & Transmission Operators.mov" autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="Utilities and transmission power infrastructure" />
           <div
             className="absolute inset-0"
             style={{
               background:
-                'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%)',
+                'linear-gradient(90deg, rgba(6,16,60,0.86) 0%, rgba(6,16,60,0.58) 60%, rgba(91,42,134,0.22) 100%)',
             }}
           />
-          <div className="relative max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20">
+            <div className="max-w-3xl">
               <span className="font-jost text-sm uppercase tracking-wider" style={{ color: '#A8228A' }}>
                 Industries We Serve
               </span>
@@ -315,14 +316,6 @@ export default function ElectricUtilitiesTransmissionPage() {
               >
                 Schedule a Consultation
               </a>
-            </div>
-            <div className="hidden md:block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/industries/electric-utilities-transmission/hero-diagram.png"
-                alt="Data center power system infrastructure diagram"
-                className="w-full"
-              />
             </div>
           </div>
         </section>

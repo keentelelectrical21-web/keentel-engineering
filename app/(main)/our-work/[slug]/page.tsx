@@ -34,16 +34,13 @@ export default async function CaseStudyDetailPage({ params }: { params: Promise<
       <main>
         {/* HERO */}
         <section
-          className="py-16 px-6"
+          className="px-6 pb-16 pt-40 sm:pt-44"
           style={{
             background:
               'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%), #06103C',
           }}
         >
           <div className="max-w-4xl mx-auto">
-            <Link href="/our-work" className="font-jost text-sm text-white/70 hover:text-white mb-6 inline-block">
-              ← Back to Our Work
-            </Link>
             <p className="font-jost text-sm uppercase tracking-wide mb-3" style={{ color: '#C72E9E' }}>
               {categoryLabel}
             </p>

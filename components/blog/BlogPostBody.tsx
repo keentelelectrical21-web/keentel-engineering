@@ -196,6 +196,7 @@ function Sidebar({ post, slug, originalUrl }: { post: any; slug: string; origina
     { name: "Owner's Engineer",        href: '/service/owners-engineer' },
     { name: 'POI Interconnection',     href: '/service/poi-interconnection-engineering-support' },
     { name: 'Renewable Energy',        href: '/service/utility-scale-renewable-energy' },
+    { name: 'Nuclear Power Engineering', href: '/service/nuclear-power-plant' },
   ]
 
   return (

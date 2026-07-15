@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 export default function Precision() {
   return (
-    <section className="py-24 bg-white">
+    <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-14 lg:gap-20 items-center">
+        <div className="flex flex-col items-stretch gap-10 lg:flex-row lg:items-center lg:gap-20">
 
           <div className="lg:w-2/5 flex-shrink-0">
             <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Edge</p>
@@ -48,11 +48,50 @@ export default function Precision() {
             </Link>
           </div>
 
-          {/* Right - image collage with Unsplash niche images */}
-          <div className="lg:w-3/5 relative h-[520px]">
+          {/* Compact mobile collage */}
+          <div className="grid grid-cols-2 gap-3 lg:hidden">
+            <img
+              src="https://smartpowerconsultancy.com/wp-content/uploads/2024/05/electrical-power-engineering-1024x684.jpg"
+              alt="Electrical substation"
+              className="h-32 w-full rounded-2xl object-cover shadow-lg sm:h-44"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1702446736200-6b9a345dea6f?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Electrical transmission infrastructure"
+              className="h-32 w-full rounded-2xl object-cover shadow-lg sm:h-44"
+            />
+            <div className="col-span-2 grid grid-cols-[1fr_auto] items-stretch gap-3">
+              <div className="rounded-2xl p-5 shadow-xl" style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
+                <div className="mb-2 flex items-center gap-2">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#C72E9E' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                  </svg>
+                  <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.6)' }}>Our Edge</span>
+                </div>
+                <p className="font-urbanist text-lg font-bold leading-tight text-white">Precision. Compliance. Results.</p>
+              </div>
+              <div className="flex min-w-28 flex-col justify-center rounded-2xl border border-[#E6E8F0] bg-white p-4 shadow-xl">
+                <p className="font-urbanist text-3xl font-black" style={{ color: '#0B1A5B' }}>30+</p>
+                <p className="font-jost text-xs" style={{ color: '#6B7280' }}>Years<br />Experience</p>
+              </div>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80"
+              alt="Solar power farm"
+              className="h-28 w-full rounded-2xl object-cover shadow-lg sm:h-40"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1413882353314-73389f63b6fd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Power engineering control room"
+              className="h-28 w-full rounded-2xl object-cover shadow-lg sm:h-40"
+            />
+          </div>
+
+          {/* Desktop image collage */}
+          <div className="relative hidden h-[520px] lg:block lg:w-3/5">
 
             {/* Top right - substation */}
-            <div className="absolute top-0 right-0 w-[57%] h-[50%] rounded-2xl overflow-hidden shadow-xl">
+         <div className="absolute top-[5%] left-0 w-[40%] h-[43%] rounded-2xl overflow-hidden shadow-xl">
               <img
                 src="https://smartpowerconsultancy.com/wp-content/uploads/2024/05/electrical-power-engineering-1024x684.jpg"
                 alt="Electrical substation"
@@ -61,10 +100,10 @@ export default function Precision() {
             </div>
 
             {/* Top left - power lines */}
-            <div className="absolute top-[5%] left-0 w-[43%] h-[43%] rounded-2xl overflow-hidden shadow-xl">
+          <div className="absolute top-0 right-0 w-[52%] h-[50%] rounded-2xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1758101755915-462eddc23f57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fEVsZWN0cmljYWwlMjBQb3dlciUyMEVuZ2luZWVyaW5nJTIwd2l0aCUyMFByZWNpc2lvbiUyMGFuZCUyMENvbXBsaWFuY2V8ZW58MHx8MHx8fDA%3D"
-                alt="Power transmission lines"
+                src="https://images.unsplash.com/photo-1702446736200-6b9a345dea6f?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Electrical transmission infrastructure"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>

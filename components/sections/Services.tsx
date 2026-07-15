@@ -45,6 +45,13 @@ const services = [
     image: '/images/home/service-6.png',
     flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/utility+scale+solar+farm.pdf',
   },
+  {
+    title: 'Nuclear Power Plant Engineering',
+    desc: 'Electrical system studies, protection, modifications, lifecycle asset support, and compliance-ready engineering for nuclear generation facilities.',
+    href: '/service/nuclear-power-plant',
+    image: '/images/services/power-system-studies/industry-utilities.jpg',
+    flyer: '/service/nuclear-power-plant',
+  },
 ]
 
 export default function Services() {

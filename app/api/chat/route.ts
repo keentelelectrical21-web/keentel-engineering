@@ -29,6 +29,7 @@ WEBSITE PAGES — use these exact links when directing visitors:
 - POI Interconnection: https://keentelengineering.com/service/poi-interconnection-engineering-support
 - Transmission Line Design: https://keentelengineering.com/service/transmission-line-design
 - Utility Scale Renewable Energy: https://keentelengineering.com/service/utility-scale-renewable-energy
+- Nuclear Power Plant Electrical Engineering: https://keentelengineering.com/service/nuclear-power-plant
 - Owners Engineer: https://keentelengineering.com/service/owners-engineer
 - MEP Engineering: https://keentelengineering.com/service/mep-engineering
 - NERC Compliance: https://keentelengineering.com/service/nerc-compliance

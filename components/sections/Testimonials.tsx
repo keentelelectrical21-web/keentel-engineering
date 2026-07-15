@@ -13,11 +13,7 @@ interface CaseStudy {
   outcome?: string[]
   client?: string
   region?: string
-}
-
-const INTENT_COLORS: Record<string, string> = {
-  substation: '#0B1A5B',
-  'power-system': '#A8228A',
+  href?: string
 }
 
 const fallback: CaseStudy[] = [
@@ -29,25 +25,45 @@ const fallback: CaseStudy[] = [
   { _id: '6', title: 'Solar & Wind Farm Electrical Design', subtitle: 'Full compliance engineering for a hybrid solar-wind facility.', category: 'power-system', slug: { current: 'power-system-solar-wind-farm-electrical-design' }, client: 'Confidential IPP', region: 'Southwest U.S.' },
 ]
 
+function displayTitle(title: string) {
+  const titles: Record<string, string> = {
+    'Effectively Grounded System & Grounding Performance Analysis': 'Grounding System Performance Analysis',
+    'Fast Front, Slow Front & GIS Very Fast Transient Studies': 'GIS Very Fast Transient Study',
+    'Transformer Inrush, POI Rapid Voltage Change (RVC) & Flicker Study': 'Transformer Inrush & Voltage Flicker Study',
+    'Power, Energy Loss & Substation Layout Optimization Study': 'Substation Layout Optimization Study',
+  }
+  return titles[title] || title
+}
+
+function categoryLabel(cs: CaseStudy) {
+  const value = `${cs.category} ${cs.title} ${cs.slug.current}`.toLowerCase()
+  if (value.includes('nerc')) return 'NERC Compliance'
+  if (value.includes('substation')) return 'Substation Engineering'
+  if (value.includes('interconnection') || value.includes('renewable') || value.includes('poi')) return 'Grid Interconnection'
+  if (value.includes('protection') || value.includes('ground') || value.includes('insulation') || value.includes('arc flash') || value.includes('short circuit')) return 'Protection Engineering'
+  if (value.includes('transmission') || value.includes('load flow') || value.includes('voltage stability')) return 'Transmission Planning'
+  return 'Power System Studies'
+}
+
 function CaseCard({ cs }: { cs: CaseStudy }) {
-  const isSubstation = cs.category === 'substation'
+  const label = categoryLabel(cs)
   return (
     <Link
-      href={`/our-work/${cs.slug.current}`}
-      className="flex-shrink-0 w-[340px] rounded-2xl overflow-hidden mx-3 group hover:-translate-y-1 transition-all duration-300"
+      href={cs.href || `/our-work/${cs.slug.current}`}
+      className="mx-2 w-[calc(100vw-2rem)] max-w-[340px] flex-shrink-0 overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 sm:mx-3"
       style={{ background: '#fff', border: '1px solid #E6E8F0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
     >
       {/* Top color bar */}
-      <div className="h-1.5 w-full" style={{ background: isSubstation ? 'linear-gradient(90deg, #0B1A5B, #5B2A86)' : 'linear-gradient(90deg, #A8228A, #C72E9E)' }} />
+      <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #0B1A5B 0%, #5B2A86 55%, #C72E9E 100%)' }} />
 
       <div className="p-6">
         {/* Category badge */}
-        <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style={{ background: isSubstation ? 'rgba(11,26,91,0.08)' : 'rgba(168,34,138,0.08)', color: isSubstation ? '#0B1A5B' : '#A8228A' }}>
-          {isSubstation ? 'Substation Engineering' : 'Power System Studies'}
+        <span className="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4" style={{ background: 'rgba(168,34,138,0.08)', color: '#A8228A' }}>
+          {label}
         </span>
 
         <h3 className="font-urbanist font-black text-base leading-snug mb-2 group-hover:text-[#A8228A] transition-colors" style={{ color: '#0B1230' }}>
-          {cs.title}
+          {displayTitle(cs.title)}
         </h3>
 
         {cs.subtitle && (
@@ -93,15 +109,26 @@ export default function Testimonials() {
       .catch(() => {})
   }, [])
 
-  const doubled = [...cases, ...cases]
+  const uniqueCases = cases.filter((cs, index, all) => index === all.findIndex((item) => item.slug.current === cs.slug.current))
+  const portfolioCases = uniqueCases.some((cs) => cs.title.toLowerCase().includes('protective device coordination'))
+    ? uniqueCases
+    : [...uniqueCases, {
+        _id: 'protective-device-coordination',
+        title: 'Protective Device Coordination Study',
+        subtitle: 'Selective protection settings that isolate faults safely while maintaining system reliability.',
+        category: 'Protection Engineering',
+        slug: { current: 'protective-device-coordination-study' },
+        href: '/service/power-system-studies',
+      }]
+  const doubled = [...portfolioCases, ...portfolioCases]
 
   return (
     <section className="py-20 overflow-hidden" style={{ background: '#F6F7FB' }}>
       <div className="mb-12 text-center px-4">
-        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Project Portfolio</p>
-        <h2 className="font-urbanist font-black text-4xl sm:text-5xl mb-4" style={{ color: '#0B1230' }}>Engineering Projects That Delivered</h2>
-        <p className="text-lg font-jost max-w-xl mx-auto" style={{ color: '#4B5563' }}>
-          Substation engineering and power system studies delivered across utilities, developers, and EPCs nationwide.
+        <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Featured Case Studies</p>
+        <h2 className="font-urbanist font-black text-4xl sm:text-5xl mb-4" style={{ color: '#0B1230' }}>Engineering Projects That Deliver Results</h2>
+        <p className="text-lg font-jost max-w-3xl mx-auto" style={{ color: '#4B5563' }}>
+          Power system studies, substation engineering, grid interconnection, and protection projects delivered for utilities, developers, EPC contractors, and industrial facilities across the U.S.
         </p>
       </div>
 
@@ -110,7 +137,7 @@ export default function Testimonials() {
         <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #F6F7FB, transparent)' }} />
         <div
           className="flex"
-          style={{ width: 'max-content', animation: 'marquee-left 50s linear infinite' }}
+          style={{ width: 'max-content', animation: 'marquee-left 85s linear infinite' }}
         >
           {doubled.map((cs, i) => (
             <CaseCard key={`${cs._id}-${i}`} cs={cs} />
