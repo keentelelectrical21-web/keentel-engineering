@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import ServicePageBottomSection from '@/components/ServicePageBottomSection'
+import ContactForm from '@/components/sections/ContactForm'
+import WhoWeServed from '@/components/service/WhoWeServed'
 
 function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
@@ -226,9 +227,37 @@ export default function SoftwareCapabilitiesFaqsPage() {
             </div>
           </div>
         </section>
+        <section className="bg-white py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+            <div>
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
+              <h2 className="mb-5 font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl">The Right Engineering Platform for Every Study</h2>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">We select and cross-check industry-standard software based on the required study, system voltage, utility criteria, model fidelity, and compliance objective.</p>
+            </div>
+            <div className="overflow-hidden rounded-2xl shadow-2xl"><img src="/images/services/service-power-system.jpg" alt="Power system engineering software and analysis" className="h-72 w-full object-cover sm:h-96" /></div>
+          </div>
+        </section>
+
+        <ContactForm />
+
+        <WhoWeServed />
 
         {/* ═══ TOOL SELECTOR + CONTENT ═══ */}
-        <section className="py-16 sm:py-20 bg-white">
+
+
+        {/* ═══ FINAL CTA ═══ */}
+        <section className="py-16 sm:py-20" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Don&apos;t See Your Question?</h2>
+            <p className="font-jost text-gray-600 mb-8 max-w-xl mx-auto">Our engineers are happy to walk through the specific tools and study types your project needs.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
+              <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:bg-white" style={{ borderColor: '#06103C', color: '#06103C' }}>Contact Us</Link>
+            </div>
+          </div>
+        </section>
+
+<section className="py-16 sm:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -280,20 +309,6 @@ export default function SoftwareCapabilitiesFaqsPage() {
             </div>
           </div>
         </section>
-
-        {/* ═══ FINAL CTA ═══ */}
-        <section className="py-16 sm:py-20" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Don&apos;t See Your Question?</h2>
-            <p className="font-jost text-gray-600 mb-8 max-w-xl mx-auto">Our engineers are happy to walk through the specific tools and study types your project needs.</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:bg-white" style={{ borderColor: '#06103C', color: '#06103C' }}>Contact Us</Link>
-            </div>
-          </div>
-        </section>
-
-        <ServicePageBottomSection serviceName="Software Capabilities" bottomTitle="Advanced Software & Analysis Tools" bottomDescription="We leverage cutting-edge software platforms and analytical tools to deliver superior engineering solutions." bottomFeatures={['Power flow and stability analysis software', 'Protection coordination and modeling', 'Geospatial analysis and mapping', 'Financial and feasibility modeling', 'Real-time monitoring platforms', 'Custom tool development and integration']} bottomImage="/images/services/service-power-system.jpg" />
       </main>
       <Footer />
     </>

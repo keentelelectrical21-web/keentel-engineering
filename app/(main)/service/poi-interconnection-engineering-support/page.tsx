@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import ServicePageBottomSection from '@/components/ServicePageBottomSection'
+import ContactForm from '@/components/sections/ContactForm'
+import WhoWeServed from '@/components/service/WhoWeServed'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -188,7 +189,7 @@ export default function POIInterconnectionPage() {
       <Header />
       <main>
 
-        {/* ═══ 1. HERO ═══ */}
+{/* ═══ 1. HERO ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/poi.mp4" type="video/mp4" />
@@ -250,6 +251,10 @@ export default function POIInterconnectionPage() {
             </div>
           </div>
         </section>
+
+        <ContactForm />
+
+        <WhoWeServed />
 
         {/* ═══ 3. WHY CHOOSE — branded two-column ═══ */}
         <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
@@ -441,74 +446,7 @@ export default function POIInterconnectionPage() {
         </section>
 
         {/* ═══ 10. GET IN TOUCH — full redesign, split from download ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: 'linear-gradient(180deg, #F6F7FB 0%, #ffffff 100%)' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              <div className="lg:col-span-5">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Get in Touch</span>
-                <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Ready to Reduce Interconnection Risk?</h2>
-                <p className="font-jost text-gray-600 text-lg leading-relaxed mb-8">Tell us about your interconnection queue position and timeline. A licensed engineer will follow up to discuss scope.</p>
-                <div className="rounded-2xl p-6" style={{ background: '#06103C' }}>
-                  <p className="font-urbanist font-bold text-white text-lg mb-1">Prefer to talk now?</p>
-                  <Link href="tel:813-389-7871" className="font-jost text-2xl font-bold" style={{ color: '#C72E9E' }}>813-389-7871</Link>
-                </div>
-              </div>
-              <div className="lg:col-span-7 bg-white rounded-2xl shadow-xl p-6 sm:p-10" style={{ border: '1px solid #E6E8F0' }}>
-                {formStatus === 'success' ? (
-                  <div className="text-center py-16">
-                    <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(168,34,138,0.1)' }}>
-                      <svg className="w-8 h-8" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <h3 className="font-urbanist font-bold text-2xl mb-2" style={{ color: '#06103C' }}>Message Received</h3>
-                    <p className="font-jost text-gray-500">Thank you for contacting Keentel Engineering. We will get back to you as soon as possible.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>First Name *</label>
-                        <input required type="text" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Last Name</label>
-                        <input type="text" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
-                        <input required type="tel" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
-                        <input required type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#06103C' }}>What Services Are You Interested In?</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {['POI Interconnection Engineering Support', 'Substation Design Services', 'EHV, HV, MV Power System Studies', 'Owners Engineering Services', 'NERC O&P 693 Compliance Services', 'Utility Scale Solar Farm Engineering'].map((svc) => (
-                          <label key={svc} className="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all" style={{ borderColor: formData.service === svc ? '#A8228A' : '#E6E8F0', background: formData.service === svc ? 'rgba(168,34,138,0.05)' : '#F6F7FB' }}>
-                            <input type="radio" name="service" value={svc} checked={formData.service === svc} onChange={e => setFormData(p => ({ ...p, service: e.target.value }))} className="accent-pink-600" />
-                            <span className="font-jost text-sm text-gray-700">{svc}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
-                      <textarea value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                    </div>
-                    {formStatus === 'error' && <p className="text-sm text-red-500 font-jost p-3 rounded-xl border border-red-100 bg-red-50">Failed to send. Please try again.</p>}
-                    <button type="submit" disabled={formStatus === 'loading'} className="w-full py-4 rounded-full font-jost font-semibold text-white text-lg transition-all hover:opacity-90 disabled:opacity-60" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                      {formStatus === 'loading' ? 'Sending...' : 'Submit Request →'}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* ═══ 11. DOWNLOAD FLYER — standalone, centered, branded ═══ */}
         <section className="py-16 bg-white">
@@ -525,41 +463,10 @@ export default function POIInterconnectionPage() {
         </section>
 
         {/* ═══ 12. WHO WE'VE SERVED ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Trusted By</span>
-              <h2 className="font-urbanist font-black text-3xl sm:text-4xl" style={{ color: '#06103C' }}>Who We&apos;ve Served</h2>
-              <p className="font-jost text-gray-600 mt-3 max-w-2xl mx-auto text-lg">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-              {[
-                { src: '/images/clients/rrc-companies.webp', alt: 'RRC Companies' },
-                { src: '/images/clients/pae-engineers.webp', alt: 'PAE Engineers' },
-                { src: '/images/clients/edf-power-solutions.webp', alt: 'EDF Power Solutions' },
-                { src: '/images/clients/pike-engineering.webp', alt: 'Pike Engineering' },
-                { src: '/images/clients/risk-work.webp', alt: 'Risk Work' },
-                { src: '/images/clients/siemens-energy-1.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/avangrid.webp', alt: 'Avangrid' },
-                { src: '/images/clients/siemens-energy-2.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/aypa-power.webp', alt: 'AYPA Power' },
-              ].map((logo, i) => (
-                <div key={i} className="bg-white rounded-xl p-5 flex items-center justify-center shadow-sm hover:shadow-md transition-all h-24" style={{ border: '1px solid #E6E8F0' }}>
-                  <img src={logo.src} alt={logo.alt} className="max-h-12 max-w-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* ═══ 13. FAQ — homepage FAQ.tsx match ═══ */}
-        <FaqSection
-          eyebrow="Questions We Hear"
-          heading="Answers,"
-          headingLine2="before you ask."
-          intro="The interconnection questions developers, EPCs, and IPPs ask us most."
-          items={faqs}
-        />
+
 
         {/* ═══ 14. BLOGS — prominent date, full image ═══ */}
         {blogs.length > 0 && (
@@ -600,7 +507,13 @@ export default function POIInterconnectionPage() {
           </section>
         )}
 
-        <ServicePageBottomSection serviceName="POI Interconnection" bottomTitle="Seamless Point of Interconnection Engineering" bottomDescription="Navigate the complexity of interconnecting distributed energy resources to the grid. We provide complete engineering studies and coordination." bottomFeatures={['Interconnection study and analysis', 'System impact assessments', 'Utility coordination and communications', 'Technical specifications and drawings', 'Commissioning support', 'Ongoing compliance monitoring']} bottomImage="/images/services/poi-interconnection/overview.png" />
+<FaqSection
+          eyebrow="Questions We Hear"
+          heading="Answers,"
+          headingLine2="before you ask."
+          intro="The interconnection questions developers, EPCs, and IPPs ask us most."
+          items={faqs}
+        />
       </main>
       <Footer />
     </>

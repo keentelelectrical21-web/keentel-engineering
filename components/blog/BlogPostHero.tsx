@@ -17,11 +17,11 @@ interface Post {
 
 export default function BlogPostHero({ post, slug }: { post: Post; slug: string }) {
   const sources = [
+    ...(post.featuredImage ? [post.featuredImage] : []),
     `/images/blog/${slug}-featured.jpg`,
     `/images/blog/${slug}-featured.png`,
     `/images/blog/${slug}-featured.jpeg`,
     `/images/blog/${slug}-featured.webp`,
-    ...(post.featuredImage ? [post.featuredImage] : []),
   ]
   const [idx, setIdx] = useState(0)
   const [imgFailed, setImgFailed] = useState(false)
@@ -54,9 +54,9 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
         style={{
           background: 'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.85) 60%, rgba(91,42,134,0.4) 100%), #06103C',
         }}
-        className="pt-32 pb-12 px-6"
+        className="pt-32 pb-12"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 font-jost text-xs mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>
@@ -147,7 +147,7 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
       </section>
 
       {/* ── FULL IMAGE — natural height, no cropping ───────── */}
-      <div className="max-w-4xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
         {!imgFailed ? (
           <div className="w-full overflow-hidden rounded-2xl shadow-2xl">
             <img

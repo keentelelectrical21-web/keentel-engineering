@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import ServicePageBottomSection from '@/components/ServicePageBottomSection'
+import ContactForm from '@/components/sections/ContactForm'
+import WhoWeServed from '@/components/service/WhoWeServed'
 import { client } from '@/lib/sanity'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -302,7 +303,7 @@ export default function PowerSystemStudiesPage() {
       <Header />
       <main>
 
-        {/* ═══════════════════════════════════════════════════════
+{/* ═══════════════════════════════════════════════════════
             1. HERO — video visible, overlay contained, big desc
         ═══════════════════════════════════════════════════════ */}
         <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
@@ -367,7 +368,6 @@ export default function PowerSystemStudiesPage() {
               </div>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(to bottom, transparent, #ffffff)' }} />
         </section>
 
         {/* ═══════════════════════════════════════════════════════
@@ -375,13 +375,15 @@ export default function PowerSystemStudiesPage() {
         ═══════════════════════════════════════════════════════ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 lg:mb-12">
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Our Approach</span>
+              <h2 className="font-urbanist font-black leading-tight lg:whitespace-nowrap" style={{ color: '#06103C', fontSize: 'clamp(2rem, 3.6vw, 3.25rem)' }}>
+                Engineering-First Studies, Not Just Reports
+              </h2>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Our Approach</span>
-                <h2 className="font-urbanist font-black leading-tight mb-6" style={{ color: '#06103C', fontSize: 'clamp(2.2rem, 4vw, 3.25rem)' }}>
-                  Engineering-First Studies, Not Just Reports
-                </h2>
-
                 {/* Pull-quote callout for prominence */}
                 <div className="border-l-4 pl-5 mb-7" style={{ borderColor: '#A8228A' }}>
                   <p className="font-jost text-gray-800 leading-relaxed italic" style={{ fontSize: '1.2rem' }}>
@@ -399,7 +401,7 @@ export default function PowerSystemStudiesPage() {
                 </div>
 
                 {/* Stat row for prominence */}
-                <div className="grid grid-cols-3 gap-4 my-9">
+                <div className="my-9 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {[{ n: '30+', l: 'Years Experience' }, { n: '50', l: 'States Served' }, { n: '7+', l: 'Simulation Platforms' }].map((s, i) => (
                     <div key={i} className="rounded-xl p-4 text-center transition-transform hover:-translate-y-1" style={{ background: '#F6F7FB' }}>
                       <p className="font-urbanist font-black text-2xl sm:text-3xl" style={{ color: '#A8228A' }}>{s.n}</p>
@@ -408,22 +410,12 @@ export default function PowerSystemStudiesPage() {
                   ))}
                 </div>
 
-                <ul className="space-y-3">
-                  {['Nationwide engineering support', 'Utility-grade simulation tools', 'IEEE, NERC & OSHA compliance', 'Trusted by utilities, EPC firms, and industrial professionals'].map((b, i) => (
-                    <li key={i} className="flex items-center gap-3 font-jost text-gray-700 text-base">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#A8228A' }}>
-                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               <div className="relative">
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <Img
-                    src="/images/services/power-system-studies/overview-engineers.png"
+                    src="/images/services/power-system-studies/overview-engineers.jpg"
                     fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/ChatGPT+Image+Feb+22-+2026-+05_55_57+PM+%281%29-1920w.png"
                     alt="Two technicians in hard hats inspect electrical panel"
                     className="w-full h-72 sm:h-96 object-cover"
@@ -438,6 +430,10 @@ export default function PowerSystemStudiesPage() {
             </div>
           </div>
         </section>
+
+        <ContactForm />
+
+        <WhoWeServed />
 
         {/* ═══════════════════════════════════════════════════════
             3. WHY CHOOSE — two-column, branded card panel
@@ -492,83 +488,7 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             4. GET IN TOUCH — full branded redesign
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24" style={{ background: 'linear-gradient(180deg, #F6F7FB 0%, #ffffff 100%)' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              {/* Left: prominent context */}
-              <div className="lg:col-span-5">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Get in Touch</span>
-                <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight" style={{ color: '#06103C' }}>
-                  Let&apos;s Discuss How to Optimize Your Next Project
-                </h2>
-                <p className="font-jost text-gray-600 text-lg leading-relaxed mb-8">
-                  Tell us about your system and timeline. A licensed engineer — not a sales rep — will follow up to discuss scope and next steps.
-                </p>
-                <div className="rounded-2xl p-6" style={{ background: '#06103C' }}>
-                  <p className="font-urbanist font-bold text-white text-lg mb-1">Prefer to talk now?</p>
-                  <Link href="tel:813-389-7871" className="font-jost text-2xl font-bold" style={{ color: '#C72E9E' }}>813-389-7871</Link>
-                </div>
-              </div>
 
-              {/* Right: form */}
-              <div className="lg:col-span-7 bg-white rounded-2xl shadow-xl p-6 sm:p-10" style={{ border: '1px solid #E6E8F0' }}>
-                {formStatus === 'success' ? (
-                  <div className="text-center py-16">
-                    <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(168,34,138,0.1)' }}>
-                      <svg className="w-8 h-8" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <h3 className="font-urbanist font-bold text-2xl mb-2" style={{ color: '#06103C' }}>Message Received</h3>
-                    <p className="font-jost text-gray-500">Thank you for contacting Keentel Engineering. We will get back to you as soon as possible.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>First Name *</label>
-                        <input required type="text" value={formData.firstName} onChange={e => setFormData(p => ({ ...p, firstName: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Last Name</label>
-                        <input type="text" value={formData.lastName} onChange={e => setFormData(p => ({ ...p, lastName: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
-                        <input required type="tel" value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
-                        <input required type="email" value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#06103C' }}>What Services Are You Interested In?</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {['POI Interconnection Engineering Support', 'Substation Design Services', 'EHV, HV, MV Power System Studies', 'Owners Engineering Services', 'NERC O&P 693 Compliance Services', 'Utility Scale Solar Farm Engineering'].map((svc) => (
-                          <label key={svc} className="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all" style={{ borderColor: formData.service === svc ? '#A8228A' : '#E6E8F0', background: formData.service === svc ? 'rgba(168,34,138,0.05)' : '#F6F7FB' }}>
-                            <input type="radio" name="service" value={svc} checked={formData.service === svc} onChange={e => setFormData(p => ({ ...p, service: e.target.value }))} className="accent-pink-600" />
-                            <span className="font-jost text-sm text-gray-700">{svc}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
-                      <textarea value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                    </div>
-                    {formStatus === 'error' && (
-                      <p className="text-sm text-red-500 font-jost p-3 rounded-xl border border-red-100 bg-red-50">Failed to send. Please try again.</p>
-                    )}
-                    <button type="submit" disabled={formStatus === 'loading'} className="w-full py-4 rounded-full font-jost font-semibold text-white text-lg transition-all hover:opacity-90 disabled:opacity-60" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                      {formStatus === 'loading' ? 'Sending...' : 'Submit Request →'}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ═══════════════════════════════════════════════════════
             5. SOFTWARE CAPABILITIES — now FAQ-driven per tool
@@ -578,7 +498,7 @@ export default function PowerSystemStudiesPage() {
             <div className="text-center mb-12">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Tools We Use</span>
               <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>Our Software Capabilities</h2>
-              <p className="font-jost text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Select a platform to see what it's built for and the questions clients ask most.</p>
+              <p className="font-jost text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Select a platform to see what it&apos;s built for and the questions clients ask most.</p>
             </div>
 
             <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -841,7 +761,7 @@ export default function PowerSystemStudiesPage() {
                     Speak With an Engineer
                   </Link>
                 </div>
-                <div className="grid grid-cols-3 gap-4 max-w-md">
+                <div className="grid max-w-md grid-cols-1 gap-4 sm:grid-cols-3">
                   {[{ n: '30+', l: 'Years' }, { n: '21', l: 'Licensed PEs' }, { n: '50', l: 'States' }].map((s, i) => (
                     <div key={i} className="rounded-xl p-3 text-center" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
                       <p className="font-urbanist font-black text-xl text-white">{s.n}</p>
@@ -860,43 +780,12 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             12. WHO WE'VE SERVED — redesigned, more prominent
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Trusted By</span>
-              <h2 className="font-urbanist font-black text-3xl sm:text-4xl" style={{ color: '#06103C' }}>Who We&apos;ve Served</h2>
-              <p className="font-jost text-gray-600 mt-3 max-w-2xl mx-auto text-lg">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-              {[
-                { src: '/images/clients/rrc-companies.webp', alt: 'RRC Companies' },
-                { src: '/images/clients/pae-engineers.webp', alt: 'PAE Engineers' },
-                { src: '/images/clients/edf-power-solutions.webp', alt: 'EDF Power Solutions' },
-                { src: '/images/clients/pike-engineering.webp', alt: 'Pike Engineering' },
-                { src: '/images/clients/risk-work.webp', alt: 'Risk Work' },
-                { src: '/images/clients/siemens-energy-1.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/avangrid.webp', alt: 'Avangrid' },
-                { src: '/images/clients/siemens-energy-2.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/aypa-power.webp', alt: 'AYPA Power' },
-              ].map((logo, i) => (
-                <div key={i} className="bg-white rounded-xl p-5 flex items-center justify-center shadow-sm hover:shadow-md transition-all h-24" style={{ border: '1px solid #E6E8F0' }}>
-                  <img src={logo.src} alt={logo.alt} className="max-h-12 max-w-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* ═══════════════════════════════════════════════════════
             13. FAQ — exact homepage FAQ.tsx design
         ═══════════════════════════════════════════════════════ */}
-        <FaqSection
-          eyebrow="Questions We Hear"
-          heading="Answers,"
-          headingLine2="before you ask."
-          intro="30 years of client questions. Here are the ones that come up every time for power system studies."
-          items={faqs}
-        />
+
 
         {/* ═══════════════════════════════════════════════════════
             14. BLOG SECTION — prominent date, full image, related-blog style cards
@@ -940,7 +829,13 @@ export default function PowerSystemStudiesPage() {
           </section>
         )}
 
-        <ServicePageBottomSection serviceName="Power System Studies" bottomTitle="Comprehensive Power System Analysis" bottomDescription="Our power system studies provide detailed analysis of your electrical systems, ensuring optimal performance, reliability, and compliance with industry standards." bottomFeatures={['Load flow analysis and system stability studies', 'Short circuit and fault analysis', 'Transient and harmonic analysis', 'Recommendations for system improvements', 'Compliance with NERC standards', '24/7 post-study support']} bottomImage="/images/services/power-system-studies/overview-engineers.png" />
+<FaqSection
+          eyebrow="Questions We Hear"
+          heading="Answers,"
+          headingLine2="before you ask."
+          intro="30 years of client questions. Here are the ones that come up every time for power system studies."
+          items={faqs}
+        />
       </main>
       <Footer />
     </>

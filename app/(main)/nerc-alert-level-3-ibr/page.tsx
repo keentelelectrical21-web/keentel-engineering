@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ContactForm from '@/components/sections/ContactForm'
 
 function Img({ src, fallback, alt, className }: { src: string; fallback: string; alt: string; className?: string }) {
   return <img src={src} alt={alt} className={className} onError={(e) => { (e.target as HTMLImageElement).src = fallback }} />
@@ -26,6 +27,9 @@ const faqGroups = [
       { q: 'What are TOs and TPs expected to update in their interconnection requirements?', a: 'They must include performance-based criteria for voltage control, frequency response, ride-through capability, post-disturbance behavior, and reactive power support. Keentel Service: Development and publication of standardized IBR performance specs.' },
       { q: 'Why is uniform IBR performance necessary?', a: 'It ensures predictable behavior across the grid during normal and disturbed conditions, minimizing cascading failures. Keentel Service: System studies to verify conformity and recommend tuning.' },
       { q: 'What are the key technical criteria to be defined in interconnection studies?', a: 'Interconnection studies for IBRs must clearly define technical performance criteria to ensure compliance with NERC reliability standards and maintain BPS stability, including voltage control deadbands, frequency droop response limits, ride-through thresholds, and current priority logic. Keentel Service: Development of IBR commissioning plans, model validation protocols, and customized interconnection test procedures.' },
+      { q: 'What engineering studies are required?', a: 'The required scope depends on the facility and planning region, but commonly includes load flow, short-circuit, protection coordination, dynamic stability, ride-through, model benchmarking, and EMT studies. Keentel develops the study matrix with the utility, TP, or PC and prepares traceable technical deliverables.' },
+      { q: 'What is IEEE 2800?', a: 'IEEE 2800 establishes interconnection and interoperability requirements for inverter-based resources connected to transmission and sub-transmission systems, including voltage and frequency ride-through, reactive power, control, protection, modeling, and validation expectations.' },
+      { q: 'What is PRC-024?', a: 'PRC-024 addresses frequency and voltage protection settings for generating resources. For IBR facilities, protection settings must be coordinated with equipment capability and applicable ride-through requirements so the plant does not trip unnecessarily during grid disturbances.' },
     ],
   },
   {
@@ -44,12 +48,14 @@ const faqGroups = [
       { q: 'What is required under enhanced change management for GOs?', a: 'Tracking and communication of any changes (firmware, settings, model parameters) to TPs and PCs, ensuring all representations remain accurate. Keentel Service: Lifecycle management system design and configuration tracking solutions.' },
       { q: 'What IBR data must GOs retain as part of compliance?', a: 'Generator Owners must retain inverter and plant make/model information, firmware versions, voltage and frequency ride-through curves, plant controller specifications, and protection system settings. Keentel Service: Centralized IBR data repository setup with automated update alerts.' },
       { q: 'What\u2019s the importance of tracking firmware updates?', a: 'Firmware changes can alter control behavior. If not tracked, they may lead to discrepancies between models and field performance. Keentel Service: Firmware tracking and post-upgrade verification protocols.' },
+      { q: 'Does the alert apply to BESS?', a: 'Yes. Battery energy storage systems use inverter-based controls and must be represented with accurate equipment, plant-controller, protection, ride-through, and dynamic-model information when they fall within the applicable registered-entity and Bulk Power System scope.' },
+      { q: 'Does the alert apply to hybrid plants?', a: 'Yes. Hybrid facilities combining solar, wind, BESS, or other resources require coordinated plant-level controls and models that accurately represent the interaction between technologies across expected operating modes.' },
     ],
   },
   {
     group: 'Reporting & Coordination',
     items: [
-      { q: 'What are the important deadlines in this alert?', a: 'All Generator Owners must acknowledge receipt of the alert by May 27, 2025, and submit their full compliance response by August 18, 2025 via the NERC Alert System. Keentel Service: End-to-end project management for NERC compliance, including deadline tracking, milestone reporting, and coordination with TPs and PCs.' },
+      { q: 'What is the status of the original alert response period?', a: 'The original acknowledgment and response windows have closed. Generator Owners should now preserve approved submissions, close identified gaps, maintain current models and firmware records, and be prepared to demonstrate ongoing alignment during audits and future standards implementation. Keentel Service: Post-alert gap closure, evidence management, and lifecycle compliance support.' },
       { q: 'What systems are used for acknowledgment and submission?', a: 'The NERC Alert System, which requires acknowledgment, submission, and approval of each response. Keentel Service: End-to-end support in navigating the NERC Alert System portal.' },
     ],
   },
@@ -74,28 +80,30 @@ const faqGroups = [
       { q: 'What is the difference between Level 2 and Level 3 NERC Alerts?', a: 'Level 2 alerts request action with some urgency. Level 3 alerts, like the May 2025 IBR alert, require immediate attention, coordinated response, and evidence submission, and often signal system-wide risks.' },
       { q: 'What is meant by "equipment-specific PSPD models"?', a: 'Positive-sequence phasor domain models tailored to each IBR\u2019s design and control characteristics, OEM-validated and field-benchmarked to align with site-specific inverter behavior.' },
       { q: 'How does Keentel support NERC compliance for IBRs in ERCOT and PJM?', a: 'Keentel delivers PSSE, PSCAD, and TSAT modeling, benchmark testing, firmware audit trails, and alert submission prep specific to ERCOT and PJM compliance protocols.' },
-      { q: 'What\u2019s the risk of not submitting by the August 18, 2025 deadline?', a: 'Non-submission could trigger red flags during future NERC audits, impact registration status, and attract scrutiny under FAC-001, FAC-002, or future IBR performance standards, potentially raising Severity Risk Index exposure.' },
+      { q: 'What are the risks after the original response deadline?', a: 'Incomplete submissions, unresolved modeling gaps, or outdated equipment records can create audit exposure, weaken planning-study accuracy, and attract scrutiny under FAC requirements and emerging IBR performance standards.' },
+      { q: 'What happens after the response deadline?', a: 'Entities should retain approved responses, close identified gaps, update models and records as equipment changes, coordinate revisions with TPs and PCs, and maintain evidence that supports future audits, planning studies, and standards implementation.' },
       { q: 'Does Keentel help with firmware tracking and model updates?', a: 'Yes. Keentel provides full change management system support, including firmware logs, parameter adjustments, and update notifications to TPs/PCs, all recorded with audit-ready trails.' },
       { q: 'Can Keentel handle both modeling and NERC submission?', a: 'Absolutely. From IBR benchmarking and conformity testing to RSAW response prep and NERC Alert System submission, Keentel manages the full lifecycle of Level 3 alert compliance.' },
     ],
   },
 ]
 
-function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
+function FaqAccordion({ items, startIndex }: { items: { q: string; a: string }[]; startIndex: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
   return (
     <div className="space-y-3">
       {items.map((item, i) => {
         const isOpen = openIndex === i
         return (
-          <div key={i} className="rounded-2xl border transition-colors" style={{ borderColor: isOpen ? '#A8228A' : '#E6E8F0', background: isOpen ? 'rgba(168,34,138,0.03)' : '#fff' }}>
-            <button onClick={() => setOpenIndex(isOpen ? null : i)} className="w-full flex items-center justify-between gap-4 text-left px-5 py-4">
-              <span className="font-jost font-semibold text-sm sm:text-base" style={{ color: '#06103C' }}>{item.q}</span>
-              <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform" style={{ background: isOpen ? '#A8228A' : '#F3F1F8', color: isOpen ? '#fff' : '#06103C', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <div key={i} className="overflow-hidden rounded-2xl border transition-all duration-300" style={{ borderColor: isOpen ? '#A8228A' : '#E6E8F0', boxShadow: isOpen ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }}>
+            <button onClick={() => setOpenIndex(isOpen ? null : i)} className="flex w-full items-center gap-3 p-4 text-left sm:gap-5 sm:p-6">
+              <span className="w-7 flex-shrink-0 font-urbanist text-xl font-black text-black sm:w-8 sm:text-2xl">{String(startIndex + i + 1).padStart(2, '0')}</span>
+              <span className="flex-1 font-urbanist text-base font-bold leading-snug sm:text-xl" style={{ color: '#0B1230' }}>{item.q}</span>
+              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300" style={{ background: isOpen ? '#A8228A' : '#F6F7FB', color: isOpen ? '#fff' : '#A8228A', transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
               </span>
             </button>
-            {isOpen && <div className="px-5 pb-4"><p className="font-jost text-sm text-gray-600 leading-relaxed">{item.a}</p></div>}
+            {isOpen && <div className="px-4 pb-5 pl-14 sm:px-6 sm:pb-6 sm:pl-[72px]"><p className="font-jost text-sm leading-relaxed text-gray-600 sm:text-base">{item.a}</p></div>}
           </div>
         )
       })}
@@ -104,11 +112,14 @@ function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
 }
 
 export default function NercAlertLevel3IbrPage() {
+  const [openGroups, setOpenGroups] = useState<number[]>([0])
+
   const requirements = [
     { t: 'Validate Models', d: 'Ensure EMT and PSPD models match actual equipment behavior.' },
     { t: 'Conduct Benchmark Tests', d: 'Use field and commissioning tests to verify inverter response and align models with real-world behavior.' },
     { t: 'Track Firmware & Design Changes', d: 'Document all equipment settings, control logic, and firmware updates, and notify grid planners whenever inverter parameters change.' },
     { t: 'Maintain Critical Data', d: 'Archive inverter and turbine specifications, control strategies, and configuration files for audits.' },
+    { t: 'Engineering Documentation', d: 'Review relay settings, protection coordination, equipment parameters, dynamic models, and compliance evidence before utility or NERC review.' },
   ]
 
   const services = [
@@ -117,13 +128,12 @@ export default function NercAlertLevel3IbrPage() {
     { t: 'Conformity Assessments', d: 'Custom test plans aligned with NERC\u2019s essential actions; field commissioning audits and inverter performance verification.' },
     { t: 'Change Management Systems', d: 'Firmware update tracking, real-time model adjustment support, and audit-trail logs to capture any equipment or model change.' },
     { t: 'Submission Assistance', d: 'Help with NERC Alert acknowledgment, response preparation, and deadline tracking; liaison with TPs and PCs throughout the process.' },
-  ]
-
-  const whyChoose = [
-    { t: '30+ Years of Grid Compliance and Power Systems Engineering' },
-    { t: 'Proven Track Record in IBR Design, Modeling & Integration' },
-    { t: 'Deep Familiarity with NERC, FAC Standards, and FERC Requirements' },
-    { t: 'Hands-On Support from Validation to Documentation to Submission' },
+    { t: 'Protection Coordination', d: 'Evaluate protective-device selectivity, clearing performance, and coordination with facility and grid ride-through requirements.' },
+    { t: 'Relay Setting Review', d: 'Review voltage, frequency, overcurrent, and plant protection settings against equipment capability and applicable reliability criteria.' },
+    { t: 'PSS®E Dynamic Modeling', d: 'Develop, validate, and tune positive-sequence dynamic models for planning studies and utility submission.' },
+    { t: 'PSCAD EMT Studies', d: 'Perform electromagnetic transient analysis for fast controls, weak-grid behavior, ride-through, and inverter interactions.' },
+    { t: 'Utility Interconnection Support', d: 'Coordinate technical requirements, model exchanges, study comments, and corrective actions with utilities, TPs, and PCs.' },
+    { t: 'NERC Evidence Package Preparation', d: 'Assemble traceable calculations, settings, model records, test results, attestations, and change-management evidence.' },
   ]
 
   return (
@@ -131,20 +141,25 @@ export default function NercAlertLevel3IbrPage() {
       <Header />
       <main>
         {/* ── HERO ── */}
-        <section className="relative py-20 sm:py-28 overflow-hidden" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-3xl rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #C72E9E 0%, transparent 70%)' }} />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>From Keentel Engineering</span>
+        <section className="relative min-h-[82vh] overflow-hidden bg-cover bg-center py-20 sm:py-28" style={{ backgroundImage: "url('/images/home/nerc.webp')" }}>
+          <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 font-jost text-xs text-white/70"><Link href="/">Home</Link><span>/</span><Link href="/services">Services</Link><span>/</span><Link href="/service/nerc-compliance">NERC Compliance</Link><span>/</span><span className="text-white">Level 3 IBR Alert</span></nav>
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>NERC Compliance &amp; IBR Modeling Specialists</span>
               <h1 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>NERC Level 3 Compliance for IBRs, Done Right with Keentel Engineering</h1>
-              <p className="font-jost text-white/80 text-lg leading-relaxed mb-8">Stay ahead of the August 18, 2025 deadline. Ensure your inverter-based resource (IBR) modeling, testing, and documentation are fully compliant with NERC&apos;s latest alert across ERCOT, PJM, and the broader Bulk Power System.</p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule A Consultation</Link>
-                <Link href="/services" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Our Services</Link>
+              <p className="font-jost text-white/80 text-lg leading-relaxed mb-8">The original response window has closed, but model quality, equipment-change tracking, evidence retention, and audit readiness remain active responsibilities for inverter-based resources across ERCOT, PJM, and the broader Bulk Power System.</p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-jost font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:px-8" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule A Consultation</Link>
+                <Link href="/services" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto sm:px-8">Our Services</Link>
               </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <Img src="/images/nerc-alert/hero.png" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-1920w.png" alt="NERC Level 3 IBR compliance" className="w-full h-72 sm:h-96 object-cover" />
+
+              <div className="mt-12 border-t border-white/10 pt-8 sm:mt-16">
+                <p className="mb-5 font-jost text-xs font-semibold uppercase tracking-widest text-white/50">Certifications &amp; Memberships</p>
+                <div className="inline-block max-w-full rounded-2xl px-4 py-4 sm:px-6 sm:py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <img src="/images/cert-logos.png" alt="BBB Accredited IEEE Member NERC Certified FL Licensed" className="h-16 w-auto max-w-full object-contain sm:h-24" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }} />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -152,57 +167,12 @@ export default function NercAlertLevel3IbrPage() {
         {/* ── ALERT ISSUED / INTRO ── */}
         <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="inline-block text-xs font-bold uppercase tracking-widest mb-4 font-jost px-4 py-2 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>May 20, 2025 Alert Issued</span>
+            <span className="inline-block text-xs font-bold uppercase tracking-widest mb-4 font-jost px-4 py-2 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>2025 Level 3 Alert — Ongoing Readiness</span>
             <h2 className="font-urbanist font-black mb-6" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>The Industry Is Under Alert, Are You Prepared?</h2>
-            <p className="font-jost text-gray-600 leading-relaxed mb-4 text-lg">On <strong style={{ color: '#A8228A' }}>May 20, 2025</strong>, NERC issued its highest-level (Level 3) alert for IBR performance. Generator Owners of solar, wind, storage and other Inverter-Based Resources must validate their equipment models (EMT and PSPD) and performance to prevent grid disruptions. This alert responds to systemic modeling issues that have already led to 15,000+ MW of lost generation on the grid.</p>
-            <p className="font-jost text-gray-600 leading-relaxed mb-8">These actions are not optional. Failing to respond accurately could result in audit issues, modeling inaccuracies, reputational risks, and compromise system reliability.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4 text-lg">In 2025, NERC issued a Level 3 alert addressing IBR performance and modeling. Generator Owners of solar, wind, storage, and other inverter-based resources were directed to validate equipment models and performance. The underlying reliability concern remains current: NERC documented a widespread loss of <strong style={{ color: '#A8228A' }}>1,178 MW</strong> of solar PV generation during the 2016 Blue Cut Fire disturbance.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">This alert primarily affects solar PV, wind generation, battery energy storage systems (BESS), hybrid generation facilities, and other inverter-based resources connected to the Bulk Power System.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-8">Although the original response period has closed, maintaining accurate models, traceable equipment records, and verified performance remains essential for planning accuracy, audit readiness, and system reliability.</p>
             <Link href="/about" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2 transition-all hover:bg-gray-50" style={{ borderColor: '#06103C', color: '#06103C' }}>Learn More About Us</Link>
-          </div>
-        </section>
-
-        {/* ── CONSULTATION FORM ── */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>Request Your Free NERC Compliance Consultation</h2>
-              <p className="font-jost text-gray-600">Contact Keentel for a risk-free consultation. Our experts will review your NERC compliance needs and model readiness in ERCOT, PJM, or any region.</p>
-            </div>
-            <form action="/api/contact" method="POST" className="rounded-3xl p-8 sm:p-10 bg-white shadow-sm" style={{ border: '1px solid #E6E8F0' }}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Full Name *</label>
-                  <input required name="fullName" className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Company Name *</label>
-                  <input required name="company" className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
-                  <input required type="tel" name="phone" className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
-                  <input required type="email" name="email" className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} />
-                </div>
-              </div>
-              <div className="mb-4">
-                <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Facility Type / IBR Technology</label>
-                <select name="facilityType" className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }}>
-                  <option value="">Select...</option>
-                  <option>Solar</option>
-                  <option>Wind</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div className="mb-6">
-                <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
-                <textarea name="message" rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} />
-              </div>
-              <button type="submit" className="w-full py-4 rounded-xl font-jost font-semibold text-white transition-all hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Submit</button>
-            </form>
           </div>
         </section>
 
@@ -210,7 +180,8 @@ export default function NercAlertLevel3IbrPage() {
         <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-urbanist font-black mb-6" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>Why NERC Issued the Level 3 Alert, Industry Impact</h2>
-            <p className="font-jost text-gray-600 leading-relaxed mb-4">Since 2016, over 15,000 MW of generation loss has occurred due to IBR-related issues, unpredictable by current planning models.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">NERC&apos;s disturbance analysis documented a 1,178 MW widespread solar PV generation loss during the 2016 Blue Cut Fire, illustrating how inaccurate settings and models can create system-wide consequences.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">The alert was driven by multiple grid disturbances that exposed weaknesses in inverter performance, model accuracy, ride-through capability, and equipment configuration management.</p>
             <p className="font-jost text-gray-600 leading-relaxed mb-4">The alert demands urgent compliance from Generator Owners (GOs), Transmission Planners (TPs), Transmission Owners (TOs), and Planning Coordinators (PCs). Non-compliance won&apos;t incur direct penalties, but can trigger audit flags, FERC scrutiny, and future violations under FAC-001, FAC-002, or related standards.</p>
           </div>
         </section>
@@ -222,9 +193,9 @@ export default function NercAlertLevel3IbrPage() {
               <h2 className="font-urbanist font-black mb-3 text-white" style={{ fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>What Generator Owners Must Do</h2>
               <p className="font-jost text-white/70">Essential actions required by the NERC Level 3 Alert</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {requirements.map((r, i) => (
-                <div key={i} className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div key={i} className="flex h-full flex-col rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center font-urbanist font-black text-sm mb-4" style={{ background: 'rgba(199,46,158,0.15)', color: '#C72E9E' }}>{String(i + 1).padStart(2, '0')}</div>
                   <h4 className="font-urbanist font-bold text-white mb-2 text-lg leading-snug">{r.t}</h4>
                   <p className="font-jost text-white/60 text-sm leading-relaxed">{r.d}</p>
@@ -232,9 +203,9 @@ export default function NercAlertLevel3IbrPage() {
               ))}
             </div>
             <div className="text-center mt-14 rounded-2xl p-8" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="font-jost text-xs uppercase tracking-widest mb-2" style={{ color: '#C72E9E' }}>Meet the Deadline Alert</p>
-              <p className="font-urbanist font-black text-3xl text-white mb-2">August 18, 2025</p>
-              <p className="font-jost text-white/60">NERC Response Deadline</p>
+              <p className="font-jost text-xs uppercase tracking-widest mb-2" style={{ color: '#C72E9E' }}>Post-Alert Readiness</p>
+              <p className="font-urbanist font-black text-3xl text-white mb-2">Response Window Closed</p>
+              <p className="font-jost text-white/60">Gap closure, evidence retention, and model governance continue</p>
             </div>
           </div>
         </section>
@@ -246,9 +217,9 @@ export default function NercAlertLevel3IbrPage() {
               <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>Keentel&apos;s NERC Alert Response Services</h2>
               <p className="font-jost text-gray-600 max-w-2xl mx-auto">Keentel Engineering offers end-to-end support for NERC L3 Alert compliance, with a focus on engineering, procurement, construction and associated regulatory compliance.</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((s, i) => (
-                <div key={i} className="rounded-2xl p-6" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
+                <div key={i} className="flex h-full flex-col rounded-2xl p-6" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
                   <h4 className="font-urbanist font-bold mb-2 text-base leading-snug" style={{ color: '#06103C' }}>{s.t}</h4>
                   <p className="font-jost text-gray-600 text-sm leading-relaxed">{s.d}</p>
                 </div>
@@ -257,52 +228,91 @@ export default function NercAlertLevel3IbrPage() {
           </div>
         </section>
 
-        {/* ── FAQ ── */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black text-center mb-14" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>Frequently Asked Questions</h2>
-            {faqGroups.map((g, gi) => (
-              <div key={gi} className="mb-10">
-                <h3 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>{g.group}</h3>
-                <FaqAccordion items={g.items} />
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── URGENCY / INDUSTRY RESPONSE ── */}
-        <section className="py-20 sm:py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-urbanist font-black mb-6" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>NERC Level 3 Alert: Urgency, Compliance, and Industry Response</h2>
-            <p className="font-jost text-gray-600 leading-relaxed mb-4">The May 20, 2025 NERC Level 3 Alert isn&apos;t just a guideline, it&apos;s the industry&apos;s most serious compliance action related to inverter-based resources. Generator Owners are now required to model, test, and validate PSPD and EMT representations with equipment-specific accuracy.</p>
-            <p className="font-jost text-gray-600 leading-relaxed mb-4">Keentel Engineering provides tailored compliance engineering services that directly respond to this alert, covering every aspect from IBR model validation to documentation submission and change management tracking.</p>
-            <p className="font-jost text-gray-600 leading-relaxed">Whether you&apos;re working in ERCOT, PJM, or other planning regions, our team ensures your IBR fleet meets the alert requirements and aligns with NERC 693, FAC, and PRC reliability standards. Stay ahead of FERC scrutiny and the August 18 deadline, schedule your free compliance review today.</p>
-          </div>
-        </section>
-
-        {/* ── WHY CHOOSE KEENTEL ── */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black text-center mb-14 text-white" style={{ fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>Why Choose Keentel Engineering?</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {whyChoose.map((w, i) => (
-                <div key={i} className="rounded-2xl p-6 text-center" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <p className="font-jost font-semibold text-white text-sm leading-relaxed">{w.t}</p>
-                </div>
+        <section className="bg-[#06103C] py-12 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 text-center">
+              <p className="mb-2 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Engineering Software</p>
+              <h2 className="font-urbanist text-2xl font-black text-white sm:text-3xl">Advanced IBR Modeling &amp; Analysis Platforms</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              {['ETAP', 'PSS®E', 'PSCAD', 'TSAT', 'SKM', 'PowerFactory'].map(tool => (
+                <div key={tool} className="flex min-h-20 items-center justify-center rounded-xl px-4 py-5 text-center font-urbanist text-lg font-bold text-white" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>{tool}</div>
               ))}
             </div>
           </div>
         </section>
 
+        <section className="border-y border-[#E6E8F0] bg-[#F6F7FB] py-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-4 text-center sm:px-6 md:flex-row md:text-left lg:px-8">
+            <div>
+              <p className="mb-1 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Proven Power-System Experience</p>
+              <p className="font-urbanist text-xl font-bold" style={{ color: '#06103C' }}>30+ Years <span className="text-[#A8228A]">•</span> 21 Licensed Engineers <span className="text-[#A8228A]">•</span> 120+ Engineering Projects <span className="text-[#A8228A]">•</span> Utilities <span className="text-[#A8228A]">•</span> Developers <span className="text-[#A8228A]">•</span> EPC Contractors</p>
+            </div>
+            <Link href="/our-work" className="inline-flex flex-shrink-0 items-center justify-center rounded-full px-7 py-3.5 font-jost text-sm font-semibold text-white" style={{ background: '#0B1A5B' }}>View Case Studies</Link>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        {/* ── URGENCY / INDUSTRY RESPONSE ── */}
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-urbanist font-black mb-6" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>NERC Level 3 Alert: Urgency, Compliance, and Industry Response</h2>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">The 2025 NERC Level 3 Alert established essential industry actions related to inverter-based resource performance. Generator Owners must continue to maintain accurate PSPD and EMT representations, equipment-specific records, and defensible verification evidence.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">Keentel Engineering provides tailored compliance engineering services that directly respond to this alert, covering every aspect from IBR model validation to documentation submission and change management tracking.</p>
+            <p className="font-jost text-gray-600 leading-relaxed mb-4">Keentel Engineering supports Generator Owners throughout the complete compliance lifecycle, including engineering studies, model validation, protection review, utility coordination, documentation preparation, and ongoing change management.</p>
+            <p className="font-jost text-gray-600 leading-relaxed">Whether you&apos;re working in ERCOT, PJM, or another planning region, our team helps align your IBR fleet with NERC, FAC, and PRC requirements while preparing records for audits, model updates, and emerging standards.</p>
+          </div>
+        </section>
+
+        {/* ── WHY CHOOSE KEENTEL ── */}
         {/* ── CTA ── */}
         <section className="py-20 sm:py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
-          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black text-white mb-6" style={{ fontSize: 'clamp(1.75rem,3.5vw,2.75rem)' }}>Get Started, Risk-Free Compliance Assessment</h2>
-            <p className="font-jost text-white/80 mb-8 leading-relaxed">The clock is ticking. Let&apos;s discuss your site&apos;s readiness before NERC does. Schedule a free consultation today to review your IBR models and compliance strategy.</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule a Free Consultation Call</Link>
-              <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Call 813-389-7871</Link>
-              <Link href="mailto:contact@keentelengineering.com" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Email Us</Link>
+            <p className="font-jost text-white/80 mb-8 leading-relaxed">The response date has passed, but unresolved model, firmware, testing, and documentation gaps still create reliability and audit risk. Schedule a consultation to review your current readiness and corrective-action priorities.</p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-jost font-semibold text-white transition-all hover:scale-105 sm:min-w-[240px] sm:flex-1" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule a Consultation</Link>
+              <Link href="tel:813-389-7871" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:min-w-[240px] sm:flex-1">Call 813-389-7871</Link>
+              <Link href="mailto:contact@keentelengineering.com" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:min-w-[240px] sm:flex-1">Email Us</Link>
+            </div>
+          </div>
+        </section>
+
+        <ContactForm />
+
+        <section className="bg-white py-16 sm:py-24">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
+            <div className="lg:sticky lg:top-28 lg:col-span-4">
+              <p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Questions We Hear</p>
+              <h2 className="mb-6 font-urbanist text-4xl font-black leading-tight sm:text-5xl" style={{ color: '#0B1230' }}>Answers,<br />before you ask.</h2>
+              <p className="mb-8 font-jost text-base leading-relaxed" style={{ color: '#4B5563' }}>Detailed guidance on the NERC Level 3 Alert, IBR modeling, compliance, verification, reporting, and lifecycle requirements.</p>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 rounded-full px-7 py-4 font-jost font-semibold text-white transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Ask Us Directly <span aria-hidden>→</span></Link>
+            </div>
+            <div className="lg:col-span-8">
+              {faqGroups.map((group, groupIndex) => {
+                const startIndex = faqGroups.slice(0, groupIndex).reduce((total, previousGroup) => total + previousGroup.items.length, 0)
+                const isGroupOpen = openGroups.includes(groupIndex)
+                return (
+                  <div key={group.group} className="mb-6 overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white shadow-sm last:mb-0">
+                    <button
+                      type="button"
+                      aria-expanded={isGroupOpen}
+                      onClick={() => setOpenGroups(current => current.includes(groupIndex) ? current.filter(index => index !== groupIndex) : [...current, groupIndex])}
+                      className="flex w-full items-center justify-between gap-4 bg-[#F6F7FB] px-4 py-4 text-left transition-colors hover:bg-[#F0EDF7] sm:px-6 sm:py-5"
+                    >
+                      <span className="flex min-w-0 items-center gap-3 sm:gap-4">
+                        <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl font-urbanist text-sm font-black text-white" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>{String(groupIndex + 1).padStart(2, '0')}</span>
+                        <span className="min-w-0">
+                          <span className="block font-urbanist text-sm font-black uppercase tracking-wider sm:text-base" style={{ color: '#0B1230' }}>{group.group}</span>
+                          <span className="mt-1 block font-jost text-xs text-gray-500">Questions {String(startIndex + 1).padStart(2, '0')}–{String(startIndex + group.items.length).padStart(2, '0')}</span>
+                        </span>
+                      </span>
+                      <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-lg font-bold transition-transform" style={{ background: '#fff', color: '#A8228A', transform: isGroupOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>+</span>
+                    </button>
+                    {isGroupOpen && <div className="border-t border-[#E6E8F0] p-3 sm:p-5"><FaqAccordion items={group.items} startIndex={startIndex} /></div>}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>

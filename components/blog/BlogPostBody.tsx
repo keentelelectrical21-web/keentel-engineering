@@ -16,11 +16,29 @@ function isJunk(text: string): boolean {
 
 function filterBlocks(blocks: any[]): any[] {
   if (!blocks) return []
-  return blocks.filter(block => {
+  const filtered = blocks.filter(block => {
     if (block._type !== 'block') return true
     const text = block.children?.map((c: any) => c.text || '').join('') || ''
     return !isJunk(text)
   })
+
+  const firstTextBlockIndex = filtered.findIndex(block => block._type === 'block')
+  if (firstTextBlockIndex === -1) return filtered
+
+  const firstBlock = filtered[firstTextBlockIndex]
+  const children = [...(firstBlock.children || [])]
+  let foundVisibleText = false
+  const normalizedChildren = children.flatMap((child: any) => {
+    if (foundVisibleText || typeof child.text !== 'string') return [child]
+    const text = child.text.replace(/^\s+/, '')
+    if (!text) return []
+    foundVisibleText = true
+    return [{ ...child, text }]
+  })
+
+  return filtered.map((block, index) => index === firstTextBlockIndex
+    ? { ...block, children: normalizedChildren }
+    : block)
 }
 
 const ptComponents = {
@@ -366,8 +384,8 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
   const secondHalf    = hasBody ? cleanBody.slice(midPoint) : []
 
   return (
-    <section className="py-14" style={{ background: '#F4F5F9' }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="pb-14 pt-0" style={{ background: '#F4F5F9' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/*
           STICKY FIX:
           - Grid uses items-start so both columns are only as tall as their content
@@ -376,15 +394,15 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
             section is taller than the sidebar (main content is longer)
           - NO overflow-hidden anywhere on the sticky parent chain
         */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
 
           {/* MAIN CONTENT — takes natural height, makes section taller than sidebar */}
-          <div className="lg:col-span-2 min-w-0">
+          <div className="min-w-0 lg:col-span-9">
             {/* NO overflow-hidden here — it breaks sticky */}
-            <div className="bg-white rounded-2xl p-7 sm:p-10 shadow-sm" style={{ border: '1px solid #E6E8F0' }}>
+            <div className="rounded-2xl bg-white px-5 pb-5 pt-1 shadow-sm sm:px-7 sm:pb-7 sm:pt-2 lg:px-8 lg:pb-8" style={{ border: '1px solid #E6E8F0' }}>
 
               {hasBody && firstHalf.length > 0 && (
-                <div className="mb-2">
+                <div className="mb-2 [&>*:first-child]:mt-0">
                   <PortableText value={firstHalf} components={ptComponents} />
                 </div>
               )}
@@ -392,8 +410,8 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
               {showMidCta && (
                 <BlogCTA
                   variant="mid"
-                  heading={post.midCtaHeading}
-                  subheading={post.midCtaSubheading}
+                  heading="Let's Build Your Next Engineering Project Together"
+                  subheading="Whether you need power system studies, substation engineering, transmission planning, grid interconnection, NERC compliance, owner's engineering, or renewable energy consulting, our experienced team is ready to support your project from concept to completion."
                   primaryText={post.midCtaPrimaryText}
                   primaryLink={post.midCtaPrimaryLink}
                   secondaryText={post.midCtaSecondaryText}
@@ -438,11 +456,9 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
             2. The section/page is much taller (main content)
             3. No overflow:hidden on any parent
           */}
-          <div className="lg:col-span-1 self-start">
-            <div className="sticky top-28">
-              <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
-            </div>
-          </div>
+          <aside className="self-start lg:sticky lg:top-24 lg:col-span-3">
+            <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
+          </aside>
 
         </div>
       </div>

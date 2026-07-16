@@ -47,11 +47,13 @@ export default function ContactForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: `${form.firstName} ${form.lastName}`.trim(),
+          firstName: form.firstName,
+          lastName: form.lastName,
           email: form.email,
           phone: form.phone,
           service: form.services.join(', '),
           message: form.message,
+          source: 'home-contact-form',
         }),
       })
       if (!response.ok) throw new Error('Submit failed')

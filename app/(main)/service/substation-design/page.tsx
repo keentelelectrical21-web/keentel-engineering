@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import ServicePageBottomSection from '@/components/ServicePageBottomSection'
+import ContactForm from '@/components/sections/ContactForm'
+import WhoWeServed from '@/components/service/WhoWeServed'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -172,7 +173,7 @@ export default function SubstationDesignPage() {
       <Header />
       <main>
 
-        {/* ═══ 1. HERO — video visible, overlay contained, big desc ═══ */}
+{/* ═══ 1. HERO — video visible, overlay contained, big desc ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video ref={videoRef} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/substation.mp4" type="video/mp4" />
@@ -218,12 +219,13 @@ export default function SubstationDesignPage() {
 
         {/* ═══ 2. ENGINEERING EXCELLENCE — made prominent ═══ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 pt-1 sm:px-6 lg:px-8"><p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Engineering Excellence</span>
               <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2.2rem,4vw,3.25rem)' }}>30+ Years of Electrical Engineering Excellence</h2>
               <p className="font-jost text-gray-600 mb-8 max-w-xl leading-relaxed text-lg">Utility-grade substation design services and electrical engineering, including protection &amp; control, automation, and power system studies, trusted by utilities, EPCs, and energy developers nationwide.</p>
-              <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-6">
+              <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
                 {[
                   { src: '/images/services/substation-design/logo-ieee.jpg', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/IEEE-Logo-1920w.jpg', alt: 'IEEE' },
                   { src: '/images/services/substation-design/logo-iec61850.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/61850_logo-1a-1-300x206-1920w.png', alt: 'IEC 61850' },
@@ -290,6 +292,10 @@ export default function SubstationDesignPage() {
           </div>
         </section>
 
+        <ContactForm />
+
+        <WhoWeServed />
+
         {/* ═══ 3. WHY CHOOSE KEENTEL — branded two-column redesign ═══ */}
         <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -325,74 +331,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 4. GET IN TOUCH — full branded redesign, split from download ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: 'linear-gradient(180deg, #F6F7FB 0%, #ffffff 100%)' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              <div className="lg:col-span-5">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Get in Touch</span>
-                <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Let&apos;s Discuss How to Optimize Your Next Project</h2>
-                <p className="font-jost text-gray-600 text-lg leading-relaxed mb-8">Tell us about your substation project and timeline. A licensed engineer will follow up to discuss scope and next steps.</p>
-                <div className="rounded-2xl p-6" style={{ background: '#06103C' }}>
-                  <p className="font-urbanist font-bold text-white text-lg mb-1">Prefer to talk now?</p>
-                  <Link href="tel:813-389-7871" className="font-jost text-2xl font-bold" style={{ color: '#C72E9E' }}>813-389-7871</Link>
-                </div>
-              </div>
-              <div className="lg:col-span-7 bg-white rounded-2xl shadow-xl p-6 sm:p-10" style={{ border: '1px solid #E6E8F0' }}>
-                {formStatus === 'success' ? (
-                  <div className="text-center py-16">
-                    <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: 'rgba(168,34,138,0.1)' }}>
-                      <svg className="w-8 h-8" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <h3 className="font-urbanist font-bold text-2xl mb-2" style={{ color: '#06103C' }}>Message Received</h3>
-                    <p className="font-jost text-gray-500">Thank you for contacting Keentel Engineering. We will get back to you as soon as possible.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>First Name *</label>
-                        <input required type="text" value={formData.firstName} onChange={e => setFormData(p => ({ ...p, firstName: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Last Name</label>
-                        <input type="text" value={formData.lastName} onChange={e => setFormData(p => ({ ...p, lastName: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Phone *</label>
-                        <input required type="tel" value={formData.phone} onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Email *</label>
-                        <input required type="email" value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#06103C' }}>What Services Are You Interested In?</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {['POI Interconnection Engineering Support', 'Substation Design Services', 'EHV, HV, MV Power System Studies', 'Owners Engineering Services', 'NERC O&P 693 Compliance Services', 'Utility Scale Solar Farm Engineering'].map((svc) => (
-                          <label key={svc} className="flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all" style={{ borderColor: formData.service === svc ? '#A8228A' : '#E6E8F0', background: formData.service === svc ? 'rgba(168,34,138,0.05)' : '#F6F7FB' }}>
-                            <input type="radio" name="service" value={svc} checked={formData.service === svc} onChange={e => setFormData(p => ({ ...p, service: e.target.value }))} className="accent-pink-600" />
-                            <span className="font-jost text-sm text-gray-700">{svc}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest mb-2 font-jost" style={{ color: '#06103C' }}>Message</label>
-                      <textarea value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} rows={5} className="w-full px-4 py-3.5 rounded-xl border outline-none font-jost text-gray-700 resize-none transition-all" style={{ borderColor: '#E6E8F0', background: '#F6F7FB' }} onFocus={e => { e.target.style.borderColor = '#A8228A'; e.target.style.background = '#fff' }} onBlur={e => { e.target.style.borderColor = '#E6E8F0'; e.target.style.background = '#F6F7FB' }} />
-                    </div>
-                    {formStatus === 'error' && <p className="text-sm text-red-500 font-jost p-3 rounded-xl border border-red-100 bg-red-50">Failed to send. Please try again.</p>}
-                    <button type="submit" disabled={formStatus === 'loading'} className="w-full py-4 rounded-full font-jost font-semibold text-white text-lg transition-all hover:opacity-90 disabled:opacity-60" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                      {formStatus === 'loading' ? 'Sending...' : 'Submit Request →'}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* ═══ 5. DOWNLOAD FLYER — standalone, centered, branded bg (single instance) ═══ */}
         <section className="py-16 bg-white">
@@ -725,32 +664,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 17. WHO WE'VE SERVED — redesigned, prominent ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Trusted By</span>
-              <h2 className="font-urbanist font-black text-3xl sm:text-4xl" style={{ color: '#06103C' }}>Who We&apos;ve Served</h2>
-              <p className="font-jost text-gray-600 mt-3 max-w-2xl mx-auto text-lg">Serving utilities, EPCs, developers, and infrastructure organizations supporting critical power systems nationwide.</p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-              {[
-                { src: '/images/clients/rrc-companies.webp', alt: 'RRC Companies' },
-                { src: '/images/clients/pae-engineers.webp', alt: 'PAE Engineers' },
-                { src: '/images/clients/edf-power-solutions.webp', alt: 'EDF Power Solutions' },
-                { src: '/images/clients/pike-engineering.webp', alt: 'Pike Engineering' },
-                { src: '/images/clients/risk-work.webp', alt: 'Risk Work' },
-                { src: '/images/clients/siemens-energy-1.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/avangrid.webp', alt: 'Avangrid' },
-                { src: '/images/clients/siemens-energy-2.webp', alt: 'Siemens Energy' },
-                { src: '/images/clients/aypa-power.webp', alt: 'AYPA Power' },
-              ].map((logo, i) => (
-                <div key={i} className="bg-white rounded-xl p-5 flex items-center justify-center shadow-sm hover:shadow-md transition-all h-24" style={{ border: '1px solid #E6E8F0' }}>
-                  <img src={logo.src} alt={logo.alt} className="max-h-12 max-w-full object-contain" onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* ═══ 18. WE GO ABOVE AND BEYOND ═══ */}
         <section className="relative py-20 sm:py-24 overflow-hidden">
@@ -771,13 +685,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 19. FAQ — exact homepage FAQ.tsx design ═══ */}
-        <FaqSection
-          eyebrow="Questions We Hear"
-          heading="Answers,"
-          headingLine2="before you ask."
-          intro="30 years of client questions. Here are the ones that come up every time for substation design."
-          items={faqs}
-        />
+
 
         {/* ═══ 20. BLOG SECTION — prominent date badge, full images ═══ */}
         {blogs.length > 0 && (
@@ -818,7 +726,13 @@ export default function SubstationDesignPage() {
           </section>
         )}
 
-        <ServicePageBottomSection serviceName="Substation Design" bottomTitle="Expert Substation Design & Engineering" bottomDescription="We design and engineer substations that meet your specific operational requirements. From initial planning through final commissioning, our licensed engineers ensure every project meets the highest standards." bottomFeatures={['Complete substation design from concept to completion', 'Compliance with IEEE and NFPA standards', 'Advanced protection and control systems', 'Environmental assessments and mitigation', 'Project management and supervision', 'Commissioning and testing services']} bottomImage="/images/services/substation-design/type-transmission.png" />
+<FaqSection
+          eyebrow="Questions We Hear"
+          heading="Answers,"
+          headingLine2="before you ask."
+          intro="30 years of client questions. Here are the ones that come up every time for substation design."
+          items={faqs}
+        />
       </main>
       <Footer />
     </>
