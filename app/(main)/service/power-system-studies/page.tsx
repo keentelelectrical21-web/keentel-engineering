@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -375,13 +379,10 @@ export default function PowerSystemStudiesPage() {
         ═══════════════════════════════════════════════════════ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 lg:mb-12">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Our Approach</span>
-              <h2 className="font-urbanist font-black leading-tight lg:whitespace-nowrap" style={{ color: '#06103C', fontSize: 'clamp(2rem, 3.6vw, 3.25rem)' }}>
-                Engineering-First Studies, Not Just Reports
-              </h2>
-            </div>
-
+            <span className="inline-flex text-xs font-semibold uppercase tracking-widest mb-6 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Our Approach</span>
+            <h2 className="max-w-4xl font-urbanist font-black leading-tight mb-10" style={{ color: '#06103C', fontSize: 'clamp(2.2rem, 4vw, 3.25rem)' }}>
+              Engineering-First Studies, Not Just Reports
+            </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
                 {/* Pull-quote callout for prominence */}
@@ -432,13 +433,15 @@ export default function PowerSystemStudiesPage() {
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="power-system-studies" />
 
-        <WhoWeServed />
 
         {/* ═══════════════════════════════════════════════════════
             3. WHY CHOOSE — two-column, branded card panel
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -663,7 +666,7 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             9. INDUSTRIES WE SUPPORT
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Sectors</span>
@@ -674,9 +677,9 @@ export default function PowerSystemStudiesPage() {
               {[
                 { title: 'Utilities & Transmission Operators', img: '/images/services/power-system-studies/industry-utilities.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/shutterstock_551404123-1920w.jpg', link: '/industries/electric-utilities-transmission' },
                 { title: 'Renewable Energy Developers', img: '/images/services/power-system-studies/industry-renewable.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/GettyImages-2174080781-508c0aae85a94ae6a7c4f9c303eae4f1-1920w.jpg', link: '/industries/renewable-interconnection-engineering' },
-                { title: 'Industrial & Manufacturing Facilities', img: '/images/services/power-system-studies/industry-industrial.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/factory-1920w+%281%29-1920w.webp', link: '/industries/industrial-power-engineering' },
-                { title: 'Oil, Gas & Mining Operations', img: '/images/services/power-system-studies/industry-oil-gas.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Trends-in-Oil-and-Gas-guide-1920w.jpg', link: '/industries/oil-gas-mining' },
-                { title: 'Data Centers & Commercial Infrastructure', img: '/images/services/power-system-studies/industry-data-center.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/corporate-data-center-1920w.jpg', link: '/industries/data-center-electrical' },
+                { title: 'Industrial & Manufacturing Facilities', img: '/images/industries/hub/industrial-manufacturing.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/factory-1920w+%281%29-1920w.webp', link: '/industries/industrial-power-engineering' },
+                { title: 'Oil, Gas & Mining Operations', img: '/images/industries/hub/oil-gas-mining.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Trends-in-Oil-and-Gas-guide-1920w.jpg', link: '/industries/oil-gas-mining' },
+                { title: 'Data Centers & Commercial Infrastructure', img: '/images/industries/hub/data-centers.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/corporate-data-center-1920w.jpg', link: '/industries/data-center-electrical' },
               ].map((item, i) => (
                 <Link key={i} href={item.link} className="group relative rounded-xl overflow-hidden block" style={{ aspectRatio: '3/4' }}>
                   <Img src={item.img} fallback={item.fallback} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -697,14 +700,14 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             10. CASE STUDIES — dynamic from Sanity, this service only
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
               <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl mb-3" style={{ color: '#06103C' }}>Case Studies</h2>
               <p className="font-jost text-gray-600 text-lg">Power System Studies by Keentel Engineering</p>
             </div>
-            {caseStudies.length > 0 ? (
+            {false && caseStudies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {caseStudies.map((cs) => (
                   <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
@@ -771,7 +774,7 @@ export default function PowerSystemStudiesPage() {
                 </div>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <Img src="/images/services/power-system-studies/cta-engineers.png" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/e857ee18-180f-48b2-bfa8-38daf048d05c-1920w.png" alt="Keentel engineers at work" className="w-full h-72 sm:h-96 object-cover" />
+                <Img src="/images/services/power-system-studies/final-cta-engineer.jpeg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/e857ee18-180f-48b2-bfa8-38daf048d05c-1920w.png" alt="Keentel engineers at work" className="w-full h-72 sm:h-96 object-cover" />
               </div>
             </div>
           </div>
@@ -790,7 +793,7 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             14. BLOG SECTION — prominent date, full image, related-blog style cards
         ═══════════════════════════════════════════════════════ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -829,7 +832,8 @@ export default function PowerSystemStudiesPage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Questions We Hear"
           heading="Answers,"
           headingLine2="before you ask."
@@ -837,6 +841,7 @@ export default function PowerSystemStudiesPage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["power system","load flow","short circuit"]} />
       <Footer />
     </>
   )

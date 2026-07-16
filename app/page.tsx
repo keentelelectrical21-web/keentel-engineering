@@ -5,7 +5,6 @@ import NERCAlert from '@/components/sections/NERCAlert'
 import Services from '@/components/sections/Services'
 import Industries from '@/components/sections/Industries'
 import Precision from '@/components/sections/Precision'
-import WhyChoose from '@/components/sections/WhyChoose'
 import SoftwareTools from '@/components/sections/SoftwareTools'
 import CaseStudies from '@/components/sections/CaseStudies'
 import Testimonials from '@/components/sections/Testimonials'
@@ -27,7 +26,6 @@ export default function HomePage() {
         <Services />
         <Industries />
         <Precision />
-        <WhyChoose />
         <SoftwareTools />
         <CaseStudies />
         <Testimonials />

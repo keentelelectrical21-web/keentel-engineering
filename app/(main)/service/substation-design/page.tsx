@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -219,7 +223,7 @@ export default function SubstationDesignPage() {
 
         {/* ═══ 2. ENGINEERING EXCELLENCE — made prominent ═══ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 pt-1 sm:px-6 lg:px-8"><p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p></div>
+          <div className="mx-auto max-w-7xl px-4 pt-1 sm:px-6 lg:px-8"><p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Engineering Excellence</span>
@@ -255,7 +259,7 @@ export default function SubstationDesignPage() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <Img
-                  src="/images/services/substation-design/excellence-team.jpg"
+                  src="/images/services/substation-design/expertise-ee.png"
                   fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-b7a9735b-907h.jpg"
                   alt="Keentel engineers reviewing substation design"
                   className="w-full h-80 sm:h-[28rem] object-cover"
@@ -293,11 +297,13 @@ export default function SubstationDesignPage() {
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="substation-design" />
 
-        <WhoWeServed />
 
         {/* ═══ 3. WHY CHOOSE KEENTEL — branded two-column redesign ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -542,7 +548,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 12. WHY CHOOSE US FOR SUBSTATION DESIGN — dark, 6 cards ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Us for Substation Design?</h2>
             <p className="font-jost text-white/70 max-w-3xl mb-12 text-lg leading-relaxed">Our engineering approach combines deep technical knowledge, regulatory alignment, and constructible delivery — ensuring safer operations and predictable construction outcomes.</p>
@@ -566,7 +572,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 13. INDUSTRIES WE SERVE — 6 cards ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Industries We Serve</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">We partner with stakeholders across the power sector and critical infrastructure to deliver substation designs aligned with regulatory, operational, and commercial objectives.</p>
@@ -592,7 +598,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 14. CASE STUDIES — modal, this service only, no external links ═══ */}
-        <SubstationCaseStudies />
+        <div className="hidden" aria-hidden="true"><SubstationCaseStudies /></div>
 
         {/* ═══ 15. RENEWABLE SUBSTATIONS ═══ */}
         <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
@@ -688,7 +694,7 @@ export default function SubstationDesignPage() {
 
 
         {/* ═══ 20. BLOG SECTION — prominent date badge, full images ═══ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -726,7 +732,8 @@ export default function SubstationDesignPage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Questions We Hear"
           heading="Answers,"
           headingLine2="before you ask."
@@ -734,6 +741,7 @@ export default function SubstationDesignPage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["substation","protection","transformer"]} />
       <Footer />
     </>
   )

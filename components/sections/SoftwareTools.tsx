@@ -13,7 +13,7 @@ const tools = [
   { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: '/images/software-logos/cyme.png' },
 ]
 
-export default function SoftwareTools() {
+export default function SoftwareTools({ heading = 'Our Engineering Tools' }: { heading?: string }) {
   return (
     <section className="py-20 overflow-hidden" style={{ background: '#06103C' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,10 +21,10 @@ export default function SoftwareTools() {
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>Industry-Leading Software</p>
           <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-4">
-            Our Engineering Tools
+            {heading}
           </h2>
           <p className="text-xl font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.75)' }}>
-            Precision modeling using the industry's most trusted power engineering software platforms, with decades of hands-on expertise.
+            Precision modeling using the industry&apos;s most trusted power engineering software platforms, with decades of hands-on expertise.
           </p>
         </div>
 

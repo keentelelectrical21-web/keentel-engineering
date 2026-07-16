@@ -142,6 +142,23 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Certifications & Memberships */}
+        <div className="mb-10">
+          <p className="mb-5 text-xs font-bold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Certifications &amp; Memberships</p>
+          <div className="flex flex-col items-center gap-7 rounded-2xl px-4 py-6 sm:flex-row sm:justify-center sm:gap-10 sm:px-7 lg:gap-14" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <img
+              src="/images/cert-logos.png"
+              alt="Florida Engineering Society, Registered Professional Engineer, and IEEE Senior Member"
+              className="h-auto w-full max-w-[670px] object-contain"
+            />
+            <img
+              src="/images/logo.webp"
+              alt="Florida Engineering Society"
+              className="h-20 w-28 shrink-0 object-contain sm:h-24 sm:w-32"
+            />
+          </div>
+        </div>
+
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex flex-col sm:flex-row items-center gap-3">

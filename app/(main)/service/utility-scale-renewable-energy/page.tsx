@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -243,7 +247,7 @@ export default function UtilityScaleRenewableEnergyPage() {
         <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
+              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
               <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Renewable Projects Require Specialized Engineering</h2>
               <p className="font-jost text-gray-600 mb-5 text-lg leading-relaxed">Solar, wind, and BESS projects operate differently from traditional power plants. These inverter-based resources rely on software controls, fast response times, and detailed grid modeling to remain stable.</p>
               <p className="font-jost text-gray-700 mb-3 font-semibold">We help developers address:</p>
@@ -266,8 +270,10 @@ export default function UtilityScaleRenewableEnergyPage() {
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="utility-scale-renewable-energy" />
 
-        <WhoWeServed />
 
         {/* ═══ 5. SOFTWARE TOOLS ═══ */}
         <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
@@ -306,7 +312,7 @@ export default function UtilityScaleRenewableEnergyPage() {
         </section>
 
         {/* ═══ 7. WHY CHOOSE KEENTEL — branded two-column ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -338,12 +344,12 @@ export default function UtilityScaleRenewableEnergyPage() {
         </section>
 
         {/* ═══ 8. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
             <p className="font-jost text-gray-600 text-lg mb-12">Utility-Scale Renewable Engineering by Keentel Engineering</p>
-            {caseStudies.length > 0 ? (
+            {false && caseStudies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {caseStudies.map((cs) => (
                   <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
@@ -385,7 +391,7 @@ export default function UtilityScaleRenewableEnergyPage() {
 
 
         {/* ═══ 12. BLOGS — prominent date, full image ═══ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -423,7 +429,8 @@ export default function UtilityScaleRenewableEnergyPage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Technical FAQs"
           heading="Answers,"
           headingLine2="before you ask."
@@ -431,6 +438,7 @@ export default function UtilityScaleRenewableEnergyPage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["renewable","solar","BESS"]} />
       <Footer />
     </>
   )

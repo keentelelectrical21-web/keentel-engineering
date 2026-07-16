@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-jost antialiased">
+      <body suppressHydrationWarning className="font-jost antialiased">
         {children}
         <ChatWidget />
       </body>

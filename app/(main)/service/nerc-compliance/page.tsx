@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -213,22 +217,26 @@ export default function NercCompliancePage() {
 
         {/* ═══ 2. WHAT ARE NERC COMPLIANCE SERVICES ═══ */}
         <section className="py-20 sm:py-24 bg-white">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
+          <h2 className="mb-10 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">What Are NERC Compliance Services, and Who Needs Them?</h2>
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Overview</span>
-            <h2 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>What Are NERC Compliance Services, and Who Needs Them?</h2>
             <p className="font-jost text-gray-600 mb-4 leading-relaxed text-lg">NERC compliance services are engineering and regulatory support solutions designed to help power sector organizations meet the mandatory standards established by the North American Electric Reliability Corporation (NERC). These services include alignment with both NERC O&amp;P 693 compliance standards and CIP cybersecurity requirements, ensuring that utilities remain secure, reliable, and audit-ready.</p>
             <p className="font-jost text-gray-600 mb-4 leading-relaxed text-lg">Entities that benefit most from these services include Generator Owners (GOs), Generator Operators (GOPs), Transmission Owners (TOs), Transmission Operators (TOPs), Load-Serving Entities (LSEs), and Balancing Authorities (BAs). By partnering with certified NERC compliance consultants, these organizations can effectively manage their risk exposure, avoid costly penalties, and meet stringent regional enforcement expectations.</p>
             <p className="font-jost text-gray-600 leading-relaxed text-lg">Whether managing renewable energy portfolios, conventional generation fleets, or transmission infrastructure, working with an experienced team ensures all technical documentation, RSAW responses, and compliance evidence are defensible and aligned with FERC mandates and Regional Entity audits.</p>
           </div>
           <div className="overflow-hidden rounded-2xl shadow-2xl"><Img src="/images/services/nerc-compliance/technicians-server-rack.jpg" fallback="/images/services/power-system-studies/industry-utilities.jpg" alt="Engineers reviewing NERC compliance systems and evidence" className="h-72 w-full object-cover sm:h-96" /></div>
           </div>
+          </div>
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="nerc-compliance" />
 
-        <WhoWeServed />
 
         {/* ═══ 3. TRUSTED, AUDIT-READY SUPPORT (dark, image split) ═══ */}
         <section className="py-20 sm:py-24" style={{ background: '#0B1A5B' }}>
@@ -261,7 +269,7 @@ export default function NercCompliancePage() {
         </section>
 
         {/* ═══ 4. WHY CHOOSE US — branded two-column ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -374,12 +382,12 @@ export default function NercCompliancePage() {
         </section>
 
         {/* ═══ 9. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#C72E9E' }}>Real Projects</span>
             <h2 className="font-urbanist font-black mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
             <p className="font-jost text-white/70 text-lg mb-12">NERC Compliance Engineering by Keentel Engineering</p>
-            {caseStudies.length > 0 ? (
+            {false && caseStudies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {caseStudies.map((cs) => (
                   <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
@@ -435,7 +443,7 @@ export default function NercCompliancePage() {
 
 
         {/* ═══ 14. BLOGS — prominent date, full image ═══ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -473,7 +481,8 @@ export default function NercCompliancePage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Compliance FAQs"
           heading="Answers,"
           headingLine2="before you ask."
@@ -481,6 +490,7 @@ export default function NercCompliancePage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["NERC","compliance","reliability"]} />
       <Footer />
     </>
   )

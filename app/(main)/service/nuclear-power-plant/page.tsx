@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 
 const capabilities = [
   ['Detailed Short Circuit & Protection Coordination', 'Equipment duty, relay settings, selective coordination, and fault-clearing performance for safety-related and balance-of-plant systems.'],
@@ -59,7 +63,10 @@ export default function NuclearPowerPlantPage() {
 
       <section className="bg-white py-20 sm:py-24"><div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8"><div><p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Our Approach</p><h2 className="mb-6 font-urbanist text-3xl font-black sm:text-4xl" style={{ color: '#06103C' }}>Full-Lifecycle Engineering, Grounded in Safety</h2><p className="mb-5 font-jost text-lg leading-relaxed text-gray-600">Nuclear facilities require disciplined engineering, defensible calculations, and configuration-aware execution. Keentel supports electrical modifications, system studies, equipment upgrades, and ongoing plant reliability from concept through commissioning.</p><ul className="space-y-3">{why.map(item => <li key={item} className="flex gap-3 font-jost text-gray-700"><span className="font-bold" style={{ color: '#A8228A' }}>✓</span>{item}</li>)}</ul></div><div className="overflow-hidden rounded-3xl shadow-xl"><img src="/images/services/owners-engineer/construction-workers.jpg" alt="Engineers supporting power plant construction and operations" className="h-[430px] w-full object-cover" /></div></div></section>
 
-      <ContactForm />
+        <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="nuclear-power-plant" />
 
         <WhoWeServed />
 
@@ -71,6 +78,7 @@ export default function NuclearPowerPlantPage() {
 
 <section className="bg-white py-20 sm:py-24"><div className="mx-auto max-w-4xl px-4 sm:px-6"><div className="mb-10 text-center"><p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Common Questions</p><h2 className="font-urbanist text-3xl font-black sm:text-4xl" style={{ color: '#06103C' }}>Nuclear Engineering FAQs</h2></div><div className="space-y-3">{faqs.map(([q,a],i) => <div key={q} className="overflow-hidden rounded-2xl border border-gray-200"><button onClick={() => setOpen(open===i?null:i)} className="flex w-full items-center justify-between gap-4 p-5 text-left font-urbanist font-bold" style={{ color: '#06103C' }}>{q}<span style={{ color: '#A8228A' }}>{open===i?'−':'+'}</span></button>{open===i && <p className="px-5 pb-5 font-jost leading-relaxed text-gray-600">{a}</p>}</div>)}</div></div></section>
     </main>
-    <Footer />
+      <RelatedServiceBlogs terms={["nuclear","power plant","reliability"]} />
+      <Footer />
   </>
 }

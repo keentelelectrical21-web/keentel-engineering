@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import FAQ from '@/components/sections/FAQ'
+import WhoWeServed from '@/components/service/WhoWeServed'
 import { client } from '@/lib/sanity'
 
 // ── Types ────────────────────────────────────────────────
@@ -14,6 +18,7 @@ interface BlogPost {
   publishedAt: string
   excerpt: string
   category: string
+  featuredImage?: string
 }
 
 // ── Static service data (exact from Duda) ────────────────
@@ -178,17 +183,19 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
 function BlogCard({ post }: { post: BlogPost }) {
   const base = `/images/blog/${post.slug.current}-featured`
   const extensions = ['jpg', 'png', 'jpeg', 'webp']
-  const [extIdx, setExtIdx] = useState(0)
-  const [useFallback, setUseFallback] = useState(false)
-  const src = useFallback
-    ? `https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${post.slug.current}-1920w.jpg`
-    : `${base}.${extensions[extIdx]}`
+  const sources = [
+    ...(post.featuredImage ? [post.featuredImage] : []),
+    ...extensions.map(extension => `${base}.${extension}`),
+  ]
+  const [sourceIndex, setSourceIndex] = useState(0)
+  const [imageFailed, setImageFailed] = useState(false)
+  const src = sources[sourceIndex]
 
   const handleError = () => {
-    if (extIdx < extensions.length - 1) {
-      setExtIdx(extIdx + 1)
+    if (sourceIndex < sources.length - 1) {
+      setSourceIndex(index => index + 1)
     } else {
-      setUseFallback(true)
+      setImageFailed(true)
     }
   }
 
@@ -198,19 +205,27 @@ function BlogCard({ post }: { post: BlogPost }) {
 
   return (
     <article className="group rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300 hover:shadow-xl flex flex-col" style={{ background: '#fff', border: '1px solid #E6E8F0' }}>
-      <div className="relative overflow-hidden" style={{ height: '200px' }}>
-        <img
-          src={src}
-          alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          onError={handleError}
-        />
+      <div className="relative h-64 overflow-hidden bg-white sm:h-72">
+        {!imageFailed && src ? (
+          <img
+            src={src}
+            alt={post.title}
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+            onError={handleError}
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center" style={{ background: 'linear-gradient(135deg, #06103C, #5B2A86)' }}>
+            <span className="font-urbanist text-5xl font-black text-white/20">K</span>
+          </div>
+        )}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(6,16,60,0.2) 100%)' }} />
-        <span className="absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full text-white" style={{ background: '#A8228A' }}>
-          {post.category}
-        </span>
       </div>
       <div className="p-5 flex flex-col flex-1">
+        {post.category && (
+          <span className="mb-3 inline-flex w-fit rounded-full px-3 py-1 font-jost text-xs font-bold text-white" style={{ background: '#A8228A' }}>
+            {post.category}
+          </span>
+        )}
         <h3 className="font-urbanist font-bold text-base leading-snug mb-2 group-hover:underline line-clamp-2" style={{ color: '#06103C' }}>
           <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
         </h3>
@@ -234,7 +249,9 @@ export default function ServicesPage() {
   useEffect(() => {
     client.fetch<BlogPost[]>(
       `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, "category": category->title
+        _id, title, slug, publishedAt, excerpt,
+        "category": coalesce(category->title, category),
+        "featuredImage": coalesce(featuredImage.asset->url, mainImage.asset->url)
       }`
     ).then(setBlogs).catch(() => {})
   }, [])
@@ -242,7 +259,7 @@ export default function ServicesPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="flex flex-col">
 
         {/* ── HERO ── */}
         <section className="relative min-h-[500px] flex items-end overflow-hidden">
@@ -302,8 +319,8 @@ export default function ServicesPage() {
 
               {/* Left sticky label */}
               <div className="lg:w-80 flex-shrink-0">
-                <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Difference</p>
-                <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1] mb-6" style={{ color: '#06103C' }}>Why Choose Us</h2>
+                <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Approach</p>
+                <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1] mb-6" style={{ color: '#06103C' }}>Engineering Built Around Your Project</h2>
                 <p className="font-jost text-base leading-relaxed mb-8" style={{ color: '#4B5563' }}>
                   At Keentel Engineering, we take pride in being the go-to engineering firm for power and utility system planning, design, control, and analysis.
                 </p>
@@ -338,6 +355,10 @@ export default function ServicesPage() {
         </section>
 
         {/* ── WHAT WE OFFER ── */}
+        <ContactForm />
+
+        <SoftwareTools heading="Our Software Capabilities" />
+
         <section className="py-6 text-center" style={{ background: '#06103C' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-5">What We Offer</h2>
@@ -359,7 +380,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ── BLOG SECTION ── */}
-        <section className="py-20" style={{ background: '#F6F7FB' }}>
+        <section className="order-last py-20" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
               <div>
@@ -402,9 +423,9 @@ export default function ServicesPage() {
         {/* ── CTA ── */}
         <section className="py-20" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Let's Work Together</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Let&apos;s Work Together</p>
             <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white leading-tight mb-5">
-              Let's Discuss How to Optimize Your Next Project
+              Let&apos;s Discuss How to Optimize Your Next Project
             </h2>
             <p className="font-jost text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
               Our engineers are ready to discuss your specific project requirements and help you find the best path forward.
@@ -422,6 +443,10 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
+
+        <WhoWeServed />
+
+        <FAQ />
 
       </main>
       <Footer />

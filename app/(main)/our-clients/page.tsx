@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import WhyChooseContactSection from '@/components/sections/WhyChooseContactSection'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -255,7 +256,7 @@ export default function OurClientsPage() {
         </section>
 
         {/* ── WHY CHOOSE ── */}
-        <section className="py-20 bg-white">
+        <section className="hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
               <div>
@@ -291,6 +292,7 @@ export default function OurClientsPage() {
             </div>
           </div>
         </section>
+        <WhyChooseContactSection source="our-clients" />
 
         {/* ── TECHNICAL FAQs ── */}
         <section className="py-20" style={{ background: '#F6F7FB' }}>

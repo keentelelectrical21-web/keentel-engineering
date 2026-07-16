@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 
 function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
@@ -239,6 +243,9 @@ export default function SoftwareCapabilitiesFaqsPage() {
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="software-capabilities-faqs" />
 
         <WhoWeServed />
 
@@ -310,6 +317,7 @@ export default function SoftwareCapabilitiesFaqsPage() {
           </div>
         </section>
       </main>
+      <RelatedServiceBlogs terms={["PSCAD","ETAP","PSS/E"]} />
       <Footer />
     </>
   )

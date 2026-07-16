@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -97,9 +101,9 @@ const industries = [
   { t: 'Utility Companies', img: '/images/services/power-system-studies/industry-utilities.jpg' },
   { t: 'Renewable Energy Developers', img: '/images/services/power-system-studies/industry-renewable.jpg' },
   { t: 'Transmission Developers', img: '/images/services/transmission-line-design/renewable-towers.webp' },
-  { t: 'Industrial & Manufacturing Facilities', img: '/images/services/power-system-studies/industry-industrial.webp' },
-  { t: 'EPC Contractors', img: '/images/services/power-system-studies/industry-oil-gas.jpg' },
-  { t: 'Municipal & Public-Sector Utilities', img: '/images/services/power-system-studies/industry-data-center.jpg' },
+  { t: 'Industrial & Manufacturing Facilities', img: '/images/industries/hub/industrial-manufacturing.webp' },
+  { t: 'EPC Contractors', img: '/images/industries/hub/oil-gas-mining.jpg' },
+  { t: 'Municipal & Public-Sector Utilities', img: '/images/industries/hub/data-centers.jpg' },
 ]
 
 const faqs = [
@@ -213,7 +217,7 @@ export default function TransmissionLineDesignPage() {
         <section className="py-20 sm:py-24 bg-white">
           <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
-            <p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
+            <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Capabilities</span>
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Keentel Engineering&apos;s Core Transmission Line Design Capabilities</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
@@ -233,14 +237,16 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="transmission-line-design" />
 
-        <WhoWeServed />
 
         {/* ═══ 3. GET IN TOUCH — full redesign ═══ */}
 
 
         {/* ═══ 4. WHY CHOOSE US — branded two-column ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -291,7 +297,7 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         {/* ═══ 6. INDUSTRIES WE SERVE — exact match to Power System Studies ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Sectors</span>
@@ -317,12 +323,12 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         {/* ═══ 7. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
             <p className="font-jost text-gray-600 text-lg mb-12">Transmission Line Design by Keentel Engineering</p>
-            {caseStudies.length > 0 ? (
+            {false && caseStudies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {caseStudies.map((cs) => (
                   <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white" style={{ borderColor: '#E6E8F0' }}>
@@ -388,7 +394,7 @@ export default function TransmissionLineDesignPage() {
 
 
         {/* ═══ 11. BLOGS — prominent date, full image ═══ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -426,7 +432,8 @@ export default function TransmissionLineDesignPage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Technical FAQs"
           heading="Answers,"
           headingLine2="before you ask."
@@ -434,6 +441,7 @@ export default function TransmissionLineDesignPage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["transmission","line design","utility"]} />
       <Footer />
     </>
   )

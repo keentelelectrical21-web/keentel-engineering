@@ -5,7 +5,11 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
+import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
 import { client } from '@/lib/sanity'
 
 interface BlogPost {
@@ -198,10 +202,11 @@ export default function MEPEngineeringPage() {
 
         {/* ═══ 2. OVERVIEW ═══ */}
         <section className="py-16 sm:py-20 bg-white">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
+          <h2 className="mb-10 font-urbanist font-black leading-tight text-[#06103C] text-3xl sm:text-4xl">MEP Engineering Services for Industrial and Warehouse Facilities</h2>
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
-            <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,3vw,2.25rem)' }}>MEP Engineering Services for Industrial and Warehouse Facilities</h2>
             <p className="font-jost text-gray-600 leading-relaxed mb-6 text-lg">We specialize in MEP engineering services for industrial plants, warehouse buildings, and large-scale commercial projects. From retrofitting MEP systems to energy efficiency upgrades, we design infrastructure that meets operational demands and evolving energy codes.</p>
             <ul className="space-y-2 font-jost text-sm text-gray-600">
               {['Custom MEP layouts for warehouse cooling and ventilation', 'High-load electrical system coordination for industrial sites', 'Stormwater, gas piping, and sanitary design', 'BIM-based modeling, clash detection, and design optimization'].map((t, i) => (
@@ -211,14 +216,17 @@ export default function MEPEngineeringPage() {
           </div>
           <div className="overflow-hidden rounded-2xl shadow-2xl"><img src="/images/services/mep-engineering/engineer-sketching.jpg" alt="MEP engineer reviewing coordinated building systems" className="h-72 w-full object-cover sm:h-96" /></div>
           </div>
+          </div>
         </section>
 
         <ContactForm />
+        <SoftwareTools heading="Our Software Capabilities" />
+        <Industries />
+        <ServiceCaseStudies service="mep-engineering" />
 
-        <WhoWeServed />
 
         {/* ═══ 3. WHY CHOOSE — branded two-column ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -282,12 +290,12 @@ export default function MEPEngineeringPage() {
         </section>
 
         {/* ═══ 6. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Case Studies</h2>
             <p className="font-jost text-gray-600 text-lg mb-12">MEP Engineering by Keentel Engineering</p>
-            {caseStudies.length > 0 ? (
+            {false && caseStudies.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {caseStudies.map((cs) => (
                   <Link key={cs._id} href={`/our-work/${cs.slug.current}`} className="group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
@@ -348,7 +356,7 @@ export default function MEPEngineeringPage() {
 
 
         {/* ═══ 11. BLOGS — prominent date, full image ═══ */}
-        {blogs.length > 0 && (
+        {false && blogs.length > 0 && (
           <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
@@ -386,7 +394,8 @@ export default function MEPEngineeringPage() {
           </section>
         )}
 
-<FaqSection
+        <WhoWeServed />
+        <FaqSection
           eyebrow="Questions We Hear"
           heading="Answers,"
           headingLine2="before you ask."
@@ -394,6 +403,7 @@ export default function MEPEngineeringPage() {
           items={faqs}
         />
       </main>
+      <RelatedServiceBlogs terms={["MEP","electrical design","industrial"]} />
       <Footer />
     </>
   )
