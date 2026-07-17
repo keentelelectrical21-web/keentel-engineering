@@ -60,7 +60,7 @@ export default function Footer() {
   return (
     <footer className="overflow-hidden" style={{ background: '#06103C', color: '#fff' }}>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 sm:pt-16 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
 
           {/* Brand */}
@@ -160,8 +160,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="flex flex-col sm:flex-row items-center gap-3">
+        <div className="flex flex-col items-start justify-between gap-3 pt-6 sm:flex-row sm:items-center" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="flex w-full flex-col items-start gap-3 text-left sm:w-auto sm:flex-row sm:items-center">
             <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>Copyright 1995-2026 Keentel Engineering · All Rights Reserved</p>
             <span className="hidden sm:block text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>·</span>
             <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>

@@ -6,7 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
-import Industries from '@/components/sections/Industries'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
 import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
@@ -40,13 +40,13 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
   return (
     <div className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer" style={{ border: `1.5px solid ${open ? '#A8228A' : '#E6E8F0'}`, boxShadow: open ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }} onClick={() => setOpen(!open)}>
       <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
-        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>{String(index + 1).padStart(2, '0')}</span>
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: '#0B1230' }}>{String(index + 1).padStart(2, '0')}</span>
         <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
         <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300" style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
           <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
         </div>
       </div>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '520px' : '0px' }}>
         <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
@@ -55,7 +55,7 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
 
 function FaqSection({ eyebrow, heading, headingLine2, intro, items }: { eyebrow: string; heading: string; headingLine2?: string; intro: string; items: { q: string; a: string }[] }) {
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section className="py-12 sm:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28">
@@ -112,7 +112,13 @@ const faqs = [
   { q: 'What is sag-tension analysis?', a: 'Sag-tension analysis determines how conductors behave under different loads such as temperature, wind, and ice, ensuring safe clearances and structural stability.' },
   { q: 'Why is 3D modeling important in transmission design?', a: '3D modeling improves accuracy, enables clash detection, enhances visualization, and supports better coordination among engineering teams.' },
   { q: 'What standards are used in transmission line design?', a: 'Common standards include NESC, IEEE, IEC, NEC, and utility-specific requirements.' },
+  { q: 'How does digital design improve project efficiency?', a: 'Digital design connects calculations, drawings, models, and material data so teams can identify conflicts earlier, automate repetitive work, and issue coordinated construction packages faster.' },
+  { q: 'What is a digital twin in transmission projects?', a: 'A digital twin is a data-rich virtual representation of the line, structures, conductors, and corridor. It supports design validation, stakeholder coordination, construction planning, and future asset management.' },
+  { q: 'How are transmission lines optimized for cost?', a: 'We compare route constraints, structure spacing, conductor options, loading cases, foundation requirements, losses, and constructability to find a compliant lifecycle solution—not simply the lowest initial material cost.' },
+  { q: 'What types of transmission structures are used?', a: 'Projects may use lattice towers, steel or concrete monopoles, H-frame structures, wood poles, guyed structures, and specialized dead-end or angle structures depending on voltage, loading, terrain, and utility standards.' },
   { q: 'Do you support renewable energy interconnections?', a: 'Yes. Keentel specializes in collector systems and interconnection design for solar, wind, and battery energy storage projects.' },
+  { q: 'How do environmental factors affect design?', a: 'Wind, ice, temperature, terrain, flooding, corrosion, wildfire exposure, access, and permitting constraints influence conductor behavior, structural loading, foundation selection, clearances, routing, and construction methods.' },
+  { q: 'What deliverables are provided?', a: 'Deliverables can include route and plan-profile drawings, structure and foundation details, sag-tension reports, loading calculations, grounding and shielding design, material lists, specifications, models, and issued-for-construction packages.' },
 ]
 
 export default function TransmissionLineDesignPage() {
@@ -174,14 +180,14 @@ export default function TransmissionLineDesignPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="flex flex-col">
 
 {/* ═══ 1. HERO ═══ */}
-        <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
+        <section className="order-[10] relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/transmission-line-design.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -193,9 +199,9 @@ export default function TransmissionLineDesignPage() {
               <p className="font-jost text-white/90 mb-10 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)' }}>
                 Advanced engineering solutions for reliable, efficient, and future-ready power infrastructure, specializing in transmission line design, sag-tension analysis, and high-voltage system optimization.
               </p>
-              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
-                <a href="/files/transmission-line-design.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
+              <div className="flex flex-col sm:flex-row gap-4 mb-14 sm:mb-16">
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
+                <a href="/files/transmission-line-design.pdf" target="_blank" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
               </div>
 
               <div className="border-t border-white/10 pt-8">
@@ -214,77 +220,64 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         {/* ═══ 2. CORE CAPABILITIES — 9 cards ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Capabilities</span>
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Keentel Engineering&apos;s Core Transmission Line Design Capabilities</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-              {capabilities.map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="h-44 overflow-hidden bg-gray-100"><Img src={`/images/services/transmission-line-design/${c.img}`} fallback={`/images/services/transmission-line-design/${c.img}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
-                  <div className="p-5">
-                    <h3 className="font-urbanist font-bold text-base mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
-                  </div>
-                </div>
-              ))}
+        <section className="order-[15] py-12 sm:py-16 bg-white">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
+            <div>
+              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-[0.18em] text-[#A8228A]">Our Approach</span>
+              <h2 className="mt-4 mb-5 font-urbanist font-black leading-tight text-[#06103C]" style={{ fontSize: 'clamp(2rem,3.5vw,2.85rem)' }}>Engineering Transmission Corridors for Safety, Reliability, and Long-Term Performance</h2>
+              <p className="mb-5 font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Keentel Engineering coordinates electrical performance, structural loading, route constraints, constructability, and utility standards as one integrated transmission-line engineering system.</p>
+              <p className="mb-7 font-jost text-base leading-relaxed text-gray-600">From early corridor studies through issued-for-construction packages, we validate conductor behavior, structure loading, clearances, grounding, environmental conditions, and field requirements to reduce redesign and support dependable delivery.</p>
             </div>
-          </div>
-          <div className="overflow-hidden rounded-2xl shadow-2xl"><Img src="/images/services/transmission-line-design/renewable-towers.webp" fallback="/images/services/power-system-studies/industry-utilities.jpg" alt="High-voltage transmission line engineering" className="h-72 w-full object-cover sm:h-96" /></div>
+            <div className="flex flex-col gap-4 sm:gap-5">
+            <div className="relative h-[350px] overflow-hidden rounded-[1.75rem] border border-[#E3E7F0] bg-[#F6F7FB] shadow-xl sm:h-[420px]">
+              <Img src="/images/services/transmission-line-design/renewable-towers.webp" fallback="/images/services/transmission-line-design/Line Routing & Corridor Optimization.webp" alt="Transmission corridor and high-voltage infrastructure" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06103C] via-[#06103C]/20 to-transparent" />
+              <div className="absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6">
+                <div className="mb-3 rounded-2xl border border-white/20 bg-[#06103C]/90 p-4 backdrop-blur-md sm:p-5">
+                <p className="font-urbanist text-lg font-bold text-white">Integrated from route selection to construction support</p>
+                <p className="mt-1 font-jost text-sm leading-relaxed text-white/70">One coordinated engineering path for electrical, structural, civil, and permitting requirements.</p>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
         </section>
 
-        <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
-        <Industries />
-        <ServiceCaseStudies service="transmission-line-design" />
+        <section className="order-[40] py-12 sm:py-16 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Capabilities</span>
+            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Keentel Engineering&apos;s Core Transmission Line Design Capabilities</h2>
+          </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+              {capabilities.map((c, i) => (
+                <article key={i} className="group flex h-full flex-col bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/50" style={{ borderColor: '#E6E8F0' }}>
+                  <div className="h-48 overflow-hidden bg-gray-100"><Img src={`/images/services/transmission-line-design/${c.img}`} fallback={`/images/services/transmission-line-design/${c.img}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
+                  <div className="p-6 flex-1">
+                    <h3 className="font-urbanist font-bold text-base mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
+                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <div className="order-[20]"><ContactForm /></div>
+        <div className="order-[50]"><SoftwareTools /></div>
+        <div className="order-[30]"><SoftwareCapabilities /></div>
+        <div className="order-[90]"><ServiceCaseStudies service="transmission-line-design" /></div>
 
 
         {/* ═══ 3. GET IN TOUCH — full redesign ═══ */}
 
 
-        {/* ═══ 4. WHY CHOOSE US — branded two-column ═══ */}
-        <section className="hidden" aria-hidden="true">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              <div className="lg:col-span-5">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Why Keentel</span>
-                <h2 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Us</h2>
-                <p className="font-jost text-white/70 text-lg leading-relaxed mb-8">At Keentel Engineering, we take pride in being the go-to engineering firm for power and utility system planning, design, control, and analysis.</p>
-                <Link href="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                  Learn More About Us
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-              </div>
-              <div className="lg:col-span-7 rounded-2xl p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, rgba(168,34,138,0.12), rgba(91,42,134,0.12))', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div className="space-y-4">
-                  {[
-                    { t: 'Client-Focused Work Approach', d: 'Our team works cohesively on every project and with every client. We first develop a solid understanding of your project goals, requirements, and needs. From concept to commissioning, we assist you in every step.' },
-                    { t: '30 Years of Experience', d: 'We have over three decades of experience in design and interconnection — the knowledge, understanding, and expertise to handle and execute all types of projects with sheer perfection and superior workmanship.' },
-                    { t: 'Quality with Innovation', d: 'At Keentel Engineering, we have established our stellar market reputation on quality, work ethics, and innovation.' },
-                    { t: 'Attention to Detail', d: 'We work on every project with laser focus and attention to detail, delivering desired results with complete satisfaction.' },
-                  ].map((c, i) => (
-                    <div key={i} className="flex items-start gap-4 p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 font-urbanist font-black text-white" style={{ background: '#A8228A' }}>{i + 1}</div>
-                      <div>
-                        <p className="font-urbanist font-bold text-white text-base sm:text-lg mb-1">{c.t}</p>
-                        <p className="font-jost text-white/65 text-sm leading-relaxed">{c.d}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ═══ 5. PROCESS ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="order-[70] py-12 sm:py-16" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Our Engineering Process</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-8">
               {processSteps.map((s, i) => (
                 <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
                   <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: '#A8228A' }}>STEP {i + 1}</p>
@@ -297,19 +290,18 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         {/* ═══ 6. INDUSTRIES WE SERVE — exact match to Power System Studies ═══ */}
-        <section className="hidden" aria-hidden="true">
+        <section className="order-[80] py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12">
+            <div className="mb-8">
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Sectors</span>
               <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: '#06103C' }}>Industries We Serve</h2>
               <p className="font-jost text-gray-600 text-lg max-w-2xl">Serving the evolving needs of power and infrastructure markets through responsive, high-quality engineering support.</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {industries.map((item, i) => (
-                <Link key={i} href="/industries" className="group relative rounded-xl overflow-hidden block" style={{ aspectRatio: '3/4' }}>
+                <Link key={i} href="/industries" className="group relative rounded-2xl overflow-hidden block min-h-[240px] sm:min-h-[280px]">
                   <Img src={item.img} fallback={item.img} alt={item.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.9) 0%, rgba(6,16,60,0.3) 60%, transparent 100%)' }} />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="absolute bottom-0 left-0 right-0 p-4" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.96) 0%, rgba(6,16,60,0.88) 72%, rgba(6,16,60,0) 100%)' }}>
                     <p className="font-urbanist font-bold text-white text-sm leading-tight">{item.t}</p>
                     <span className="inline-flex items-center gap-1 mt-2 text-xs font-jost font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#C72E9E' }}>
                       See More
@@ -361,24 +353,16 @@ export default function TransmissionLineDesignPage() {
         </section>
 
         {/* ═══ 8. FINAL CTA — exact match to Power System Studies ═══ */}
-        <section className="py-20 sm:py-24 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
+        <section className="order-[130] py-12 sm:py-16 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
           <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-3xl rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #C72E9E 0%, transparent 70%)' }} />
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Get Started</span>
               <h2 className="font-urbanist font-black text-white mb-5 leading-tight" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.25rem)' }}>Ensure Your Electrical Infrastructure Is Safe, Compliant, and Future-Ready</h2>
               <p className="font-jost text-white/85 mb-8 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)' }}>Work with a specialized team of transmission line engineers delivering cost-optimized, code-compliant, and approval-ready designs for utility-scale and infrastructure projects.</p>
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-xl" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule A Consultation</Link>
-                <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Speak With an Engineer</Link>
-              </div>
-              <div className="grid max-w-md grid-cols-1 gap-4 sm:grid-cols-3">
-                {[{ n: '30+', l: 'Years' }, { n: '21', l: 'Licensed PEs' }, { n: '50', l: 'States' }].map((s, i) => (
-                  <div key={i} className="rounded-xl p-3 text-center" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <p className="font-urbanist font-black text-xl text-white">{s.n}</p>
-                    <p className="font-jost text-[11px]" style={{ color: 'rgba(255,255,255,0.55)' }}>{s.l}</p>
-                  </div>
-                ))}
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-xl" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>Schedule A Consultation</Link>
+                <Link href="tel:813-389-7871" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Speak With an Engineer</Link>
               </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
@@ -432,14 +416,14 @@ export default function TransmissionLineDesignPage() {
           </section>
         )}
 
-        <WhoWeServed />
-        <FaqSection
+        <div className="order-[110]"><WhoWeServed /></div>
+        <div className="order-[120]"><FaqSection
           eyebrow="Technical FAQs"
           heading="Answers,"
           headingLine2="before you ask."
           intro="The transmission line design questions our clients ask most."
           items={faqs}
-        />
+        /></div>
       </main>
       <RelatedServiceBlogs terms={["transmission","line design","utility"]} />
       <Footer />

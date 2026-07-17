@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
-import SoftwareTools from '@/components/sections/SoftwareTools'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
@@ -40,13 +40,13 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
   return (
     <div className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer" style={{ border: `1.5px solid ${open ? '#A8228A' : '#E6E8F0'}`, boxShadow: open ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }} onClick={() => setOpen(!open)}>
       <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
-        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>{String(index + 1).padStart(2, '0')}</span>
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: '#0B1230' }}>{String(index + 1).padStart(2, '0')}</span>
         <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
         <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300" style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
           <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
         </div>
       </div>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '520px' : '0px' }}>
         <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
@@ -110,8 +110,17 @@ const whyChoose = [
 const faqs = [
   { q: 'What is a utility-scale solar farm?', a: 'A utility-scale solar farm is a large solar power generation facility designed to produce significant amounts of electricity, typically in the range of several megawatts (MW) to gigawatts (GW), connected directly to the electrical grid.' },
   { q: 'Why is engineering important for a utility-scale solar farm project?', a: 'Proper design and planning ensure the system is efficient, reliable, and cost-effective. Engineering services optimize energy production, ensure grid code compliance, address safety concerns, and minimize operational costs.' },
+  { q: 'How much do utility-scale solar farm engineering services cost?', a: 'Cost depends on project size, site conditions, grid requirements, study scope, interconnection complexity, and the level of design documentation required. We define scope and deliverables early so developers can plan engineering budgets with confidence.' },
+  { q: 'What is a utility-scale wind farm?', a: 'A utility-scale wind farm is a multi-turbine generation facility that connects to the transmission or distribution grid and is designed to deliver power at commercial scale.' },
+  { q: 'What engineering services are needed for a wind farm?', a: 'Wind farm engineering commonly includes collector system design, turbine and substation interconnection, power flow and dynamic studies, protection coordination, grounding, reactive power planning, and utility compliance support.' },
+  { q: 'How much do utility-scale wind farm engineering services cost?', a: 'The required effort varies with turbine count, collector voltage, POI complexity, terrain, grid strength, study requirements, and permitting constraints. A scoped engineering plan identifies the work needed before detailed design begins.' },
   { q: 'What is wake loss, and why does it matter in wind farm design?', a: 'Wake loss happens when one turbine blocks or disturbs the airflow to another, reducing overall efficiency. We use advanced modeling to optimize turbine layouts and minimize wake effects.' },
+  { q: 'How is wind measured and modeled for building a wind farm?', a: 'Meteorological data, terrain, turbine characteristics, wake behavior, and long-term weather patterns are analyzed to estimate energy production and determine suitable turbine placement and electrical collection requirements.' },
+  { q: 'How much do utility-scale battery storage engineering services cost?', a: 'BESS engineering cost is driven by MW/MWh capacity, interconnection requirements, controls, protection, fire safety, site civil conditions, and the level of utility and EPC coordination required.' },
   { q: 'What is the difference between utility-scale BESS and commercial battery systems?', a: 'Utility-scale BESS are large-scale systems rated in megawatts designed to support the grid and renewable integration. Commercial battery systems are smaller, serving individual facilities for energy savings and backup power.' },
+  { q: 'How does a BESS improve grid reliability during peak demand or outages?', a: 'A BESS can respond rapidly to frequency and voltage events, shift energy to peak periods, provide reserve capacity, support renewable output, and help maintain grid stability when generation or load conditions change.' },
+  { q: 'What battery chemistries are best suited for utility-scale storage?', a: 'Lithium-ion is widely used because of its energy density and response speed, while other chemistries may be evaluated based on duration, safety, lifecycle, environmental conditions, operating strategy, and project economics.' },
+  { q: 'What is BESS performance optimization at commissioning?', a: 'Commissioning optimization verifies controls, protection, thermal management, EMS integration, response settings, and operating modes so the system performs as intended under utility and project-specific conditions.' },
   { q: 'What are the fire safety and thermal management requirements for BESS?', a: 'Compliance with UL 9540A testing, fire suppression systems, thermal runaway detection, proper enclosure ventilation, and adherence to NFPA 855 and site-specific safety codes.' },
   { q: 'Can BESS systems be co-located with solar or wind farms?', a: 'Yes, utility-scale BESS are commonly co-located with solar or wind farms to store excess generation and discharge during low production or peak demand, enhancing renewable utilization.' },
 ]
@@ -175,14 +184,14 @@ export default function UtilityScaleRenewableEnergyPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="flex flex-col">
 
 {/* ═══ 1. HERO ═══ */}
-        <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
+        <section className="order-[10] relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/renewable-energy.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -214,37 +223,48 @@ export default function UtilityScaleRenewableEnergyPage() {
         </section>
 
         {/* ═══ 2. OVERVIEW ═══ */}
-        <section className="py-16 sm:py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="font-jost text-gray-700 text-xl leading-relaxed text-center">
-              Utility-scale renewable energy projects require advanced power system engineering to ensure reliable and compliant grid integration. Keentel Engineering supports solar, wind, and BESS developers with POI interconnection studies, IEEE 2800 compliance, dynamic modeling, and NERC reliability support.
-            </p>
+        <section className="order-[20] py-12 sm:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
+              <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Utility-Scale Renewable Engineering Built for Real Grid Conditions</h2>
+              <p className="font-jost text-gray-700 text-lg leading-relaxed mb-5">Utility-scale renewable energy projects require advanced power system engineering to ensure reliable and compliant grid integration. Keentel Engineering supports solar, wind, and BESS developers with POI interconnection studies, IEEE 2800 compliance, dynamic modeling, and NERC reliability support.</p>
+              <p className="font-jost text-gray-600 leading-relaxed">We connect interconnection requirements, inverter controls, protection, and operating performance into a coordinated design path that supports approval, construction, and long-term reliability.</p>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-[#E6E8F0]">
+              <Img src="/images/services/utility-scale-renewable-energy/hero-towers.webp" fallback="/images/services/utility-scale-renewable-energy/why-specialized.webp" alt="Utility-scale renewable energy infrastructure" className="w-full h-72 sm:h-96 object-cover" />
+            </div>
           </div>
         </section>
 
 {/* ═══ 3. THREE SEGMENTS ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="order-[50] py-16 sm:py-20" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="max-w-3xl mb-10 sm:mb-12">
+              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Services</span>
+              <h2 className="font-urbanist font-black mb-4 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Utility-Scale Renewable Energy Engineering Services</h2>
+              <p className="font-jost text-gray-600 text-base sm:text-lg leading-relaxed">Specialized electrical and power system engineering for solar, wind, and battery storage projects—from interconnection strategy through compliant, construction-ready design.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
               {segments.map((s, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border flex flex-col hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="h-48 overflow-hidden"><Img src={`/images/services/utility-scale-renewable-energy/${s.img}`} fallback={`/images/services/utility-scale-renewable-energy/${s.img}`} alt={s.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
+                <article key={i} className="group bg-white rounded-2xl overflow-hidden border flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#A8228A]/50" style={{ borderColor: '#E6E8F0' }}>
+                  <div className="relative h-52 overflow-hidden"><Img src={`/images/services/utility-scale-renewable-energy/${s.img}`} fallback={`/images/services/utility-scale-renewable-energy/${s.img}`} alt={s.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><span className="absolute top-4 left-4 grid h-9 w-9 place-items-center rounded-full font-urbanist text-sm font-black text-white" style={{ background: '#A8228A' }}>0{i + 1}</span></div>
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="font-urbanist font-bold text-lg mb-3" style={{ color: '#06103C' }}>{s.t}</h3>
+                    <h3 className="font-urbanist font-bold text-xl mb-3" style={{ color: '#06103C' }}>{s.t}</h3>
                     <p className="font-jost text-gray-600 text-sm leading-relaxed mb-5 flex-1">{s.d}</p>
                     <Link href={s.link} className="inline-flex items-center gap-2 text-sm font-semibold font-jost" style={{ color: '#A8228A' }}>
                       Learn more
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </Link>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
         {/* ═══ 4. WHY SPECIALIZED ENGINEERING — prominent ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
@@ -269,14 +289,14 @@ export default function UtilityScaleRenewableEnergyPage() {
           </div>
         </section>
 
-        <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
-        <Industries />
-        <ServiceCaseStudies service="utility-scale-renewable-energy" />
+        <div className="order-[30]"><ContactForm /></div>
+        <div className="order-[40]"><SoftwareCapabilities /></div>
+        <div className="order-[80]"><Industries /></div>
+        <div className="order-[90]"><ServiceCaseStudies service="utility-scale-renewable-energy" /></div>
 
 
         {/* ═══ 5. SOFTWARE TOOLS ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Software Tools Used for Renewable Energy Engineering</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">Keentel Engineering uses advanced power system simulation platforms to support utility-scale solar, wind, and BESS projects — including POI interconnection studies, dynamic stability analysis, harmonic studies, EMT modeling, and IEEE 2800 compliance validation.</p>
@@ -296,7 +316,7 @@ export default function UtilityScaleRenewableEnergyPage() {
         </section>
 
         {/* ═══ 6. PROCESS ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="order-[70] py-16 sm:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-10 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Our Renewable Engineering Process</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
@@ -429,14 +449,26 @@ export default function UtilityScaleRenewableEnergyPage() {
           </section>
         )}
 
-        <WhoWeServed />
-        <FaqSection
+        <section className="order-[100] py-12 sm:py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl px-6 py-8 sm:px-10 sm:py-9 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+              <div>
+                <p className="font-urbanist font-black text-2xl text-white mb-2">Need Renewable Engineering Support?</p>
+                <p className="font-jost text-white/80 leading-relaxed">Talk with an engineer about solar, wind, BESS, and grid interconnection requirements.</p>
+              </div>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full sm:w-auto justify-center flex-shrink-0 items-center px-7 py-3.5 rounded-full font-jost font-semibold text-white border border-white/40 hover:bg-white/10 transition-colors">Schedule a Call</Link>
+            </div>
+          </div>
+        </section>
+
+        <div className="order-[110]"><WhoWeServed /></div>
+        <div className="order-[120]"><FaqSection
           eyebrow="Technical FAQs"
           heading="Answers,"
           headingLine2="before you ask."
           intro="The solar, wind, and BESS engineering questions developers ask us most."
           items={faqs}
-        />
+        /></div>
       </main>
       <RelatedServiceBlogs terms={["renewable","solar","BESS"]} />
       <Footer />

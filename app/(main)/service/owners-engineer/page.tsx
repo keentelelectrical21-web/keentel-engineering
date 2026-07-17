@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
@@ -92,6 +93,22 @@ const fullScope = [
   { t: 'Construction Oversight & Commissioning', d: 'Active construction oversight from pre-mobilization through final commissioning, including FAT/SAT testing, relay validation, SCADA integration, and final energization.' },
 ]
 
+const fullScopeImages = [
+  '/images/services/owners-engineer/grid-diagram.jpg',
+  '/images/services/owners-engineer/circuit-diagram.jpg',
+  '/images/services/owners-engineer/switchgear.jpg',
+  '/images/services/owners-engineer/blueprint-review.jpg',
+  '/images/services/owners-engineer/construction-workers.jpg',
+  '/images/services/owners-engineer/solar-panels.png',
+]
+
+const deliveryProcess = [
+  { n: '01', t: 'Define the Owner’s Requirements', d: 'Align technical, commercial, schedule, and compliance objectives before design decisions are locked in.' },
+  { n: '02', t: 'Review Design & Procurement', d: 'Independently review engineering packages, equipment selections, bids, and vendor deliverables.' },
+  { n: '03', t: 'Oversee Construction', d: 'Track quality, interfaces, risk, and milestones during field execution, testing, and commissioning.' },
+  { n: '04', t: 'Support Energization & Handover', d: 'Validate closeout documentation and support a reliable, compliant transition into operations.' },
+]
+
 const segments = [
   { t: 'HVDC Owner\u2019s Engineer Services', d: 'Specialized design review, system modeling validation, and technical oversight during converter station deployment, cable routing, and grounding system implementation for long-distance transmission and offshore wind projects.' },
   { t: 'Solar & BESS Projects', d: 'Full-lifecycle support for solar PV and battery energy storage installations — from site selection and interconnection application to commissioning and grid compliance.' },
@@ -173,7 +190,7 @@ export default function OwnersEngineerPage() {
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/owners-engineer.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -252,7 +269,22 @@ export default function OwnersEngineerPage() {
         </section>
 
         <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
+
+        <section className="py-8 sm:py-10" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5" style={{ background: '#06103C' }}>
+              <div>
+                <p className="font-urbanist font-bold text-lg sm:text-xl text-white">Download the Owner&apos;s Engineer Services Flyer</p>
+                <p className="font-jost text-sm mt-1" style={{ color: 'rgba(255,255,255,0.72)' }}>A concise overview of our independent engineering oversight and delivery support.</p>
+              </div>
+              <a href="/files/owners-engineer.pdf" target="_blank" className="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 font-jost text-sm font-semibold text-white transition-transform hover:scale-105" style={{ background: '#A8228A' }}>
+                Download the Flyer
+              </a>
+            </div>
+          </div>
+        </section>
+        <SoftwareTools />
+        <SoftwareCapabilities />
         <Industries />
         <ServiceCaseStudies service="owners-engineer" />
 
@@ -263,9 +295,12 @@ export default function OwnersEngineerPage() {
             <h2 className="font-urbanist font-black mb-10 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Full Scope of Our Owner&apos;s Engineering Support</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {fullScope.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-lg mb-3 border-l-4 pl-3" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                <div key={i} className="overflow-hidden bg-white rounded-2xl border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
+                  <Img src={fullScopeImages[i]} fallback="/images/services/owners-engineer/construction-workers.jpg" alt={c.t} className="w-full h-44 object-cover" />
+                  <div className="p-6">
+                    <h3 className="font-urbanist font-bold text-lg mb-3 border-l-4 pl-3" style={{ color: '#06103C', borderColor: '#A8228A' }}>{c.t}</h3>
+                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -273,6 +308,25 @@ export default function OwnersEngineerPage() {
         </section>
 
         {/* ═══ 5. HVDC/SOLAR/WIND SEGMENTS ═══ */}
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-10">
+              <p className="text-xs font-bold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Delivery Process</p>
+              <h2 className="font-urbanist font-black leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>From Project Concept to Commissioning</h2>
+              <p className="font-jost text-gray-600 text-lg leading-relaxed mt-4">Independent technical oversight at every key decision point keeps delivery aligned with your objectives, budget, and schedule.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {deliveryProcess.map((step) => (
+                <div key={step.n} className="rounded-2xl border p-6" style={{ background: '#F6F7FB', borderColor: '#E1E5EF' }}>
+                  <span className="inline-flex w-10 h-10 items-center justify-center rounded-full font-urbanist font-black text-sm" style={{ color: '#A8228A', background: '#F9EAF6' }}>{step.n}</span>
+                  <h3 className="font-urbanist font-bold text-lg leading-tight mt-5" style={{ color: '#06103C' }}>{step.t}</h3>
+                  <p className="font-jost text-sm leading-relaxed mt-3" style={{ color: '#566078' }}>{step.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3 text-center" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>HVDC, Solar &amp; Wind Owner&apos;s Engineer Support</h2>

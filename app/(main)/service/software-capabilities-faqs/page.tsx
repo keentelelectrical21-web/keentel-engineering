@@ -204,7 +204,7 @@ export default function SoftwareCapabilitiesFaqsPage() {
 
         {/* ═══ HERO ═══ */}
         <section className="relative overflow-hidden" style={{ background: '#06103C' }}>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.95) 0%, rgba(6,16,60,0.85) 55%, rgba(91,42,134,0.5) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
             <div className="flex items-center gap-2 mb-6 sm:mb-8">
               <Link href="/services" className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#C72E9E' }}>Services</Link>
@@ -243,7 +243,7 @@ export default function SoftwareCapabilitiesFaqsPage() {
         </section>
 
         <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
+        <SoftwareTools />
         <Industries />
         <ServiceCaseStudies service="software-capabilities-faqs" />
 

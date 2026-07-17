@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
@@ -174,7 +175,7 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
-        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: '#000000' }}>
           {String(index + 1).padStart(2, '0')}
         </span>
         <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
@@ -187,7 +188,7 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
           </svg>
         </div>
       </div>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '600px' : '0px' }}>
         <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
@@ -215,7 +216,7 @@ function FaqSection({
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-jost font-semibold text-white px-7 py-4 rounded-full transition-all hover:-translate-y-0.5"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 font-jost font-semibold text-white transition-all hover:-translate-y-0.5 sm:w-auto"
               style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}
             >
               {ctaText}
@@ -305,7 +306,7 @@ export default function PowerSystemStudiesPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
 
 {/* ═══════════════════════════════════════════════════════
             1. HERO — video visible, overlay contained, big desc
@@ -321,7 +322,7 @@ export default function PowerSystemStudiesPage() {
           </video>
 
           {/* Lighter overlay so video reads through clearly, fully contained to section */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 w-full">
             <div className="max-w-4xl">
@@ -340,11 +341,11 @@ export default function PowerSystemStudiesPage() {
                 Keentel Engineering provides comprehensive power system studies nationwide, empowering utilities, industrial plants, renewable projects, and commercial facilities with reliable, data-driven solutions.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
+              <div className="flex flex-col gap-4 mb-14 sm:mb-16 sm:flex-row sm:flex-wrap">
                 <Link
                   href="https://calendly.com/keentel-engineering/15min"
                   target="_blank"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-lg sm:w-auto"
                   style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}
                 >
                   Schedule a Consultation
@@ -352,7 +353,7 @@ export default function PowerSystemStudiesPage() {
                 </Link>
                 <Link
                   href="tel:813-389-7871"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   813-389-7871
@@ -361,11 +362,11 @@ export default function PowerSystemStudiesPage() {
 
               <div className="border-t border-white/10 pt-8">
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
-                <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <div className="block w-full rounded-2xl px-4 py-5 sm:inline-block sm:w-auto sm:px-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                   <img
                     src="/images/cert-logos.png"
                     alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
-                    className="h-20 sm:h-24 object-contain"
+                    className="h-auto max-h-20 w-full object-contain sm:h-24 sm:w-auto sm:max-h-24"
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
                   />
                 </div>
@@ -433,9 +434,56 @@ export default function PowerSystemStudiesPage() {
         </section>
 
         <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
-        <Industries />
-        <ServiceCaseStudies service="power-system-studies" />
+
+        {/* Software capabilities — immediately after the contact form */}
+        <section className="hidden" aria-hidden="true">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Tools We Use</span>
+              <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>Our Software Capabilities</h2>
+              <p className="font-jost text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Select a platform to see what it&apos;s built for and the questions clients ask most.</p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              {softwareTools.map(tool => (
+                <button
+                  key={tool.key}
+                  onClick={() => setActiveSoftware(tool.key)}
+                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all duration-200 min-w-[100px]"
+                  style={{
+                    borderColor: activeSoftware === tool.key ? '#A8228A' : '#E6E8F0',
+                    background: activeSoftware === tool.key ? 'rgba(168,34,138,0.05)' : '#fff',
+                    boxShadow: activeSoftware === tool.key ? '0 4px 18px rgba(168,34,138,0.18)' : 'none',
+                  }}
+                >
+                  <img src={tool.logo} alt={tool.name} className="h-9 max-w-[90px] object-contain" onError={(e) => { (e.target as HTMLImageElement).src = tool.fallback }} />
+                  <span className="text-xs font-bold uppercase tracking-wide font-jost" style={{ color: activeSoftware === tool.key ? '#A8228A' : '#999' }}>{tool.name}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border p-6 sm:p-8" style={{ borderColor: '#E6E8F0' }}>
+              <div className="flex items-center gap-4 mb-3">
+                <img src={activeTool.logo} alt={activeTool.name} className="h-10 object-contain" onError={(e) => { (e.target as HTMLImageElement).src = activeTool.fallback }} />
+                <h3 className="font-urbanist font-bold text-xl sm:text-2xl" style={{ color: '#06103C' }}>{activeTool.name}</h3>
+              </div>
+              <p className="font-jost text-gray-600 leading-relaxed mb-8 max-w-3xl">{activeTool.description}</p>
+              <div className="flex flex-col gap-3">
+                {activeTool.faqs.map((f, i) => (
+                  <FaqAccordionItem key={i} q={f.q} a={f.a} index={i} />
+                ))}
+              </div>
+              <div className="mt-8 text-center">
+                <Link href="/service/software-capabilities-faqs" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
+                  See All {activeTool.name} FAQs
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <SoftwareCapabilities />
 
 
         {/* ═══════════════════════════════════════════════════════
@@ -496,55 +544,6 @@ export default function PowerSystemStudiesPage() {
         {/* ═══════════════════════════════════════════════════════
             5. SOFTWARE CAPABILITIES — now FAQ-driven per tool
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Tools We Use</span>
-              <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>Our Software Capabilities</h2>
-              <p className="font-jost text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Select a platform to see what it&apos;s built for and the questions clients ask most.</p>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              {softwareTools.map(tool => (
-                <button
-                  key={tool.key}
-                  onClick={() => setActiveSoftware(tool.key)}
-                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all duration-200 min-w-[100px]"
-                  style={{
-                    borderColor: activeSoftware === tool.key ? '#A8228A' : '#E6E8F0',
-                    background: activeSoftware === tool.key ? 'rgba(168,34,138,0.05)' : '#fff',
-                    boxShadow: activeSoftware === tool.key ? '0 4px 18px rgba(168,34,138,0.18)' : 'none',
-                  }}
-                >
-                  <img src={tool.logo} alt={tool.name} className="h-9 max-w-[90px] object-contain" onError={(e) => { (e.target as HTMLImageElement).src = tool.fallback }} />
-                  <span className="text-xs font-bold uppercase tracking-wide font-jost" style={{ color: activeSoftware === tool.key ? '#A8228A' : '#999' }}>{tool.name}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border p-6 sm:p-8" style={{ borderColor: '#E6E8F0' }}>
-              <div className="flex items-center gap-4 mb-3">
-                <img src={activeTool.logo} alt={activeTool.name} className="h-10 object-contain" onError={(e) => { (e.target as HTMLImageElement).src = activeTool.fallback }} />
-                <h3 className="font-urbanist font-bold text-xl sm:text-2xl" style={{ color: '#06103C' }}>{activeTool.name}</h3>
-              </div>
-              <p className="font-jost text-gray-600 leading-relaxed mb-8 max-w-3xl">{activeTool.description}</p>
-
-              <div className="flex flex-col gap-3">
-                {activeTool.faqs.map((f, i) => (
-                  <FaqAccordionItem key={i} q={f.q} a={f.a} index={i} />
-                ))}
-              </div>
-
-              <div className="mt-8 text-center">
-                <Link href="/service/software-capabilities-faqs" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
-                  See All {activeTool.name} FAQs
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ═══════════════════════════════════════════════════════
             6. STUDY TYPES — prominent desc
         ═══════════════════════════════════════════════════════ */}
@@ -559,12 +558,12 @@ export default function PowerSystemStudiesPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: 'Transmission Planning', img: '/images/services/power-system-studies/study-transmission-planning.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/transmission_planning_studies_correct_logos-1920w.png', desc: 'Support grid expansion through power flow, contingency, and stability studies to identify constraints and improve system reliability.', link: '/service/power-system-studies/transmission-planning-studies' },
+                { title: 'Transmission Planning', img: '/images/services/power-system-studies/Transmission Planning.jfif', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/transmission_planning_studies_correct_logos-1920w.png', desc: 'Support grid expansion through power flow, contingency, and stability studies to identify constraints and improve system reliability.', link: '/service/power-system-studies/transmission-planning-studies' },
                 { title: 'Load Flow Analysis', img: '/images/services/power-system-studies/study-load-flow.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/ae649c9f9982d1727f1d40be7d72666e-1920w.webp', desc: 'Evaluate voltage stability, load distribution, and losses to ensure efficient power performance during normal and peak demand.', link: '/service/power-system-studies/load-flow-analysis-services' },
-                { title: 'Short Circuit Studies', img: '/images/services/power-system-studies/study-short-circuit.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/images-1920w.jpg', desc: 'Determine fault current levels, validate equipment ratings, and verify protection devices operate correctly during abnormal system events.', link: '/service/power-system-studies/short-circuit-analysis-power-system' },
-                { title: 'Protective Coordination', img: '/images/services/power-system-studies/study-protection-coordination.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/protection-coordination-practices-distribution-generation-920x613-1920w.jpg', desc: 'Optimize relay and breaker settings using time-current analysis to isolate faults quickly and minimize system disruption.', link: '/service/power-system-studies/protective-device-coordination-studies' },
-                { title: 'Harmonic Analysis', img: '/images/services/power-system-studies/study-harmonic-analysis.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/studi-dan-analisis-harmonik-harmonic-study-and-analysis-1920w.jpg', desc: 'Detect waveform distortion from inverter sources and nonlinear loads through harmonic analysis, resonance evaluation, and mitigation studies.', link: '/service/power-system-studies/harmonic-analysis-power-systems' },
-                { title: 'Grounding Protection', img: '/images/services/power-system-studies/study-grounding.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/c5e7c86d-60f2-4b2e-8f31-ce7c0a3d1b64-1920w.png', desc: 'Reduce step and touch voltage risks through grounding studies, fault analysis, and protection performance evaluation for safer system operation.', link: '/service/power-system-studies/grounding-system-studies' },
+                { title: 'Short Circuit Studies', img: '/images/services/power-system-studies/Short Circuit Studies.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/images-1920w.jpg', desc: 'Determine fault current levels, validate equipment ratings, and verify protection devices operate correctly during abnormal system events.', link: '/service/power-system-studies/short-circuit-analysis-power-system' },
+                { title: 'Protective Coordination', img: '/images/services/power-system-studies/Protective Coordination.jfif', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/protection-coordination-practices-distribution-generation-920x613-1920w.jpg', desc: 'Optimize relay and breaker settings using time-current analysis to isolate faults quickly and minimize system disruption.', link: '/service/power-system-studies/protective-device-coordination-studies' },
+                { title: 'Harmonic Analysis', img: '/images/services/power-system-studies/Harmonic Analysis.webp', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/studi-dan-analisis-harmonik-harmonic-study-and-analysis-1920w.jpg', desc: 'Detect waveform distortion from inverter sources and nonlinear loads through harmonic analysis, resonance evaluation, and mitigation studies.', link: '/service/power-system-studies/harmonic-analysis-power-systems' },
+                { title: 'Grounding Protection', img: '/images/services/power-system-studies/Grounding Protection.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/c5e7c86d-60f2-4b2e-8f31-ce7c0a3d1b64-1920w.png', desc: 'Reduce step and touch voltage risks through grounding studies, fault analysis, and protection performance evaluation for safer system operation.', link: '/service/power-system-studies/grounding-system-studies' },
               ].map((item, i) => (
                 <div key={i} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border" style={{ borderColor: '#E6E8F0' }}>
                   <div className="relative h-48 overflow-hidden">
@@ -590,7 +589,7 @@ export default function PowerSystemStudiesPage() {
         ═══════════════════════════════════════════════════════ */}
         <section className="py-8 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl p-8" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
+            <div className="flex flex-col items-center justify-between gap-6 rounded-2xl p-5 text-center sm:flex-row sm:p-8 sm:text-left" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
               <div>
                 <h3 className="font-urbanist font-bold text-2xl text-white mb-1">Download Power System Studies Flyer</h3>
                 <p className="font-jost text-white/60 text-sm">Click the download button to get our Power System Studies overview flyer</p>
@@ -598,7 +597,7 @@ export default function PowerSystemStudiesPage() {
               <Link
                 href="/files/advance-power-system.pdf"
                 target="_blank"
-                className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:scale-105"
+                className="inline-flex w-full flex-shrink-0 items-center justify-center gap-2 rounded-full px-7 py-3.5 font-jost font-semibold text-white transition-all hover:scale-105 sm:w-auto"
                 style={{ background: '#A8228A' }}
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -607,6 +606,8 @@ export default function PowerSystemStudiesPage() {
             </div>
           </div>
         </section>
+
+        <SoftwareTools />
 
         {/* ═══════════════════════════════════════════════════════
             8. PROCESS
@@ -653,7 +654,7 @@ export default function PowerSystemStudiesPage() {
             <div className="mt-10 text-center">
               <Link
                 href="/power-system-study-process"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:opacity-90"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 font-jost font-semibold text-white transition-all hover:opacity-90 sm:w-auto"
                 style={{ background: '#06103C' }}
               >
                 See Detailed Process
@@ -662,6 +663,8 @@ export default function PowerSystemStudiesPage() {
             </div>
           </div>
         </section>
+
+        <Industries />
 
         {/* ═══════════════════════════════════════════════════════
             9. INDUSTRIES WE SUPPORT
@@ -754,17 +757,17 @@ export default function PowerSystemStudiesPage() {
                 <p className="font-jost text-white/85 mb-8 leading-relaxed" style={{ fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)' }}>
                   Speak with a licensed engineer about your power system study, from load flow and short-circuit analysis to protection coordination and NERC compliance.
                 </p>
-                <div className="flex flex-wrap gap-4 mb-10">
-                  <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-xl" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
+                <div className="flex flex-col gap-4 mb-10 sm:flex-row sm:flex-wrap">
+                  <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-jost font-semibold text-white transition-all hover:scale-105 hover:shadow-xl sm:w-auto" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
                     Schedule A Consultation
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
-                  <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">
+                  <Link href="tel:813-389-7871" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                     Speak With an Engineer
                   </Link>
                 </div>
-                <div className="grid max-w-md grid-cols-1 gap-4 sm:grid-cols-3">
+                <div className="grid max-w-md grid-cols-3 gap-2 sm:gap-4">
                   {[{ n: '30+', l: 'Years' }, { n: '21', l: 'Licensed PEs' }, { n: '50', l: 'States' }].map((s, i) => (
                     <div key={i} className="rounded-xl p-3 text-center" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
                       <p className="font-urbanist font-black text-xl text-white">{s.n}</p>
@@ -779,6 +782,8 @@ export default function PowerSystemStudiesPage() {
             </div>
           </div>
         </section>
+
+        <ServiceCaseStudies service="power-system-studies" />
 
         {/* ═══════════════════════════════════════════════════════
             12. WHO WE'VE SERVED — redesigned, more prominent

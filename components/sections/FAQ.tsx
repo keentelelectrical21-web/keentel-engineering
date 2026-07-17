@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 
 const faqs = [
   { q: 'How long does a power system study actually take?', a: '4 to 12 weeks depending on grid complexity. We are honest about timelines upfront — nobody benefits from rushed studies.' },
@@ -38,7 +39,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
       </div>
       <div
         className="overflow-hidden transition-all duration-300"
-        style={{ maxHeight: open ? '200px' : '0px' }}
+        style={{ maxHeight: open ? '600px' : '0px' }}
       >
         <p className="px-4 pb-5 pl-14 font-jost text-sm leading-relaxed sm:px-6 sm:pb-6 sm:pl-[72px] sm:text-base" style={{ color: '#4B5563' }}>{a}</p>
       </div>
@@ -46,7 +47,19 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   )
 }
 
-export default function FAQ() {
+type FAQProps = {
+  items?: { q: string; a: string }[]
+  eyebrow?: string
+  title?: ReactNode
+  description?: string
+}
+
+export default function FAQ({
+  items = faqs,
+  eyebrow = 'Questions We Hear',
+  title = <>Answers,<br />before you ask.</>,
+  description = '30 years of client questions. Here are the ones that come up every time.',
+}: FAQProps = {}) {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,12 +68,12 @@ export default function FAQ() {
 
           {/* Left heading - sticky */}
           <div className="lg:col-span-4 lg:sticky lg:top-28">
-            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Questions We Hear</p>
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>{eyebrow}</p>
             <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-tight mb-6" style={{ color: '#0B1230' }}>
-              Answers,<br />before you ask.
+              {title}
             </h2>
             <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>
-              30 years of client questions. Here are the ones that come up every time.
+              {description}
             </p>
             <a
               href="https://calendly.com/keentel-engineering/15min"
@@ -76,7 +89,7 @@ export default function FAQ() {
 
           {/* Right accordions */}
           <div className="lg:col-span-8 flex flex-col gap-3">
-            {faqs.map((faq, i) => (
+            {items.map((faq, i) => (
               <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
             ))}
           </div>

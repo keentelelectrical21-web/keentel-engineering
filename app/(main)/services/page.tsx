@@ -357,7 +357,7 @@ export default function ServicesPage() {
         {/* ── WHAT WE OFFER ── */}
         <ContactForm />
 
-        <SoftwareTools heading="Our Software Capabilities" />
+        <SoftwareTools />
 
         <section className="py-6 text-center" style={{ background: '#06103C' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

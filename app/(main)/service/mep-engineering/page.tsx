@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
@@ -80,6 +81,17 @@ const whyChoose = [
   { t: 'Client-First Process', d: 'From concept through commissioning, our team communicates transparently, resolves technical risks early, and tailors every solution to your facility\u2019s unique needs.' },
 ]
 
+const electricalCards = [
+  { t: 'Electrical Design Services', d: 'Complete electrical design coordinated with architectural, structural, mechanical, and plumbing systems.', img: '/images/services/mep-engineering/Electrical Design Services.jpg' },
+  { t: 'Electrical System Analysis & Optimization', d: 'Load flow, short-circuit, protection coordination, arc-flash, and power-quality analysis for safe, reliable performance.', img: '/images/services/mep-engineering/Electrical System Analysis & Optimization.webp' },
+  { t: 'Power Distribution Solutions', d: 'Medium- and low-voltage distribution, transformers, switchgear, panelboards, feeders, and equipment layouts designed around facility demand.', img: '/images/services/mep-engineering/Power Distribution Solutions.webp' },
+  { t: 'Lighting Systems & Smart Controls', d: 'Energy-efficient interior, exterior, and emergency lighting with automated controls supporting safety and productivity.', img: '/images/services/mep-engineering/Lighting Systems & Smart Controls.jpg' },
+  { t: 'Emergency Power & Backup Systems', d: 'Generators, UPS systems, transfer schemes, and critical-power distribution engineered for operational continuity.', img: '/images/services/mep-engineering/Emergency Power & Backup Systems.jpg' },
+  { t: 'Electrical Code Compliance', d: 'Designs aligned with NEC, NFPA, energy codes, and local requirements for permitting, inspection, and safe operation.', img: '/images/services/mep-engineering/Electrical Code Compliance.jpg' },
+  { t: 'Security Systems Integration', d: 'Coordinated power and pathways for access control, surveillance, intrusion detection, communications, and security infrastructure.', img: '/images/services/mep-engineering/Security Systems Integration.webp' },
+  { t: 'MEP BIM Modeling', d: 'Coordinated BIM models and clash detection improve constructability, reduce field conflicts, and align all building-system disciplines.', img: '/images/services/mep-engineering/MEP BIM Modeling.jpg' },
+]
+
 const mechanicalCards = [
   { t: 'HVAC System Design', d: 'We specialize in HVAC system design for temperature control, air quality, and long-term energy savings — from ductwork layout to system sizing and VRF integration.' },
   { t: 'Mechanical Systems Analysis & Optimization', d: 'We use advanced software tools to simulate and assess mechanical performance, recommending data-driven improvements that boost efficiency and extend asset life.' },
@@ -87,11 +99,11 @@ const mechanicalCards = [
   { t: 'Regulatory Code Compliance', d: 'Every mechanical design follows the latest ASHRAE, IECC, and local mechanical codes, ensuring approval readiness for inspections and permitting.' },
 ]
 
-const plumbingCards = [
-  { t: 'Plumbing System Design', d: 'Complete plumbing system designs ensuring balanced water pressure, optimal flow rates, and effective drainage tailored to each facility.' },
-  { t: 'Water Conservation & Sustainable Design', d: 'Low-impact development with low-flow fixtures, greywater reuse systems, and water-efficient layouts supporting LEED certifications.' },
-  { t: 'Fire Protection Systems', d: 'Wet and dry sprinkler systems, standpipes, and fire pumps designed and coordinated to meet NFPA-compliant life safety requirements.' },
-  { t: 'Plumbing Code Compliance', d: 'Expertise in IPC, UPC, and local plumbing codes ensures every project passes inspection without delays.' },
+const mechanicalIconPaths = [
+  'M4 8h16M4 12h16M4 16h10M7 5v14m10-14v8',
+  'M4 17l4-5 4 3 6-8m0 0h-4m4 0v4',
+  'M12 3c4 3 6 6 6 10a6 6 0 11-12 0c0-3 2-6 6-10zm0 6v8m-3-4h6',
+  'M7 3h8l3 3v15H7V3zm3 6h5m-5 4h5m-5 4h3',
 ]
 
 const faqs = [
@@ -169,7 +181,7 @@ export default function MEPEngineeringPage() {
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/MEP Engineering Services.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -214,15 +226,74 @@ export default function MEPEngineeringPage() {
               ))}
             </ul>
           </div>
-          <div className="overflow-hidden rounded-2xl shadow-2xl"><img src="/images/services/mep-engineering/engineer-sketching.jpg" alt="MEP engineer reviewing coordinated building systems" className="h-72 w-full object-cover sm:h-96" /></div>
+          <div className="overflow-hidden rounded-2xl shadow-2xl"><img src="/images/services/mep-engineering/MEP Engineering Services.jpg" alt="MEP engineers coordinating electrical and mechanical building systems" className="h-72 w-full object-cover sm:h-96" /></div>
           </div>
           </div>
         </section>
 
         <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
+        <SoftwareTools />
+        <SoftwareCapabilities />
         <Industries />
         <ServiceCaseStudies service="mep-engineering" />
+
+        {/* Integrated MEP delivery */}
+        <section className="bg-white py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+            <div>
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Integrated Project Delivery</p>
+              <h2 className="mb-5 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">Integrated MEP Engineering Services for Complex Facility Projects</h2>
+              <p className="mb-5 font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Mechanical, electrical, plumbing, fire protection, controls, and BIM coordination work best as one connected design process. Our multidisciplinary team resolves system interfaces early, improving constructability and reducing costly field changes.</p>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">From concept and load assessment through detailed design, permitting, construction support, and commissioning, Keentel delivers coordinated documents aligned with facility operations, energy targets, and applicable codes.</p>
+            </div>
+            <div className="overflow-hidden rounded-3xl shadow-xl">
+              <img src="/images/services/mep-engineering/Integrated MEP Engineering Services for Complex Facility Projects.jpg" alt="Integrated MEP engineering for a complex industrial facility" className="h-80 w-full object-cover sm:h-[440px]" />
+            </div>
+          </div>
+        </section>
+
+        {/* Coordinated MEP delivery pillars */}
+        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-12 max-w-3xl text-center">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#E548B5]">Coordinated Engineering</p>
+              <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl">One Team for Complete MEP System Delivery</h2>
+              <p className="font-jost text-base leading-relaxed text-white/70 sm:text-lg">Integrated disciplines, rigorous reviews, and constructible documents help projects move from design through installation with fewer conflicts.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { t: 'Electrical System Design', d: 'Coordinated distribution, lighting, controls, and critical-power systems designed around facility loads and operating requirements.', img: '/images/services/mep-engineering/Electrical System Design.webp' },
+                { t: 'Mechanical Design Services', d: 'HVAC, ventilation, controls, and energy strategies developed for occupant comfort, process needs, and lifecycle efficiency.', img: '/images/services/mep-engineering/Mechanical Design Services.jpg' },
+                { t: 'Integrated MEP Coordination', d: 'Mechanical, electrical, plumbing, fire protection, and BIM teams work together to resolve interfaces before construction.', img: '/images/services/mep-engineering/MEP Engineering.jpg' },
+                { t: 'Quality Assurance & Safety', d: 'Independent checks, code reviews, and disciplined QA/QC improve document accuracy, permitting readiness, and system safety.', img: '/images/services/mep-engineering/Quality Assurance & Safety.webp' },
+              ].map((c) => (
+                <article key={c.t} className="group overflow-hidden rounded-2xl bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                  <div className="overflow-hidden"><img src={c.img} alt={c.t} className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" /></div>
+                  <div className="p-6"><h3 className="mb-3 font-urbanist text-lg font-bold text-[#06103C]">{c.t}</h3><p className="font-jost text-sm leading-relaxed text-gray-600">{c.d}</p></div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Electrical engineering services restored from the original page */}
+        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-12 max-w-3xl text-center">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Electrical</p>
+              <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">Electrical Engineering Services</h2>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Safe, reliable, and code-compliant electrical systems engineered for demanding industrial, warehouse, and commercial facilities.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {electricalCards.map((c) => (
+                <article key={c.t} className="group overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div className="overflow-hidden"><img src={c.img} alt={c.t} className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" /></div>
+                  <div className="p-6"><h3 className="mb-3 font-urbanist text-lg font-bold leading-snug text-[#06103C]">{c.t}</h3><p className="font-jost text-sm leading-relaxed text-gray-600">{c.d}</p></div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
 
         {/* ═══ 3. WHY CHOOSE — branded two-column ═══ */}
@@ -258,32 +329,22 @@ export default function MEPEngineeringPage() {
         {/* ═══ 4. MECHANICAL ENGINEERING SERVICES ═══ */}
         <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#A8228A' }}>Mechanical</span>
-            <h2 className="font-urbanist font-black mb-3 text-center leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Mechanical Engineering Services<br /><span className="text-lg font-bold" style={{ color: '#5B2A86' }}>For Industrial, Warehouse &amp; Commercial Facilities</span></h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center text-lg leading-relaxed">We deliver high-performance mechanical engineering services for industrial, warehouse, and commercial clients across the United States.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {mechanicalCards.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
-                </div>
-              ))}
+            <div className="mx-auto mb-14 max-w-3xl text-center sm:mb-16">
+              <span className="mb-4 inline-block font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Mechanical</span>
+              <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">Mechanical Engineering Services</h2>
+              <p className="mb-5 font-urbanist text-lg font-medium leading-snug text-[#5B2A86] sm:text-xl">For Industrial, Warehouse &amp; Commercial Facilities</p>
+              <p className="mx-auto max-w-3xl font-jost text-base leading-relaxed text-gray-600 sm:text-lg">We deliver high-performance mechanical engineering services for industrial, warehouse, and commercial clients across the United States.</p>
             </div>
-          </div>
-        </section>
-
-        {/* ═══ 5. PLUMBING ENGINEERING SERVICES ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#A8228A' }}>Plumbing</span>
-            <h2 className="font-urbanist font-black mb-3 text-center leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Plumbing Engineering Services<br /><span className="text-lg font-bold" style={{ color: '#5B2A86' }}>Sustainable, Code-Compliant Solutions</span></h2>
-            <p className="font-jost text-gray-600 max-w-3xl mx-auto mb-12 text-center text-lg leading-relaxed">We deliver comprehensive plumbing engineering services for industrial, commercial, and specialized facilities across the U.S.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {plumbingCards.map((c, i) => (
-                <div key={i} className="bg-white rounded-2xl p-6 border hover:shadow-lg transition-all duration-300" style={{ borderColor: '#E6E8F0' }}>
-                  <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                  <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
-                </div>
+            <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+              {mechanicalCards.map((c, i) => (
+                <article key={i} className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-[#DDE2EE] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A] sm:p-7">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-[#06103C] transition-colors duration-300 group-hover:bg-[#A8228A]" />
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-[#F1F3F8] text-[#06103C] transition-colors duration-300 group-hover:bg-[#A8228A] group-hover:text-white">
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={mechanicalIconPaths[i]} /></svg>
+                  </div>
+                  <h3 className="mb-3 font-urbanist text-xl font-bold leading-snug text-[#06103C]">{c.t}</h3>
+                  <p className="font-jost text-base leading-relaxed text-gray-600">{c.d}</p>
+                </article>
               ))}
             </div>
           </div>

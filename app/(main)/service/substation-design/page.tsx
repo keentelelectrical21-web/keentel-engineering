@@ -1,66 +1,15 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
-import Industries from '@/components/sections/Industries'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
 import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
-import { client } from '@/lib/sanity'
-
-interface BlogPost {
-  _id: string
-  title: string
-  slug: { current: string }
-  publishedAt: string
-  excerpt: string
-  category: string
-  mainImage?: { asset: { url: string } }
-}
-
-const softwareTools = [
-  { key: 'psse', name: 'PSS®E', logo: '/images/services/power-system-studies/logo-psse.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/PSSE-1920w.png',
-    description: 'Power System Simulator for Engineering by Siemens — used across our substation transmission-planning studies.',
-    faqs: [
-      { q: 'Why does substation design need PSS®E?', a: 'We use PSS®E for transmission planning and contingency analysis around the substation to confirm the POI can support the new or upgraded facility.' },
-      { q: 'Can PSS®E model IBR-connected substations?', a: 'Yes, we build inverter-based resource models in PSS®E to evaluate stability at collector and POI substations for solar, wind, and BESS projects.' },
-    ] },
-  { key: 'etap', name: 'ETAP', logo: '/images/services/power-system-studies/logo-etap.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/ETAP-1920w.png',
-    description: 'Electrical power system engineering platform for substation design, simulation, and operation.',
-    faqs: [
-      { q: 'What substation studies run through ETAP?', a: 'Power flow, short-circuit, and arc-flash studies for substation equipment sizing and PPE labeling all run through ETAP on our projects.' },
-      { q: 'Does ETAP support Digital Twin monitoring?', a: 'Yes, we use ETAP\u2019s Electrical Digital Twin capability where clients want real-time visibility into substation performance post-commissioning.' },
-    ] },
-  { key: 'pscad', name: 'PSCAD', logo: '/images/services/power-system-studies/logo-pscad.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Logo+-+PSCAD+MHI+BLUE-+2018-1920w.png',
-    description: 'Electromagnetic transient (EMT) simulation software for fast switching and lightning events at the substation.',
-    faqs: [
-      { q: 'When is PSCAD needed on a substation project?', a: 'We turn to PSCAD when a substation involves HVDC, converters, or lightning/switching surge analysis that RMS tools cannot capture accurately.' },
-    ] },
-  { key: 'powerworld', name: 'PowerWorld', logo: '/images/services/power-system-studies/logo-powerworld.jpg', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/PowerWorld-1920w.jpg',
-    description: 'Power system visualization and simulation software used for substation contingency and voltage stability review.',
-    faqs: [
-      { q: 'What does PowerWorld add to substation planning?', a: 'Its animated one-line diagrams let us walk clients through contingency and voltage stability results at the substation visually, not just in tables.' },
-    ] },
-  { key: 'skm', name: 'SKM PTW', logo: '/images/services/power-system-studies/logo-skm.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/SKM+PowerTools-1920w.png',
-    description: 'Electrical engineering platform for substation power system design, analysis, and safety evaluation.',
-    faqs: [
-      { q: 'What does SKM PTW handle on substation projects?', a: 'Load flow, short-circuit, arc-flash (CAPTOR), and harmonic (HI_WAVE) studies for substation switchgear and protection design.' },
-    ] },
-  { key: 'autocad', name: 'AutoCAD Elec.', logo: '/images/services/power-system-studies/logo-autocad.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/aeimages-1920w.png',
-    description: 'Intelligent automation for substation electrical schematics: wire numbering, tagging, and error checking.',
-    faqs: [
-      { q: 'What substation drawings come out of AutoCAD Electrical?', a: 'Relay protection schematics, AC/DC substation diagrams, automatic BOM generation, and IEC/ANSI symbol-compliant drawing sets.' },
-    ] },
-  { key: 'aspen', name: 'ASPEN', logo: '/images/services/power-system-studies/logo-aspen.png', fallback: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/6a12ed_77c665e4ee2c4db2b3fbb92a34f3b12e-mv2-1920w.png',
-    description: 'Advanced short circuit analysis and relay coordination platform for substation protection design.',
-    faqs: [
-      { q: 'Why use ASPEN for substation relay work?', a: 'ASPEN lets us build manufacturer-specific relay logic models to verify coordination against the actual protective devices being installed at the substation.' },
-    ] },
-]
 
 const faqs = [
   { q: 'What are substation services, and why are they important in power systems?', a: 'Substation services include the design, engineering, protection, automation, and analysis of facilities that transform voltage levels, control power flow, and protect electrical networks. Substations are critical to ensuring safe, reliable, and efficient delivery of electricity from generation sources to transmission and distribution systems.' },
@@ -74,7 +23,6 @@ const faqs = [
 function Img({ src, fallback, alt, className }: { src: string; fallback: string; alt: string; className?: string }) {
   return <img src={src} alt={alt} className={className} onError={(e) => { (e.target as HTMLImageElement).src = fallback }} />
 }
-
 // ── Shared FAQ Accordion (matches homepage FAQ.tsx exactly) ────────────────
 function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false)
@@ -91,7 +39,7 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
           <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
         </div>
       </div>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '600px' : '0px' }}>
         <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
@@ -109,7 +57,7 @@ function FaqSection({ eyebrow, heading, headingLine2, intro, items, ctaText = 'A
             <p className="text-xs font-bold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>{eyebrow}</p>
             <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6" style={{ color: '#0B1230' }}>{heading}{headingLine2 && <><br />{headingLine2}</>}</h2>
             <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>{intro}</p>
-            <a href={ctaHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-jost font-semibold text-white px-7 py-4 rounded-full transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+            <a href={ctaHref} target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 font-jost font-semibold text-white transition-all hover:-translate-y-0.5 sm:w-auto" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
               {ctaText}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -124,65 +72,19 @@ function FaqSection({ eyebrow, heading, headingLine2, intro, items, ctaText = 'A
 }
 
 export default function SubstationDesignPage() {
-  const [blogs, setBlogs] = useState<BlogPost[]>([])
-  const [activeSoftware, setActiveSoftware] = useState('psse')
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
-  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    client.fetch<BlogPost[]>(
-      `*[_type == "blogPost" && (
-        category match "*substation*" || category match "*Substation*"
-        || category match "*SCADA*" || category match "*scada*"
-        || category match "*protection*" || category match "*relay*" || category match "*GIS*"
-      )] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, "category": category->title,
-        "mainImage": mainImage { asset->{ url } }
-      }`
-    ).then(data => {
-      if (data.length >= 3) { setBlogs(data); return }
-      client.fetch<BlogPost[]>(
-        `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-          _id, title, slug, publishedAt, excerpt, "category": category->title,
-          "mainImage": mainImage { asset->{ url } }
-        }`
-      ).then(setBlogs).catch(() => {})
-    }).catch(() => {})
-  }, [])
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormStatus('loading')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          first_name: formData.firstName, last_name: formData.lastName, phone: formData.phone,
-          email: formData.email, service: formData.service || 'Substation Design Services',
-          message: formData.message, source: 'substation-design',
-        }),
-      })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
-      else setFormStatus('error')
-    } catch { setFormStatus('error') }
-  }
-
-  const activeTool = softwareTools.find(t => t.key === activeSoftware) || softwareTools[0]
-  const blogImageUrl = (post: BlogPost) => post.mainImage?.asset?.url || `https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-96f20648-1920w.png`
 
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
 
 {/* ═══ 1. HERO — video visible, overlay contained, big desc ═══ */}
         <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video ref={videoRef} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/videos/substation.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -196,23 +98,23 @@ export default function SubstationDesignPage() {
               <p className="font-jost text-white/90 mb-10 max-w-3xl leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)' }}>
                 Safe, reliable, and future-ready substation solutions engineered for grid performance, automation, and compliance — for utilities, renewable developers, EPCs, and industrial clients nationwide.
               </p>
-              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
+              <div className="mb-14 flex flex-col gap-4 sm:mb-16 sm:flex-row sm:flex-wrap">
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-jost font-semibold text-white transition-all hover:scale-105 sm:w-auto" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
                   Schedule A Call
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
-                <Link href="tel:813-389-7871" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">
+                <Link href="tel:813-389-7871" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto">
                   813-389-7871
                 </Link>
               </div>
 
               <div className="border-t border-white/10 pt-8">
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
-                <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <div className="block w-full rounded-2xl px-4 py-5 sm:inline-block sm:w-auto sm:px-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                   <img
                     src="/images/cert-logos.png"
                     alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
-                    className="h-20 sm:h-24 object-contain"
+                    className="h-auto max-h-20 w-full object-contain sm:h-24 sm:w-auto sm:max-h-24"
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
                   />
                 </div>
@@ -272,155 +174,23 @@ export default function SubstationDesignPage() {
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-3xl p-8 sm:p-12" style={{ background: 'linear-gradient(135deg, #06103C 0%, #1a1050 100%)' }}>
-              <h3 className="font-urbanist font-black text-2xl sm:text-3xl mb-8 text-white">You Will Receive</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {['Complete substation electrical design services (primary, secondary, and auxiliary systems)',
-                  'Substation protection, control, and relay engineering aligned with utility standards and NERC requirements',
-                  'SCADA and substation automation design, including RTUs, IEDs, gateways, and HMI systems',
-                  'Substation IT and network architecture with redundancy, segmentation, and cybersecurity considerations',
-                  'Comprehensive power system studies for substations (load flow, short-circuit, arc-flash, EMT analysis)',
-                  'Compliance-driven engineering aligned with IEEE, NEC, NESC, NERC, IEC 61850, and utility standards',
-                  'Permit-ready and IFC substation drawings, technical specifications, and engineering reports',
-                  'Optimized substation designs for renewables, IBRs, DERs, and advanced grid automation'].map((t, i) => (
-                  <div key={i} className="flex gap-3 items-start rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#A8228A' }}>
-                      <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <p className="font-jost text-sm text-white/85 leading-relaxed">{t}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </section>
 
         <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
-        <Industries />
-        <ServiceCaseStudies service="substation-design" />
 
+        <SoftwareCapabilities />
 
-        {/* ═══ 3. WHY CHOOSE KEENTEL — branded two-column redesign ═══ */}
-        <section className="hidden" aria-hidden="true">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-              <div className="lg:col-span-5">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#C72E9E' }}>Why Keentel</span>
-                <h2 className="font-urbanist font-black text-white mb-6 leading-tight" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Keentel Engineering?</h2>
-                <p className="font-jost text-white/70 text-lg leading-relaxed mb-8">At Keentel Engineering, we take pride in being the go-to electrical power engineering firm for power and utility system planning, substation design, protection, control, and power system analysis.</p>
-                <Link href="/about" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>
-                  Learn More About Us
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-              </div>
-              <div className="lg:col-span-7 rounded-2xl p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, rgba(168,34,138,0.12), rgba(91,42,134,0.12))', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                  {[
-                    { t: '30 Years of Experience', d: 'Three decades of hands-on project delivery, bringing unmatched expertise in substation layout design, electrical and civil engineering, relay protection, and grid-tie solutions.' },
-                    { t: 'Quality with Innovation', d: 'Our engineering process applies AutoCAD 3D, BIM modeling, and system-level substation design practices, enabling clash-free coordination between structural, electrical, and civil disciplines.' },
-                    { t: 'Attention to Detail', d: 'From grounding grid studies to relay protection settings, we engineer every detail to improve reliability, performance, and safety, with rigorous QA/QC for IEEE, NFPA, and ISO/TSO compliance.' },
-                  ].map((c, i) => (
-                    <div key={i} className="flex items-start gap-4 p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 font-urbanist font-black text-white" style={{ background: '#A8228A' }}>{i + 1}</div>
-                      <div>
-                        <p className="font-urbanist font-bold text-white text-base sm:text-lg mb-1">{c.t}</p>
-                        <p className="font-jost text-white/65 text-sm leading-relaxed">{c.d}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 4. GET IN TOUCH — full branded redesign, split from download ═══ */}
-
-
-        {/* ═══ 5. DOWNLOAD FLYER — standalone, centered, branded bg (single instance) ═══ */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center rounded-2xl p-10 sm:p-12" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
-              <h3 className="font-urbanist font-black text-2xl sm:text-3xl text-white mb-3">Download our Substation Design Services flyer</h3>
-              <p className="font-jost text-white/70 mb-8 max-w-xl mx-auto">Please click the Download button to get our Substation Design Services flyer.</p>
-              <a href="/files/substation-design.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: '#A8228A' }}>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                Download The Flyer
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 6. SOFTWARE CAPABILITIES — FAQ-driven per tool ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-xs font-semibold uppercase tracking-widest font-jost" style={{ color: '#A8228A' }}>Tools We Use</span>
-              <h2 className="font-urbanist font-black mt-2" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Our Software Capabilities</h2>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              {softwareTools.map(tool => (
-                <button key={tool.key} onClick={() => setActiveSoftware(tool.key)}
-                  className="flex flex-col items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all min-w-[100px]"
-                  style={{ borderColor: activeSoftware === tool.key ? '#A8228A' : '#E6E8F0', background: activeSoftware === tool.key ? 'rgba(168,34,138,0.05)' : '#fff', boxShadow: activeSoftware === tool.key ? '0 4px 18px rgba(168,34,138,0.18)' : 'none' }}>
-                  <img src={tool.logo} alt={tool.name} className="h-9 max-w-[90px] object-contain" onError={(e) => { (e.target as HTMLImageElement).src = tool.fallback }} />
-                  <span className="text-xs font-bold uppercase tracking-wide font-jost" style={{ color: activeSoftware === tool.key ? '#A8228A' : '#999' }}>{tool.name}</span>
-                </button>
-              ))}
-            </div>
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border p-6 sm:p-8" style={{ borderColor: '#E6E8F0' }}>
-              <div className="flex items-center gap-4 mb-3">
-                <img src={activeTool.logo} alt={activeTool.name} className="h-10 object-contain" onError={(e) => { (e.target as HTMLImageElement).src = activeTool.fallback }} />
-                <h3 className="font-urbanist font-bold text-xl sm:text-2xl" style={{ color: '#06103C' }}>{activeTool.name}</h3>
-              </div>
-              <p className="font-jost text-gray-600 leading-relaxed mb-8 max-w-3xl">{activeTool.description}</p>
-              <div className="flex flex-col gap-3">
-                {activeTool.faqs.map((f, i) => <FaqAccordionItem key={i} q={f.q} a={f.a} index={i} />)}
-              </div>
-              <div className="mt-8 text-center">
-                <Link href="/service/software-capabilities-faqs" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
-                  See All {activeTool.name} FAQs
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 7. MODERN SUBSTATION DESIGN — 6 cards ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Modern Substation Design Requires More Than Drawings</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">Modern substations must be engineered as integrated electrical, protection, communication, and digital systems — not isolated drawings or disconnected studies.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { t: 'Dependable Capacity', d: 'Dependable substation capacity engineering designed for load growth, future expansion, N-1 contingencies, and renewable generation variability.', img: '/images/services/substation-design/card-capacity.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Dependable+Capacity.jpg-1920w.png' },
-                { t: 'Protection & Automation', d: 'Selective, coordinated protection schemes and relay automation for fast fault isolation, system stability, and safe restoration.', img: '/images/services/substation-design/card-protection.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/substation+relay+engineering.jpg-1920w.png' },
-                { t: 'SCADA & Digital Substations', d: 'Interoperable architectures integrated into utility EMS and DMS platforms for secure monitoring and operational control.', img: '/images/services/substation-design/card-scada.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/SCADA-+substation+automation.jpg-1920w.png' },
-                { t: 'Standards & Compliance', d: 'Engineering aligned with NERC, IEEE, NEC, NESC, IEC 61850, and utility-specific requirements for smooth approvals.', img: '/images/services/substation-design/card-standards.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/substation+electrical+design.jpg-1920w.png' },
-                { t: 'Cyber-Aware Architecture', d: 'Redundant, fault-tolerant network and control system designs addressing operational resilience and cybersecurity.', img: '/images/services/substation-design/card-cyber.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Substation+IT+and+network+architecture.jpg-1920w.png' },
-                { t: 'IBR Integration', d: 'Advanced modeling, protection strategies, and control coordination for solar, wind, and BESS interconnections.', img: '/images/services/substation-design/card-ibr.png', fb: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Power+systam+studies.mov-1920w.png' },
-              ].map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="h-44 overflow-hidden"><Img src={c.img} fallback={c.fb} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
-                  <div className="p-6">
-                    <h3 className="font-urbanist font-bold text-lg mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div className="flex flex-col">
 
         {/* ═══ 8. WHAT WE DELIVER — 9 cards ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>What Our Substation Design Services Deliver</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">End-to-end substation design services — from early feasibility through Issue-for-Construction (IFC) packages and commissioning support.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="order-10 bg-[#EEF1F7] py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">End-to-End Project Delivery</p>
+              <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">What Our Substation Design Services Deliver</h2>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">End-to-end substation design services — from early feasibility through Issue-for-Construction (IFC) packages and commissioning support.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {[
                 { n: '01', t: 'Feasibility & Early Electrical Planning', d: 'Conceptual substation configurations, preliminary studies, and technical assessments supporting interconnection requirements.', img: 'card-01.png', fb: 'Feasibility+-+Early+Electrical+Planning-1920w.png' },
                 { n: '02', t: 'Electrical, Protection & Control Engineering', d: 'Primary, secondary, and auxiliary substation electrical systems aligned with utility standards.', img: 'card-02.png', fb: 'Substation+Electrical-+Protection+-+Control+Engineering-1920w.png' },
@@ -431,29 +201,44 @@ export default function SubstationDesignPage() {
                 { n: '07', t: 'Specifications & Material Packages', d: 'Equipment and material specifications, relay and control requirements, and procurement support.', img: 'card-07.png', fb: 'Electrical+Specifications+-+Material+Packages-1920w.png' },
                 { n: '08', t: 'QA/QC, Compliance & IFC Packages', d: 'Independent QA/QC reviews, compliance verification, and complete IFC substation design packages.', img: 'card-08.png', fb: 'QA_QC+-+Standards+Compliance+Reviews-1920w.png' },
                 { n: '09', t: 'Construction & Commissioning Support', d: 'Engineering support during installation, testing, energization, and project handover.', img: 'card-09.png', fb: 'Construction-+Testing+-+Commissioning+Support-1920w.png' },
-              ].map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="relative h-40 overflow-hidden">
-                    <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center font-urbanist font-black text-sm text-white" style={{ background: '#A8228A' }}>{c.n}</div>
+              ].map((c) => (
+                <article key={c.n} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#DDE2EC] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/35 hover:shadow-[0_20px_50px_rgba(6,16,60,0.12)]">
+                  <div className="h-52 overflow-hidden bg-[#E9ECF2] sm:h-56">
+                    <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
-                  <div className="p-5">
-                    <h4 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h4>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                  <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+                    <div className="mb-5 flex items-center gap-4">
+                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#06103C] font-urbanist text-sm font-black text-white transition-colors duration-300 group-hover:bg-[#A8228A]">{c.n}</span>
+                      <div className="h-px flex-1 bg-[#DDE2EC]">
+                        <div className="h-px w-10 bg-[#A8228A] transition-all duration-300 group-hover:w-20" />
+                      </div>
+                    </div>
+                    <h3 className="mb-3 font-urbanist text-lg font-bold leading-snug text-[#06103C]">{c.t}</h3>
+                    <p className="font-jost text-sm leading-relaxed text-gray-600">{c.d}</p>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ═══ 9. EXPLORE OUR EXPERTISE — full redesign, client flagged as old ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Capabilities</span>
-            <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Explore Our Expertise</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-14 text-lg leading-relaxed">Utility-grade substation design services, including electrical engineering, protection &amp; control, SCADA, and power system studies.</p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* ═══ 9. EXPLORE OUR EXPERTISE ═══ */}
+        <section className="relative order-20 overflow-hidden bg-[#050D32] py-16 sm:py-20 lg:py-24">
+          <div className="pointer-events-none absolute inset-0 opacity-30" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-[#A8228A]/20 blur-3xl" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">
+              <div className="max-w-3xl">
+                <p className="mb-4 font-jost text-xs font-bold uppercase tracking-[0.22em] text-[#C72E9E]">Integrated Engineering Capabilities</p>
+                <h2 className="mb-5 font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">Explore Our Expertise</h2>
+                <p className="font-jost text-base leading-relaxed text-white/65 sm:text-lg">Utility-grade substation design services, including electrical engineering, protection &amp; control, SCADA, and power system studies.</p>
+              </div>
+              <div className="hidden items-center gap-4 border-l border-white/15 pl-8 lg:flex">
+                <span className="font-urbanist text-5xl font-black text-white">04</span>
+                <span className="max-w-24 font-jost text-xs font-bold uppercase leading-relaxed tracking-widest text-white/45">Integrated Disciplines</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
               {[
                 { code: 'EE', t: 'Electrical Engineering & Power System Studies', img: 'expertise-ee.png', fb: 'Electrical+Engineering+-+Power+System+Studies-1920w.png',
                   list: ['Power system studies for substations, including load flow, short-circuit, grounding, and arc-flash analysis', 'Equipment rating verification and electrical system sizing aligned with utility requirements', 'Primary and auxiliary substation electrical design for MV, HV, and EHV systems', 'Interconnection and grid compliance studies supporting utility and ISO/RTO submissions'] },
@@ -464,37 +249,48 @@ export default function SubstationDesignPage() {
                 { code: 'TEL', t: 'Communications & Network Engineering', img: 'expertise-tel.png', fb: 'Communications+-+Network+Engineering-1920w.png',
                   list: ['Substation fiber-optic and Ethernet communication networks', 'Redundant communication paths for operational reliability', 'Secure network segmentation and traffic separation', 'Renewable facility communications for solar, wind, and BESS projects'] },
               ].map((c, i) => (
-                <div key={i} className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300" style={{ border: '1px solid #E6E8F0' }}>
-                  <div className="relative h-56 overflow-hidden">
-                    <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.92) 0%, rgba(6,16,60,0.35) 55%, transparent 100%)' }} />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold font-jost text-white mb-3" style={{ background: '#A8228A' }}>{c.code}</span>
-                      <h3 className="font-urbanist font-black text-xl sm:text-2xl text-white leading-snug">{c.t}</h3>
+                <article key={c.code} className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-[#0A1649]/90 transition-all duration-500 hover:-translate-y-1 hover:border-[#C72E9E]/50 hover:shadow-[0_24px_70px_rgba(0,0,0,0.35)] ${i === 0 || i === 3 ? 'lg:col-span-7' : 'lg:col-span-5'}`}>
+                  <div className="relative h-52 overflow-hidden sm:h-64">
+                    <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07123E] via-[#07123E]/35 to-transparent" />
+                    <div className="absolute left-5 top-5 flex items-center gap-3">
+                      <span className="flex h-10 min-w-10 items-center justify-center rounded-xl border border-white/20 bg-[#06103C]/75 px-3 font-jost text-xs font-black tracking-wider text-white backdrop-blur-md">{c.code}</span>
+                      <span className="font-jost text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">Capability 0{i + 1}</span>
                     </div>
+                    <h3 className="absolute bottom-5 left-5 right-5 font-urbanist text-xl font-black leading-snug text-white sm:bottom-6 sm:left-6 sm:right-6 sm:text-2xl">{c.t}</h3>
                   </div>
-                  <div className="p-6 bg-white">
-                    <ul className="space-y-2.5 font-jost text-sm text-gray-600">
+                  <div className="relative p-5 sm:p-6">
+                    <div className="absolute left-0 top-0 h-px w-24 bg-gradient-to-r from-[#C72E9E] to-transparent" />
+                    <ul className="grid grid-cols-1 gap-3 font-jost text-sm leading-relaxed text-white/65 xl:grid-cols-2">
                       {c.list.map((l, j) => (
                         <li key={j} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: '#A8228A' }} />
-                          {l}
+                          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#C72E9E] shadow-[0_0_10px_rgba(199,46,158,0.8)]" />
+                          <span>{l}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
         {/* ═══ 10. TYPES OF SUBSTATIONS — 9 cards ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Types of Substations We Design</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">Utility-grade substation design services, including electrical, protection, and automation engineering across all voltage levels and applications.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="order-[80] bg-[#F4F6FA] py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 flex flex-col gap-6 border-b border-[#DDE1EA] pb-8 sm:mb-12 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Substation Portfolio</p>
+                <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">Types of Substations We Design</h2>
+                <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Utility-grade substation design services, including electrical, protection, and automation engineering across all voltage levels and applications.</p>
+              </div>
+              <div className="flex items-center gap-3 self-start lg:self-auto">
+                <span className="font-urbanist text-4xl font-black text-[#06103C]">09</span>
+                <span className="max-w-24 font-jost text-[10px] font-bold uppercase leading-relaxed tracking-[0.18em] text-gray-500">Design Applications</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {[
                 { t: 'Transmission Substations (69 kV – 500 kV)', d: 'High-voltage transmission substation designs engineered for bulk power transfer, N-1 reliability, and grid stability.', img: 'type-transmission.png', fb: 'Transmission+Substation.jpg-1920w.png' },
                 { t: 'Distribution Substations (4 kV – 35 kV)', d: 'Medium-voltage distribution substation designs supporting utility and municipal distribution systems.', img: 'type-distribution.png', fb: 'Distribution+Substations.jpg-1920w.png' },
@@ -506,20 +302,29 @@ export default function SubstationDesignPage() {
                 { t: 'Brownfield Upgrades & Retrofit Projects', d: 'Substation modernization and retrofit designs supporting equipment replacement and protection upgrades.', img: 'type-brownfield.png', fb: 'Brownfield+Upgrades+-+Retrofit+Projects.jpg-1920w.png' },
                 { t: 'Mobile & Temporary Substations', d: 'Rapid-deployment mobile and temporary substation solutions supporting emergency response and restoration.', img: 'type-mobile.png', fb: 'Mobile+-+Temporary+Substations.jpg-1920w.png' },
               ].map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="aspect-video overflow-hidden"><Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
-                  <div className="p-5">
-                    <h4 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h4>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                <article key={c.t} className="group relative min-h-[310px] overflow-hidden rounded-3xl border border-white bg-[#06103C] shadow-[0_10px_30px_rgba(6,16,60,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(6,16,60,0.18)] sm:min-h-[340px]">
+                  <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06103C] via-[#06103C]/65 to-[#06103C]/5" />
+                  <div className="absolute left-0 top-0 h-1 w-full origin-left scale-x-0 bg-gradient-to-r from-[#C72E9E] to-[#5B2A86] transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="relative flex min-h-[310px] flex-col justify-between p-5 sm:min-h-[340px] sm:p-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="rounded-full border border-white/20 bg-[#06103C]/55 px-3 py-1.5 font-jost text-[10px] font-bold uppercase tracking-[0.18em] text-white/75 backdrop-blur">Substation Type</span>
+                      <span className="font-urbanist text-sm font-black text-white/75">{String(i + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div>
+                      <div className="mb-4 h-px w-12 bg-[#C72E9E] transition-all duration-500 group-hover:w-20" />
+                      <h3 className="mb-3 font-urbanist text-xl font-black leading-snug text-white">{c.t}</h3>
+                      <p className="font-jost text-sm leading-relaxed text-white/70">{c.d}</p>
+                    </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
         {/* ═══ 11. DESIGN PROCESS — 8 steps ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="order-[50] bg-white py-20 sm:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Substation Design Process</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">A clear, step-by-step substation design and engineering workflow aligned with utility standards, constructability, and long-term operational reliability.</p>
@@ -547,12 +352,15 @@ export default function SubstationDesignPage() {
           </div>
         </section>
 
-        {/* ═══ 12. WHY CHOOSE US FOR SUBSTATION DESIGN — dark, 6 cards ═══ */}
-        <section className="hidden" aria-hidden="true">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Choose Us for Substation Design?</h2>
-            <p className="font-jost text-white/70 max-w-3xl mb-12 text-lg leading-relaxed">Our engineering approach combines deep technical knowledge, regulatory alignment, and constructible delivery — ensuring safer operations and predictable construction outcomes.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* ═══ 12. WHY CHOOSE US FOR SUBSTATION DESIGN ═══ */}
+        <section className="order-[30] bg-white py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Why Keentel</p>
+              <h2 className="mb-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">Why Choose Us for Substation Design?</h2>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Our engineering approach combines deep technical knowledge, regulatory alignment, and constructible delivery — ensuring safer operations and predictable construction outcomes.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
               {[
                 { t: 'Proven Engineering Expertise', d: 'Delivered substation projects across utilities, voltage classes, and ISO/RTO regions with consistent, repeatable results.', img: 'why-proven.png', fb: 'Proven+Engineering+Expertise.png-1920w.png' },
                 { t: 'Utility-Accepted Standards', d: 'Deliverables aligned to utility templates and compliance requirements to reduce review cycles.', img: 'why-standards.png', fb: 'Utility-Accepted+Standards.png-1920w.png' },
@@ -561,47 +369,28 @@ export default function SubstationDesignPage() {
                 { t: 'Fewer Change Orders', d: 'Constructible packages and pre-construction reviews minimize rework and delays.', img: 'why-fewer-orders.png', fb: 'Fewer+Change+Orders.png-1920w.png' },
                 { t: 'Nationwide Support', d: 'Licensed engineers across ERCOT, PJM, CAISO, MISO, NYISO, SPP, and municipal utilities.', img: 'why-nationwide.png', fb: 'Nationwide+Support.png-1920w.png' },
               ].map((c, i) => (
-                <div key={i} className="rounded-2xl p-6 flex flex-col gap-3" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div className="h-40 rounded-xl overflow-hidden flex items-center justify-center bg-white/5"><Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="w-full h-full object-contain" /></div>
-                  <h3 className="font-urbanist font-bold text-base text-white">{c.t}</h3>
-                  <p className="font-jost text-white/60 text-sm leading-relaxed">{c.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 13. INDUSTRIES WE SERVE — 6 cards ═══ */}
-        <section className="hidden" aria-hidden="true">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Industries We Serve</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">We partner with stakeholders across the power sector and critical infrastructure to deliver substation designs aligned with regulatory, operational, and commercial objectives.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { t: 'Utilities & Municipalities', d: 'Transmission and distribution substations designed to meet utility standards, reliability targets, and long-term asset plans.', img: 'ind-utilities.png', fb: 'Utilities+-+Municipalities-1920w.png' },
-                { t: 'Independent Power Producers (IPP)', d: 'Project-ready substation designs aligned with PPA terms, interconnection milestones, and financing requirements.', img: 'ind-ipp.png', fb: 'Independent+Power+Producers+%28IPP%29-1920w.png' },
-                { t: 'Renewable Developers (Solar, Wind, BESS)', d: 'Collector and POI substation designs tailored to inverter-based resources and grid-code compliance.', img: 'ind-renewable.png', fb: 'Renewable+Developers+%28Solar-+Wind-+BESS%29-1920w.png' },
-                { t: 'EPC Contractors', d: 'Constructible, clearly scoped engineering packages that reduce change orders and align with EPC schedules.', img: 'ind-epc.png', fb: 'EPC+Contractors-1920w.png' },
-                { t: 'Industrial Facilities', d: 'Dedicated substations for refineries, manufacturing plants, mining, steel, and other energy-intensive operations.', img: 'ind-industrial.png', fb: 'Industrial+-+Commercial+Substations.jpg-1920w.png' },
-                { t: 'Data Centers & Campuses', d: 'High-availability substation designs for campus-style loads, Tier-certified data centers, and mission-critical facilities.', img: 'ind-datacenter.png', fb: 'Industrial+Facilities-1920w.png' },
-              ].map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="h-44 overflow-hidden"><Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
-                  <div className="p-5">
-                    <h4 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h4>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
+                <article key={c.t} className="group relative flex flex-col overflow-hidden rounded-2xl border border-[#E6E8F0] bg-[#F8F9FC] transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/35 hover:shadow-[0_18px_45px_rgba(6,16,60,0.10)] sm:flex-row">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-[#06103C] sm:aspect-auto sm:w-[42%] sm:shrink-0">
+                    <Img src={`/images/services/substation-design/${c.img}`} fallback={`https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/${c.fb}`} alt={c.t} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#06103C]/35 to-transparent" />
+                    <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white font-urbanist text-xs font-black text-[#06103C] shadow-md">{String(i + 1).padStart(2, '0')}</span>
                   </div>
-                </div>
+                  <div className="flex flex-1 flex-col justify-center p-5 sm:p-6">
+                    <div className="mb-4 h-1 w-10 rounded-full bg-gradient-to-r from-[#A8228A] to-[#5B2A86]" />
+                    <h3 className="mb-2 font-urbanist text-lg font-bold leading-snug text-[#06103C]">{c.t}</h3>
+                    <p className="font-jost text-sm leading-relaxed text-gray-600">{c.d}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ═══ 14. CASE STUDIES — modal, this service only, no external links ═══ */}
-        <div className="hidden" aria-hidden="true"><SubstationCaseStudies /></div>
+        <div className="order-[40]"><SoftwareTools /></div>
+        <div className="order-[70]"><ServiceCaseStudies service="substation-design" /></div>
 
         {/* ═══ 15. RENEWABLE SUBSTATIONS ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="order-[60] py-20 sm:py-24" style={{ background: '#06103C' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#C72E9E', background: 'rgba(199,46,158,0.1)' }}>Renewable Focus</span>
             <h2 className="font-urbanist font-black mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Substation Design for Renewable Projects</h2>
@@ -615,6 +404,8 @@ export default function SubstationDesignPage() {
                 ['IBR Ride-Through Requirements', 'Design aligned with PRC, MOD, and evolving IBR interconnection and grid-support requirements.'],
                 ['Harmonics & Flicker Mitigation', 'Analysis and design that ensure stable power quality on weak and constrained grids.'],
                 ['Low-Short-Circuit Grid Support', 'Fault-level support strategies for weak-grid renewables, including advanced IBR behavior modeling.'],
+                ['SCADA & Protocol Integration', 'IEC 61850 architecture, NERC CIP-aligned cybersecurity, and remote monitoring built for solar, wind, and BESS collector substations.'],
+                ['POI & Interconnection Studies', 'Power flow, short-circuit, and stability studies to support point of interconnection approval under ERCOT, PJM, MISO, and other ISO planning processes.'],
               ].map(([t, d], i) => (
                 <div key={i} className="group rounded-2xl p-6 transition-all hover:-translate-y-1" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center font-urbanist font-black text-sm mb-4 transition-colors group-hover:text-white" style={{ background: 'rgba(199,46,158,0.15)', color: '#C72E9E' }}>
@@ -630,7 +421,7 @@ export default function SubstationDesignPage() {
         </section>
 
         {/* ═══ 16. FREQUENTLY INCLUDED STUDIES ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="order-[90] bg-white py-20 sm:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Frequently Included Studies</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-10 text-lg leading-relaxed">Most substation and grid-interconnection projects require a core set of power system studies.</p>
@@ -669,22 +460,81 @@ export default function SubstationDesignPage() {
           </div>
         </section>
 
-        {/* ═══ 17. WHO WE'VE SERVED — redesigned, prominent ═══ */}
+        <section className="order-[100] bg-[#F6F7FB] py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl sm:mb-12">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Project Planning</p>
+              <h2 className="mb-4 font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl">Pricing &amp; Timeline Overview</h2>
+              <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Substation engineering schedules and fees depend on voltage class, project stage, utility requirements, site conditions, and the number of technical disciplines involved.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+              {[
+                { phase: 'Concept & Feasibility', timeline: '4–8 Weeks', detail: 'Basis-of-design development, preliminary layouts, utility requirements review, and early technical studies.' },
+                { phase: 'Detailed Engineering', timeline: '12–24 Weeks', detail: 'Integrated electrical, protection, SCADA, civil coordination, calculations, specifications, and drawing packages.' },
+                { phase: 'IFC & Construction Support', timeline: 'Project Dependent', detail: 'Final utility comments, permit-ready deliverables, RFIs, commissioning support, and energization coordination.' },
+              ].map((item, index) => (
+                <article key={item.phase} className="rounded-2xl border border-[#E6E8F0] bg-white p-6 sm:p-7">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <span className="font-urbanist text-sm font-black text-[#A8228A]">0{index + 1}</span>
+                    <span className="rounded-full bg-[#A8228A]/10 px-3 py-1 font-jost text-xs font-bold text-[#A8228A]">{item.timeline}</span>
+                  </div>
+                  <h3 className="mb-3 font-urbanist text-xl font-bold text-[#06103C]">{item.phase}</h3>
+                  <p className="font-jost text-sm leading-relaxed text-gray-600">{item.detail}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-6 rounded-2xl border border-[#E6E8F0] bg-white p-6 sm:p-8">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                  <h3 className="mb-2 font-urbanist text-xl font-bold text-[#06103C]">How project pricing is established</h3>
+                  <p className="font-jost text-sm leading-relaxed text-gray-600 sm:text-base">We prepare a scope-specific proposal after confirming voltage level, deliverables, study requirements, schedule, utility review cycles, and construction-support needs. This keeps pricing aligned with the actual engineering effort instead of using a generic package rate.</p>
+                </div>
+                <Link href="/contact" className="inline-flex w-full items-center justify-center rounded-full bg-[#A8228A] px-7 py-3.5 font-jost font-semibold text-white transition-transform hover:-translate-y-0.5 sm:w-auto">Request Project Pricing</Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <div className="order-[130]"><WhoWeServed /></div>
+
+        <section className="order-[110] bg-white py-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl p-6 text-center sm:p-10 lg:p-12" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
+              <h3 className="mb-3 font-urbanist text-2xl font-black text-white sm:text-3xl">Download our Substation Design Services flyer</h3>
+              <p className="mx-auto mb-8 max-w-xl font-jost text-white/70">Please click the Download button to get our Substation Design Services flyer.</p>
+              <a href="/files/substation-design.pdf" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#A8228A] px-8 py-4 font-jost font-semibold text-white transition-all hover:scale-105 sm:w-auto">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                Download The Flyer
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* ═══ 18. WE GO ABOVE AND BEYOND ═══ */}
-        <section className="relative py-20 sm:py-24 overflow-hidden">
-          <Img src="/images/services/power-system-studies/study-2.jpg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/pexels-photo-171428-1920w.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.55) 0%, rgba(6,16,60,0.35) 100%)' }} />
-          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-3xl p-8 sm:p-12 text-center shadow-2xl" style={{ background: '#fff' }}>
-              <h2 className="font-urbanist font-black mb-5" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>We Go Above and Beyond</h2>
-              <p className="font-jost text-gray-700 mb-3 text-lg leading-relaxed">We stay current on the latest utility and smart grid standards. Our engineers design substations that are built for future expansion, automation, and integration with digital relays, smart SCADA, and real-time monitoring systems.</p>
-              <p className="font-jost text-gray-700 mb-3 text-lg leading-relaxed">We don&apos;t just meet specs, we shape systems that align with your long-term grid strategy.</p>
-              <p className="font-jost text-gray-700 mb-8">For more information or service assistance, call us on <a href="tel:813-389-7871" className="underline font-semibold" style={{ color: '#A8228A' }}>813-389-7871</a>.</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Book Strategy Call</Link>
-                <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold border-2" style={{ borderColor: '#06103C', color: '#06103C' }}>Get a Quote</Link>
+        <section className="relative order-[120] overflow-hidden bg-[#06103C] py-16 sm:py-20 lg:py-24">
+          <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-[#A8228A]/15 blur-3xl" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#C72E9E]">Built for Long-Term Reliability</p>
+                <h2 className="mb-6 font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">We Go Above and Beyond</h2>
+                <p className="mb-4 font-jost text-base leading-relaxed text-white/75 sm:text-lg">We stay current on the latest utility and smart grid standards. Our engineers design substations that are built for future expansion, automation, and integration with digital relays, smart SCADA, and real-time monitoring systems.</p>
+                <p className="mb-4 font-jost text-base leading-relaxed text-white/75 sm:text-lg">We don&apos;t just meet specs, we shape systems that align with your long-term grid strategy.</p>
+                <p className="mb-8 font-jost text-sm text-white/60 sm:text-base">For more information or service assistance, call us on <a href="tel:813-389-7871" className="font-semibold text-white underline decoration-[#C72E9E] decoration-2 underline-offset-4">813-389-7871</a>.</p>
+                <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                  <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-[#C72E9E] to-[#A8228A] px-8 py-4 font-jost font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-xl sm:w-auto">Book Strategy Call</Link>
+                  <Link href="/contact" className="inline-flex w-full items-center justify-center rounded-full border border-white/30 px-8 py-4 font-jost font-semibold text-white transition-all hover:border-white hover:bg-white/10 sm:w-auto">Get a Quote</Link>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+                  <Img src="/images/services/substation-design/type-transmission.png" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/Transmission+Substation.jpg-1920w.png" alt="High-voltage transmission substation engineered for long-term reliability" className="h-72 w-full object-cover sm:h-[430px]" />
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#06103C]/45 via-transparent to-transparent" />
+                </div>
+                <div className="absolute -bottom-5 left-4 right-4 rounded-2xl border border-white/15 bg-[#0B1A5B]/95 p-5 shadow-xl backdrop-blur sm:left-6 sm:right-auto sm:max-w-xs">
+                  <p className="font-urbanist text-lg font-bold text-white">Future-Ready by Design</p>
+                  <p className="mt-1 font-jost text-sm leading-relaxed text-white/65">Reliable today, adaptable for tomorrow&apos;s grid.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -693,139 +543,19 @@ export default function SubstationDesignPage() {
         {/* ═══ 19. FAQ — exact homepage FAQ.tsx design ═══ */}
 
 
-        {/* ═══ 20. BLOG SECTION — prominent date badge, full images ═══ */}
-        {false && blogs.length > 0 && (
-          <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-                <div>
-                  <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Technical Reading</span>
-                  <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl" style={{ color: '#06103C' }}>Substation Design – Blogs</h2>
-                </div>
-                <Link href="/blog" className="inline-flex items-center gap-2 font-jost font-semibold text-sm" style={{ color: '#A8228A' }}>
-                  View All Articles
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogs.map((post) => (
-                  <Link key={post._id} href={`/blog/${post.slug.current}`} className="group block bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                    <div className="relative w-full aspect-[16/10] overflow-hidden">
-                      <img src={blogImageUrl(post)} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-96f20648-1920w.png' }} />
-                      <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full font-jost text-xs font-bold text-white" style={{ background: '#A8228A' }}>
-                        {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <p className="font-jost text-xs text-gray-400 mb-2 uppercase tracking-wide font-semibold">{post.category}</p>
-                      <h3 className="font-urbanist font-bold text-lg mb-3 leading-snug line-clamp-2" style={{ color: '#06103C' }}>{post.title}</h3>
-                      <p className="font-jost text-gray-600 text-sm leading-relaxed line-clamp-3 mb-5">{post.excerpt}</p>
-                      <span className="inline-flex items-center gap-2 font-jost text-sm font-semibold" style={{ color: '#A8228A' }}>
-                        Read More
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        <WhoWeServed />
-        <FaqSection
-          eyebrow="Questions We Hear"
-          heading="Answers,"
-          headingLine2="before you ask."
-          intro="30 years of client questions. Here are the ones that come up every time for substation design."
-          items={faqs}
-        />
+        <div className="order-[140]">
+          <FaqSection
+            eyebrow="Questions We Hear"
+            heading="Answers,"
+            headingLine2="before you ask."
+            intro="30 years of client questions. Here are the ones that come up every time for substation design."
+            items={faqs}
+          />
+        </div>
+        </div>
       </main>
       <RelatedServiceBlogs terms={["substation","protection","transformer"]} />
       <Footer />
     </>
-  )
-}
-
-function SubstationCaseStudies() {
-  const [active, setActive] = useState<number | null>(null)
-  const [caseStudies, setCaseStudies] = useState<{
-    _id: string
-    title: string
-    cardImage?: string
-    subtitle?: string
-    background?: string
-    solution?: string[]
-    outcome?: string[]
-    stack?: string
-  }[]>([])
-
-  useEffect(() => {
-    client.fetch(
-      `*[_type == "caseStudy" && relatedService == "substation-design"] | order(_createdAt desc) {
-        _id, title, cardImage, subtitle, background, solution, outcome, stack
-      }`
-    ).then(setCaseStudies).catch(() => {})
-  }, [])
-
-  return (
-    <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#C72E9E' }}>Real Projects</span>
-        <h2 className="font-urbanist font-black text-center mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Substation Engineering Case Studies</h2>
-        <p className="font-jost text-white/70 text-center max-w-3xl mx-auto mb-12 text-lg leading-relaxed">Real-world substation engineering delivered across rural electrification, smart cities, renewable energy, and space-constrained urban environments.</p>
-        {caseStudies.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5">
-            {caseStudies.map((d, i) => (
-              <button key={d._id} onClick={() => setActive(i)} className="group rounded-xl overflow-hidden hover:scale-[1.03] transition-transform relative flex items-center justify-center" style={{ background: '#0B1A5B', minHeight: '14rem' }}>
-                {d.cardImage && (
-                  <img src={d.cardImage} alt={d.title} className="w-full h-56 sm:h-72 object-contain p-2" />
-                )}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.9), transparent 60%)' }}>
-                  <p className="font-urbanist font-bold text-white text-xs text-left leading-snug">{d.title}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <p className="font-jost text-white/60 text-center">Case studies coming soon.</p>
-        )}
-      </div>
-      {active !== null && caseStudies[active] && (
-        <div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-10 overflow-y-auto" style={{ background: 'rgba(0,0,0,0.6)' }} onClick={() => setActive(null)}>
-          <div className="bg-white rounded-2xl p-8 max-w-2xl w-full relative mb-10" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setActive(null)} className="absolute top-4 right-4 text-2xl" style={{ color: '#A8228A' }}>×</button>
-            <h3 className="font-urbanist font-black text-xl mb-2" style={{ color: '#06103C' }}>{caseStudies[active].title}</h3>
-            {caseStudies[active].subtitle && (
-              <p className="font-jost text-sm text-gray-500 italic mb-6 pb-4 border-b">{caseStudies[active].subtitle}</p>
-            )}
-            {caseStudies[active].background && (
-              <div className="mb-4 pb-4 border-b">
-                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Scope</h4>
-                <p className="font-jost text-sm text-gray-600">{caseStudies[active].background}</p>
-              </div>
-            )}
-            {caseStudies[active].solution && caseStudies[active].solution!.length > 0 && (
-              <div className="mb-4 pb-4 border-b">
-                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Technical Focus</h4>
-                <ul className="font-jost text-sm text-gray-600 space-y-1">{caseStudies[active].solution!.map((f, j) => <li key={j}>▸ {f}</li>)}</ul>
-              </div>
-            )}
-            {caseStudies[active].stack && (
-              <div className="mb-4 pb-4 border-b">
-                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Engineering Stack</h4>
-                <p className="font-jost text-sm font-bold" style={{ color: '#06103C' }}>{caseStudies[active].stack}</p>
-              </div>
-            )}
-            {caseStudies[active].outcome && caseStudies[active].outcome!.length > 0 && (
-              <div>
-                <h4 className="font-urbanist font-bold text-xs uppercase mb-2 border-l-4 pl-2" style={{ color: '#06103C', borderColor: '#A8228A' }}>Outcome</h4>
-                <p className="font-jost text-sm text-gray-600">{caseStudies[active].outcome!.join(' ')}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </section>
   )
 }

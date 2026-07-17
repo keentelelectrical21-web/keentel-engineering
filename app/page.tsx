@@ -30,9 +30,9 @@ export default function HomePage() {
         <CaseStudies />
         <Testimonials />
         <YouTube />
-        <Newsletter />
         <ContactForm />
         <FAQ />
+        <Newsletter />
         <BlogSection />
       </main>
       <Footer />

@@ -75,7 +75,7 @@ export default function Header() {
           borderBottom: '1px solid #E6E8F0',
         }}
       >
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
 
             {/* Logo — original colors, no filter */}
@@ -190,14 +190,14 @@ export default function Header() {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
         <div className={`absolute top-0 right-0 h-full w-full sm:w-96 flex flex-col transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ background: '#fff', borderLeft: '1px solid #E6E8F0' }}>
 
-          <div className="flex items-center justify-between px-6 py-5" style={{ borderBottom: '1px solid #E6E8F0' }}>
+          <div className="flex items-center justify-between px-4 py-5 sm:px-6" style={{ borderBottom: '1px solid #E6E8F0' }}>
             <img src="/images/home/logo.png" alt="Keentel Engineering" className="h-8 w-auto" />
             <button onClick={() => setIsOpen(false)} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#F4F5F9', color: '#0B1A5B' }}>
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-1">
+          <div className="flex-1 space-y-1 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6">
             {mobileNavLinks.map((link) => (
               <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)}
                 className="flex items-center justify-between px-4 py-3.5 text-base font-medium rounded-2xl transition-all hover:bg-gray-50"
@@ -224,7 +224,7 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="px-6 py-6 space-y-3" style={{ borderTop: '1px solid #E6E8F0' }}>
+          <div className="space-y-3 px-4 py-5 sm:px-6 sm:py-6" style={{ borderTop: '1px solid #E6E8F0' }}>
             <a href="tel:813-389-7871" className="flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium" style={{ background: '#F4F5F9', color: '#0B1A5B' }}>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               813-389-7871

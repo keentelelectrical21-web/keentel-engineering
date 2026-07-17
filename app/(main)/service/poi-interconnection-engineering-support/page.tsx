@@ -1,16 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
-import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
 import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
-import { client } from '@/lib/sanity'
 
 interface BlogPost {
   _id: string
@@ -26,7 +25,6 @@ interface CaseStudy {
   _id: string
   title: string
   slug: { current: string }
-  category: string
   cardImage?: string
   excerpt?: string
 }
@@ -40,13 +38,13 @@ function FaqAccordionItem({ q, a, index }: { q: string; a: string; index: number
   return (
     <div className="rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer" style={{ border: `1.5px solid ${open ? '#A8228A' : '#E6E8F0'}`, boxShadow: open ? '0 4px 24px rgba(168,34,138,0.1)' : 'none' }} onClick={() => setOpen(!open)}>
       <div className="flex items-center gap-4 sm:gap-5 p-5 sm:p-6">
-        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: open ? '#A8228A' : '#E6E8F0' }}>{String(index + 1).padStart(2, '0')}</span>
+        <span className="font-urbanist font-black text-xl sm:text-2xl flex-shrink-0 w-7 sm:w-8" style={{ color: '#0B1230' }}>{String(index + 1).padStart(2, '0')}</span>
         <h4 className="font-urbanist font-bold text-base sm:text-xl leading-snug flex-1" style={{ color: '#0B1230' }}>{q}</h4>
         <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300" style={{ background: open ? '#A8228A' : '#F6F7FB', transform: open ? 'rotate(45deg)' : 'rotate(0deg)' }}>
           <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: open ? '#fff' : '#A8228A' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
         </div>
       </div>
-      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '260px' : '0px' }}>
+      <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: open ? '520px' : '0px' }}>
         <p className="px-5 sm:px-6 pb-5 sm:pb-6 pl-[52px] sm:pl-[72px] text-sm sm:text-base font-jost leading-relaxed" style={{ color: '#4B5563' }}>{a}</p>
       </div>
     </div>
@@ -76,13 +74,6 @@ function FaqSection({ eyebrow, heading, headingLine2, intro, items }: { eyebrow:
   )
 }
 
-const whoFor = [
-  { t: 'Renewable energy developers', d: 'Solar, wind, BESS, and hybrid project developers navigating utility interconnection.', img: '/images/services/poi-interconnection/who-1-renewable.jpeg' },
-  { t: 'EPC contractors', d: 'Contractors managing interconnection scope across design and construction.', img: '/images/services/poi-interconnection/who-2-epc.jpeg' },
-  { t: 'Independent power producers', d: 'IPPs needing utility-compliant POI design and study support.', img: '/images/services/poi-interconnection/who-3-ipp.jpeg' },
-  { t: 'Industrial & utility-scale owners', d: 'Generation owners requiring schedule certainty and compliance.', img: '/images/services/poi-interconnection/who-4-industrial.jpeg' },
-]
-
 const commonIssues = [
   { t: 'Utility rejection', d: 'Due to incomplete or non-compliant POI designs.', img: '/images/services/poi-interconnection/issue-1-rejection.jpeg' },
   { t: 'Costly redesigns', d: 'After feasibility, system impact, or facilities studies.', img: '/images/services/poi-interconnection/issue-2-redesign.jpeg' },
@@ -99,20 +90,27 @@ const deliverables = [
 ]
 
 const whenToEngage = [
-  'Before submitting an interconnection application',
-  'During transitions between study phases',
-  'After a failed or rejected utility review',
-  'When moving from developer design to EPC execution',
-  'When modifying or repowering an existing interconnection',
-  'When integrating BESS or hybrid generation at an existing POI',
+  { t: 'Before the application', d: 'Establish a utility-ready concept before assumptions become commitments.', img: 'when-1-before-app.jpeg' },
+  { t: 'During study phases', d: 'Keep design inputs aligned through feasibility, system impact, and facilities studies.', img: 'when-2-study-phases.jpeg' },
+  { t: 'After a rejected review', d: 'Resolve comments and close technical gaps without repeating avoidable work.', img: 'when-3-rejected.jpeg' },
+  { t: 'At EPC handoff', d: 'Translate developer concepts into coordinated construction-ready requirements.', img: 'when-4-epc-handoff.jpeg' },
+  { t: 'For repowering', d: 'Evaluate modifications while protecting existing approvals and operating constraints.', img: 'when-5-repower.jpeg' },
+  { t: 'For BESS or hybrids', d: 'Coordinate storage controls, protection, and shared interconnection capacity.', img: 'when-6-bess.jpeg' },
 ]
 
 const capabilities = [
-  'Transmission-level and distribution-level POIs',
-  'Greenfield and brownfield interconnections',
-  'Utility-owned and customer-owned POI facilities',
-  'Renewable, storage, and hybrid generation projects',
-  'New interconnections, expansions, and modifications',
+  { t: 'Transmission & Distribution', d: 'POIs engineered across transmission and distribution voltage classes.', img: 'cap-transmission-distribution.jpeg' },
+  { t: 'Greenfield & Brownfield', d: 'New installations and complex modifications to energized facilities.', img: 'cap-greenfield-brownfield.jpeg' },
+  { t: 'Utility & Customer Owned', d: 'Clear ownership boundaries, metering, protection, and operating interfaces.', img: 'cap-utility-customer.jpeg' },
+  { t: 'Renewable & Storage', d: 'Solar, wind, BESS, and hybrid generation interconnection design.', img: 'cap-renewable-storage.jpeg' },
+  { t: 'Expansion & Repowering', d: 'Capacity additions, equipment changes, and existing POI upgrades.', img: 'cap-new-expansion.jpeg' },
+]
+
+const auditReadyValues = [
+  { t: 'Utility-specific design', d: 'Requirements and review criteria are built into the engineering from day one.' },
+  { t: 'Study-aligned assumptions', d: 'Approved models, equipment ratings, and operating cases stay synchronized.' },
+  { t: 'Defensible documentation', d: 'Submittals are structured for efficient utility review and comment resolution.' },
+  { t: 'Construction continuity', d: 'Design intent carries cleanly from application support into EPC execution.' },
 ]
 
 const processSteps = [
@@ -133,72 +131,21 @@ const faqs = [
 ]
 
 export default function POIInterconnectionPage() {
-  const [blogs, setBlogs] = useState<BlogPost[]>([])
-  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([])
-  const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
-  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-
-  useEffect(() => {
-    client.fetch<BlogPost[]>(
-      `*[_type == "blogPost" && (
-        category match "*interconnection*" || category match "*Interconnection*"
-        || category match "*POI*" || category match "*grid*" || category match "*Grid*"
-      )] | order(publishedAt desc) [0...6] {
-        _id, title, slug, publishedAt, excerpt, "category": category->title,
-        "mainImage": mainImage { asset->{ url } }
-      }`
-    ).then(data => {
-      if (data.length >= 3) { setBlogs(data); return }
-      client.fetch<BlogPost[]>(
-        `*[_type == "blogPost"] | order(publishedAt desc) [0...6] {
-          _id, title, slug, publishedAt, excerpt, "category": category->title,
-          "mainImage": mainImage { asset->{ url } }
-        }`
-      ).then(setBlogs).catch(() => {})
-    }).catch(() => {})
-  }, [])
-
-  useEffect(() => {
-    client.fetch<CaseStudy[]>(
-      `*[_type == "caseStudy" && (lower(relatedService) match "*poi*" || lower(relatedService) match "*interconnection*")] | order(_createdAt desc) [0...3] {
-        _id, title, slug, relatedService,
-        "cardImage": featuredImage.asset->url,
-        "excerpt": challenge
-      }`
-    ).then(setCaseStudies).catch(() => {})
-  }, [])
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormStatus('loading')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          first_name: formData.firstName, last_name: formData.lastName, phone: formData.phone,
-          email: formData.email, service: 'POI Interconnection Engineering Support',
-          message: formData.message, source: 'poi-interconnection',
-        }),
-      })
-      if (res.ok) { setFormStatus('success'); setFormData({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' }) }
-      else setFormStatus('error')
-    } catch { setFormStatus('error') }
-  }
-
-  const blogImageUrl = (post: BlogPost) => post.mainImage?.asset?.url || `https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-96f20648-1920w.png`
+  const blogs: BlogPost[] = []
+  const caseStudies: CaseStudy[] = []
+  const blogImageUrl = (post: BlogPost) => post.mainImage?.asset?.url || '/images/services/poi-interconnection/overview.png'
 
   return (
     <>
       <Header />
-      <main>
+      <main className="flex flex-col">
 
 {/* ═══ 1. HERO ═══ */}
-        <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
+        <section className="order-[10] relative min-h-[75vh] sm:min-h-[80vh] flex items-center overflow-hidden" style={{ background: '#06103C' }}>
           <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-            <source src="/videos/poi.mp4" type="video/mp4" />
+            <source src="/videos/POI Interconnection.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.82) 0%, rgba(6,16,60,0.55) 55%, rgba(91,42,134,0.28) 100%)' }} />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 w-full">
             <div className="max-w-4xl">
               <div className="flex items-center gap-2 mb-6 sm:mb-8">
@@ -211,8 +158,8 @@ export default function POIInterconnectionPage() {
                 Engineering, documentation, and utility coordination designed to reduce interconnection risk, prevent redesigns, and accelerate project approvals — for renewable developers, EPC contractors, IPPs, and utilities across North America.
               </p>
               <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
-                <a href="/files/poi-interconnection.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
+                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
+                <a href="/files/poi-interconnection.pdf" target="_blank" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white border border-white/25 hover:border-white/60 transition-all">Download The Flyer</a>
               </div>
 
               <div className="border-t border-white/10 pt-8">
@@ -231,7 +178,7 @@ export default function POIInterconnectionPage() {
         </section>
 
         {/* ═══ 2. OVERVIEW ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="order-[20] py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
@@ -255,12 +202,6 @@ export default function POIInterconnectionPage() {
             </div>
           </div>
         </section>
-
-        <ContactForm />
-        <SoftwareTools heading="Our Software Capabilities" />
-        <Industries />
-        <ServiceCaseStudies service="poi-interconnection-engineering-support" />
-
 
         {/* ═══ 3. WHY CHOOSE — branded two-column ═══ */}
         <section className="hidden" aria-hidden="true">
@@ -300,28 +241,8 @@ export default function POIInterconnectionPage() {
           </div>
         </section>
 
-        {/* ═══ 4. WHO THIS SERVICE IS FOR ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Fit Check</span>
-            <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Who This Service Is For</h2>
-            <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">Our POI interconnection engineering support is designed for projects where utility acceptance, schedule certainty, and compliance matter — not template-driven or low-risk projects.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {whoFor.map((c, i) => (
-                <div key={i} className="group bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
-                  <div className="h-40 overflow-hidden"><Img src={c.img} fallback={c.img} alt={c.t} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div>
-                  <div className="p-6">
-                    <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>{c.t}</h3>
-                    <p className="font-jost text-gray-600 text-sm leading-relaxed">{c.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ═══ 5. WHY POI IS HIGH-RISK ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
+        <section className="order-[60] py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why POI Interconnection Is One of the Highest-Risk Phases of a Power Project</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-3 text-lg leading-relaxed">Many power projects don&apos;t fail during construction — they fail during interconnection review. Our role is to reduce this risk before it becomes a schedule or cost problem.</p>
@@ -341,7 +262,7 @@ export default function POIInterconnectionPage() {
         </section>
 
         {/* ═══ 6. WHAT WE DELIVER ═══ */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="order-[65] py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>What We Deliver</h2>
             <p className="font-jost text-gray-600 max-w-3xl mb-12 text-lg leading-relaxed">End-to-end POI engineering — from electrical design through utility submittal, technical studies, and construction-ready documentation.</p>
@@ -363,36 +284,68 @@ export default function POIInterconnectionPage() {
         </section>
 
         {/* ═══ 7. WHEN TO ENGAGE + CAPABILITIES ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.75rem,2.5vw,2.25rem)' }}>When to Engage POI Engineering Support</h2>
-              <p className="font-jost text-gray-600 mb-6 text-lg leading-relaxed">Engaging POI engineering at the right time can prevent months of delay later. This service is typically engaged:</p>
-              <ul className="space-y-3 font-jost text-base text-gray-700">
-                {whenToEngage.map((t, i) => (
-                  <li key={i} className="flex gap-3 items-center"><span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#A8228A' }} />{t}</li>
-                ))}
-              </ul>
+        <section className="order-[80] py-16 sm:py-24" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mb-10 sm:mb-12">
+              <span className="text-xs font-bold uppercase tracking-[0.18em] font-jost" style={{ color: '#A8228A' }}>Project Timing</span>
+              <h2 className="font-urbanist font-black mt-3 mb-4" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>When to Engage POI Engineering Support</h2>
+              <p className="font-jost text-gray-600 text-base sm:text-lg leading-relaxed">Early, coordinated engineering prevents study assumptions, utility requirements, and construction scope from drifting apart.</p>
             </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg" style={{ border: '1px solid #E6E8F0' }}>
-              <h3 className="font-urbanist font-bold text-xl mb-4" style={{ color: '#06103C' }}>Keentel Engineering POI Capabilities</h3>
-              <p className="font-jost text-gray-600 text-sm mb-4">We design POIs to meet utility-specific requirements, not generic assumptions. Our experience includes:</p>
-              <ul className="space-y-3 font-jost text-sm text-gray-700">
-                {capabilities.map((t, i) => (
-                  <li key={i} className="flex gap-2 items-start">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#A8228A' }}>
-                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    {t}
-                  </li>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              {whenToEngage.map((item, i) => (
+                <article key={item.t} className="group bg-white rounded-2xl overflow-hidden border border-[#E3E7F0] transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/50 hover:shadow-xl">
+                  <div className="relative h-40 overflow-hidden">
+                    <Img src={`/images/services/poi-interconnection/${item.img}`} fallback={`/images/services/poi-interconnection/${item.img}`} alt={item.t} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <span className="absolute top-4 left-4 w-9 h-9 rounded-full grid place-items-center text-xs font-black text-white font-urbanist" style={{ background: '#A8228A' }}>{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div className="p-5 sm:p-6"><h3 className="font-urbanist font-bold text-lg mb-2" style={{ color: '#06103C' }}>{item.t}</h3><p className="font-jost text-sm leading-relaxed text-gray-600">{item.d}</p></div>
+                </article>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        <section className="order-[100] py-16 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-[1.75rem] p-6 sm:p-10 lg:p-12" style={{ background: '#06103C' }}>
+              <div className="max-w-3xl mb-8">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] font-jost" style={{ color: '#D83BB5' }}>Delivery Range</span>
+                <h3 className="font-urbanist font-black text-2xl sm:text-3xl text-white mt-3 mb-3">Keentel Engineering POI Capabilities</h3>
+                <p className="font-jost text-white/70 leading-relaxed">Utility-specific support for new facilities, expansions, modifications, and complex ownership interfaces.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {capabilities.map((item) => (
+                  <article key={item.t} className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06]">
+                    <div className="h-32 overflow-hidden"><Img src={`/images/services/poi-interconnection/${item.img}`} fallback={`/images/services/poi-interconnection/${item.img}`} alt={item.t} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>
+                    <div className="p-5"><h4 className="font-urbanist font-bold text-white mb-2">{item.t}</h4><p className="font-jost text-white/65 text-sm leading-relaxed">{item.d}</p></div>
+                  </article>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ═══ 8. PROCESS ═══ */}
-        <section className="py-20 sm:py-24" style={{ background: '#06103C' }}>
+        <section className="order-[120] py-16 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+              <div className="lg:col-span-5 rounded-[1.75rem] overflow-hidden min-h-[320px] sm:min-h-[420px]">
+                <Img src="/images/services/poi-interconnection/Feasibility & Early Electrical Planning.jpg" fallback="/images/services/poi-interconnection/deliver-studies.jpeg" alt="Engineers reviewing utility-compliant POI plans" className="w-full h-full object-cover" />
+              </div>
+              <div className="lg:col-span-7 rounded-[1.75rem] p-6 sm:p-9 lg:p-12 border border-[#E3E7F0] bg-[#F8F9FC]">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] font-jost text-[#A8228A]">Engineering Assurance</span>
+                <h2 className="font-urbanist font-black mt-3 mb-4 leading-tight text-[#06103C]" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Audit-Ready, Utility-Compliant POI Engineering</h2>
+                <p className="font-jost text-gray-600 text-base sm:text-lg leading-relaxed mb-8">Every deliverable supports utility review, preserves traceability, and carries the approved interconnection concept into construction without losing technical intent.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {auditReadyValues.map((item, i) => <div key={item.t} className="bg-white rounded-xl p-5 border border-[#E3E7F0]"><span className="font-urbanist font-black text-sm text-[#A8228A]">{String(i + 1).padStart(2, '0')}</span><h3 className="font-urbanist font-bold mt-2 mb-1 text-[#06103C]">{item.t}</h3><p className="font-jost text-gray-600 text-sm leading-relaxed">{item.d}</p></div>)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="order-[90] py-20 sm:py-24" style={{ background: '#06103C' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost text-center w-full" style={{ color: '#C72E9E' }}>Process</span>
             <h2 className="font-urbanist font-black text-center mb-3 text-white" style={{ fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Our POI Interconnection Engineering Process</h2>
@@ -412,6 +365,31 @@ export default function POIInterconnectionPage() {
             </div>
           </div>
         </section>
+
+        <div className="order-[30]"><ContactForm /></div>
+        <div className="order-[70]"><SoftwareTools /></div>
+        <div className="order-[40]"><SoftwareCapabilities /></div>
+
+        <section className="order-[150] py-16 sm:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-[1.75rem] min-h-[360px] flex items-center">
+              <Img src="/images/services/poi-interconnection/Ready to Reduce Interconnection Risk.jpg" fallback="/images/services/poi-interconnection/cta-engineer-phone.jpeg" alt="Engineer supporting POI risk reduction" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#06103C] via-[#06103C]/90 to-[#06103C]/30" />
+              <div className="relative z-10 max-w-2xl p-7 sm:p-10 lg:p-14">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] font-jost text-[#F05BCB]">Start With Clarity</span>
+                <h2 className="font-urbanist font-black text-white mt-3 mb-4 leading-tight" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>Ready to Reduce Interconnection Risk?</h2>
+                <p className="font-jost text-white/80 text-base sm:text-lg leading-relaxed mb-7">Bring utility requirements, study assumptions, and construction scope into one coordinated engineering path.</p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center px-7 py-3.5 rounded-full font-jost font-semibold text-white bg-[#A8228A]">Schedule a Consultation</a>
+                  <Link href="/contact" className="inline-flex justify-center px-7 py-3.5 rounded-full font-jost font-semibold text-white border border-white/40 hover:bg-white/10">Discuss Your Project</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="order-[110]"><Industries /></div>
+        <div className="order-[130]"><ServiceCaseStudies service="poi-interconnection-engineering-support" /></div>
 
         {/* ═══ 9. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
         <section className="hidden" aria-hidden="true">
@@ -454,21 +432,7 @@ export default function POIInterconnectionPage() {
         {/* ═══ 10. GET IN TOUCH — full redesign, split from download ═══ */}
 
 
-        {/* ═══ 11. DOWNLOAD FLYER — standalone, centered, branded ═══ */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center rounded-2xl p-10 sm:p-12" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 100%)' }}>
-              <h3 className="font-urbanist font-black text-2xl sm:text-3xl text-white mb-3">Download our POI Interconnection Engineering Support flyer</h3>
-              <p className="font-jost text-white/70 mb-8 max-w-xl mx-auto">Please click the Download button to get our POI Interconnection Engineering Support flyer.</p>
-              <a href="/files/poi-interconnection.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-jost font-semibold text-white transition-all hover:scale-105" style={{ background: '#A8228A' }}>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                Download The Flyer
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 12. WHO WE'VE SERVED ═══ */}
+      
 
 
         {/* ═══ 13. FAQ — homepage FAQ.tsx match ═══ */}
@@ -513,14 +477,13 @@ export default function POIInterconnectionPage() {
           </section>
         )}
 
-        <WhoWeServed />
-        <FaqSection
+        <div className="order-[160]"><FaqSection
           eyebrow="Questions We Hear"
           heading="Answers,"
           headingLine2="before you ask."
           intro="The interconnection questions developers, EPCs, and IPPs ask us most."
           items={faqs}
-        />
+        /></div>
       </main>
       <RelatedServiceBlogs terms={["interconnection","POI","grid"]} />
       <Footer />

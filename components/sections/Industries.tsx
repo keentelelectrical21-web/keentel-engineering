@@ -78,16 +78,15 @@ export default function Industries() {
                 alt={ind.title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
               />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.95) 0%, rgba(6,16,60,0.6) 45%, rgba(6,16,60,0.15) 100%)' }} />
-              <div className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all" style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)' }}>
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all bg-white/95 shadow-sm" style={{ border: '1px solid rgba(6,16,60,0.12)' }}>
+                <svg className="w-4 h-4" style={{ color: '#06103C' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="absolute bottom-0 left-0 right-0 p-6" style={{ background: 'linear-gradient(to top, rgba(6,16,60,0.96) 0%, rgba(6,16,60,0.9) 78%, rgba(6,16,60,0) 100%)' }}>
                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#C72E9E' }}>{ind.tag}</p>
                 <h3 className="font-urbanist font-bold text-white text-2xl mb-2 leading-tight">{ind.title}</h3>
-                <p className="text-white/60 text-sm font-jost leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white/80 text-sm font-jost leading-snug max-h-0 overflow-hidden group-hover:max-h-24 transition-all duration-300">
                   {ind.desc}
                 </p>
               </div>

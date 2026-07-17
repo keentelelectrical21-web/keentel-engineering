@@ -66,3 +66,10 @@ h1, h2, h3, h4, h5, h6 {
 main {
   overflow-x: hidden !important;
 }
+
+/* Keep page sections visually compact across the site without changing content or layout. */
+main > section:not([class*="min-h-"]),
+main > div > section:not([class*="min-h-"]) {
+  padding-top: clamp(2.5rem, 3.5vw, 3.75rem) !important;
+  padding-bottom: clamp(2.5rem, 3.5vw, 3.75rem) !important;
+}
