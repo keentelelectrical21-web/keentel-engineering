@@ -1,0 +1,205 @@
+Page URL: https://keentelengineering.com/newsletter/navigating-nerc-compliance-in-the-era-of-inverter-based-resources
+
+
+Home
+About
+Services
+Power System Studies Services
+Substation Design Services
+POI Interconnection Engineering Support
+Transmission Line Design Services
+Utility Scale Renewable Energy
+Owner’s Engineer Services
+MEP Engineering Services
+NERC O&P 693 Compliance Services
+Our Work
+Keentel’s Grid IQ
+Contact
+Schedule A Consultation 
+Keentel Engineering Newsletter
+Navigating NERC Compliance in the Era of Inverter-Based Resources
+
+January 2026 Edition
+Introduction: A Turning Point for Grid Reliability
+The North American electric grid is undergoing one of the most significant transitions in its history. Rapid growth in inverter-based resources (IBRs), including solar, wind, and battery energy storage systems (BESS), has fundamentally changed how the Bulk Power System (BPS) behaves during disturbances, extreme weather events, and cybersecurity incidents.
+In response, the North American Electric Reliability Corporation (NERC) has accelerated regulatory actions across planning, protection, operations, and cybersecurity, culminating in:
+The IBR Registration Initiative
+Multiple new PRC, CIP, TPL, TOP, and BAL standards
+Expanded enforcement readiness beginning in 2026
+﻿
+This newsletter provides a comprehensive overview of what has changed, what is coming, and what asset owners must do now to remain compliant.
+
+The IBR Registration Initiative: From Outreach to Enforcement
+Why the Initiative Exists.
+Historically, many inverter-based resources were:
+Below traditional size thresholds
+Interconnected at transmission or sub-transmission voltage levels
+Outside formal NERC registration requirements
+However, multiple large-scale IBR disturbances, including events that resulted in the simultaneous tripping of thousands of megawatts, exposed systemic reliability risks related to:
+Frequency ride-through performance
+Voltage control interactions
+Limited operational visibility and reporting
+Inconsistent protection and control settings
+﻿
+In response to these risks, the Federal Energy Regulatory Commission directed NERC in 2022 to close the IBR registration gap and strengthen oversight of inverter-based generation.
+Key Milestones
+2023 – Initiative launched with industry outreach and awareness efforts
+2024 – Education, data collection, and identification of impacted entities
+May 2025 – Entry into﻿ the third and final milestone: formal registration
+As of this final phase, eligible IBR owners and operators are required to register as:
+Category 2 Generator Owners (GO)
+Category 2 Generator Operators (GOP)
+What Registration Means in Practice
+Once registered, entities may become subject to a range of NERC reliability and cybersecurity requirements, including:
+PRC standards governing protection coordination and ride-through performance
+CIP standards addressing cyber assets, communications, and access control
+EOP standards related to disturbance reporting and event analysis
+Ongoing model validation and data submittal obligations
+Audit readiness, evidence retention, and compliance documentation
+﻿
+For many renewable developers and independent power producers, this represents their first direct exposure to formal NERC compliance obligations.
+To see real-world examples of how modeling, protection validation, and ISO-facing data submissions support NERC registration and compliance, review Keentel Engineering’s Point-of-Interconnection interconnection support case studies.
+
+New and Upcoming NERC Reliability Standards
+IBR-Focused Reliability Standards
+PRC-029-1 — Frequency and Voltage Ride-Through (Effective October 1, 2026)
+PRC-029-1 establishes mandatory frequency and voltage ride-through performance requirements for inverter-based resources, ensuring that IBRs remain connected during grid disturbances rather than contributing to widespread tripping events.
+Key implications include
+Verification of inverter control and protection settings
+EMT-based validation of dynamic ride-through behavior
+Coordination with transmission planners and operators to confirm system-level performance
+﻿This standard represents a significant shift toward performance-based validation of inverter behavior under disturbance conditions.
+To see how EMT-based ride-through validation is performed in practice, explore Keentel Engineering’s PSCAD power system studies case studies.
+
+PRC-030-1 — Unexpected IBR Event Mitigation (Effective Oct 1, 2026)
+PRC-030-1 requires registered entities to:
+Analyze unexpected IBR tripping events
+Identify root causes
+Implement corrective actions to prevent recurrence
+This standard introduces a new compliance paradigm—post-event engineering accountability.
+
+PRC-024-4 — Protection Settings Updates
+Expands applicability and coordination requirements for:
+Type 1 and Type 2 wind resources
+Synchronous condensers
+Certain generator configurations interacting with IBRs
+
+Cybersecurity Expansion: CIP Standards
+CIP-003-9
+Strengthens governance, policies, and management controls—often the entry point for newly registered entities.
+CIP-012-2
+Enhances requirements for secure communications between control centers, impacting:
+SCADA links
+Remote monitoring systems
+Third-party communication paths
+CIP-015-1 (Effective Oct 1, 2028)
+Introduces internal network security monitoring, significantly raising expectations for:
+Detection capabilities
+Continuous monitoring
+Incident response readiness﻿
+
+Planning & Operations Standards
+TPL-008-1
+Requires planners to assess extreme temperature events, reflecting lessons learned from recent heat waves and cold weather emergencies.
+BAL-007-1
+Introduces near-term energy reliability assessments, increasing coordination between planning and operations.
+TOP-003-7
+Strengthens data exchange requirements between Transmission Operators and Balancing Authorities.
+
+Industry Engagement: Ballots, Comment Periods, and Events
+NERC has emphasized active industry participation through:
+Ballots for EOP-004 IBR Event Reporting
+Ballots and comments on CIP-015 Internal Network Security Monitoring
+Draft white papers on third-party cloud risk management
+January 2026 features numerous:
+Standards committee meetings
+Drafting team sessions
+Industry webinars
+Resource and frequency working group meetings
+These forums provide early insight into enforcement expectations and implementation challenges.
+
+What Asset Owners Should Be Doing Now
+Entities impacted by the IBR Registration Initiative should already be taking the following actions:
+   Confirming Generator Owner and Generator Operator applicability
+Reviewing PRC-029 and PRC-030 frequency and voltage ride-through performance requirements
+Validating dynamic and EMT-based power system models used for compliance and interconnection
+Assessing cyber asset scope and communications pathways under applicable CIP standards
+Establishing repeatable event analysis, reporting, and documentation processes
+Preparing proactively for audit readiness and future enforcement activities
+Waiting until these standards become enforceable significantly increases compliance risk, project cost, and operational exposure.
+
+Keentel Engineering: Your Compliance Partner
+With over 30 years of power system engineering experience, Keentel Engineering helps asset owners navigate the full lifecycle of NERC compliance for inverter-based resources, from registration and modeling to audit readiness.
+Our Services Include
+IBR applicability and Category 2 GO/GOP registration support
+EMT and dynamic modeling using PSSE, TSAT, and PSCAD for ride-through validation
+PRC-029 and PRC-030 readiness and protection compliance reviews
+CIP gap assessments and cybersecurity compliance support
+Ongoing advisory services for audits and enforcement preparedness
+Our Related Services and Industry Updates
+NERC Compliance Services
+EMT Analysis Services for Inverter-Based Resources
+Power System Studies & Dynamic Modeling
+POI Interconnection Engineering Support
+IEEE 2800 Compliance & Operational Planning Services
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+Services
+All Engineering Services
+EHV, HV. MV Power System Studies
+Substation Design Services
+POI Interconnection Engineering Support
+Utility Scale Solar Farm Engineering
+Utility Scale BESS Engineering
+MEP Engineering Services
+
+
+
+Let's Discuss Your Project
+Let's book a call to discuss your electrical engineering project that we can help you with.
+Schedule A Consultation
+Download Company Profile Flyer
+
+
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+
+Serving for more than two decades, we are a name you can trust and count on for your power system and engineering support needs. We can provide innovative solutions to take your business to greater heights.
+Menu Links
+Home
+About
+Services
+Industries
+Keentel’s Grid IQ
+Contact
+Schedule a Consultation
+Connect with Us
+813-389-7871
+contact@keentelengineering.com
+BD@keentelengineering.com
+Headquarters
+400 N Ashley Dr STE #2600 Tampa, FL 33602
+Austin Office
+5900 Balcones Drive STE 100 Austin, TX 78731 USA
+Sacramento Office
+1401 21st St Ste R Sacramento, CA 95811 USA
+Baltimore Office
+306 W Redwood St, STE 200 Baltimore, MD 21201 USA
+
+
+
+
+
+
+© 2026 
+Copyright 1995-2026 Keentel Engineering All Rights Reserved
+Privacy Policy
+Terms & Conditions
+Legal Disclaimer
+

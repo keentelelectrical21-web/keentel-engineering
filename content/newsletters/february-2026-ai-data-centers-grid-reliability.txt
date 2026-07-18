@@ -1,0 +1,94 @@
+Powering Reliability in the Age of AI and Large Load Growth
+February 2026 Edition
+
+Editor’s Note
+The North American power system is entering a pivotal decade. Artificial intelligence, cloud computing, and the digital economy are driving unprecedented data center growth, reshaping load forecasts, transmission planning, and reliability assumptions faster than traditional infrastructure can adapt.
+
+Recent assessments from NERC, regulatory signals from FERC, and industry perspectives from utilities and manufacturers all point to the same conclusion: the grid is changing faster than the systems designed to support it.
+
+This month’s newsletter highlights the key trends shaping 2026—and what utilities, developers, and large-load customers must do to stay ahead.
+
+The Growing Role of AI in the Power Sector
+Artificial Intelligence is impacting the power industry from both ends:
+As a primary driver of large-load growth, led by hyperscale data centers
+As a tool for grid optimization, enabling more accurate forecasting, planning, and operations
+
+Utilities are already deploying AI-driven analytics for:
+Load and weather forecasting
+Demand response optimization
+Distributed Energy Resource (DER) aggregation
+Asset health monitoring and predictive maintenance
+
+These analytics must be validated through rigorous engineering and system impact analysis.
+
+Industry initiatives such as EPRI’s Open Power AI Consortium and utility-led demonstrations by Avista, PG&E, Ameren, and Portland General Electric show real operational promise—but also expose a growing readiness gap across the sector.
+
+The question is no longer if AI will reshape the grid, but how fast utilities can adapt engineering, planning, and interconnection processes to keep pace.
+
+NERC Sounds the Alarm on Resource Adequacy
+In its 2025 Long-Term Reliability Assessment (LTRA) released January 29, 2026, NERC identifies intensifying reliability risks across the bulk power system over the next decade.
+
+Key Findings
+224 GW of summer peak demand growth forecast over 10 years
+A 69% increase over the 2024 forecast
+Data centers and AI-driven loads account for most of the increase
+246 GW of winter peak demand growth, now exceeding summer growth due to changing usage patterns
+105 GW of planned generator retirements, only partially offset by new additions
+
+“This assessment is not a prediction of failure but an early warning on the trajectory of risk.”
+— John Moura, NERC
+
+Meeting these challenges requires disciplined compliance programs and defensible engineering studies. While battery, solar, and gas-fired resources dominate projected additions, uncertainty in interconnection queues and construction timelines remains a critical concern.
+
+Data Centers Are Reshaping Grid Planning Assumptions
+The pace of data center deployment has outstripped nearly every historical planning model:
+Traditional 54V in-rack systems were designed for kilowatts—not megawatts
+Next-generation facilities are driving 800V DC architectures
+Chip-level power consumption continues to rise as Dennard scaling breaks down
+
+By 2030, approximately 27% of data centers are expected to rely entirely on on-site generation. However, the remaining 73% will depend on the bulk power system, placing enormous pressure on generation and transmission infrastructure.
+
+According to Lawrence Berkeley National Laboratory, more than 2.6 TW of generation and storage projects are currently queued—more than double today’s installed U.S. capacity—yet transmission remains the dominant bottleneck.
+
+Transmission and Permitting: The Critical Constraint
+Utilities want to invest. Capital is available. The largest obstacle is permitting and execution. North American transmission systems were built as regional networks, not an integrated continental grid.
+
+As a result:
+Projects require overlapping federal, state, tribal, and local permits
+Environmental reviews and litigation introduce multi-year uncertainty
+States resist infrastructure perceived to benefit neighboring regions
+
+FERC’s recent transmission planning and cost allocation reforms aim to address these challenges—but 2026 will be the year those reforms are tested in practice. Project success increasingly depends on experienced Owner’s Engineer support.
+
+FERC in 2026: From Policy to Execution
+FERC enters 2026 under intense pressure to:
+Accelerate data center interconnections
+Enforce new transmission planning rules
+Balance affordability with reliability
+
+New Chairman Laura Swett has made large-load interconnections a top priority, while former commissioners emphasize that this year will focus less on new rulemaking and more on implementation and accountability.
+
+For utilities and developers, success will depend on defensible studies, realistic assumptions, and regulatory-ready engineering.
+
+What This Means for the Industry
+Across NERC, FERC, utilities, and manufacturers, one message is consistent:
+Reliability remains achievable—but only if planning, permitting, and infrastructure delivery accelerate now.
+
+Meeting this challenge will require:
+Faster interconnection and transmission development
+Robust resource adequacy and seasonal reliability studies
+Coordination between electric and natural gas systems
+Engineering solutions aligned with evolving regulatory expectations
+
+How Keentel Engineering Supports the Path Forward
+At Keentel Engineering, we help clients navigate this transition through:
+Large-load interconnection and system impact studies
+Transmission and substation planning support
+Resource adequacy and reliability assessments
+Dynamic modeling and NERC-aligned compliance analysis
+Regulatory-ready documentation for ISO/RTO and FERC review
+
+As AI-driven demand reshapes the grid, sound engineering execution will determine whether infrastructure keeps pace with growth.
+
+Let’s Build What the Future Demands
+Contact Keentel Engineering to discuss how we can support your next project in this rapidly evolving power landscape.

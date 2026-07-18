@@ -1,0 +1,261 @@
+Page URL:https://keentelengineering.com/nerc-february-2026-event-calendar
+
+
+Home
+About
+Services
+Power System Studies Services
+Substation Design Services
+POI Interconnection Engineering Support
+Transmission Line Design Services
+Utility Scale Renewable Energy
+Owner’s Engineer Services
+MEP Engineering Services
+NERC O&P 693 Compliance Services
+Our Work
+Keentel’s Grid IQ
+Contact
+Schedule A Consultation 
+February 2026 NERC Event Calendar: Statistical & Strategic Breakdown
+
+Feb 11, 2026  | blog
+February 2026 is packed with NERC standards work, governance meetings, and technical forums that directly influence CIP cybersecurity, IBR reliability, FERC Order 901 planning/operational studies, energy assurance, and large load integration. For registered entities and developers, this month signals where reliability enforcement and compliance expectations are heading next.
+﻿
+Below is a date-by-date view, followed by a statistical summary and what Keentel Engineering recommends you do now.
+
+1) Key NERC Activity by Date (February 2026)
+Monday, February 2, 2026 — Standards triple-header (virtual)
+Project 2025-06 Supply Chain Risk Management Drafting Team Meeting (11:00 a.m.–12:00 p.m. ET, WebEx)
+Project 2025-05 Ride-Through Revisions Drafting Team Meeting (12:30–2:00 p.m. ET, WebEx)
+Project 2023-01 EOP-004 IBR Event Drafting Team Meeting (2:00–4:00 p.m. ET, WebEx)
+Why it matters:
+Supply chain + ride-through + IBR event reporting in one day is a clear signal:
+﻿
+ cyber risk and inverter performance remain top priorities.
+Tuesday, February 3, 2026 — Planning + DER + cloud + large loads surge
+RAS/PAWG Joint Meeting (8:00 a.m.–4:00 p.m. PT, San Diego, CA)
+Enterprise-wide Risk Committee Closed Meeting (10:30 a.m.–12:30 p.m. ET, online)
+Large Loads Task Force (LLTF) Meeting (11:00 a.m.–3:00 p.m. ET, Teams)
+SITES Meeting (12:00–1:00 p.m. ET, Teams)
+Project 2025-03 Order No. 901 Operational Studies Drafting Team Meeting (2:00–4:00 p.m. ET, WebEx)
+Project 2025-04 Order No. 901 Planning Studies Drafting Team Meeting (2:00–4:00 p.m. ET, WebEx)
+Project 2023-09 Third-Party Cloud Services Risk Drafting Team Meeting (3:00–5:00 p.m. ET, WebEx)
+SPIDERWG Meeting (3:00–5:00 p.m. ET, Teams)
+﻿
+Why it matters: This is one of the most “loaded” days in February. It combines Order 901, DER planning impacts, and large loads — the three forces reshaping planning studies.
+Wednesday, February 4, 2026 — Real-time operations + DER planning
+RAS/PAWG Joint Meeting (8:00 a.m.–4:00 p.m. PT, San Diego, CA)
+Real Time Operating Subcommittee Meeting (12:00–5:00 p.m. ET, FPL Miami + Teams)
+SPIDERWG Meeting (1:00–5:00 p.m. ET, Teams)
+﻿
+Why it matters: Real-time operations + DER planning impacts point toward stricter expectations for operability, visibility, and system response under high DER penetration.
+Thursday, February 5, 2026 — CIP + supply chain + Order 901 + cloud
+RAS/PAWG Joint Meeting (8:00 a.m.–4:00 p.m. PT, San Diego, CA)
+Project 2025-06 Supply Chain Risk Management (11:00 a.m.–12:00 p.m. ET, WebEx)
+Project 2023-06 CIP-014 Risk Assessment Refinement (1:00–3:00 p.m. ET, WebEx)
+Project 2025-03 Order No. 901 Operational Studies (2:00–4:00 p.m. ET, WebEx)
+Project 2023-09 Cloud Services Risk (3:00–5:00 p.m. ET, WebEx)
+Why it matters: This is a “CIP-heavy” day—especially notable for entities dealing with CIP-014 (physical security) and expanding cloud dependencies.
+Friday, February 6, 2026 — Cyber monitoring + ride-through + energy assurance
+Project 2025-02 Internal Network Security Monitoring (11:00 a.m.–1:00 p.m. ET, WebEx)
+Project 2025-05 Ride-Through Revisions (12:30–2:00 p.m. ET, WebEx)
+Project 2024-02 Planning Energy Assurance (1:00–3:00 p.m. ET, WebEx)
+Why it matters: The combination of internal network monitoring and ride-through emphasizes two compliance truths:
+cybersecurity expectations are moving inside the perimeter
+IBR performance expectations are becoming more measurable and enforceable.
+Monday, February 9, 2026 — Supply chain + Order 901 planning webinar
+Project 2025-06 Supply Chain Risk Management (11:00 a.m.–12:00 p.m. ET, WebEx)
+Industry Webinar: Project 2025-04 Order No. 901 Planning Studies (1:00–2:00 p.m. ET, WebEx)
+Why it matters: When NERC adds industry webinars, it usually means the topic is moving toward broad implementation readiness.
+Tuesday, February 10, 2026 — Governance concentration + cloud risk
+Finance & Audit Committee Closed Meeting (8:00–9:00 a.m. ET, in person)
+Corporate Governance & HR Exec Session (9:15–10:45 a.m. ET, in person)
+Regulatory Oversight Committee Closed Meeting (11:00 a.m.–12:00 p.m. ET, in person)
+Board of Trustees Strategic Session & Closed Meeting (1:30–5:30 p.m. ET, in person)
+Project 2023-09 Cloud Services Risk (3:00–5:00 p.m. ET, WebEx)
+Why it matters: Standards work and governance are aligning—often a sign of policy acceleration.
+Wednesday, February 11, 2026 — Technical session + EV task force
+SPCWG Meeting (8:00 a.m.–5:00 p.m. PT, Oakland, CA)
+Multiple open committee meetings (Savannah, GA + WebEx)
+Credential/Personnel Certification meetings (10:00–11:00 a.m. ET, online)
+Engagement & Outreach Committee (11:00 a.m.–12:00 p.m. ET, WebEx)
+EV Task Force (EVTF) (1:00–5:00 p.m. ET, Teams)
+NERC Quarterly Technical Session (2:15–5:00 p.m. ET, WebEx)
+﻿
+Why it matters: The quarterly technical session is where the industry often hears what NERC is emphasizing next—good for compliance and engineering leaders to track.
+Thursday, February 12, 2026 — Board open meeting + Order 901 webinar + IBR event revisions
+SPCWG Meeting (8:00 a.m.–12:00 p.m. PT, Oakland, CA)
+Member Representatives Committee (8:00–10:00 a.m. ET, WebEx)
+Board of Trustees Open Meeting (10:30 a.m.–1:00 p.m. ET, WebEx)
+Project 2025-06 Supply Chain Risk Management (11:00 a.m.–12:00 p.m. ET, WebEx)
+Project 2023-01 EOP-004 IBR Event (2:00–4:30 p.m. ET, WebEx)
+Industry Webinar: Project 2025-03 Order No. 901 Operational Studies (2:00–3:00 p.m. ET, WebEx)
+Security Working Group (2:00–2:55 p.m. ET, Teams)
+Project 2023-09 Cloud Services Risk (3:00–5:00 p.m. ET, WebEx)
+Why it matters: February 12 is one of the most important cross-functional days of the month: board-level + cyber + IBR event reporting + Order 901.
+Friday, February 13, 2026 — Frequency control standards work
+Project 2017-01 BAL-003 Phase II (10:00 a.m.–12:00 p.m. ET, WebEx)
+Tuesday, February 17, 2026 — Energy assurance workshop day
+Technical Workshop: Project 2024-02 Planning Energy Assurance (10:00 a.m.–4:30 p.m. ET, hybrid)
+Project 2025-03 Order No. 901 Operational Studies (2:00–4:00 p.m. ET, WebEx)
+PMOS Meeting (2:30–4:30 p.m. ET, WebEx)
+Wednesday, February 18, 2026 — Energy assurance drafting + standards committee
+Project 2024-02 Planning Energy Assurance Drafting Team (9:00 a.m.–4:30 p.m. ET, hybrid)
+Standards Committee Conference Call (1:00–3:00 p.m. ET, WebEx)
+Thursday, February 19, 2026 — One of the busiest standards days
+Project 2024-02 Planning Energy Assurance Drafting Team (9:00 a.m.–4:30 p.m. ET, hybrid)
+Project 2025-06 Supply Chain Risk Management (11:00 a.m.–12:00 p.m. ET, WebEx)
+Project 2023-01 EOP-004 IBR Event (2:00–4:30 p.m. ET, WebEx)
+Project 2025-03 Order No. 901 Operational Studies (2:00–4:00 p.m. ET, WebEx)
+Project 2023-09 Cloud Services Risk (3:00–5:00 p.m. ET, WebEx)
+Monday, February 23, 2026 — EMT modeling enters the month
+Project 2025-06 Supply Chain Risk (11:00 a.m.–12:00 p.m. ET, WebEx)
+Project 2023-01 EOP-004 IBR Event (2:00–4:00 p.m. ET, WebEx)
+Project 2022-04 EMT Modeling Drafting Team (3:00–5:00 p.m. ET, WebEx)
+Why it matters: EMT modeling meetings are a strong indicator of increasing emphasis on high-fidelity inverter behavior, not just traditional dynamic models.﻿
+Tuesday, February 24, 2026 — Large Loads Conference begins
+Emerging Large Loads Technical Conference (8:00 a.m.–5:00 p.m. ET, Arlington, VA)
+Project 2023-09 Cloud Services Risk (in-person) (8:30 a.m.–5:00 p.m. ET, Palm Beach Gardens, FL)
+Wednesday, February 25, 2026 — Large Loads Conference continues
+Emerging Large Loads Technical Conference (8:00 a.m.–5:00 p.m. ET, Arlington, VA)
+Project 2023-09 Cloud Services Risk (in-person) (8:30 a.m.–5:00 p.m. ET, Palm Beach Gardens, FL)
+Thursday, February 26, 2026 — Cloud risk wrap + EMSWG + supply chain
+Project 2023-09 Cloud Services Risk (in-person) (8:30 a.m.–12:00 p.m. ET, Palm Beach Gardens, FL)
+Energy Management System Working Group (EMSWG) Conference Call (11:00 a.m.–12:00 a.m. ET, online) (as listed)
+Project 2025-06 Supply Chain Risk Management (11:00 a.m.–12:00 p.m. ET, WebEx)
+Note: The EMSWG time block is shown as 11:00 a.m.–12:00 a.m. ET in your text (a 13-hour window). If that’s a formatting typo, Keentel’s blog can present it as “11:00 a.m. ET start time (end time per agenda)” to avoid publishing a wrong duration.
+Friday, February 27, 2026 — BAL-003 Phase II continues
+Project 2017-01 BAL-003 Phase II (10:00 a.m.–12:00 p.m. ET, WebEx)
+
+2) February 2026 Statistical Trends (Based on These Dated Events)
+Most frequent themes (by repeated dates)
+Supply Chain Risk Management (Project 2025-06): Feb 2, 5, 9, 12, 19, 23, 26 (7 occurrences)
+Cloud Services Risk (Project 2023-09): Feb 3, 5, 10, 12, 19, 24, 25, 26 (8 occurrences)
+Order 901 Studies (Projects 2025-03 & 2025-04 + webinars): Feb 3, 5, 9, 12, 17, 19 (6+ touchpoints)
+EOP-004 IBR Event (Project 2023-01): Feb 2, 12, 19, 23 (4 occurrences)
+Planning Energy Assurance (Project 2024-02): Feb 6, 17, 18, 19 (4 occurrences)
+Large Loads focus: Feb 3 (LLTF) + Feb 24–25 (conference)
+What this tells us: February 2026 is dominated by Cyber/Cloud/Supply Chain and Planning/IBR performance — the two biggest reliability pressure points right now.
+
+3) What Keentel Engineering Recommends Doing in February 2026
+If you are a GO / TOP / TO / BA / RC:
+Start aligning internal compliance evidence to likely expanded supply chain + cloud risk expectations.
+Review your IBR event detection and reporting workflow for EOP-004 alignment.
+Prepare for Order 901 study expectations  validated models, assumptions documentation, and repeatable study process.
+If you are a developer or large load owner:
+Track outputs from LLTF (Feb 3) and the Emerging Large Loads Conference (Feb 24–25).
+Expect more scrutiny on:
+load ramp rates
+harmonics & flicker
+reactive power capability
+system strength and stability limits
+
+4) How Keentel Engineering Can Help
+Keentel supports clients with:
+CIP supply chain & cloud risk readiness (program + audit evidence)
+Order 901 operational/planning studies (PSSE/TSAT/validation packages)
+EMT modeling studies (PSCAD / high-fidelity inverter behavior)
+IBR event analysis and reporting support (EOP-004 workflows)
+Large load interconnection studies (stability, harmonics, voltage, reactive plans)
+
+813-389-7871
+Schedule a Consultation
+contact@keentelengineering.com
+
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+Services
+All Engineering Services
+EHV, HV. MV Power System Studies
+Substation Design Services
+POI Interconnection Engineering Support
+Utility Scale Solar Farm Engineering
+Utility Scale BESS Engineering
+MEP Engineering Services
+NERC O&P 693 Compliance Services
+Download Company Profile Flyer 
+
+
+
+Let's Discuss Your Project
+Let's book a call to discuss your electrical engineering project that we can help you with.
+Schedule A Consultation
+Download Company Profile Flyer 
+
+
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+Leave a Comment
+Name:
+Email:
+Website
+Comment:
+Related Posts
+
+PSS®/E Python Automation Guide | Keentel
+Learn how to automate PSS®/E with Python for power system studies, API scripting, result extraction, and scalable interconnection workflows.
+
+CenterPoint Energy Interconnection Requirements for Large Data Centers | Keentel
+Learn CenterPoint Energy's interconnection requirements for large data center loads, including primary service, harmonic analysis, emergency generation, protection, and engineering compliance.
+
+Switching Overvoltage Studies in PSCAD/EMTDC Guide
+Learn how switching overvoltage studies, insulation coordination, surge arrester assessment, and PSCAD/EMTDC modeling protect EHV systems.
+
+Concurrent EMTDC: Parallel EMT Simulation Explained
+Learn how Concurrent EMTDC uses data parallelism, task parallelism, PSCAD, and high-performance interconnects to accelerate EMT simulation studies.
+
+Substation Electrical Design: 30%, 60%, 90% & IFC Guide
+Learn the complete substation electrical design process, including 30%, 60%, 90%, and IFC deliverables, engineering reviews, grounding, protection, and interconnection requirements.
+
+WHITE PAPER | PJM's Expedited Interconnection Track (EIT) — What 250 MW+ Developers Must Know
+FERC accepted PJM's Expedited Interconnection Track on June 9, 2026. Learn the eligibility rules, financial requirements, state siting commitment, and engineering checklist for the 10-month fast lane to a signed GIA.
+
+Interconnection Cost Estimation Before You File
+Estimate interconnection costs before entering the queue. Learn how network upgrade costs, POI costs, and feasibility studies impact project success.
+
+Power System Resilience Metrics: A Practical Guide
+Learn how power system resilience metrics measure grid performance during extreme events. Discover resilience assessment methods and practical applications.
+
+Synchronous Condenser Protection: Complete Guide 2026
+Learn synchronous condenser protection, loss of field settings, NERC PRC compliance, and protection philosophy. Discover expert engineering guidance.
+Explore More
+
+Serving for more than two decades, we are a name you can trust and count on for your power system and engineering support needs. We can provide innovative solutions to take your business to greater heights.
+Menu Links
+Home
+About
+Services
+Industries
+Keentel’s Grid IQ
+Contact
+Schedule a Consultation
+Connect with Us
+813-389-7871
+contact@keentelengineering.com
+BD@keentelengineering.com
+Headquarters
+400 N Ashley Dr STE #2600 Tampa, FL 33602
+Austin Office
+5900 Balcones Drive STE 100 Austin, TX 78731 USA
+Sacramento Office
+1401 21st St Ste R Sacramento, CA 95811 USA
+Baltimore Office
+306 W Redwood St, STE 200 Baltimore, MD 21201 USA
+
+
+
+
+
+
+© 2026 
+Copyright 1995-2026 Keentel Engineering All Rights Reserved
+Privacy Policy
+Terms & Conditions
+Legal Disclaimer
+

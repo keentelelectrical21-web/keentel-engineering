@@ -56,13 +56,6 @@ export default function About() {
     { value: 30, suffix: '+', label: 'Years of Experience', desc: 'Three decades of hands-on power engineering across the U.S.', delay: 0 },
     { value: 98, suffix: '%', label: 'Client Satisfaction', desc: 'Rated 5-stars across platforms. We deliver technical precision every time.', delay: 150 },
     { value: 21, suffix: '', label: 'Licensed Engineers', desc: 'Three specialized groups: designers, grid whisperers, and compliance watchdogs.', delay: 300 },
-    {
-  value: 120,
-  suffix: '+',
-  label: 'Projects Delivered',
-  desc: 'Electrical power engineering projects completed for utilities, developers, EPCs, and critical infrastructure clients.',
-  delay: 450,
-}
   ]
 
   return (
@@ -108,7 +101,7 @@ export default function About() {
         </div>
 
         {/* Counter grid */}
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {stats.map((s, i) => <StatCard key={i} {...s} started={started} />)}
         </div>
 

@@ -246,7 +246,7 @@ export default function NercAlertLevel3IbrPage() {
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-4 text-center sm:px-6 md:flex-row md:text-left lg:px-8">
             <div>
               <p className="mb-1 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Proven Power-System Experience</p>
-              <p className="font-urbanist text-xl font-bold" style={{ color: '#06103C' }}>30+ Years <span className="text-[#A8228A]">•</span> 21 Licensed Engineers <span className="text-[#A8228A]">•</span> 120+ Engineering Projects <span className="text-[#A8228A]">•</span> Utilities <span className="text-[#A8228A]">•</span> Developers <span className="text-[#A8228A]">•</span> EPC Contractors</p>
+              <p className="font-urbanist text-xl font-bold" style={{ color: '#06103C' }}>30+ Years <span className="text-[#A8228A]">•</span> 21 Licensed Engineers <span className="text-[#A8228A]">•</span> Utilities <span className="text-[#A8228A]">•</span> Developers <span className="text-[#A8228A]">•</span> EPC Contractors</p>
             </div>
             <Link href="/our-work" className="inline-flex flex-shrink-0 items-center justify-center rounded-full px-7 py-3.5 font-jost text-sm font-semibold text-white" style={{ background: '#0B1A5B' }}>View Case Studies</Link>
           </div>

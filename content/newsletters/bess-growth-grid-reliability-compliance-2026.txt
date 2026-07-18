@@ -1,0 +1,99 @@
+BESS Growth, Grid Reliability & Compliance in 2026
+Battery energy storage systems with wind turbines supporting grid reliability and renewable energy.
+June 2026 Edition
+
+Three deals, two continents, and one big bet on what comes after lithium — the BESS stories that mattered this fortnight, with engineering context for project developers and grid operators.
+
+61.5 GWh
+CATL Supply Deals
+2.18 GWh
+US Projects Advanced
+1.38 GWh
+Spain Tolled Capacity
+20 yr
+Longest Offtake Term
+Technology · Q&A
+HyperStrong bets on sodium-ion for the long game
+20 May 2026
+Asia & Oceania
+Grid Scale
+Two weeks after signing a 60 GWh multi-year sodium-ion supply agreement with CATL, HyperStrong founder and CEO Dr. Jianhui Zhang sat down to explain the firm's playbook — and it isn't about replacing lithium iron phosphate, at least not yet.
+
+The pitch is lifecycle economics. Sodium-ion may not win on day-one procurement cost against LFP, but in projects where the math runs over 15-plus years of operation, the chemistry's advantages in cycle life, wide-temperature performance, and supply-chain resilience begin to compound meaningfully.
+
+Sodium-ion may become increasingly competitive in applications where total lifecycle economics matter more than initial procurement cost alone.
+— Dr. Jianhui Zhang, CEO, HyperStrong
+HyperStrong's engineering thesis is that no all-new platform architecture is required. Existing utility-scale systems can absorb sodium-ion with targeted changes to battery management strategy, thermal management, operational logic, and lifecycle optimisation. Manufacturing lines are described as "relatively compatible," though Zhang concedes meaningful engineering investment is still needed to push consistency and reliability to commercial scale.
+
+Where Zhang sees demand
+Strongest pull	Utility-scale standalone storage; long-duration; high-cycling dispatch applications
+Emerging	Data centres and AI + energy infrastructure co-location
+Asset lifetime	Projects targeting 15-year-plus operating windows
+Supply-chain	Abundant, geographically diverse sodium reserves reduce concentration risk
+The longer-term thesis is plural rather than winner-take-all. Zhang expects multiple chemistries to coexist, each carving out applications where its specific electrochemical profile pays off — a useful framing as renewable penetration pushes operators to think harder about resilience and lifecycle efficiency, not just nameplate cost.
+
+Deal · Europe
+CATL lands 1.5 GWh of LFP for Grenergy's Spanish flagships
+26 May 2026
+Europe
+Grid Scale
+CATL will supply 252 stackable Tener Stack units across Grenergy's two flagship Spanish projects — the 700 MWh Oviedo standalone BESS and the 680 MWh Escuderos solar-plus-storage site — both wrapped in decade-plus tolling agreements with unnamed international utilities.
+
+The deal, announced 21 May, arrives as Spanish storage finally finds its regulatory footing. The Iberian blackout sharpened the conversation around grid stability, and a new law prioritising hybridised renewables-plus-storage has accelerated activity from operators including Engie, Return, FRV, and Zelestra. Spain's incomplete regulatory landscape had long been blamed for slow uptake despite high solar PV penetration.
+
+The two projects
+Oviedo	700 MWh standalone BESS · 10-year toll signed February 2026
+Escuderos	680 MWh solar-plus-storage · 12-year toll · operations from July 2028
+COD	Both projects targeted for commercial operation in 2027
+Hardware	252 LFP-based CATL Tener Stack units (two-unit stacking design)
+Escuderos replicates the develop-lock-sell model Grenergy has built out in Chile across the Oasis de Atacama and Oasis Central portfolios. Long-term offtakes are the through-line of Grenergy's strategy, visible again in last week's separate 20-year deal in Georgia. The Tener Stack's modular architecture supports staged commissioning that hybrid solar-plus-storage sites increasingly require.
+
+Roundup · US & Canada
+US in motion: four projects, four states, four operators
+21 May 2026
+US & Canada
+Grid Scale
+A busy week for US BESS development saw OCI Energy, MN8 Energy, GridStor, and Grenergy each advance projects — collectively spanning more than 2.1 GWh across Texas, California, Colorado, and Georgia.
+
+Operator	Project	Capacity	Offtake	COD
+OCI Energy · TX	
+Alamo City
+Bexar County — broke ground 19 May. 4-hr duration is unusual for ERCOT merchant projects.	
+120 MW
+480 MWh	20-yr capacity agreement with CPS Energy (2024)	2027
+MN8 Energy · CA	
+Pome BESS
+Poway, San Diego County — fully contracted and now dispatching into CAISO.	
+100 MW
+400 MWh	10-yr toll with Sonoma Clean Power	Live
+GridStor · CO	
+Birdseye
+Adams County — GridStor's 5th acquisition in 18 months; 2nd in western US.	
+199 MW
+796 MWh	TBD	Late 2028
+Grenergy · GA	
+Beaver Creek
+Baldwin County — hybrid solar + storage; Georgia Power operates the battery.	
+229 MW PV
+183 MWh BESS	20-yr PPA with Georgia Power	Q3 2028
+Related Engineering Resources from Keentel
+→
+[Utility-Scale Battery Storage Engineering Services](https://www.keentelengineering.com/service/utility-scale-battery-storage)
+End-to-end BESS engineering — from interconnection studies and power system modeling to NERC compliance.
+→
+[BESS Design Engineering: Sizing, Selection & Operation](https://www.keentelengineering.com/bess-design-engineering-for-data-centers-and-utility-scale-deployments-sizing-selection-and-operation)
+Technical deep-dive into utility-scale and data-centre BESS design — directly relevant to the co-location and hybrid trends in this issue.
+→
+[NERC Compliance for BESS — Newsletter](https://www.keentelengineering.com/newsletter/nerc-compliance-bess)
+How evolving NERC standards apply to battery storage operators, with practical compliance guidance for new deployments.
+What we're watching
+Whether sodium-ion's lifecycle pitch translates into firm long-duration orders by year-end. The technology has the narrative — it now needs bankable operational data from real projects at commercial scale.
+
+Pattern of the week
+Long-dated offtakes are the connective tissue across all three stories — 10, 12, and 20-year terms binding developers, utilities, and chemistries together well into the 2040s.
+
+Let’s Connect
+Whether you're navigating NERC compliance, integrating BESS, or planning grid-scale projects, Keentel Engineering is ready to support your next phase.
+
+[Contact us](https://keentelengineering.com/contact)
+[Learn More About Us](https://keentelengineering.com/about)

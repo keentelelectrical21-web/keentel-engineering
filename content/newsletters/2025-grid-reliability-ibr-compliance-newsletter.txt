@@ -1,0 +1,185 @@
+Page URL: https://keentelengineering.com/2025-grid-reliability-ibr-compliance-newsletter
+
+
+Home
+About
+Services
+Power System Studies Services
+Substation Design Services
+POI Interconnection Engineering Support
+Transmission Line Design Services
+Utility Scale Renewable Energy
+Owner’s Engineer Services
+MEP Engineering Services
+NERC O&P 693 Compliance Services
+Our Work
+Keentel’s Grid IQ
+Contact
+Schedule A Consultation 
+2025 Grid Reliability, IBR Compliance & Engineering Readiness - July 2025 Newsletter
+July 01, 2025 | Newsletter
+
+Empowering Reliability | Engineering Resilience | Advancing Grid Security
+In This Edition
+2025 Grid Reliability Update & Industry Challenges
+New IBR Registration Initiative: What It Means for Generator Owners (GO) & Generator Operators (GOP)
+Reliability Insights: Energy Adequacy Demands New Approaches
+NERC Standards & Compliance: Upcoming Ballots, Effective Dates, and Events
+Keentel’s Perspective: Engineering for the Future Grid﻿
+
+2025 Grid Reliability: Progress with New Risks on the Horizon
+According to the NERC 2025 State of Reliability (SOR) report, the North American Bulk Power System (BPS) remained resilient and increasingly reliable throughout 2024. Severe weather events—including hurricanes and winter storms—resulted in no operator-initiated load shed, reflecting improved grid weatherization and system response capabilities.
+Key Observations
+Generator outage rates declined, and natural gas production losses reduced.
+Battery Energy Storage Systems (BESS) played a critical role in frequency regulation, especially in Texas.
+Grid stability is challenged by high-load data centers; one instance in 2024 saw a 1,500 MW disconnection.
+Since 2016, inverter-based resources (IBRs) have seen nearly 15 GW in output reductions during 10+ major events due to modeling deficiencies.
+Keentel continues to support utilities and developers with IBR modeling and BESS integration to reduce outage risks and support NERC PRC compliance.
+
+NERC’s IBR Registration Initiative: A Wake-Up Call for Non-BES Operators
+The new IBR Registration Initiative 101 introduces mandatory registration for GOs and GOPs of inverter-based resources with ≥20 MVA aggregate capacity connected at ≥60 kV.
+Required Standards Include
+BAL-001-TRE-2
+PRC-012-2, PRC-017-1
+MOD-032-1
+TOP-003-6.1, IRO-010-5
+VAR-001-5, VAR-002-4.1
+A FERC directive requires full compliance by 2026, and Keentel is ready to assist with CMEP navigation, standards interpretation, and modeling compliance.
+
+Reliability Insights: Why Energy Adequacy Needs a Rethink
+The June 2025 Reliability Insights bulletin highlights that traditional capacity-based planning is no longer sufficient.
+Why This Matters
+Winter storms (e.g., Enzo, 2025) and dunkelflaute events reveal that fuel security, not just capacity, defines grid adequacy.
+Future planning must adopt probabilistic risk models, energy-centric adequacy metrics, and account for fuel assurance, ramping ability, and seasonal volatility.
+A 20 GW resource gap is projected for Winter 2029 in PJM unless planning frameworks adapt.
+Keentel offers advanced system studies using scenario-based modeling and probabilistic tools to ensure your projects remain grid-adequate and NERC-compliant.
+
+Standards Compliance Corner: What's Happening This Month?
+Effective July 1, 2025
+IRO-010-5: Reliability Coordinator Data Specification
+TOP-003-6.1: Data Collection for Transmission Operators & Balancing Authorities
+Open Ballots & Comments
+Project 2020-06: Generator modeling final ballots due July 9
+Project 2023-06: CIP-014 risk refinement – comments open until July 21
+Project 2023-07: Extreme weather planning – Phase II comments open until July 14
+Key Events
+July 8: CIP-014 Risk Refinement Assessment Webinar
+July 14: IBR Registration for Category 2 GOs and GOPs Webinar
+July 22: Reliability and Security Technical Committee Call
+July 23–24: Compliance and Certification Committee Meeting
+
+Keentel Engineering Perspective
+As the U.S. power grid faces mounting pressure from climate volatility, high-load integration, and renewables expansion, Keentel Engineering provides:
+IBR Compliance & NERC Standards Support
+Inverter-Based Resource (IBR) Modeling & Validation
+Utility-Scale Battery Storage Design & Integration
+Grid Winterization & Energy Adequacy Studies
+We help ensure infrastructure resilience, operational compliance, and optimized energy delivery in a dynamic regulatory environment.
+Let our team ensure your infrastructure is not only compliant but optimized for the dynamic realities of the modern grid.
+
+Partner with Keentel to Stay Ahead of Compliance, Modeling, and Grid Reliability
+We’re here to help you meet today’s demands and tomorrow’s challenges.
+📩 Contact Our Team
+Head Office: Tampa, FL | Serving North America’s power sector
+
+813-389-7871
+Schedule a Consultation
+contact@keentelengineering.com
+
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+Services
+All Engineering Services
+EHV, HV. MV Power System Studies
+Substation Design Services
+POI Interconnection Engineering Support
+Utility Scale Solar Farm Engineering
+Utility Scale BESS Engineering
+MEP Engineering Services
+NERC O&P 693 Compliance Services
+Download Company Profile Flyer 
+
+
+
+Let's Discuss Your Project
+Let's book a call to discuss your electrical engineering project that we can help you with.
+Schedule A Consultation
+Download Company Profile Flyer 
+
+
+
+About the Author:
+Sonny Patel P.E. EC
+IEEE Senior Member
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
+Leave a Comment
+Name:
+Email:
+Website
+Comment:
+Related Posts
+
+PSS®/E Python Automation Guide | Keentel
+Learn how to automate PSS®/E with Python for power system studies, API scripting, result extraction, and scalable interconnection workflows.
+
+CenterPoint Energy Interconnection Requirements for Large Data Centers | Keentel
+Learn CenterPoint Energy's interconnection requirements for large data center loads, including primary service, harmonic analysis, emergency generation, protection, and engineering compliance.
+
+Switching Overvoltage Studies in PSCAD/EMTDC Guide
+Learn how switching overvoltage studies, insulation coordination, surge arrester assessment, and PSCAD/EMTDC modeling protect EHV systems.
+
+Concurrent EMTDC: Parallel EMT Simulation Explained
+Learn how Concurrent EMTDC uses data parallelism, task parallelism, PSCAD, and high-performance interconnects to accelerate EMT simulation studies.
+
+Substation Electrical Design: 30%, 60%, 90% & IFC Guide
+Learn the complete substation electrical design process, including 30%, 60%, 90%, and IFC deliverables, engineering reviews, grounding, protection, and interconnection requirements.
+
+WHITE PAPER | PJM's Expedited Interconnection Track (EIT) — What 250 MW+ Developers Must Know
+FERC accepted PJM's Expedited Interconnection Track on June 9, 2026. Learn the eligibility rules, financial requirements, state siting commitment, and engineering checklist for the 10-month fast lane to a signed GIA.
+
+Interconnection Cost Estimation Before You File
+Estimate interconnection costs before entering the queue. Learn how network upgrade costs, POI costs, and feasibility studies impact project success.
+
+Power System Resilience Metrics: A Practical Guide
+Learn how power system resilience metrics measure grid performance during extreme events. Discover resilience assessment methods and practical applications.
+
+Synchronous Condenser Protection: Complete Guide 2026
+Learn synchronous condenser protection, loss of field settings, NERC PRC compliance, and protection philosophy. Discover expert engineering guidance.
+Explore More
+
+Serving for more than two decades, we are a name you can trust and count on for your power system and engineering support needs. We can provide innovative solutions to take your business to greater heights.
+Menu Links
+Home
+About
+Services
+Industries
+Keentel’s Grid IQ
+Contact
+Schedule a Consultation
+Connect with Us
+813-389-7871
+contact@keentelengineering.com
+BD@keentelengineering.com
+Headquarters
+400 N Ashley Dr STE #2600 Tampa, FL 33602
+Austin Office
+5900 Balcones Drive STE 100 Austin, TX 78731 USA
+Sacramento Office
+1401 21st St Ste R Sacramento, CA 95811 USA
+Baltimore Office
+306 W Redwood St, STE 200 Baltimore, MD 21201 USA
+
+
+
+
+
+
+© 2026 
+Copyright 1995-2026 Keentel Engineering All Rights Reserved
+Privacy Policy
+Terms & Conditions
+Legal Disclaimer
+

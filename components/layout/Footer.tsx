@@ -23,7 +23,7 @@ const resources = [
   { name: 'Industries', href: '/industries' },
   { name: 'Grid IQ Blog', href: '/blog' },
   { name: 'Newsletters', href: '/newsletters' },
-  { name: 'Our Clients & Projects', href: '/clients-and-projects' },
+  { name: 'Client & Projects', href: '/clients-and-projects' },
 ]
 
 const legal = [

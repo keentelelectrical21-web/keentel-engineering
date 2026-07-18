@@ -64,10 +64,10 @@ function ProjectGrid({
   background?: string
 }) {
   return (
-    <section className={`${background} relative overflow-hidden border-t border-[#E1E4EC] py-20 sm:py-24 lg:py-28`}>
+    <section className={`${background} relative overflow-hidden border-t border-[#E1E4EC] py-16 sm:py-20 lg:py-24`}>
       <div className="pointer-events-none absolute -right-32 top-12 h-80 w-80 rounded-full bg-[#A8228A]/[0.04] blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative mb-12 flex flex-col gap-6 sm:mb-14 lg:mb-16 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative mb-10 flex flex-col gap-6 sm:mb-12 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">{eyebrow}</p>
             <h2 className="font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">{title}</h2>
@@ -78,25 +78,25 @@ function ProjectGrid({
           </Link>
         </div>
 
-        <div className="relative grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
           {projects.map((project, index) => (
-            <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#DDE1EB] bg-white shadow-[0_8px_28px_rgba(6,16,60,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[#A8228A]/30 hover:shadow-[0_22px_50px_rgba(6,16,60,0.15)]">
-              <div className="relative aspect-[16/10] overflow-hidden border-b border-[#E6E8F0] bg-[#E9ECF3]">
+            <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} aria-label={`Open ${project.title} case study`} className="group mx-auto flex h-full w-full max-w-sm flex-col overflow-hidden rounded-2xl border border-[#DDE1EB] bg-white shadow-[0_6px_22px_rgba(6,16,60,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[#A8228A]/35 hover:shadow-[0_20px_42px_rgba(6,16,60,0.14)] sm:max-w-none">
+              <div className="relative aspect-[2/3] overflow-hidden bg-[#17134F]">
                 {project.cardImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={project.cardImage} alt={project.title} className="h-full w-full object-cover object-[center_42%] transition-transform duration-500 ease-out group-hover:scale-105" />
+                  <img src={project.cardImage} alt={project.title} className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.025]" />
                 ) : (
                   <div className="flex h-full items-center justify-center font-urbanist text-5xl font-black text-[#06103C]/15">K</div>
                 )}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06103C]/25 via-transparent to-transparent" />
-                <span className="absolute left-5 top-5 max-w-[calc(100%-2.5rem)] rounded-full border border-white/20 bg-[#06103C]/80 px-4 py-2 font-jost text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md">{eyebrow}</span>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06103C]/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="absolute right-4 top-4 translate-y-1 rounded-full border border-white/25 bg-[#06103C]/85 px-3 py-1.5 font-jost text-[9px] font-bold uppercase tracking-[0.12em] text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">Open full study</span>
               </div>
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <p className="mb-4 font-urbanist text-sm font-black uppercase tracking-[0.16em] text-[#A8228A]">Project {String(index + 1).padStart(2, '0')}</p>
-                <h3 className="font-urbanist text-xl font-black leading-snug text-[#06103C] transition-colors group-hover:text-[#A8228A] sm:text-2xl">{project.title}</h3>
-                <span className="mt-auto flex items-center gap-2.5 border-t border-[#ECEEF4] pt-6 font-jost text-base font-bold text-[#A8228A]">
-                  View study
-                  <svg className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <div className="flex items-center justify-between gap-3 border-t border-[#E6E8F0] px-4 py-4">
+                <h3 className="sr-only">{project.title}</h3>
+                <span className="font-urbanist text-xs font-black uppercase tracking-[0.14em] text-[#A8228A]">Project {String(index + 1).padStart(2, '0')}</span>
+                <span className="flex items-center gap-1.5 font-jost text-sm font-bold text-[#06103C] transition-colors group-hover:text-[#A8228A]">
+                  View page
+                  <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14m-6-6 6 6-6 6" />
                   </svg>
                 </span>
@@ -126,7 +126,7 @@ export default async function OurWorkPage() {
           <div className="relative z-10 mx-auto flex min-h-[680px] w-full max-w-7xl items-end px-4 pb-10 pt-32 sm:min-h-[720px] sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
             <div className="max-w-4xl">
               <nav aria-label="Breadcrumb" className="mb-7 flex items-center gap-2 font-jost text-sm text-white/65">
-                <Link href="/" className="transition hover:text-white">Home</Link><span>/</span><span className="text-white">Our Clients &amp; Projects</span>
+                <Link href="/" className="transition hover:text-white">Home</Link><span>/</span><span className="text-white">Client &amp; Projects</span>
               </nav>
               <p className="mb-4 font-jost text-xs font-bold uppercase tracking-[0.22em] text-[#F14BB9]">Clients &amp; Project Experience</p>
               <h1 className="max-w-4xl font-urbanist text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-7xl">Engineering Projects That Deliver Results</h1>
