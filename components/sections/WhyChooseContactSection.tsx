@@ -118,7 +118,7 @@ export default function WhyChooseContactSection({ source = 'why-choose-contact-s
                 <p className="font-jost" style={{ color: '#4B5563' }}>Thank you. One of our engineers will contact you shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5" data-lpignore="true" data-1p-ignore="true">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Field label="First Name" required value={form.firstName} onChange={(value) => setForm({ ...form, firstName: value })} />
                   <Field label="Last Name" value={form.lastName} onChange={(value) => setForm({ ...form, lastName: value })} />
@@ -130,16 +130,16 @@ export default function WhyChooseContactSection({ source = 'why-choose-contact-s
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {services.map((service) => (
                       <label key={service} className="flex items-start gap-3 cursor-pointer font-jost text-sm leading-snug" style={{ color: '#4B5563' }}>
-                        <input type="checkbox" checked={selectedServices.includes(service)} onChange={() => toggleService(service)} className="mt-0.5 h-4 w-4 accent-[#A8228A]" />
+                        <input type="checkbox" checked={selectedServices.includes(service)} onChange={() => toggleService(service)} className="mt-0.5 h-4 w-4 accent-[#A8228A]" data-lpignore="true" data-1p-ignore="true" />
                         <span>{service}</span>
                       </label>
                     ))}
                   </div>
-                  <input className="sr-only" tabIndex={-1} required value={selectedServices.join(',')} onChange={() => {}} aria-label="Selected services" />
+                  <input className="sr-only" tabIndex={-1} required value={selectedServices.join(',')} onChange={() => {}} aria-label="Selected services" data-lpignore="true" data-1p-ignore="true" />
                 </fieldset>
                 <label className="block font-jost font-bold text-sm" style={{ color: '#06103C' }}>
                   Message
-                  <textarea rows={4} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} className="mt-2 w-full rounded-xl px-4 py-3 font-normal resize-y focus:outline-none focus:ring-2 focus:ring-[#A8228A]" style={{ border: '1.5px solid #D9DDE8' }} />
+                  <textarea rows={4} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} className="mt-2 w-full rounded-xl px-4 py-3 font-normal resize-y focus:outline-none focus:ring-2 focus:ring-[#A8228A]" style={{ border: '1.5px solid #D9DDE8' }} data-lpignore="true" data-1p-ignore="true" />
                 </label>
                 {status === 'error' && <p className="font-jost text-sm text-red-600" role="alert">Something went wrong. Please try again or call 813-389-7871.</p>}
                 <button type="submit" disabled={status === 'loading'} className="w-full rounded-xl py-4 px-6 text-white font-jost font-bold transition-opacity disabled:opacity-60" style={{ background: '#06103C' }}>
@@ -155,10 +155,12 @@ export default function WhyChooseContactSection({ source = 'why-choose-contact-s
 }
 
 function Field({ label, type = 'text', required = false, value, onChange }: { label: string; type?: string; required?: boolean; value: string; onChange: (value: string) => void }) {
+  const id = `contact-${label.toLowerCase().replace(/\s+/g, '-')}`
+
   return (
-    <label className="block font-jost font-bold text-sm" style={{ color: '#06103C' }}>
-      {label}{required ? ' *' : ''}
-      <input type={type} required={required} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-xl px-4 py-3 font-normal focus:outline-none focus:ring-2 focus:ring-[#A8228A]" style={{ border: '1.5px solid #D9DDE8' }} />
-    </label>
+    <div className="block">
+      <label htmlFor={id} className="font-jost text-sm font-bold" style={{ color: '#06103C' }}>{label}{required ? ' *' : ''}</label>
+      <input id={id} name={id} type={type} required={required} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-xl px-4 py-3 font-jost font-normal focus:outline-none focus:ring-2 focus:ring-[#A8228A]" style={{ border: '1.5px solid #D9DDE8' }} data-lpignore="true" data-1p-ignore="true" data-bwignore="true" />
+    </div>
   )
 }

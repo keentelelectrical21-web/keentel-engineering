@@ -17,7 +17,7 @@ interface Post {
 const POSTS_PER_PAGE = 12
 
 function BlogCard({ post }: { post: Post }) {
-  const slug = post.slug?.current || ''
+  const slug = (post.slug?.current || '').replace(/^\/+/, '')
   const sources = [
     `/images/blog/${slug}-featured.jpg`,
     `/images/blog/${slug}-featured.png`,
@@ -37,7 +37,7 @@ function BlogCard({ post }: { post: Post }) {
 
   return (
     <Link
-      href={`/${slug}`}
+      href={`/blog/${slug}`}
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
     >
       {/* FIX: natural image height — no fixed h-48, image shows fully at its own height */}
@@ -144,6 +144,41 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
   return (
     <section id="blog-grid" className="py-16" style={{ background: '#F6F7FB' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div className="mb-10 border-b border-[#DDE1EB] pb-8 sm:mb-12">
+          <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-jost text-xs font-bold uppercase tracking-[0.18em] text-[#A8228A]">Browse by Topic</p>
+              <h2 className="mt-2 font-urbanist text-2xl font-black text-[#06103C] sm:text-3xl">Filter Technical Articles</h2>
+            </div>
+            <p className="font-jost text-sm text-gray-500">Choose a category to narrow the article library.</p>
+          </div>
+
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0" role="navigation" aria-label="Filter blog posts by category">
+            <div className="flex min-w-max gap-2.5 sm:min-w-0 sm:flex-wrap">
+              {categories.map((category) => {
+                const isActive = activeCategory === category
+                const count = category === 'All' ? posts.length : posts.filter((post) => post.category === category).length
+
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => handleCategoryChange(category)}
+                    aria-pressed={isActive}
+                    className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-4 py-2.5 font-jost text-sm font-semibold transition-all ${isActive
+                      ? 'border-[#A8228A] bg-[#A8228A] text-white shadow-md shadow-[#A8228A]/15'
+                      : 'border-[#D8DCE7] bg-white text-[#06103C] hover:-translate-y-0.5 hover:border-[#A8228A]/50 hover:text-[#A8228A] hover:shadow-sm'
+                    }`}
+                  >
+                    <span>{category}</span>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${isActive ? 'bg-white/20 text-white' : 'bg-[#F0F1F6] text-gray-500'}`}>{count}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </div>
 
         <p className="font-jost text-gray-500 text-sm mb-6">
           Showing <span className="font-semibold text-gray-800">{visible.length}</span> of <span className="font-semibold text-gray-800">{filtered.length}</span> technical articles

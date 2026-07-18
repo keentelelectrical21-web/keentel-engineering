@@ -67,9 +67,13 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!query.trim()) return
+    const searchQuery = query.trim()
+    if (searchQuery.length < 2) {
+      inputRef.current?.focus()
+      return
+    }
     closeSearch()
-    router.push(`/search?q=${encodeURIComponent(query)}`)
+    router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
   }
 
   function getLocalImg(slug: string) {
@@ -121,14 +125,14 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
               <svg className="h-5 w-5 flex-shrink-0" style={{ color: '#C72E9E' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by blog title..." className="min-w-0 flex-1 bg-transparent font-jost text-white outline-none placeholder:text-white/45" aria-label="Search blog titles" />
+              <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by blog title..." className="min-w-0 flex-1 bg-transparent font-jost text-white outline-none placeholder:text-white/45" aria-label="Search blog titles" autoComplete="off" data-lpignore="true" data-1p-ignore="true" />
               {searching && <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#C72E9E] border-t-transparent" />}
-              <button type="submit" className="hidden rounded-lg bg-[#C72E9E] px-3 py-1.5 font-jost text-xs font-bold text-white transition hover:bg-[#A8228A] sm:block">Search</button>
+              <button type="submit" disabled={query.trim().length < 2} className="rounded-lg bg-[#C72E9E] px-3 py-2 font-jost text-xs font-bold text-white transition hover:bg-[#A8228A] disabled:cursor-not-allowed disabled:opacity-50">Search</button>
               </div>
               {query.trim().length >= 2 && !searching && (
                 <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-72 overflow-y-auto rounded-xl border border-white/15 bg-[#06103C]/95 p-2 shadow-2xl backdrop-blur">
                   {results.length > 0 ? results.slice(0, 6).map((post) => (
-                    <Link key={post._id} href={`/blog/${post.slug.current}`} className="block rounded-lg px-3 py-3 font-jost text-sm text-white/85 transition hover:bg-white/10 hover:text-white">
+                    <Link key={post._id} href={`/blog/${post.slug.current.replace(/^\/+/, '')}`} className="block rounded-lg px-3 py-3 font-jost text-sm text-white/85 transition hover:bg-white/10 hover:text-white">
                       {post.title}
                     </Link>
                   )) : <p className="px-3 py-4 font-jost text-sm text-white/55">No blog titles found.</p>}
@@ -205,7 +209,7 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
                     {results.slice(0, 8).map((post) => (
                       <Link
                         key={post._id}
-                        href={`/blog/${post.slug.current}`}
+                        href={`/blog/${post.slug.current.replace(/^\/+/, '')}`}
                         onClick={closeSearch}
                         className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors"
                       >

@@ -11,14 +11,6 @@ import { getAllCaseStudies } from '@/lib/caseStudies'
 
 export const revalidate = 3600
 
-const stats = [
-  { value: '30+', label: 'Years of engineering experience' },
-  { value: '120+', label: 'Engineering projects delivered' },
-  { value: '21', label: 'Licensed engineering professionals' },
-  { value: 'Nationwide', label: 'Utility and developer support' },
-]
-
-
 const projectFaqs = [
   { q: 'What does POI interconnection engineering support include from start to finish?', a: 'Keentel supports the full path from feasibility review and utility coordination through POI substation design, protection and control, grounding, studies, construction drawings, commissioning, and utility acceptance documentation.' },
   { q: 'How does Keentel help reduce interconnection delays and study rework?', a: 'We validate equipment data, transformer impedances, inverter controls, grounding parameters, and study assumptions early, then coordinate technically defensible responses to utility and ISO comments.' },
@@ -72,35 +64,42 @@ function ProjectGrid({
   background?: string
 }) {
   return (
-    <section className={`${background} py-16 sm:py-20 lg:py-24`}>
+    <section className={`${background} relative overflow-hidden border-t border-[#E1E4EC] py-20 sm:py-24 lg:py-28`}>
+      <div className="pointer-events-none absolute -right-32 top-12 h-80 w-80 rounded-full bg-[#A8228A]/[0.04] blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-5 sm:mb-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative mb-12 flex flex-col gap-6 sm:mb-14 lg:mb-16 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">{eyebrow}</p>
             <h2 className="font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">{title}</h2>
-            <p className="mt-4 font-jost text-base leading-relaxed text-gray-600 sm:text-lg">{description}</p>
+            <p className="mt-4 max-w-2xl font-jost text-sm leading-7 text-gray-600 sm:text-base">{description}</p>
           </div>
-          <Link href="/our-work" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#06103C]/15 bg-white px-6 py-3 font-jost text-sm font-semibold text-[#06103C] transition hover:border-[#A8228A] hover:text-[#A8228A]">
+          <Link href="/our-work" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#06103C]/15 bg-white px-6 py-3 font-jost text-sm font-semibold text-[#06103C] shadow-sm transition hover:-translate-y-0.5 hover:border-[#A8228A] hover:text-[#A8228A] hover:shadow-md">
             Explore all projects <span aria-hidden="true">→</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="relative grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {projects.map((project, index) => (
-          <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E2E5EF] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#EEF0F6]">
+            <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#DDE1EB] bg-white shadow-[0_8px_28px_rgba(6,16,60,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[#A8228A]/30 hover:shadow-[0_22px_50px_rgba(6,16,60,0.15)]">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-[#E6E8F0] bg-[#E9ECF3]">
                 {project.cardImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={project.cardImage} alt={project.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <img src={project.cardImage} alt={project.title} className="h-full w-full object-cover object-[center_42%] transition-transform duration-500 ease-out group-hover:scale-105" />
                 ) : (
                   <div className="flex h-full items-center justify-center font-urbanist text-5xl font-black text-[#06103C]/15">K</div>
                 )}
-                <span className="absolute left-4 top-4 rounded-full bg-[#06103C]/90 px-3 py-1.5 font-jost text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">{eyebrow}</span>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06103C]/25 via-transparent to-transparent" />
+                <span className="absolute left-5 top-5 max-w-[calc(100%-2.5rem)] rounded-full border border-white/20 bg-[#06103C]/80 px-4 py-2 font-jost text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md">{eyebrow}</span>
               </div>
-              <div className="flex flex-1 flex-col p-5">
-                <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Project {String(index + 1).padStart(2, '0')}</p>
-                <h3 className="font-urbanist text-lg font-bold leading-snug text-[#06103C]">{project.title}</h3>
-                <span className="mt-auto pt-5 font-jost text-sm font-semibold text-[#A8228A]">View case study →</span>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <p className="mb-4 font-urbanist text-sm font-black uppercase tracking-[0.16em] text-[#A8228A]">Project {String(index + 1).padStart(2, '0')}</p>
+                <h3 className="font-urbanist text-xl font-black leading-snug text-[#06103C] transition-colors group-hover:text-[#A8228A] sm:text-2xl">{project.title}</h3>
+                <span className="mt-auto flex items-center gap-2.5 border-t border-[#ECEEF4] pt-6 font-jost text-base font-bold text-[#A8228A]">
+                  View study
+                  <svg className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14m-6-6 6 6-6 6" />
+                  </svg>
+                </span>
               </div>
             </Link>
           ))}
@@ -123,7 +122,7 @@ export default async function OurWorkPage() {
           <video autoPlay muted loop playsInline preload="auto" className="absolute inset-0 h-full w-full object-cover" aria-label="Electrical engineering projects">
             <source src="/videos/Our%20Clients%20%26%20Projects.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/95 via-[#06103C]/80 to-[#06103C]/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/72 via-[#06103C]/42 to-[#06103C]/10" />
           <div className="relative z-10 mx-auto flex min-h-[680px] w-full max-w-7xl items-end px-4 pb-10 pt-32 sm:min-h-[720px] sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
             <div className="max-w-4xl">
               <nav aria-label="Breadcrumb" className="mb-7 flex items-center gap-2 font-jost text-sm text-white/65">
@@ -142,17 +141,6 @@ export default async function OurWorkPage() {
                 <img src="/images/cert-logos.png" alt="Keentel certifications and professional memberships" className="h-16 max-w-full object-contain object-left brightness-0 invert sm:h-20" />
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="relative z-10 border-b border-[#E6E8F0] bg-white">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-            {stats.map((stat, index) => (
-              <div key={stat.label} className={`px-3 py-7 text-center sm:px-6 sm:py-9 ${index % 2 ? 'border-l border-[#E6E8F0]' : ''} ${index > 1 ? 'border-t border-[#E6E8F0] lg:border-t-0' : ''} lg:border-l lg:first:border-l-0`}>
-                <p className="font-urbanist text-2xl font-black text-[#06103C] sm:text-3xl">{stat.value}</p>
-                <p className="mt-1 font-jost text-xs leading-snug text-gray-500 sm:text-sm">{stat.label}</p>
-              </div>
-            ))}
           </div>
         </section>
 

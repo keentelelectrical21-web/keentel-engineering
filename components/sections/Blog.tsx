@@ -1,18 +1,70 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { client } from '@/lib/sanity'
 
-const posts = [
+const fallbackPosts = [
   { slug: 'nyiso-interconnection-study-large-loads', title: 'NYISO Interconnection Study Guide for Large Loads', excerpt: 'Learn how NYISO interconnection study, Load SIS, POI strategy, and modeling data requirements affect large load and generation projects in New York.', author: 'Sandip R Patel', date: 'June 10, 2026', category: 'Interconnection', image: '/images/blog-home/nyiso-interconnection.png' },
   { slug: 'ercot-ride-through-requirements', title: 'ERCOT Ride Through Requirements for Large Loads', excerpt: 'Learn ERCOT ride through requirements for Large Electronic Loads, data centers, and interconnection compliance. Discover NOGRR282 engineering steps.', author: 'Sandip R Patel', date: 'June 9, 2026', category: 'ERCOT', image: '/images/blog-home/ercot-ride-through.png' },
   { slug: 'cable-ampacity-sizing', title: 'Cable Ampacity and Sizing: Thermal Limits Explained', excerpt: 'Learn cable ampacity and sizing methods, conductor thermal limits, derating factors, and cable sizing calculations for reliable power systems.', author: 'Sandip R Patel', date: 'June 8, 2026', category: 'Power Systems', image: '/images/blog-home/cable-ampacity.png' },
 ]
 
+type BlogPost = {
+  _id: string
+  slug: string
+  title: string
+  excerpt: string
+  author: string
+  date: string
+  category: string
+  image: string
+}
+
 const catColors: Record<string, string> = {
   'Interconnection': '#0B1A5B', 'ERCOT': '#5B2A86', 'Power Systems': '#A8228A', 'NERC': '#C72E9E', 'ISO-NE': '#0B1A5B',
 }
 
-export default function BlogSection() {
+export default function BlogSection({ limit = 3 }: { limit?: number }) {
+  const [posts, setPosts] = useState<BlogPost[]>([])
+
+  useEffect(() => {
+    client.fetch<Array<{
+      _id: string
+      title: string
+      slug?: { current?: string }
+      excerpt?: string
+      publishedAt?: string
+      category?: string
+      featuredImage?: string
+    }>>(
+      `*[_type == "blogPost"] | order(publishedAt desc) [0...15] {
+        _id,
+        title,
+        slug,
+        excerpt,
+        publishedAt,
+        "category": coalesce(category->title, category->name, category, "Technical Insight"),
+        "featuredImage": coalesce(featuredImage.asset->url, mainImage.asset->url)
+      }`
+    ).then((items) => {
+      setPosts(items.map((post) => ({
+        _id: post._id,
+        slug: (post.slug?.current || '').replace(/^\/+/, ''),
+        title: post.title,
+        excerpt: post.excerpt || 'Explore this technical insight from Keentel Engineering.',
+        author: 'Sandip R Patel',
+        date: post.publishedAt
+          ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+          : '',
+        category: post.category || 'Technical Insight',
+        image: post.featuredImage || `/images/blog/${(post.slug?.current || '').replace(/^\/+/, '')}-featured.jpg`,
+      })))
+    }).catch(() => setPosts([]))
+  }, [])
+
+  const visiblePosts = (posts.length > 0 ? posts : fallbackPosts.map((post, index) => ({ ...post, _id: `fallback-${index}` }))).slice(0, limit)
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,17 +83,18 @@ export default function BlogSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <article key={post.slug} className="group rounded-2xl overflow-hidden border transition-all hover:shadow-xl hover:-translate-y-1" style={{ borderColor: '#E6E8F0' }}>
+          {visiblePosts.map((post) => (
+            <article key={post._id} className="group flex h-full flex-col overflow-hidden rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-xl" style={{ borderColor: '#E6E8F0' }}>
               <div className="relative overflow-hidden w-full">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
               </div>
 
-              <div className="p-6">
+              <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-center gap-2 flex-wrap mb-3">
                   <span
                     className="text-xs font-bold px-2.5 py-1 rounded-full text-white"
@@ -64,7 +117,7 @@ export default function BlogSection() {
                 <p className="text-base font-jost leading-relaxed mb-4 line-clamp-2" style={{ color: '#4B5563' }}>
                   {post.excerpt}
                 </p>
-                <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-1.5 text-sm font-semibold transition-all" style={{ color: '#0B1A5B' }}>
+                <Link href={`/blog/${post.slug}`} className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-all" style={{ color: '#0B1A5B' }}>
                   Read post
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />

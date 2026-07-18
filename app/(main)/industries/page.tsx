@@ -283,7 +283,7 @@ export default function IndustriesPage() {
         </div>
 
         <div className="order-11">
-          <BlogSection />
+          <BlogSection limit={15} />
         </div>
       </main>
       <Footer />
