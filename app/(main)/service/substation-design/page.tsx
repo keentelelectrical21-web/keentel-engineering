@@ -125,7 +125,6 @@ export default function SubstationDesignPage() {
 
         {/* ═══ 2. ENGINEERING EXCELLENCE — made prominent ═══ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 pt-1 sm:px-6 lg:px-8"><p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Engineering Excellence</span>

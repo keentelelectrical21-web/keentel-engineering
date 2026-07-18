@@ -250,7 +250,7 @@ export default function OilGasMiningPage() {
           className="relative min-h-[70vh] flex items-center overflow-hidden"
         >
           <video src="/videos/Oil, Gas & Mining Operations.mov" autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="Oil gas and mining power infrastructure" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,.86), rgba(6,16,60,.58) 60%, rgba(6,16,60,.22))' }} />
+          <div className="absolute inset-0 bg-black/35" />
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
             <div className="max-w-3xl">
               <h1 className="font-urbanist font-black text-3xl md:text-5xl text-white leading-tight mb-6">

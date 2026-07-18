@@ -380,7 +380,6 @@ export default function PowerSystemStudiesPage() {
         ═══════════════════════════════════════════════════════ */}
         <section className="py-20 sm:py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <span className="inline-flex text-xs font-semibold uppercase tracking-widest mb-6 font-jost px-3 py-1.5 rounded-full" style={{ color: '#A8228A', background: 'rgba(168,34,138,0.08)' }}>Our Approach</span>
             <h2 className="max-w-4xl font-urbanist font-black leading-tight mb-10" style={{ color: '#06103C', fontSize: 'clamp(2.2rem, 4vw, 3.25rem)' }}>
               Engineering-First Studies, Not Just Reports
             </h2>

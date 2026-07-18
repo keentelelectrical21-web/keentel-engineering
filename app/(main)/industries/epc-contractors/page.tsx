@@ -26,7 +26,7 @@ export default function EpcContractorsPage() {
       <main>
         <section className="relative flex min-h-[620px] items-end overflow-hidden">
           <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="EPC contractors coordinating power infrastructure construction"><source src="/videos/epc.mp4" type="video/mp4" /></video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,.96) 0%, rgba(6,16,60,.78) 55%, rgba(6,16,60,.35) 100%)' }} />
+          <div className="absolute inset-0 bg-black/35" />
           <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-40 sm:px-6 lg:px-8">
             <nav className="mb-6 flex items-center gap-2 font-jost text-xs"><Link href="/" className="text-white/50">Home</Link><span className="text-white/30">/</span><Link href="/industries" className="text-white/50">Industries</Link><span className="text-white/30">/</span><span className="text-white/80">EPC Contractors</span></nav>
             <div className="max-w-3xl">

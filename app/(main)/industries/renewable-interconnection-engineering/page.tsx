@@ -227,13 +227,7 @@ export default function RenewableInterconnectionEngineeringPage() {
           style={{ background: '#06103C' }}
         >
           <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover"><source src="/videos/Renewable Energy Developers.mp4" type="video/mp4" /></video>
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.75) 60%, rgba(91,42,134,0.4) 100%)',
-            }}
-          />
+          <div className="absolute inset-0 bg-black/35" />
           <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20">
             <div className="max-w-3xl">
               <span className="font-jost text-sm uppercase tracking-wider" style={{ color: '#A8228A' }}>

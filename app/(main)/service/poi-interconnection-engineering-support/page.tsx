@@ -181,7 +181,6 @@ export default function POIInterconnectionPage() {
         <section className="order-[20] py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
               <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>POI Interconnection Engineering Support</h2>
               <p className="font-jost text-gray-600 mb-6 max-w-xl text-lg leading-relaxed">POI interconnection engineering support provides the technical design, documentation, and utility coordination required to successfully connect generation facilities to the electrical grid at the point of interconnection (POI).</p>
               <h3 className="font-urbanist font-bold text-lg mb-3" style={{ color: '#06103C' }}>This service helps developers, EPCs, and owners:</h3>

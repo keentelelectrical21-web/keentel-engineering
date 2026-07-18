@@ -223,7 +223,6 @@ export default function TransmissionLineDesignPage() {
         <section className="order-[15] py-12 sm:py-16 bg-white">
           <div className="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
             <div>
-              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-[0.18em] text-[#A8228A]">Our Approach</span>
               <h2 className="mt-4 mb-5 font-urbanist font-black leading-tight text-[#06103C]" style={{ fontSize: 'clamp(2rem,3.5vw,2.85rem)' }}>Engineering Transmission Corridors for Safety, Reliability, and Long-Term Performance</h2>
               <p className="mb-5 font-jost text-base leading-relaxed text-gray-600 sm:text-lg">Keentel Engineering coordinates electrical performance, structural loading, route constraints, constructability, and utility standards as one integrated transmission-line engineering system.</p>
               <p className="mb-7 font-jost text-base leading-relaxed text-gray-600">From early corridor studies through issued-for-construction packages, we validate conductor behavior, structure loading, clearances, grounding, environmental conditions, and field requirements to reduce redesign and support dependable delivery.</p>
@@ -246,7 +245,6 @@ export default function TransmissionLineDesignPage() {
         <section className="order-[40] py-12 sm:py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Capabilities</span>
             <h2 className="font-urbanist font-black mb-3" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Keentel Engineering&apos;s Core Transmission Line Design Capabilities</h2>
           </div>

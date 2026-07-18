@@ -230,7 +230,6 @@ export default function NercCompliancePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
           <div className="rounded-3xl border border-[#E6E8F0] bg-[#F8F9FC] p-6 shadow-sm sm:p-8 lg:p-10">
-            <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
             <h2 className="mb-7 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">What Are NERC Compliance Services, and Who Needs Them?</h2>
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Overview</span>
             <p className="font-jost text-gray-600 mb-4 leading-relaxed text-lg">NERC compliance services help power-sector organizations meet mandatory O&amp;P 693 and CIP cybersecurity standards while keeping their systems reliable, secure, and audit-ready.</p>

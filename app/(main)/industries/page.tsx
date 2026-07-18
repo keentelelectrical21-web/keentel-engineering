@@ -1,9 +1,15 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ContactForm from '@/components/sections/ContactForm'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import CaseStudies from '@/components/sections/CaseStudies'
+import FAQ from '@/components/sections/FAQ'
+import BlogSection from '@/components/sections/Blog'
+import WhoWeServed from '@/components/service/WhoWeServed'
 
 // ── Animated counter hook (same pattern as About page) ─────────────────────
 function useCounter(target: number, duration: number = 1800, start: boolean = false) {
@@ -45,36 +51,42 @@ const industries = [
     desc: 'Load flow, protection coordination, and NERC-compliant transmission planning for utility-scale networks.',
     image: '/images/industries/hub/utilities-transmission.jpg',
     href: '/industries/electric-utilities-transmission',
+    tag: 'NERC Regulated',
   },
   {
     title: 'Renewable Energy Developers',
     desc: 'Interconnection studies, IBR modeling, and grid code compliance for solar, wind, and BESS projects.',
     image: '/images/industries/hub/renewable-developers.jpg',
     href: '/industries/renewable-interconnection-engineering',
+    tag: 'Grid Interconnection',
   },
   {
     title: 'Industrial & Manufacturing Facilities',
     desc: 'Power reliability, arc flash studies, and MEP engineering for demanding industrial operations.',
     image: '/images/industries/hub/industrial-manufacturing.webp',
     href: '/industries/industrial-power-engineering',
+    tag: 'High Voltage',
   },
   {
     title: 'Oil, Gas & Mining Operations',
     desc: 'Rugged power system design and protection engineering for remote and harsh-environment sites.',
     image: '/images/industries/hub/oil-gas-mining.jpg',
     href: '/industries/oil-gas-mining',
+    tag: 'Harsh Environments',
   },
   {
     title: 'Data Centers & Commercial Infrastructure',
     desc: 'High-reliability power distribution and redundancy planning for mission-critical facilities.',
     image: '/images/industries/hub/data-centers.jpg',
     href: '/industries/data-center-electrical',
+    tag: '24/7 Critical Load',
   },
   {
     title: 'EPC Contractors',
     desc: 'Integrated power engineering, utility coordination, and construction-ready packages for complex EPC delivery.',
     image: '/images/services/substation-design/ind-epc.png',
     href: '/industries/epc-contractors',
+    tag: 'Construction Ready',
   },
 ]
 
@@ -86,24 +98,12 @@ const approach = [
 ]
 
 export default function IndustriesPage() {
-  const statsRef = useRef<HTMLDivElement>(null)
-  const [statsStarted, setStatsStarted] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStatsStarted(true) },
-      { threshold: 0.2 }
-    )
-    if (statsRef.current) observer.observe(statsRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <>
       <Header />
-      <main>
+      <main className="flex flex-col">
         {/* ── HERO ── */}
-        <section className="relative min-h-[540px] flex items-end overflow-hidden">
+        <section className="relative order-1 flex min-h-[620px] items-end overflow-hidden sm:min-h-[540px]">
           <div className="absolute inset-0 z-0">
           <video
   autoPlay
@@ -115,10 +115,10 @@ export default function IndustriesPage() {
 >
   <source src="/videos/industries.mp4" type="video/mp4" />
 </video>
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.95) 0%, rgba(91,42,134,0.75) 100%)' }} />
+            <div className="absolute inset-0 bg-black/35" />
             <div className="absolute bottom-0 right-0 w-96 h-96 blur-3xl rounded-full opacity-25" style={{ background: 'radial-gradient(circle, #A8228A 0%, transparent 70%)' }} />
           </div>
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 pt-32 sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
             <nav className="flex items-center gap-2 mb-6 text-xs font-jost">
               <Link href="/" className="text-white/50 hover:text-white/80 transition-colors">Home</Link>
               <span className="text-white/30">/</span>
@@ -129,37 +129,36 @@ export default function IndustriesPage() {
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-white/70 text-sm font-jost">Industries We Serve</span>
               </div>
-              <h1 className="font-urbanist font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] mb-5">
+              <h1 className="mb-5 font-urbanist text-3xl font-black leading-[1.08] text-white min-[390px]:text-4xl sm:text-5xl lg:text-6xl">
                 Power Engineering Solutions{' '}
                 <span style={{ color: '#C72E9E' }}>Built for Your Industry</span>
               </h1>
-              <p className="text-white/65 text-lg font-jost leading-relaxed max-w-2xl">
+              <p className="max-w-2xl font-jost text-base leading-relaxed text-white/75 sm:text-lg sm:text-white/65">
                 From utilities and transmission operators to renewable developers, industrial facilities, and data centers, Keentel Engineering delivers practical, standards-compliant engineering solutions tailored to the unique reliability and regulatory demands of each industry we serve.
               </p>
+              <div className="mt-8">
+                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/70">Certifications &amp; Memberships</p>
+                <div className="inline-flex max-w-full rounded-2xl border border-white/20 bg-black/20 px-3 py-3 sm:px-5 sm:py-4">
+                  <img src="/images/home/certifications.png" alt="BBB Accredited, IEEE Senior Member, Florida Engineering Society and NERC certifications" className="h-auto max-h-14 w-auto max-w-full object-contain sm:max-h-20" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ── STATS STRIP ── */}
-        <section ref={statsRef} className="py-14" style={{ background: '#06103C' }}>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <StatCard value={6} label="Industries Served" delay={0} started={statsStarted} />
-            <StatCard value={30} suffix="+" label="Years of Experience" delay={150} started={statsStarted} />
-            <StatCard value={21} label="Licensed Engineers" delay={300} started={statsStarted} />
-            <StatCard value={50} label="States Covered" delay={450} started={statsStarted} />
-          </div>
-        </section>
 
-        {/* ── INDUSTRY CARDS ── */}
-        <section className="py-24" style={{ background: '#F7F8FC' }}>
+    
+
+        <section className="order-4 py-14 sm:py-20 lg:py-24" style={{ background: '#F7F8FC' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-14">
+            <div className="mb-10 w-full sm:mb-14">
               <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Where We Work</p>
-              <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1]" style={{ color: '#06103C' }}>
+              <h2 className="font-urbanist text-3xl font-black leading-[1.1] sm:text-5xl lg:whitespace-nowrap" style={{ color: '#06103C' }}>
                 Six Industries, One Engineering Standard
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
               {industries.map((ind) => (
                 <Link
                   key={ind.href}
@@ -167,7 +166,7 @@ export default function IndustriesPage() {
                   className="group block bg-white rounded-2xl overflow-hidden border hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
                   style={{ borderColor: '#E6E8F0' }}
                 >
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden sm:h-56">
                     <img
                       src={ind.image}
                       alt={ind.title}
@@ -176,7 +175,10 @@ export default function IndustriesPage() {
                    />
                     <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(6,16,60,0.75) 100%)' }} />
                   </div>
-                  <div className="p-6">
+                  <div className="p-5 sm:p-6">
+                    <span className="mb-3 inline-flex w-fit rounded-full bg-[#A8228A]/10 px-3 py-1 font-jost text-xs font-bold text-[#A8228A]">
+                      {ind.tag}
+                    </span>
                     <h3 className="font-urbanist font-bold text-lg leading-snug mb-2" style={{ color: '#06103C' }}>
                       {ind.title}
                     </h3>
@@ -197,12 +199,12 @@ export default function IndustriesPage() {
         </section>
 
         {/* ── APPROACH ── */}
-        <section className="py-20" style={{ background: '#F6F7FB' }}>
+        <section className="order-3 py-14 sm:py-20" style={{ background: '#F6F7FB' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            <div className="grid grid-cols-1 items-center gap-9 lg:grid-cols-2 lg:gap-14">
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Approach</p>
-                <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1] mb-6" style={{ color: '#06103C' }}>
+                <h2 className="mb-5 font-urbanist text-3xl font-black leading-[1.1] sm:mb-6 sm:text-5xl" style={{ color: '#06103C' }}>
                   One Engineering Standard, Every Industry
                 </h2>
                 <p className="font-jost text-base leading-relaxed mb-8" style={{ color: '#4B5563' }}>
@@ -219,7 +221,7 @@ export default function IndustriesPage() {
                   ))}
                 </div>
               </div>
-              <div className="relative rounded-3xl overflow-hidden h-[420px]">
+              <div className="relative h-72 overflow-hidden rounded-2xl sm:h-96 sm:rounded-3xl lg:h-[420px]">
                 <img
                   src="/images/industries/hub/approach-team.jpg"
                   alt="Keentel Engineering team at work"
@@ -233,31 +235,54 @@ export default function IndustriesPage() {
         </section>
 
         {/* ── CTA — exact match to About page ── */}
-        <section className="py-20" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
+        <div className="order-5">
+          <WhoWeServed />
+        </div>
+
+        <div className="order-6">
+          <ContactForm />
+        </div>
+
+        <div className="order-7">
+          <SoftwareTools heading="Our Software Capabilities" />
+        </div>
+
+        <div className="order-8">
+          <CaseStudies />
+        </div>
+
+        <section className="order-9 py-20" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Let's Work Together</p>
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white leading-tight mb-5">Ready to Discuss Your Next Project?</h2>
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Let&apos;s Work Together</p>
+            <h2 className="mb-5 font-urbanist text-3xl font-black leading-tight text-white sm:text-5xl">Ready to Discuss Your Next Project?</h2>
             <p className="font-jost text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
               Our licensed engineers are ready to discuss your project requirements, from grid interconnection and substation design to NERC compliance and renewable energy integration.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-xl sm:w-auto sm:px-8"
                 style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
                 Schedule a Free Consultation
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-full border border-white/25 hover:bg-white/10 transition-all">
+              <Link href="/contact" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 font-semibold text-white transition-all hover:bg-white/10 sm:w-auto sm:px-8">
                 Contact Our Team
               </Link>
               <a href="/files/keentel-company-profile.pdf" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full border border-white/25 hover:bg-white/10 transition-all text-white">
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 font-semibold text-white transition-all hover:bg-white/10 sm:w-auto sm:px-8">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                 Download Profile
               </a>
             </div>
           </div>
         </section>
+        <div className="order-10">
+          <FAQ />
+        </div>
+
+        <div className="order-11">
+          <BlogSection />
+        </div>
       </main>
       <Footer />
     </>

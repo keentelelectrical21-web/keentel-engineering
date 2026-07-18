@@ -234,7 +234,6 @@ export default function SoftwareCapabilitiesFaqsPage() {
         <section className="bg-white py-16 sm:py-20 lg:py-24">
           <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
             <div>
-              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
               <h2 className="mb-5 font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl">The Right Engineering Platform for Every Study</h2>
               <p className="font-jost text-base leading-relaxed text-gray-600 sm:text-lg">We select and cross-check industry-standard software based on the required study, system voltage, utility criteria, model fidelity, and compliance objective.</p>
             </div>

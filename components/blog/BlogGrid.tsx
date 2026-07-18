@@ -161,7 +161,7 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
         </div>
 
         {/* Desktop filter chips */}
-        <div className="mb-10 hidden sm:flex flex-wrap gap-2">
+        <div className="mb-10 hidden sm:flex flex-wrap items-start gap-2 lg:sticky lg:top-28 lg:self-start">
           {categories.map((cat) => {
             const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
             const isActive = activeCategory === cat

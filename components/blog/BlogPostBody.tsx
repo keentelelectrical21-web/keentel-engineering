@@ -41,9 +41,51 @@ function filterBlocks(blocks: any[]): any[] {
     : block)
 }
 
+function getYouTubeId(text: string): string | null {
+  const value = text.trim()
+  if (!value || /\s/.test(value)) return null
+  try {
+    const url = new URL(value.match(/^https?:\/\//i) ? value : `https://${value}`)
+    const host = url.hostname.toLowerCase().replace(/^www\./, '')
+    if (host === 'youtu.be') return url.pathname.slice(1).split('/')[0] || null
+    if (host !== 'youtube.com') return null
+    if (url.pathname === '/watch') return url.searchParams.get('v') || null
+    if (url.pathname.startsWith('/embed/')) return url.pathname.slice('/embed/'.length).split('/')[0] || null
+  } catch {
+    return null
+  }
+  return null
+}
+
+function YouTubeEmbed({ id, url }: { id: string; url: string }) {
+  return (
+    <div className="mb-6 mt-2">
+      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black">
+        <iframe
+          className="absolute inset-0 h-full w-full"
+          src={`https://www.youtube.com/embed/${encodeURIComponent(id)}`}
+          title="YouTube video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+      <a href={url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center rounded-full bg-gradient-to-r from-[#0B1A5B] to-[#5B2A86] px-5 py-2.5 font-jost text-sm font-semibold text-white transition hover:-translate-y-0.5">
+        Watch on YouTube →
+      </a>
+    </div>
+  )
+}
+
 const ptComponents = {
   block: {
-    normal: ({ children }: any) => <p className="font-jost text-gray-700 leading-relaxed text-base mb-5">{children}</p>,
+    normal: ({ children, value }: any) => {
+      const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+      const id = getYouTubeId(text)
+      return id
+        ? <YouTubeEmbed id={id} url={text} />
+        : <p className="font-jost text-gray-700 leading-relaxed text-base mb-5">{children}</p>
+    },
     h1: ({ children }: any) => <h1 className="font-urbanist font-black text-3xl mt-10 mb-4" style={{ color: '#06103C' }}>{children}</h1>,
     h2: ({ children }: any) => <h2 className="font-urbanist font-black text-2xl mt-10 mb-3" style={{ color: '#06103C' }}>{children}</h2>,
     h3: ({ children }: any) => <h3 className="font-urbanist font-bold text-xl mt-7 mb-3" style={{ color: '#06103C' }}>{children}</h3>,
@@ -456,7 +498,7 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
             2. The section/page is much taller (main content)
             3. No overflow:hidden on any parent
           */}
-          <aside className="self-start lg:sticky lg:top-24 lg:col-span-3">
+          <aside className="self-start lg:sticky lg:top-28 lg:col-span-3">
             <Sidebar post={post} slug={slug} originalUrl={originalUrl} />
           </aside>
 

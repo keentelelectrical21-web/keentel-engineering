@@ -54,7 +54,7 @@ const socials = [
   },
 ]
 
-const marqueeText = ['Power System Engineering', 'NERC Compliance', 'Substation Design', 'Grid Reliability', 'Renewable Energy', 'IBR Modeling', 'POI Interconnection', 'BESS Engineering']
+const marqueeText: string[] = []
 
 export default function Footer() {
   return (
@@ -184,7 +184,7 @@ export default function Footer() {
       </div>
 
       {/* Marquee */}
-      <div className="overflow-hidden py-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div className="hidden" aria-hidden="true">
         <div className="flex animate-marquee-left whitespace-nowrap" style={{ width: 'max-content' }}>
           {[...marqueeText, ...marqueeText, ...marqueeText, ...marqueeText].map((item, i) => (
             <span key={i} className="inline-flex items-center gap-4 mx-6 font-urbanist font-black select-none" style={{ fontSize: 'clamp(40px,5vw,72px)', color: 'rgba(255,255,255,0.05)' }}>

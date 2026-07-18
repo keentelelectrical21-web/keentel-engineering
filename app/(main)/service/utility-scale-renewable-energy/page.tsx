@@ -226,7 +226,6 @@ export default function UtilityScaleRenewableEnergyPage() {
         <section className="order-[20] py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div>
-              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
               <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Utility-Scale Renewable Engineering Built for Real Grid Conditions</h2>
               <p className="font-jost text-gray-700 text-lg leading-relaxed mb-5">Utility-scale renewable energy projects require advanced power system engineering to ensure reliable and compliant grid integration. Keentel Engineering supports solar, wind, and BESS developers with POI interconnection studies, IEEE 2800 compliance, dynamic modeling, and NERC reliability support.</p>
               <p className="font-jost text-gray-600 leading-relaxed">We connect interconnection requirements, inverter controls, protection, and operating performance into a coordinated design path that supports approval, construction, and long-term reliability.</p>
@@ -267,7 +266,6 @@ export default function UtilityScaleRenewableEnergyPage() {
         <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>Our Approach</span>
               <h2 className="font-urbanist font-black mb-5 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem,3.5vw,2.75rem)' }}>Why Renewable Projects Require Specialized Engineering</h2>
               <p className="font-jost text-gray-600 mb-5 text-lg leading-relaxed">Solar, wind, and BESS projects operate differently from traditional power plants. These inverter-based resources rely on software controls, fast response times, and detailed grid modeling to remain stable.</p>
               <p className="font-jost text-gray-700 mb-3 font-semibold">We help developers address:</p>

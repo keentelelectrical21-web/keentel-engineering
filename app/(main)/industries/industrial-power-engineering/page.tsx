@@ -252,7 +252,7 @@ export default function IndustrialPowerEngineeringPage() {
           className="relative min-h-[70vh] flex items-center overflow-hidden"
         >
           <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover"><source src="/videos/Industrial & Manufacturing Facilities.mp4" type="video/mp4" /></video>
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,.96), rgba(6,16,60,.72) 60%, rgba(6,16,60,.35))' }} />
+          <div className="absolute inset-0 bg-black/35" />
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
             <div className="max-w-3xl">
               <h1 className="font-urbanist font-black text-3xl md:text-5xl text-white leading-tight mb-6">

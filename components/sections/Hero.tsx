@@ -8,7 +8,7 @@ const marqueeItems = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: '#06103C' }}>
       <div className="absolute inset-0 z-0">
         <video
   autoPlay
@@ -16,7 +16,6 @@ export default function Hero() {
   loop
   playsInline
   preload="auto"
-  poster="/images/home/hero-bg.jpg"
   className="w-full h-full object-cover object-center"
 >
   <source src="/videos/home.mp4" type="video/mp4" />

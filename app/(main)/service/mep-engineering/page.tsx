@@ -215,7 +215,6 @@ export default function MEPEngineeringPage() {
         {/* ═══ 2. OVERVIEW ═══ */}
         <section className="py-16 sm:py-20 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="mb-4 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 font-jost text-xs font-bold uppercase tracking-widest text-[#A8228A]">Our Approach</p>
           <h2 className="mb-10 font-urbanist font-black leading-tight text-[#06103C] text-3xl sm:text-4xl">MEP Engineering Services for Industrial and Warehouse Facilities</h2>
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>

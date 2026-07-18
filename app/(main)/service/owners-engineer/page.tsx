@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/sections/ContactForm'
-import SoftwareTools from '@/components/sections/SoftwareTools'
 import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import WhoWeServed from '@/components/service/WhoWeServed'
@@ -223,7 +222,7 @@ export default function OwnersEngineerPage() {
         </section>
 
         {/* ═══ 2. WHY CHOOSE — branded two-column ═══ */}
-        <section className="hidden" aria-hidden="true">
+        <section className="hidden legacy-why-choose" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
               <div className="lg:col-span-5">
@@ -255,7 +254,6 @@ export default function OwnersEngineerPage() {
 {/* ═══ 3. WHAT IS OWNER'S ENGINEER ═══ */}
         <section className="py-20 sm:py-24 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <span className="mb-3 inline-flex rounded-full bg-[#A8228A]/[0.08] px-3 py-1.5 text-xs font-semibold uppercase tracking-widest font-jost text-[#A8228A]">Our Approach</span>
           <h2 className="mb-10 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">What Is an Owner&apos;s Engineer and Why It Matters</h2>
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
@@ -269,24 +267,7 @@ export default function OwnersEngineerPage() {
         </section>
 
         <ContactForm />
-
-        <section className="py-8 sm:py-10" style={{ background: '#F6F7FB' }}>
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-2xl px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5" style={{ background: '#06103C' }}>
-              <div>
-                <p className="font-urbanist font-bold text-lg sm:text-xl text-white">Download the Owner&apos;s Engineer Services Flyer</p>
-                <p className="font-jost text-sm mt-1" style={{ color: 'rgba(255,255,255,0.72)' }}>A concise overview of our independent engineering oversight and delivery support.</p>
-              </div>
-              <a href="/files/owners-engineer.pdf" target="_blank" className="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 font-jost text-sm font-semibold text-white transition-transform hover:scale-105" style={{ background: '#A8228A' }}>
-                Download the Flyer
-              </a>
-            </div>
-          </div>
-        </section>
-        <SoftwareTools />
         <SoftwareCapabilities />
-        <Industries />
-        <ServiceCaseStudies service="owners-engineer" />
 
 
         {/* ═══ 4. FULL SCOPE ═══ */}
@@ -343,6 +324,9 @@ export default function OwnersEngineerPage() {
         </section>
 
         {/* ═══ 6. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
+        <Industries />
+        <ServiceCaseStudies service="owners-engineer" />
+
         <section className="hidden" aria-hidden="true">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 font-jost" style={{ color: '#A8228A' }}>Real Projects</span>
@@ -450,6 +434,19 @@ export default function OwnersEngineerPage() {
         )}
 
         <WhoWeServed />
+        <section className="py-8 sm:py-10" style={{ background: '#F6F7FB' }}>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5" style={{ background: '#06103C' }}>
+              <div>
+                <p className="font-urbanist font-bold text-lg sm:text-xl text-white">Download the Owner&apos;s Engineer Services Flyer</p>
+                <p className="font-jost text-sm mt-1" style={{ color: 'rgba(255,255,255,0.72)' }}>A concise overview of our independent engineering oversight and delivery support.</p>
+              </div>
+              <a href="/files/owners-engineer.pdf" target="_blank" className="inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 font-jost text-sm font-semibold text-white transition-transform hover:scale-105" style={{ background: '#A8228A' }}>
+                Download the Flyer
+              </a>
+            </div>
+          </div>
+        </section>
         <FaqSection
           eyebrow="Questions We Hear"
           heading="Answers,"
