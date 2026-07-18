@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
+import { urlFor } from '@/lib/sanity'
 
 const JUNK_PATTERNS = [
   /^add a title$/i, /^add a link$/i, /^place an image/i,
@@ -148,8 +149,7 @@ const ptComponents = {
       )
     },
     image: ({ value }: any) => {
-      // FIX: support both resolved asset object and raw asset ref
-      const url = value?.asset?.url || value?.asset?._ref
+      const url = value?.asset?.url || (value?.asset?._ref ? urlFor({ _ref: value.asset._ref }).width(1400).url() : null)
       if (!url) return null
       return (
         <div className="my-8">

@@ -26,7 +26,7 @@ async function getPost(slug: string) {
           ...,
           _type == "image" => {
             ...,
-            "asset": asset-> { _id, url, metadata { dimensions } }
+            "asset": asset-> { _id, _type, url, metadata { dimensions } }
           }
         },
         metaTitle,
