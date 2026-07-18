@@ -11,6 +11,12 @@ import { getAllCaseStudies } from '@/lib/caseStudies'
 
 export const revalidate = 3600
 
+const stats = [
+  { value: '30+', label: 'Years of engineering experience' },
+  { value: '120+', label: 'Engineering projects delivered' },
+  { value: '21', label: 'Licensed engineering professionals' },
+  { value: 'Nationwide', label: 'Utility and developer support' },
+]
 
 
 const projectFaqs = [
