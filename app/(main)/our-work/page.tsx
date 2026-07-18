@@ -11,12 +11,7 @@ import { getAllCaseStudies } from '@/lib/caseStudies'
 
 export const revalidate = 3600
 
-const stats = [
-  { value: '30+', label: 'Years of engineering experience' },
-  { value: '120+', label: 'Engineering projects delivered' },
-  { value: '21', label: 'Licensed engineering professionals' },
-  { value: 'Nationwide', label: 'Utility and developer support' },
-]
+
 
 const projectFaqs = [
   { q: 'What does POI interconnection engineering support include from start to finish?', a: 'Keentel supports the full path from feasibility review and utility coordination through POI substation design, protection and control, grounding, studies, construction drawings, commissioning, and utility acceptance documentation.' },
@@ -86,7 +81,7 @@ function ProjectGrid({
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {projects.map((project, index) => (
-            <Link key={project._id} href={`/our-work/${project.slug.current}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E2E5EF] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E2E5EF] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="relative aspect-[4/3] overflow-hidden bg-[#EEF0F6]">
                 {project.cardImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -118,14 +113,15 @@ export default async function OurWorkPage() {
     <>
       <Header />
       <main className="overflow-x-clip">
-        <section className="relative isolate min-h-[680px] overflow-hidden bg-[#06103C] sm:min-h-[720px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/our-clients-hero.webp" alt="Electrical substation engineering project" className="absolute inset-0 h-full w-full object-cover" />
+        <section className="relative isolate flex min-h-[680px] items-end overflow-hidden bg-[#06103C] sm:min-h-[720px]">
+          <video autoPlay muted loop playsInline preload="auto" className="absolute inset-0 h-full w-full object-cover" aria-label="Electrical engineering projects">
+            <source src="/videos/Our%20Clients%20%26%20Projects.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/95 via-[#06103C]/80 to-[#06103C]/35" />
-          <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-4 py-20 sm:min-h-[720px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[680px] w-full max-w-7xl items-end px-4 pb-10 pt-32 sm:min-h-[720px] sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
             <div className="max-w-4xl">
               <nav aria-label="Breadcrumb" className="mb-7 flex items-center gap-2 font-jost text-sm text-white/65">
-                <Link href="/" className="transition hover:text-white">Home</Link><span>/</span><span className="text-white">Our Work</span>
+                <Link href="/" className="transition hover:text-white">Home</Link><span>/</span><span className="text-white">Our Clients &amp; Projects</span>
               </nav>
               <p className="mb-4 font-jost text-xs font-bold uppercase tracking-[0.22em] text-[#F14BB9]">Clients &amp; Project Experience</p>
               <h1 className="max-w-4xl font-urbanist text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-7xl">Engineering Projects That Deliver Results</h1>

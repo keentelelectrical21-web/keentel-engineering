@@ -145,54 +145,8 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
     <section id="blog-grid" className="py-16" style={{ background: '#F6F7FB' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Mobile dropdown */}
-        <div className="mb-10 sm:hidden">
-          <select
-            value={activeCategory}
-            onChange={(e) => handleCategoryChange(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl font-jost font-semibold text-sm border-2 focus:outline-none"
-            style={{ borderColor: '#E6E8F0', color: '#06103C', background: '#fff' }}
-          >
-            {categories.map((cat) => {
-              const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
-              return <option key={cat} value={cat}>{cat} ({count})</option>
-            })}
-          </select>
-        </div>
-
-        {/* Desktop filter chips */}
-        <div className="mb-10 hidden sm:flex flex-wrap items-start gap-2 lg:sticky lg:top-28 lg:self-start">
-          {categories.map((cat) => {
-            const count = cat === 'All' ? posts.length : posts.filter(p => p.category === cat).length
-            const isActive = activeCategory === cat
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full font-jost font-semibold text-sm transition-all duration-200"
-                style={isActive
-                  ? { background: '#06103C', color: '#fff' }
-                  : { background: '#fff', color: '#555', border: '1.5px solid #E6E8F0' }
-                }
-              >
-                {cat}
-                <span
-                  className="text-xs px-1.5 py-0.5 rounded-full font-normal"
-                  style={isActive
-                    ? { background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.7)' }
-                    : { background: '#F0F1F8', color: '#999' }
-                  }
-                >
-                  {count}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
         <p className="font-jost text-gray-500 text-sm mb-6">
-          Showing <span className="font-semibold text-gray-800">{visible.length}</span> of <span className="font-semibold text-gray-800">{filtered.length}</span> articles
-          {activeCategory !== 'All' && <span> in <span className="font-semibold" style={{ color: '#A8228A' }}>{activeCategory}</span></span>}
+          Showing <span className="font-semibold text-gray-800">{visible.length}</span> of <span className="font-semibold text-gray-800">{filtered.length}</span> technical articles
         </p>
 
         {visible.length === 0 ? (

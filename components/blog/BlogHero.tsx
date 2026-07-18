@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 interface SearchResult {
@@ -25,10 +25,8 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
   const inputRef = useRef<HTMLInputElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
-  const searchParams = useSearchParams()
   const debounceRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  const activeCategory = searchParams.get('category') || 'All'
 
   function openSearch() {
     setSearchOpen(true)
@@ -74,22 +72,6 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
     router.push(`/search?q=${encodeURIComponent(query)}`)
   }
 
-  // FIX: clicking a chip sets ?category= in URL, BlogGrid reads it and filters
-  // Also scrolls down to the grid section smoothly
-  function handleCategoryChip(cat: string) {
-    closeSearch()
-    if (cat === 'All') {
-      router.push('/blog', { scroll: false })
-    } else {
-      router.push(`/blog?category=${encodeURIComponent(cat)}`, { scroll: false })
-    }
-    // Scroll to grid after a short delay so the URL update processes first
-    setTimeout(() => {
-      const grid = document.getElementById('blog-grid')
-      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 100)
-  }
-
   function getLocalImg(slug: string) {
     return `/images/blog/${slug}-featured.jpg`
   }
@@ -126,46 +108,33 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
             <p className="font-jost text-white/60 text-lg mb-8 max-w-2xl leading-relaxed">
               Expert analysis on NERC compliance, IEEE standards, power system studies, and grid modernization. {totalPosts}+ technical articles.
             </p>
+            <div className="mb-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <p className="font-jost text-sm leading-relaxed text-white/65">Find practical engineering guidance for safer, more reliable infrastructure.</p>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#C72E9E] to-[#7A2A91] px-6 py-3.5 font-jost text-sm font-bold text-white shadow-lg shadow-[#06103C]/30 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#C72E9E]/25">
+                Book a Consultation <span className="ml-2" aria-hidden="true">→</span>
+              </Link>
+            </div>
 
-            {/* Search trigger */}
-            <button
-              onClick={openSearch}
-              className="flex items-center gap-3 w-full max-w-xl px-5 py-4 rounded-xl text-left transition-all border border-white/10 hover:border-white/30 mb-8"
-              style={{ background: 'rgba(255,255,255,0.06)' }}
-            >
-              <svg className="w-5 h-5 flex-shrink-0" style={{ color: '#A8228A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {/* Inline blog title search */}
+            <form onSubmit={handleSubmit} className="relative w-full max-w-xl">
+              <div className="flex items-center gap-3 rounded-xl border border-white/15 px-5 py-4 transition-all focus-within:border-[#C72E9E] focus-within:ring-2 focus-within:ring-[#C72E9E]/20" style={{ background: 'rgba(6,16,60,0.35)' }}>
+              <svg className="h-5 w-5 flex-shrink-0" style={{ color: '#C72E9E' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="font-jost text-white/40 flex-1">Search articles, topics, standards...</span>
-              <span className="font-jost text-xs text-white/20 border border-white/10 px-2 py-0.5 rounded hidden sm:block">ESC to close</span>
-            </button>
-
-            {/* FIX: Category chips that actually filter the grid below */}
-            <div className="flex flex-wrap gap-2 mb-10">
-              <button
-                onClick={() => handleCategoryChip('All')}
-                className="px-4 py-2 rounded-full font-jost text-sm font-semibold transition-all"
-                style={activeCategory === 'All'
-                  ? { background: '#A8228A', color: '#fff' }
-                  : { background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)' }
-                }
-              >
-                All
-              </button>
-              {chipCategories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => handleCategoryChip(cat)}
-                  className="px-4 py-2 rounded-full font-jost text-sm font-semibold transition-all"
-                  style={activeCategory === cat
-                    ? { background: '#A8228A', color: '#fff' }
-                    : { background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)' }
-                  }
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by blog title..." className="min-w-0 flex-1 bg-transparent font-jost text-white outline-none placeholder:text-white/45" aria-label="Search blog titles" />
+              {searching && <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#C72E9E] border-t-transparent" />}
+              <button type="submit" className="hidden rounded-lg bg-[#C72E9E] px-3 py-1.5 font-jost text-xs font-bold text-white transition hover:bg-[#A8228A] sm:block">Search</button>
+              </div>
+              {query.trim().length >= 2 && !searching && (
+                <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-72 overflow-y-auto rounded-xl border border-white/15 bg-[#06103C]/95 p-2 shadow-2xl backdrop-blur">
+                  {results.length > 0 ? results.slice(0, 6).map((post) => (
+                    <Link key={post._id} href={`/blog/${post.slug.current}`} className="block rounded-lg px-3 py-3 font-jost text-sm text-white/85 transition hover:bg-white/10 hover:text-white">
+                      {post.title}
+                    </Link>
+                  )) : <p className="px-3 py-4 font-jost text-sm text-white/55">No blog titles found.</p>}
+                </div>
+              )}
+            </form>
 
             {/* Stats */}
             <div className="flex flex-wrap gap-6 pt-8 border-t border-white/10">
@@ -236,7 +205,7 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
                     {results.slice(0, 8).map((post) => (
                       <Link
                         key={post._id}
-                        href={`/${post.slug.current}`}
+                        href={`/blog/${post.slug.current}`}
                         onClick={closeSearch}
                         className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors"
                       >
@@ -282,23 +251,6 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
                 </div>
               )}
 
-              {/* In-overlay category chips also work the same way */}
-              {query.trim().length < 2 && (
-                <div>
-                  <p className="font-jost text-white/40 text-xs uppercase tracking-widest mb-4">Browse by category</p>
-                  <div className="flex flex-wrap gap-2">
-                    {chipCategories.map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => handleCategoryChip(cat)}
-                        className="px-4 py-2 rounded-full font-jost text-sm text-white/60 border border-white/20 hover:border-white/40 hover:text-white transition-all"
-                      >
-                        {cat}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

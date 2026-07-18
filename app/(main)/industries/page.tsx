@@ -103,7 +103,7 @@ export default function IndustriesPage() {
       <Header />
       <main className="flex flex-col">
         {/* ── HERO ── */}
-        <section className="relative order-1 flex min-h-[620px] items-end overflow-hidden sm:min-h-[540px]">
+        <section className="relative order-1 flex min-h-screen flex-col overflow-hidden" style={{ background: '#06103C' }}>
           <div className="absolute inset-0 z-0">
           <video
   autoPlay
@@ -113,12 +113,13 @@ export default function IndustriesPage() {
   preload="auto"
   className="absolute inset-0 w-full h-full object-cover"
 >
-  <source src="/videos/industries.mp4" type="video/mp4" />
+  <source src="/videos/home.mp4" type="video/mp4" />
 </video>
             <div className="absolute inset-0 bg-black/35" />
             <div className="absolute bottom-0 right-0 w-96 h-96 blur-3xl rounded-full opacity-25" style={{ background: 'radial-gradient(circle, #A8228A 0%, transparent 70%)' }} />
           </div>
-          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 pt-32 sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
+          <div className="relative z-10 flex flex-1 items-center pb-8 pt-36 lg:pt-44">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             <nav className="flex items-center gap-2 mb-6 text-xs font-jost">
               <Link href="/" className="text-white/50 hover:text-white/80 transition-colors">Home</Link>
               <span className="text-white/30">/</span>
@@ -142,6 +143,7 @@ export default function IndustriesPage() {
                   <img src="/images/home/certifications.png" alt="BBB Accredited, IEEE Senior Member, Florida Engineering Society and NERC certifications" className="h-auto max-h-14 w-auto max-w-full object-contain sm:max-h-20" />
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </section>

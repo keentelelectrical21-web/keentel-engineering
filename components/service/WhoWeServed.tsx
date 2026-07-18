@@ -36,9 +36,9 @@ export default function WhoWeServed() {
         </div>
         <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4 lg:gap-6">
           {clients.map(client => (
-            <div key={client.src} className="group flex min-h-32 items-center justify-center rounded-2xl border border-[#E6E8F0] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/30 hover:shadow-lg sm:min-h-40 sm:p-7 lg:min-h-44 lg:p-8">
+            <div key={client.src} className="group flex min-h-32 items-center justify-center rounded-2xl border border-[#E6E8F0] bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/30 hover:shadow-lg sm:min-h-40 sm:p-5 lg:min-h-44 lg:p-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={client.src} alt={client.alt} className="max-h-20 max-w-full object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-24 lg:max-h-28" />
+              <img src={client.src} alt={client.alt} className="h-24 w-full max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-28 lg:h-32" />
             </div>
           ))}
         </div>
