@@ -84,7 +84,43 @@ const clients = [
   },
 ] as const
 
-export default function WhoWeServed() {
+type WhoWeServedProps = {
+  detailed?: boolean
+}
+
+export default function WhoWeServed({ detailed = false }: WhoWeServedProps) {
+  if (!detailed) {
+    return (
+      <section className="border-y border-[#E6E8F0] bg-white py-10 sm:py-12" aria-label="Organizations we have served">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
+            {clients.map(client => (
+              <div
+                key={client.name}
+                className="flex min-h-32 items-center justify-center rounded-xl border border-[#CDD2DE] bg-white px-5 py-4 shadow-[0_5px_18px_rgba(6,16,60,0.10)] sm:min-h-36 sm:px-7"
+                title={client.name}
+              >
+                {'image' in client ? (
+                  <Image
+                    src={client.image}
+                    alt={`${client.name} logo`}
+                    width={180}
+                    height={88}
+                    className="h-auto max-h-24 w-auto max-w-full object-contain sm:max-h-28"
+                  />
+                ) : (
+                  <div className="flex h-14 w-full items-center justify-center bg-[#D98B72] px-2 text-center font-urbanist text-sm font-black tracking-[0.08em] text-[#24140F]">
+                    {client.wordmark}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

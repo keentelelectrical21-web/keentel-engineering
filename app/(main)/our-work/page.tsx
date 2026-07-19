@@ -144,7 +144,7 @@ export default async function OurWorkPage() {
           </div>
         </section>
 
-        <WhoWeServed />
+        <WhoWeServed detailed />
 
         <div id="case-studies">
           <ProjectGrid eyebrow="Power System Studies" title="Power System Case Studies" description="Practical studies addressing renewable interconnection, reactive power, insulation coordination, grounding, GIS transients, equipment duty, and power-quality challenges." projects={powerSystem.map(project => ({ ...project, cardImage: powerSystemImages[project.slug.current] ?? project.cardImage }))} />

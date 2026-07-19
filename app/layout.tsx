@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   description: 'Keentel Engineering delivers expert electrical power engineering services — substation design, NERC compliance, POI interconnection, and utility-scale renewable energy across the U.S.',
   keywords: 'electrical engineering, power system studies, NERC compliance, substation design, POI interconnection, renewable energy engineering',
   icons: {
-    icon: '/images/favicon/favicon.png',
-    shortcut: '/images/favicon/favicon.png',
-    apple: '/images/favicon/favicon.png',
+    icon: [{ url: '/images/favicon/favicon.png?v=5', type: 'image/png' }],
+    shortcut: [{ url: '/images/favicon/favicon.png?v=5', type: 'image/png' }],
+    apple: [{ url: '/images/favicon/favicon.png?v=5', type: 'image/png', sizes: '180x180' }],
   },
   openGraph: {
     title: 'Keentel Engineering | Electrical Power Engineering',
