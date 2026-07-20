@@ -73,7 +73,7 @@ function ProjectGrid({
             <h2 className="font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl lg:text-5xl">{title}</h2>
             <p className="mt-4 max-w-2xl font-jost text-sm leading-7 text-gray-600 sm:text-base">{description}</p>
           </div>
-          <Link href="/our-work" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#06103C]/15 bg-white px-6 py-3 font-jost text-sm font-semibold text-[#06103C] shadow-sm transition hover:-translate-y-0.5 hover:border-[#A8228A] hover:text-[#A8228A] hover:shadow-md">
+          <Link href="/clients-and-projects" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#06103C]/15 bg-white px-6 py-3 font-jost text-sm font-semibold text-[#06103C] shadow-sm transition hover:-translate-y-0.5 hover:border-[#A8228A] hover:text-[#A8228A] hover:shadow-md">
             Explore all projects <span aria-hidden="true">→</span>
           </Link>
         </div>

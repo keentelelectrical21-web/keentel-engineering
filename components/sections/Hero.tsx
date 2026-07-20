@@ -3,12 +3,6 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-const marqueeItems = [
-  'NERC Compliant Solutions', 'IEEE Certified Engineers', '30+ Years Experience',
-  'Utility-Scale Renewables', 'Power System Studies', 'Substation Design',
-  'POI Interconnection', 'BESS Engineering', 'Grid Reliability', 'Compliance-First Approach',
-]
-
 const slides = [
   {
     label: 'Engineering certainty',
@@ -175,17 +169,6 @@ export default function Hero() {
               />
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="relative z-10 overflow-hidden bg-gradient-to-r from-[#0B1A5B] to-[#5B2A86] py-3.5">
-        <div className="flex w-max whitespace-nowrap motion-safe:animate-marquee-left">
-          {[...marqueeItems, ...marqueeItems].map((item, index) => (
-            <span key={`${item}-${index}`} className="mx-6 inline-flex items-center gap-3 font-jost text-xs font-medium text-white/80 sm:mx-8 sm:text-sm">
-              <span className="h-1 w-1 flex-shrink-0 rounded-full bg-[#C72E9E]" />
-              {item}
-            </span>
-          ))}
         </div>
       </div>
     </section>

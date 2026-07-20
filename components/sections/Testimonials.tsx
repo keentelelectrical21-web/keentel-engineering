@@ -49,7 +49,7 @@ function CaseCard({ cs }: { cs: CaseStudy }) {
   const label = categoryLabel(cs)
   return (
     <Link
-      href={cs.href || `/our-work/${cs.slug.current}`}
+      href={cs.href || `/clients-and-projects/${cs.slug.current}`}
       className="mx-2 w-[calc(100vw-2rem)] max-w-[340px] flex-shrink-0 overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 sm:mx-3"
       style={{ background: '#fff', border: '1px solid #E6E8F0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}
     >
@@ -146,7 +146,7 @@ export default function Testimonials() {
       </div>
 
       <div className="text-center mt-12 px-4">
-        <Link href="/our-work" className="inline-flex items-center gap-2 font-jost font-semibold px-8 py-4 rounded-full text-white transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
+        <Link href="/clients-and-projects" className="inline-flex items-center gap-2 font-jost font-semibold px-8 py-4 rounded-full text-white transition-all hover:-translate-y-0.5" style={{ background: 'linear-gradient(135deg, #0B1A5B, #5B2A86)' }}>
           View All Case Studies
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </Link>

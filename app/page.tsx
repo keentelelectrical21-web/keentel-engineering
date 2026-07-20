@@ -1,12 +1,14 @@
 import Header from '@/components/layout/Header'
 import Hero from '@/components/sections/Hero'
+import HomepageTrustBar from '@/components/sections/HomepageTrustBar'
+import HomepageProjectCTA from '@/components/sections/HomepageProjectCTA'
 import About from '@/components/sections/About'
 import NERCAlert from '@/components/sections/NERCAlert'
 import Services from '@/components/sections/Services'
 import Industries from '@/components/sections/Industries'
 import Precision from '@/components/sections/Precision'
 import SoftwareTools from '@/components/sections/SoftwareTools'
-import CaseStudies from '@/components/sections/CaseStudies'
+import HomepageProjectHighlights from '@/components/sections/HomepageProjectHighlights'
 import Testimonials from '@/components/sections/Testimonials'
 import YouTube from '@/components/sections/YouTube'
 import BlogSection from '@/components/sections/Blog'
@@ -21,15 +23,17 @@ export default function HomePage() {
       <Header />
       <main className="overflow-x-hidden">
         <Hero />
+        <HomepageTrustBar />
         <About />
         <NERCAlert />
         <Services />
         <Industries />
         <Precision />
         <SoftwareTools />
-        <CaseStudies />
+        <HomepageProjectHighlights />
         <Testimonials />
         <YouTube />
+        <HomepageProjectCTA />
         <ContactForm />
         <FAQ />
         <Newsletter />

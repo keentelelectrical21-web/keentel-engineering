@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 const tools = [
   { name: 'AutoCAD', years: '27+', desc: 'Drafting & design', logo: '/images/software-logos/autocad.png' },
   { name: 'DIgSILENT', years: '8+', desc: 'Power system analysis', logo: '/images/software-logos/digsilent.png' },
@@ -13,17 +15,27 @@ const tools = [
   { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: '/images/software-logos/cyme.png' },
 ]
 
-export default function SoftwareTools({ heading = 'Our Engineering Tools' }: { heading?: string }) {
+type SoftwareToolsProps = {
+  heading?: string
+  theme?: 'dark' | 'light'
+}
+
+export default function SoftwareTools({ heading = 'Our Engineering Tools', theme = 'dark' }: SoftwareToolsProps) {
+  const isLight = theme === 'light'
+
   return (
-    <section className="py-20 overflow-hidden" style={{ background: '#06103C' }}>
+    <section
+      className={`relative overflow-hidden border-t py-16 sm:py-20 ${isLight ? 'border-[#E4E7EF] bg-[#F6F7FB]' : 'border-transparent bg-[#06103C]'}`}
+    >
+      {isLight && <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#06103C] via-[#C72E9E] to-[#06103C]" aria-hidden="true" />}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>Industry-Leading Software</p>
-          <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-4">
+          <h2 className={`font-urbanist font-black text-4xl sm:text-5xl mb-4 ${isLight ? 'text-[#06103C]' : 'text-white'}`}>
             {heading}
           </h2>
-          <p className="text-xl font-jost max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.75)' }}>
+          <p className={`text-base font-jost max-w-2xl mx-auto sm:text-lg ${isLight ? 'text-gray-600' : 'text-white/75'}`}>
             Precision modeling using the industry&apos;s most trusted power engineering software platforms, with decades of hands-on expertise.
           </p>
         </div>
@@ -35,9 +47,11 @@ export default function SoftwareTools({ heading = 'Our Engineering Tools' }: { h
               className="group rounded-2xl p-5 flex flex-col gap-4 hover:scale-[1.03] hover:shadow-xl transition-all duration-300 cursor-default bg-white"
             >
               <div className="h-14 flex items-center justify-start">
-                <img
+                <Image
                   src={tool.logo}
                   alt={tool.name}
+                  width={150}
+                  height={56}
                   className="max-h-10 w-auto object-contain transition-opacity"
                   style={{ maxWidth: '100%' }}
                 />
@@ -62,10 +76,10 @@ export default function SoftwareTools({ heading = 'Our Engineering Tools' }: { h
             { val: '100%', label: 'In-House Capability', sub: 'No outsourcing' },
             { val: 'All 3', label: 'U.S. Interconnections', sub: 'WECC, ERCOT, Eastern' },
           ].map((s, i) => (
-            <div key={i} className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <p className="font-urbanist font-black text-3xl text-white mb-1">{s.val}</p>
-              <p className="font-semibold text-base text-white mb-0.5">{s.label}</p>
-              <p className="text-sm font-jost" style={{ color: 'rgba(255,255,255,0.5)' }}>{s.sub}</p>
+            <div key={i} className={`rounded-2xl border p-5 sm:p-6 ${isLight ? 'border-[#E0E4ED] bg-white shadow-[0_8px_24px_rgba(6,16,60,0.05)]' : 'border-white/10 bg-white/[0.05]'}`}>
+              <p className={`font-urbanist font-black text-3xl mb-1 ${isLight ? 'text-[#A8228A]' : 'text-white'}`}>{s.val}</p>
+              <p className={`font-semibold text-base mb-0.5 ${isLight ? 'text-[#06103C]' : 'text-white'}`}>{s.label}</p>
+              <p className={`text-sm font-jost ${isLight ? 'text-gray-500' : 'text-white/50'}`}>{s.sub}</p>
             </div>
           ))}
         </div>

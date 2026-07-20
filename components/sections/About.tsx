@@ -53,9 +53,12 @@ export default function About() {
   }, [])
 
   const stats = [
-    { value: 30, suffix: '+', label: 'Years of Experience', desc: 'Three decades of hands-on power engineering across the U.S.', delay: 0 },
-    { value: 98, suffix: '%', label: 'Client Satisfaction', desc: 'Rated 5-stars across platforms. We deliver technical precision every time.', delay: 150 },
-    { value: 21, suffix: '', label: 'Licensed Engineers', desc: 'Three specialized groups: designers, grid whisperers, and compliance watchdogs.', delay: 300 },
+    { value: 32, suffix: '', label: 'Engineers', desc: 'Led by experienced senior directors and managers.', delay: 0 },
+    { value: 100, suffix: '+', label: 'Combined Years', desc: 'Deep power-industry engineering experience across the team.', delay: 100 },
+    { value: 50, suffix: '', label: 'State Coverage', desc: 'P.E. stamped deliverables available nationwide.', delay: 200 },
+    { value: 98, suffix: '%', label: 'Repeat Clients', desc: 'Utilities, developers, OEMs, and engineering partners return.', delay: 300 },
+    { value: 1, suffix: ' GW', label: 'Largest Data Center', desc: 'Single-site interconnection engagement in ERCOT.', delay: 400 },
+    { value: 765, suffix: ' kV', label: 'Field Experience', desc: 'Highest testing and commissioning voltage class.', delay: 500 },
   ]
 
   return (
@@ -85,7 +88,7 @@ export default function About() {
               for utilities, developers, and EPCs across the U.S.
             </h2>
             <p className="text-lg font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>
-              With over 30 years of experience, our 21-member licensed engineering team supports critical infrastructure projects, from substation design and relay protection to NERC compliance and utility-scale renewable energy integration. We don't just design systems. We engineer certainty.
+              Led by a Principal Engineer with 31 years in the power industry and backed by 100+ years of combined team experience, our 32-member engineering organization supports critical infrastructure nationwide—from substation design and relay protection to NERC compliance and utility-scale renewable integration. We don&apos;t just design systems. We engineer certainty.
             </p>
             <Link
               href="/about"

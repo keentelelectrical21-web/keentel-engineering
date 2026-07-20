@@ -11,22 +11,20 @@ export default function Precision() {
           <div className="lg:w-2/5 flex-shrink-0">
             <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#A8228A' }}>Our Edge</p>
             <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-[1.1] mb-5" style={{ color: '#0B1230' }}>
-              Electrical Power Engineering with Precision and Compliance
+              The Engineering Partner Behind the Grid&apos;s Fastest-Growing Challenges
             </h2>
             <p className="text-base font-jost leading-relaxed mb-4" style={{ color: '#6B7280' }}>
-              Our comprehensive engineering services handle every stage of your power project with precision, from grid interconnection and substation design to full NERC compliance and renewable energy integration.
+              From 1 GW data-center interconnections to regulator-grade compliance programs, Keentel brings accountable engineering leadership to the grid&apos;s most demanding projects.
             </p>
             <p className="text-base font-jost leading-relaxed mb-8" style={{ color: '#6B7280' }}>
-              Trusted by utilities, developers, EPCs, and public agencies across the U.S. for over 30 years.
+              Our work is licensed, defensible, utility-focused, and built around long-term client relationships.
             </p>
             <ul className="space-y-3 mb-8">
               {[
-                'Grid-ready designs rooted in field experience',
-                'Deep understanding of IEEE, NERC, and PJM standards',
-                'Expert modeling with ETAP, SKM, PSCAD, and GIS tools',
-                'IEC 61850 implementation and SCADA integration',
-                'HVDC consulting for modernized transmission',
-                'IBR and DER grid interconnection queue navigation',
+                'Stamped in all 50 states under responsible P.E. charge',
+                'Compliance leadership from a former NERC Regional Entity Audit Team Lead',
+                'Large-load expertise across ERCOT and SPP HILL framework studies',
+                '98% repeat-client rate across utilities, developers, OEMs, and EPC partners',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm font-jost" style={{ color: '#4B5563' }}>
                   <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#A8228A' }}>

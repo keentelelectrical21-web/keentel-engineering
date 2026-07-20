@@ -66,7 +66,7 @@ export const powerSystemStudiesData = {
       {
         title: 'Protective Coordination',
         desc: 'Optimize relay and breaker settings using time-current analysis to isolate faults quickly, improve coordination, and minimize system disruption.',
-        link: '/services/power-system-studies/protective-device-coordination-studies',
+        link: '/service/power-system-studies/protective-device-coordination-studies',
         image: 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/protection-coordination-practices-distribution-generation-920x613-1920w.jpg',
       },
       {

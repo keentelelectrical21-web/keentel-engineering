@@ -1,134 +1,82 @@
 'use client'
 
+import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const services = [
-  {
-    title: 'Power System Studies',
-    desc: 'Load flow analysis. Fault studies. Harmonic analysis. Protection coordination. Transmission planning. Every grid project starts here.',
-    href: '/service/power-system-studies',
-    image: '/images/home/service-3.jpg',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/advance+power+system.pdf',
-  },
-  {
-    title: 'Substation Design',
-    desc: 'EHV, HV, MV substation design. Protection and control. Secondary systems. Asset management. We design substations that work 40 years without surprises.',
-    href: '/service/substation-design',
-    image: '/images/home/service-2.png',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/substation+design.pdf',
-  },
-  {
-    title: 'POI Interconnection Engineering',
-    desc: 'Point of interconnection studies. Queue navigation. Grid impact assessments. Facility rating studies. The difference between your project getting built or getting stuck.',
-    href: '/service/poi-interconnection-engineering-support',
-    image: '/images/home/service-1.jpg',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/poi+Interconecting.pdf',
-  },
-  {
-    title: "Owner's Engineer Services",
-    desc: 'Third-party project oversight. Quality assurance. Commissioning support. Asset handoff. When you need an expert sitting at the table.',
-    href: '/service/owners-engineer',
-    image: '/images/home/service-4.jpg',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/owner+engineersing.pdf',
-  },
-  {
-    title: 'NERC Compliance Services',
-    desc: 'NERC modeling. MOD compliance. PRC standards. O&P audits. Level 3 alerts. We keep you compliant before NERC catches you.',
-    href: '/service/nerc-compliance',
-    image: '/images/home/service-5.jpg',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/nercs.pdf',
-  },
-  {
-    title: 'Utility Scale Solar Farms',
-    desc: 'Solar, wind, and BESS engineering. Interconnection. Grid codes. Winterization. From project conception through grid handoff.',
-    href: '/service/utility-scale-renewable-energy',
-    image: '/images/home/service-6.png',
-    flyer: 'https://irp.cdn-website.com/1253891b/files/uploaded/utility+scale+solar+farm.pdf',
-  },
+  { short: 'Studies', title: 'Power System Studies', desc: 'Load flow, short circuit, protection coordination, arc flash, harmonics, transient stability, grounding, and cable thermal analysis.', href: '/service/power-system-studies', image: '/images/services/power-system-studies/overview-engineers.jpg', scope: 'PSS®E · ETAP · PSCAD', proof: 'Utility-ready study packages' },
+  { short: 'Substations', title: 'Substation & Electrical Design', desc: 'Primary and secondary HV/MV design, one-lines, layouts, P&C schematics, relay settings, CT/VT sizing, and IEC 61850 automation.', href: '/service/substation-design', image: '/images/services/substation-design/type-transmission.png', scope: 'HV · MV · IEC 61850', proof: 'Construction-ready deliverables' },
+  { short: 'POI', title: 'Transmission Interconnection', desc: 'POI screening, power flow, transient stability, and affected-system support across ERCOT, CAISO, PJM, SPP, and other organized markets.', href: '/service/poi-interconnection-engineering-support', image: '/images/services/poi-interconnection/sunset-towers-hero2.jpeg', scope: 'ERCOT · SPP · PJM · CAISO', proof: 'From screening through approval' },
+  { short: 'RMS + EMT', title: 'Dynamic & EMT Modeling', desc: 'Dynamic load and PSCAD/EMT model development, fault ride-through demonstration, validation, and RMS-versus-EMT benchmarking.', href: '/service/power-system-studies', image: '/images/services/power-system-studies/Transmission-Level RMS & EMT Modeling.jpg', scope: 'PSCAD · PSS®E · Model validation', proof: 'Defensible performance evidence' },
+  { short: 'Compliance', title: 'NERC Compliance Services', desc: 'FAC-008, PRC, TPL, and MOD testing and modeling, with audit support led by a former NERC Regional Entity Audit Team Lead.', href: '/service/nerc-compliance', image: '/images/industries/electric-utilities-transmission/card-nerc-compliance.webp', scope: 'MOD · PRC · FAC · TPL', proof: 'Audit-ready documentation' },
+  { short: 'Large Loads', title: 'Data Centers, BESS & Renewables', desc: 'Electrical design and interconnection for data centers through 1 GW scale, battery storage, solar, wind, and hybrid facilities.', href: '/service/utility-scale-renewable-energy', image: '/images/industries/renewable-interconnection-engineering/solar-wind-bess.webp', scope: '1 GW · Solar · Wind · BESS', proof: 'Grid-scale integration expertise' },
+  { short: 'Field Delivery', title: 'SCADA, Testing & Commissioning', desc: 'SCADA and transmission-line engineering, testing and commissioning up to 765 kV, and practical field support through energization.', href: '/services', image: '/images/services/substation-design/expertise-scada.png', scope: 'SCADA · Protection · 765 kV', proof: 'Field-to-control-room support' },
 ]
 
 export default function Services() {
-  return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  const [activeIndex, setActiveIndex] = useState(0)
+  const active = services[activeIndex]
 
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Our Services</p>
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl leading-tight" style={{ color: '#0B1230' }}>
-              What We Can Do<br />For You
-            </h2>
+  return (
+    <section className="relative overflow-hidden bg-[#F4F5F9] py-16 sm:py-20 lg:py-24">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A8228A]/40 to-transparent" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-40 top-16 h-[30rem] w-[30rem] rounded-full bg-[#A8228A]/[0.07] blur-[120px]" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-9 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="mb-4 flex items-center gap-3"><span className="h-px w-9 bg-[#A8228A]" /><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Integrated Engineering Platform</p></div>
+            <h2 className="font-urbanist text-3xl font-black leading-[1.06] text-[#06103C] sm:text-4xl lg:text-5xl">One team. Every critical<br className="hidden sm:block" /> power-system discipline.</h2>
           </div>
-          <div className="lg:w-2/5">
-            <p className="text-base font-jost leading-relaxed mb-5" style={{ color: '#6B7280' }}>
-              Full-spectrum electrical power engineering services focused on grid modernization, compliance, and renewable energy integration.
-            </p>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-full border-2 transition-all group"
-              style={{ borderColor: '#0B1A5B', color: '#0B1A5B' }}
-            >
-              See All Services
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+          <div className="max-w-xl">
+            <p className="font-jost text-sm leading-relaxed text-gray-600 sm:text-base">Move through our capabilities to see how Keentel connects modeling, design, compliance, and field delivery into one accountable engineering workflow.</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="rounded-2xl overflow-hidden flex flex-col group hover:-translate-y-1 transition-all duration-300 hover:shadow-xl"
-              style={{ border: '1px solid #E6E8F0', background: '#fff' }}
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden" style={{ height: '220px' }}>
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(6,16,60,0.3) 100%)' }} />
-              </div>
+        <div className="rounded-[2rem] border border-[#DDE1EA] bg-[#06103C] p-2.5 shadow-[0_30px_80px_rgba(6,16,60,0.18)] sm:p-3 lg:p-4">
+          <div className="mb-2 flex gap-2 overflow-x-auto p-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden" role="tablist" aria-label="Engineering services">
+            {services.map((service, index) => (
+              <button key={service.title} type="button" role="tab" aria-selected={activeIndex === index} onClick={() => setActiveIndex(index)} className={`min-w-max rounded-full border px-4 py-2.5 font-jost text-xs font-semibold transition ${activeIndex === index ? 'border-[#E44BB8] bg-[#A8228A] text-white shadow-[0_6px_18px_rgba(168,34,138,0.3)]' : 'border-white/25 bg-white/[0.08] text-white/[0.82]'}`}>{String(index + 1).padStart(2, '0')} · {service.short}</button>
+            ))}
+          </div>
 
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-6">
-                <h3 className="font-urbanist font-bold text-xl mb-3 leading-tight" style={{ color: '#0B1230' }}>
-                  {service.title}
-                </h3>
-                <p className="text-sm font-jost leading-relaxed flex-1 mb-5" style={{ color: '#6B7280' }}>
-                  {service.desc}
-                </p>
-                <div className="flex items-center gap-3">
-                  <Link
-                    href={service.href}
-                    className="text-xs font-bold px-4 py-2 rounded-full text-white transition-all"
-                    style={{ background: '#0B1A5B' }}
-                  >
-                    Learn More
-                  </Link>
-                  {service.flyer && (
-                    <a
-                      href={service.flyer}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold flex items-center gap-1.5 px-4 py-2 rounded-full border transition-all"
-                      style={{ borderColor: '#E6E8F0', color: '#A8228A' }}
-                    >
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      Download Flyer
-                    </a>
-                  )}
+          <div className="grid overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#09164A] lg:min-h-[570px] lg:grid-cols-[1.4fr_0.6fr]">
+            <div className="relative min-h-[520px] overflow-hidden sm:min-h-[590px] lg:min-h-full">
+              {services.map((service, index) => (
+                <Image key={service.title} src={service.image} alt={service.title} fill priority={index === 0} sizes="(max-width: 1024px) 100vw, 68vw" className={`object-cover transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeIndex === index ? 'scale-100 opacity-100' : 'pointer-events-none scale-[1.035] opacity-0'}`} />
+              ))}
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,16,60,0.12)_0%,rgba(6,16,60,0.42)_38%,rgba(6,16,60,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(6,16,60,0.82)_0%,rgba(6,16,60,0.62)_52%,rgba(6,16,60,0.86)_100%)]" />
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-8 lg:max-w-3xl lg:p-10">
+                <div className="mb-4 flex flex-wrap items-center gap-3"><span className="rounded-full border border-[#F075D2]/35 bg-[#A8228A]/30 px-3 py-1.5 font-jost text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#F6A5E3]">Capability {String(activeIndex + 1).padStart(2, '0')}</span><span className="font-jost text-xs font-semibold text-white/[0.88]">{active.scope}</span></div>
+                <h3 className="max-w-2xl font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">{active.title}</h3>
+                <p className="mt-4 max-w-2xl font-jost text-sm leading-relaxed text-white/[0.92] sm:text-base lg:text-lg">{active.desc}</p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Link href={active.href} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-[#C72E9E] to-[#8D237F] px-6 py-3 font-jost text-sm font-semibold text-white shadow-[0_10px_26px_rgba(168,34,138,0.28)] transition hover:-translate-y-0.5 sm:w-auto">Explore This Service <span className="ml-2" aria-hidden="true">→</span></Link>
+                  <span className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 bg-[#07113D]/75 px-5 py-3 text-center font-jost text-xs font-semibold text-white/[0.9] backdrop-blur-md sm:text-sm">✓ {active.proof}</span>
                 </div>
               </div>
             </div>
-          ))}
+
+            <div className="hidden border-l border-white/10 bg-[#07113D] p-3 lg:flex lg:flex-col" role="tablist" aria-label="Engineering services">
+              <div className="mb-2 flex items-center justify-between px-4 py-3"><span className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/[0.68]">Select capability</span><span className="font-urbanist text-xs font-black text-[#F075D2]">01—07</span></div>
+              <div className="flex flex-1 flex-col gap-1.5">
+                {services.map((service, index) => (
+                  <button key={service.title} type="button" role="tab" aria-selected={activeIndex === index} onClick={() => setActiveIndex(index)} onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} className={`group/item flex flex-1 items-center gap-4 rounded-2xl border px-4 text-left transition-all duration-300 ${activeIndex === index ? 'border-[#E44BB8]/45 bg-[linear-gradient(100deg,rgba(168,34,138,0.28),rgba(255,255,255,0.05))] shadow-[0_8px_24px_rgba(0,0,0,0.16)]' : 'border-transparent hover:border-white/10 hover:bg-white/[0.045]'}`}>
+                    <span className={`font-urbanist text-sm font-black transition ${activeIndex === index ? 'text-[#F075D2]' : 'text-white/[0.5]'}`}>{String(index + 1).padStart(2, '0')}</span>
+                    <span className="min-w-0 flex-1"><span className={`block font-urbanist text-sm font-bold leading-tight transition ${activeIndex === index ? 'text-white' : 'text-white/[0.86]'}`}>{service.title}</span><span className={`mt-1 block font-jost text-[0.65rem] uppercase tracking-wider transition ${activeIndex === index ? 'text-[#F075D2]' : 'text-white/[0.5]'}`}>{service.short}</span></span>
+                    <span className={`h-1.5 w-1.5 rounded-full transition ${activeIndex === index ? 'bg-[#E44BB8] shadow-[0_0_10px_rgba(228,75,184,0.8)]' : 'bg-white/35'}`} />
+                  </button>
+                ))}
+              </div>
+              <Link href="/services" className="mt-3 flex items-center justify-center rounded-2xl border border-white/25 bg-white/[0.08] px-5 py-4 font-jost text-sm font-semibold text-white transition hover:border-[#E44BB8]/60 hover:bg-white/[0.12]">View Complete Service Portfolio <span className="ml-2" aria-hidden="true">→</span></Link>
+            </div>
+          </div>
         </div>
 
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[['50', 'States covered'], ['100+', 'Combined years'], ['1 GW', 'Large-load scale'], ['765 kV', 'Field experience']].map(([value, label]) => <div key={label} className="rounded-2xl border border-[#DDE1EA] bg-white px-4 py-4 sm:px-5"><p className="font-urbanist text-xl font-black text-[#A8228A] sm:text-2xl">{value}</p><p className="mt-1 font-jost text-xs font-medium text-gray-500 sm:text-sm">{label}</p></div>)}
+        </div>
       </div>
     </section>
   )

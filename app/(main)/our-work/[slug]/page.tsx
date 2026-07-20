@@ -167,7 +167,7 @@ export default async function CaseStudyDetailPage({ params }: { params: Promise<
               Schedule A Consultation
             </Link>
             <Link
-              href="/our-work"
+              href="/clients-and-projects"
               className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white border border-white/20"
             >
               See All Case Studies

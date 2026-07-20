@@ -60,6 +60,11 @@ h1, h2, h3, h4, h5, h6 {
 .animate-marquee-left { animation: marquee-left 35s linear infinite; }
 .animate-marquee-up { animation: marquee-up 25s linear infinite; }
 
+.group:hover .trust-credentials-marquee,
+.group:focus-within .trust-credentials-marquee {
+  animation-play-state: paused !important;
+}
+
 .gradient-text {
   background: linear-gradient(90deg, #C72E9E, #5B2A86, #A8228A, #C72E9E);
   background-size: 300% 100%;

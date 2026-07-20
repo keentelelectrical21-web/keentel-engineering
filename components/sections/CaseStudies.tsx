@@ -43,7 +43,7 @@ export default function CaseStudies() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
           {/* Featured */}
-          <Link href={`/our-work/${featured.slug.current}`} className="rounded-2xl overflow-hidden block group" style={{ border: '1px solid #E6E8F0' }}>
+          <Link href={`/clients-and-projects/${featured.slug.current}`} className="rounded-2xl overflow-hidden block group" style={{ border: '1px solid #E6E8F0' }}>
             <div className="relative h-56 overflow-hidden" style={{ background: '#F6F7FB' }}>
               {featured.cardImage && (
                 <img src={featured.cardImage} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -73,7 +73,7 @@ export default function CaseStudies() {
           {/* Others */}
           <div className="flex flex-col gap-4">
             {others.map((c, i) => (
-              <Link key={c._id} href={`/our-work/${c.slug.current}`} className="flex items-start gap-5 p-6 rounded-2xl hover:shadow-md transition-all" style={{ border: '1px solid #E6E8F0' }}>
+              <Link key={c._id} href={`/clients-and-projects/${c.slug.current}`} className="flex items-start gap-5 p-6 rounded-2xl hover:shadow-md transition-all" style={{ border: '1px solid #E6E8F0' }}>
                 <span className="font-urbanist font-black text-2xl flex-shrink-0" style={{ color: '#A8228A' }}>{String(i + 2).padStart(2, '0')}</span>
                 <div>
                   <h4 className="font-urbanist font-bold text-base mb-1.5" style={{ color: '#0B1230' }}>{c.title}</h4>

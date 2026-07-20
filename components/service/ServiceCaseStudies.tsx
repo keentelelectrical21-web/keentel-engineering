@@ -27,7 +27,7 @@ function categoryLabel(study: Study) {
 
 function StudyCard({ study }: { study: Study }) {
   return (
-    <Link href={`/our-work/${study.slug.current}`} className="mx-2 flex min-h-[255px] w-[calc(100vw-2rem)] max-w-[350px] shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white shadow-[0_5px_18px_rgba(6,16,60,0.08)] transition-all hover:-translate-y-1 hover:shadow-xl sm:mx-3 sm:min-h-[270px]">
+    <Link href={`/clients-and-projects/${study.slug.current}`} className="mx-2 flex min-h-[255px] w-[calc(100vw-2rem)] max-w-[350px] shrink-0 snap-center flex-col overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white shadow-[0_5px_18px_rgba(6,16,60,0.08)] transition-all hover:-translate-y-1 hover:shadow-xl sm:mx-3 sm:min-h-[270px]">
       <div className="h-1.5 w-full bg-gradient-to-r from-[#0B1A5B] via-[#5B2A86] to-[#C72E9E]" />
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <span className="mb-4 inline-block self-start rounded-full bg-[#A8228A]/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#A8228A]">{categoryLabel(study)}</span>
@@ -79,7 +79,7 @@ export default function ServiceCaseStudies({ service }: { service: string }) {
         </div>
       </div>
       <div className="mt-10 px-4 text-center sm:mt-12">
-        <Link href="/our-work" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0B1A5B] to-[#5B2A86] px-8 py-4 font-jost text-sm font-semibold text-white transition-transform hover:-translate-y-0.5">View All Case Studies <span aria-hidden="true">→</span></Link>
+        <Link href="/clients-and-projects" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0B1A5B] to-[#5B2A86] px-8 py-4 font-jost text-sm font-semibold text-white transition-transform hover:-translate-y-0.5">View All Case Studies <span aria-hidden="true">→</span></Link>
       </div>
       <style jsx>{`
         .case-study-rail { animation: case-study-scroll 85s linear infinite; }

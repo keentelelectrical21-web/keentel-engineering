@@ -86,13 +86,21 @@ const clients = [
 
 type WhoWeServedProps = {
   detailed?: boolean
+  showHeading?: boolean
 }
 
-export default function WhoWeServed({ detailed = false }: WhoWeServedProps) {
+export default function WhoWeServed({ detailed = false, showHeading = false }: WhoWeServedProps) {
   if (!detailed) {
     return (
-      <section className="border-y border-[#E6E8F0] bg-white py-10 sm:py-12" aria-label="Organizations we have served">
+      <section className="border-y border-[#E6E8F0] bg-white py-12 sm:py-16" aria-label="Organizations we have served">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {showHeading && (
+            <div className="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
+              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Trusted Nationwide</p>
+              <h2 className="font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl lg:text-5xl">Who We&apos;ve Served</h2>
+              <p className="mx-auto mt-4 max-w-2xl font-jost text-base leading-relaxed text-gray-600">Utilities, developers, engineering partners, and infrastructure organizations supported across the United States.</p>
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
             {clients.map(client => (
               <div

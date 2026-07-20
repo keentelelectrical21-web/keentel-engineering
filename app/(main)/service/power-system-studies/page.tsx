@@ -394,21 +394,11 @@ export default function PowerSystemStudiesPage() {
 
                 <div className="space-y-5">
                   <p className="font-jost text-gray-600 leading-relaxed text-lg">
-                    Our licensed professional engineers perform detailed MV and HV system studies, including transmission planning, <Link href="https://keentelengineering.com/service/power-system-studies/load-flow-analysis-services" className="underline font-semibold" style={{ color: '#A8228A' }} target="_blank">load flow analysis</Link>, short-circuit studies, harmonic assessments, protection coordination, and NERC compliance studies. We utilize industry-leading platforms such as PSS®E, PSCAD, DIgSILENT PowerFactory, and ETAP to ensure technical precision and regulatory alignment.
+                    Our licensed professional engineers perform detailed MV and HV system studies, including transmission planning, <Link href="/service/power-system-studies/load-flow-analysis-services" className="font-semibold text-[#A8228A] underline underline-offset-2">load flow analysis</Link>, <Link href="/service/power-system-studies/short-circuit-analysis-power-system" className="font-semibold text-[#A8228A] underline underline-offset-2">short-circuit studies</Link>, harmonic assessments, protection coordination, and NERC compliance studies. We utilize industry-leading platforms such as PSS®E, PSCAD, DIgSILENT PowerFactory, and ETAP to ensure technical precision and regulatory alignment.
                   </p>
                   <p className="font-jost text-gray-600 leading-relaxed text-lg">
                     With more than 30 years of engineering expertise, we deliver accurate system modeling, compliance-ready technical reports, and actionable recommendations that enhance electrical reliability and safeguard high-value infrastructure.
                   </p>
-                </div>
-
-                {/* Stat row for prominence */}
-                <div className="my-9 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  {[{ n: '30+', l: 'Years Experience' }, { n: '50', l: 'States Served' }, { n: '7+', l: 'Simulation Platforms' }].map((s, i) => (
-                    <div key={i} className="rounded-xl p-4 text-center transition-transform hover:-translate-y-1" style={{ background: '#F6F7FB' }}>
-                      <p className="font-urbanist font-black text-2xl sm:text-3xl" style={{ color: '#A8228A' }}>{s.n}</p>
-                      <p className="font-jost text-xs text-gray-500 mt-1">{s.l}</p>
-                    </div>
-                  ))}
                 </div>
 
               </div>

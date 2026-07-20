@@ -207,6 +207,7 @@ export default function NercCompliancePage() {
               </p>
               <div className="mb-14 flex flex-col gap-4 sm:mb-16 sm:flex-row sm:flex-wrap">
                 <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-center font-jost font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:px-8" style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}>Schedule A Call</Link>
+                <Link href="/ieee-2800-compliance-operational-planning-services" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E44BB8]/60 bg-[#A8228A]/20 px-6 py-4 text-center font-jost font-semibold text-white transition-all hover:border-[#F075D2] hover:bg-[#A8228A]/35 sm:w-auto sm:px-8">Explore IEEE 2800 Services</Link>
                 <a href="/files/nerc-compliance.pdf" target="_blank" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-4 text-center font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto sm:px-8">Download The Flyer</a>
               </div>
 

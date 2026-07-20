@@ -100,23 +100,31 @@ export default function Footer() {
             <ul className="space-y-2.5">{resources.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
 
-          {/* Legal */}
+          {/* Contact */}
           <div className="lg:col-span-2">
-            <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Legal</h4>
-            <ul className="space-y-2.5">{legal.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
+            <h4 className="mb-4 font-urbanist text-sm font-semibold uppercase tracking-wider text-white">Contact Us</h4>
+            <div className="space-y-4">
+              <a href="tel:+18133897871" className="group flex min-h-10 items-center gap-4 text-white transition hover:text-[#F6A5E3]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#C72E9E] to-[#79269A] text-white shadow-[0_7px_18px_rgba(168,34,138,0.25)]" aria-hidden="true">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z" /></svg>
+                </span>
+                <span className="min-w-0 font-jost text-sm font-bold">813-389-7871</span>
+              </a>
+              <div className="flex min-h-10 items-start gap-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#C72E9E] to-[#79269A] text-white shadow-[0_7px_18px_rgba(168,34,138,0.25)]" aria-hidden="true">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m4 4 16 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" /><path d="m22 6-10 7L2 6" /></svg>
+                </span>
+                <div className="min-w-0 pt-0.5 font-jost text-xs font-semibold leading-5 text-white sm:text-[0.8rem]">
+                  <a href="mailto:contact@keentelengineering.com" className="block break-all transition hover:text-[#F6A5E3]">contact@keentelengineering.com</a>
+                  <a href="mailto:BD@keentelengineering.com" className="block break-all transition hover:text-[#F6A5E3]">BD@keentelengineering.com</a>
+                </div>
+              </div>
+              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-white px-4 py-2.5 text-center font-jost text-xs font-black text-[#06103C] shadow-[0_8px_22px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#F6E9F3] sm:w-auto sm:min-w-[190px]">
+                Schedule a Consultation
+              </Link>
+            </div>
           </div>
 
-        </div>
-
-        {/* Mobile-only: socials above locations */}
-        <div className="flex sm:hidden items-center gap-2 mb-8">
-          {socials.map((s) => (
-            <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name}
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#A8228A] hover:text-white hover:border-[#A8228A]"
-              style={{ border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.45)' }}>
-              {s.icon}
-            </a>
-          ))}
         </div>
 
         {/* Locations — 4 offices */}
@@ -159,6 +167,19 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Legal utility links */}
+        <nav aria-label="Legal" className="mb-8 border-t border-white/10 pt-6">
+          <div className="mx-auto grid max-w-2xl grid-cols-3 items-stretch">
+            {legal.map((item, index) => (
+              <div key={item.href} className={`flex items-center ${index > 0 ? 'border-l border-white/15' : ''}`}>
+                <Link href={item.href} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg px-1.5 text-center font-jost text-[0.68rem] font-medium leading-4 text-white/[0.68] transition hover:bg-white/[0.05] hover:text-white min-[390px]:px-3 min-[390px]:text-xs sm:text-sm">
+                  {item.name}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </nav>
+
         {/* Bottom bar */}
         <div className="flex flex-col items-start justify-between gap-3 pt-6 sm:flex-row sm:items-center" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex w-full flex-col items-start gap-3 text-left sm:w-auto sm:flex-row sm:items-center">
@@ -180,6 +201,16 @@ export default function Footer() {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* Mobile socials — footer end */}
+        <div className="mt-6 flex items-center justify-center gap-3 border-t border-white/10 pt-6 sm:hidden">
+          {socials.map((social) => (
+            <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/[0.62] transition-colors hover:border-[#A8228A] hover:bg-[#A8228A] hover:text-white">
+              {social.icon}
+            </a>
+          ))}
         </div>
       </div>
 
