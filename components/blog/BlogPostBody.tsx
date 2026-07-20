@@ -452,9 +452,9 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
               {showMidCta && (
                 <BlogCTA
                   variant="mid"
-                  heading="Let's Build Your Next Engineering Project Together"
-                  subheading="Whether you need power system studies, substation engineering, transmission planning, grid interconnection, NERC compliance, owner's engineering, or renewable energy consulting, our experienced team is ready to support your project from concept to completion."
-                  primaryText={post.midCtaPrimaryText}
+                  heading="Plan Your Next Power Project"
+                  subheading="Licensed engineering support for studies, interconnection, substations, and NERC compliance."
+                  primaryText="Book a Call"
                   primaryLink={post.midCtaPrimaryLink}
                   secondaryText={post.midCtaSecondaryText}
                   secondaryLink={post.midCtaSecondaryLink}

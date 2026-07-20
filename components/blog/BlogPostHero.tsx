@@ -54,17 +54,17 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
         style={{
           background: 'linear-gradient(135deg, rgba(6,16,60,0.97) 0%, rgba(6,16,60,0.85) 60%, rgba(91,42,134,0.4) 100%), #06103C',
         }}
-        className="pt-32 pb-12"
+        className="min-h-[560px] pb-12 pt-40 sm:min-h-[540px] sm:pt-40 lg:min-h-[520px] lg:pt-40"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 font-jost text-xs mb-6" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-            <span>/</span>
-            <span className="line-clamp-1 max-w-[220px]" style={{ color: '#A8228A' }}>{post.title}</span>
+          <nav aria-label="Breadcrumb" className="mb-7 flex min-w-0 flex-wrap items-start gap-x-2 gap-y-1.5 font-jost text-xs leading-5" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            <Link href="/" className="shrink-0 transition-colors hover:text-white">Home</Link>
+            <span aria-hidden="true" className="shrink-0">/</span>
+            <Link href="/blog" className="shrink-0 transition-colors hover:text-white">Blog</Link>
+            <span aria-hidden="true" className="shrink-0">/</span>
+            <span className="min-w-0 flex-1 break-words sm:flex-none" style={{ color: '#F06AC5' }}>{post.title}</span>
           </nav>
 
           {/* Category badge */}
@@ -142,6 +142,17 @@ export default function BlogPostHero({ post, slug }: { post: Post; slug: string 
               </svg>
               {readTime} min read
             </div>
+
+            <a
+              href="https://calendly.com/keentel-engineering/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-jost text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#06103C] sm:mt-0 sm:ml-auto sm:w-auto"
+              style={{ background: 'linear-gradient(135deg, #C72E9E 0%, #A8228A 100%)' }}
+            >
+              Book a Consultation
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
           </div>
         </div>
       </section>
