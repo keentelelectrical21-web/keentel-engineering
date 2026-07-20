@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
-function Img({ src, fallback, alt, className }: { src: string; fallback: string; alt: string; className?: string }) {
+function Img({ src, alt, className }: { src: string; fallback?: string; alt: string; className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
   return <img src={src} alt={alt} className={className} />
 }
@@ -107,12 +107,24 @@ const relatedArticles = [
   ['US Grid Code Compliance, Wind Farms Ride-Through & Reactive Power', 'https://keentelengineering.com/us-grid-code-compliance-wind-farms-ride-through-reactive-power'],
   ['Importance of Power System Studies', 'https://keentelengineering.com/importance-of-power-system-studies'],
   ['Substation Design Power System Case Studies', 'https://keentelengineering.com/substation-design-power-system-case-studies'],
+  ['Review of Large City Metropolitan Area Power System Development Trends', 'https://keentelengineering.com/review-of-large-city-metropolitan-area-power-system-development-trends'],
   ['Why Is Power System Analysis Important for BESS Owners', 'https://keentelengineering.com/why-is-power-system-analysis-important-for-bess-owners'],
   ['Information Management for Inverter-Based Resources (IBRs)', 'https://keentelengineering.com/information-management-for-inverter-based-resources-ibrs-a-technical-guide-for-power-system-operators'],
+  ['Transmission Engineering Solutions – ComEd and PJM Territories', 'https://keentelengineering.com/transmission-engineering-solutions-comed-and-pjm-territories'],
+  ['Power Trends 2025 – New York Electric Grid', 'https://keentelengineering.com/power-trends-2025-new-york-electric-grid'],
   ['Advancing Power System Design Practices with IEEE PES TR-126', 'https://keentelengineering.com/advancing-power-system-design-practices-with-ieee-pes-tr-126'],
+  ['Harmonic Studies Offshore Wind Power Systems', 'https://keentelengineering.com/harmonic-studies-offshore-wind-power-systems'],
   ['Change Management Process in Power Systems', 'https://keentelengineering.com/change-management-process-in-power-systems-a-vital-link-between-operations-and-planning'],
+  ['Comprehensive Power System Analysis – Industrial Reliability & Safety', 'https://keentelengineering.com/comprehensive-power-system-analysis-industrial-reliability-safety'],
+  ['Energy Sector Integration and Its Impact on Modern Power Grids', 'https://keentelengineering.com/energy-sector-integration-and-its-impact-on-modern-power-grids'],
   ['Advanced Power System Modeling Guide', 'https://keentelengineering.com/advanced-power-system-modeling-guide'],
+  ['Why Is Utility Interconnection Critical for Renewable Power Plants', 'https://keentelengineering.com/why-is-utility-interconnection-critical-for-renewable-power-plants'],
+  ['Keentel Power Pulse – Engineering the Future of the Grid', 'https://keentelengineering.com/keentel-power-pulse-engineering-the-future-of-the-grid'],
+  ['Synchrophasor Technology for Power System Stability', 'https://keentelengineering.com/synchrophasor-technology-for-power-system-stability'],
+  ['How Renewable Power Plants Prevent Electrical Grid Failures', 'https://keentelengineering.com/how-renewable-power-plants-prevent-electrical-grid-failures'],
   ['Ensuring Design Stability in Power System Projects', 'https://keentelengineering.com/ensuring-design-stability-in-power-system-projects-best-practices-and-upcoming-nerc-reporting-deadlines'],
+  ['FERC RM22-12-000 Order No. 901 Explained', 'https://keentelengineering.com/ferc-rm22-12-000-order-no-901-explained'],
+  ['Electrical Systems in Nuclear Power Plants – Design & Compliance', 'https://keentelengineering.com/electrical-systems-in-nuclear-power-plants-design-compliance'],
 ]
 
 const relatedServices = [
@@ -166,19 +178,29 @@ export default function PowerSystemStudyProcessPage() {
       <Header />
       <main>
         {/* ── HERO ── */}
-        <section className="py-20 sm:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block text-xs font-semibold uppercase tracking-widest mb-4 font-jost" style={{ color: '#A8228A' }}>From Keentel Engineering</span>
-              <h1 className="font-urbanist font-black mb-6 leading-tight" style={{ color: '#06103C', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>Power System Studies Process</h1>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <Img src="/images/power-system-study-process/hero.jpg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/protection-coordination-practices-distribution-generation-920x613-1920w.jpg" alt="Power system study process" className="w-full h-64 sm:h-80 object-cover" />
+        <section className="relative overflow-hidden bg-[#06103C] px-4 pb-40 pt-32 sm:px-6 sm:pb-44 sm:pt-40 lg:px-8 lg:pb-48 lg:pt-44">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_24%,rgba(199,46,158,0.24),transparent_34%)]" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#E44BB8]/60 to-transparent" aria-hidden="true" />
+          <div className="relative mx-auto max-w-5xl">
+            <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap items-center gap-2 font-jost text-xs text-white/[0.66]">
+              <Link href="/" className="transition hover:text-white">Home</Link><span aria-hidden="true">/</span><Link href="/service/power-system-studies" className="transition hover:text-white">Power System Studies</Link><span aria-hidden="true">/</span><span className="text-white">Study Process</span>
+            </nav>
+            <p className="mb-4 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#F075D2]">Engineering Methodology</p>
+            <h1 className="max-w-4xl font-urbanist text-3xl font-black leading-[1.08] text-white min-[390px]:text-4xl sm:text-5xl lg:text-6xl">Power System Studies <span className="text-[#E44BB8]">Process</span></h1>
+            <p className="mt-6 max-w-3xl font-jost text-base leading-7 text-white/[0.82] sm:text-lg">A disciplined, cross-platform workflow for HV and EHV modeling, validation, protection, compliance, mitigation, and utility-ready technical delivery.</p>
+            <div className="mt-7 flex flex-wrap gap-2 sm:mt-8 sm:gap-2.5">
+              {['PSS®E', 'PSCAD', 'ETAP', 'DIgSILENT'].map(tool => <span key={tool} className="rounded-full border border-white/15 bg-white/[0.07] px-3 py-2 font-jost text-[0.68rem] font-semibold text-white/[0.86] sm:px-4 sm:text-xs">{tool}</span>)}
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12 pb-24">
+        <div className="relative z-10 -mt-9 px-4 sm:-mt-12 sm:px-6 lg:-mt-14 lg:px-8">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.5rem] border-4 border-white bg-white shadow-[0_28px_70px_rgba(6,16,60,0.24)] sm:rounded-[2rem]">
+            <Img src="/images/power-system-study-process/hero.jpg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/protection-coordination-practices-distribution-generation-920x613-1920w.jpg" alt="Power system study process across transmission and renewable infrastructure" className="aspect-[4/3] w-full object-cover object-center min-[480px]:aspect-[16/9] sm:aspect-[16/7]" />
+          </div>
+        </div>
+
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 pb-24 pt-16 sm:px-6 sm:pt-20 lg:grid-cols-3 lg:gap-12 lg:px-8 lg:pt-24">
           {/* Main content */}
           <div className="lg:col-span-2">
             <h2 className="font-urbanist font-black mb-4" style={{ color: '#06103C', fontSize: 'clamp(1.5rem,2.5vw,2rem)' }}>Transmission-Level HV &amp; EHV Engineering Methodology</h2>
@@ -217,18 +239,23 @@ export default function PowerSystemStudyProcessPage() {
                 ))}
               </ul>
             </div>
+
+            <section className="mt-14 rounded-3xl bg-[#070D68] p-6 text-white shadow-[0_18px_45px_rgba(6,16,60,0.18)] sm:p-8 lg:p-10" aria-labelledby="process-author-heading">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+                <Img src="/images/power-system-study-process/author.jpeg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/WhatsApp+Image+2026-04-10+at+6.43.17+PM-1920w.jpeg" alt="Sonny Patel P.E. EC" className="h-24 w-24 shrink-0 rounded-full object-cover object-top ring-4 ring-white/10 sm:h-28 sm:w-28" />
+                <div className="min-w-0">
+                  <h2 id="process-author-heading" className="font-urbanist text-xl font-black text-white sm:text-2xl">About the Author:</h2>
+                  <p className="mt-4 font-urbanist text-xl font-black text-white sm:text-2xl">Sonny Patel P.E. EC</p>
+                  <p className="mt-2 font-jost text-base text-white/[0.84]">IEEE Senior Member</p>
+                  <p className="mt-4 font-jost text-base leading-7 text-white/[0.9]">In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering. But degrees don&apos;t build legacies—action does. For three decades, he&apos;s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.</p>
+                </div>
+              </div>
+            </section>
           </div>
 
           {/* Sidebar */}
-          <aside className="space-y-8">
-            <div className="rounded-2xl p-6" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
-              <p className="font-jost text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>About the Author</p>
-              <Img src="/images/power-system-study-process/author.jpeg" fallback="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/WhatsApp+Image+2026-04-10+at+6.43.17+PM-1920w.jpeg" alt="Sonny Patel P.E." className="w-20 h-20 rounded-full object-cover mb-4" />
-              <p className="font-urbanist font-bold text-lg mb-1" style={{ color: '#06103C' }}>Sonny Patel P.E. EC</p>
-              <p className="font-jost text-sm text-gray-500 mb-3">IEEE Senior Member</p>
-              <p className="font-jost text-sm text-gray-600 leading-relaxed">In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois. For three decades, he has been shaping the future of engineering as a licensed Professional Engineer across multiple states, a Licensed Electrical Contractor in Florida, and the founder and CEO of Keentel LLC.</p>
-            </div>
-
+          <aside className="self-start lg:sticky lg:top-28">
+            <div className="space-y-8">
             <div className="rounded-2xl p-6" style={{ background: '#F6F7FB', border: '1px solid #E6E8F0' }}>
               <p className="font-urbanist font-black text-lg mb-4" style={{ color: '#06103C' }}>Services</p>
               <ul className="space-y-2">
@@ -248,6 +275,7 @@ export default function PowerSystemStudyProcessPage() {
                   <a href="https://irp.cdn-website.com/1253891b/files/uploaded/Keentel+Engineering+Company+Profile.pdf" target="_blank" rel="noopener noreferrer" className="block text-center px-6 py-3 rounded-full font-jost font-semibold text-sm border-2 transition-all hover:bg-gray-50" style={{ borderColor: '#06103C', color: '#06103C' }}>Download Company Profile</a>
                 </div>
               </div>
+            </div>
             </div>
           </aside>
         </div>

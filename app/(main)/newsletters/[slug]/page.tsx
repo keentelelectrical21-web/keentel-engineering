@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { NewsletterArticleClosing, NewsletterConnectCta } from '@/components/newsletter/NewsletterClosing';
 import { getNewsletterBySlug, getAllNewsletterSlugs } from '@/lib/newsletters';
 
 export const revalidate = 3600;
@@ -113,6 +115,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
             <p className="font-jost text-sm uppercase tracking-wide mb-3" style={{ color: '#C72E9E' }}>
               {nl.edition || formatDate(nl.publishDate)}
             </p>
+            {nl.publishDate && <p className="mb-4 font-jost text-sm text-white/60">{formatDate(nl.publishDate)} <span className="mx-2 text-white/30">|</span> Newsletter</p>}
             <h1 className="font-urbanist font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] mb-5 max-w-4xl">
               {nl.title}
             </h1>
@@ -120,7 +123,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
             </div>
             {nl.heroImage && (
               <div className="rounded-3xl border border-white/15 bg-white/[.07] p-3 shadow-2xl sm:p-4">
-                <img src={nl.heroImage} alt={nl.title} className="h-auto max-h-[460px] w-full rounded-2xl bg-white object-contain" />
+                <Image src={nl.heroImage} alt={nl.title} width={1200} height={800} priority sizes="(max-width: 1024px) 100vw, 45vw" className="h-auto max-h-[460px] w-full rounded-2xl bg-white object-contain" />
               </div>
             )}
           </div>
@@ -153,18 +156,8 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
             <div className="min-w-0 [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28">
               {nl.body && <PortableText value={nl.body} components={ptComponents} />}
 
-              {(nl.author || nl.authorTitle || nl.authorImage) && (
-                <div className="mt-16 pt-10 border-t flex items-center gap-4" style={{ borderColor: '#E6E8F0' }}>
-                  {nl.authorImage && (
-                    <img src={nl.authorImage} alt={nl.author || 'Newsletter author'} className="w-16 h-16 rounded-full object-cover" />
-                  )}
-                  <div>
-                    <p className="font-jost text-xs uppercase tracking-wide text-gray-500">About the Author</p>
-                    {nl.author && <p className="font-urbanist font-bold" style={{ color: '#020659' }}>{nl.author}</p>}
-                    {nl.authorTitle && <p className="font-jost text-sm text-gray-600">{nl.authorTitle}</p>}
-                  </div>
-                </div>
-              )}
+              <NewsletterArticleClosing />
+
             </div>
 
             <aside className="lg:sticky lg:top-28 lg:self-start">
@@ -179,29 +172,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
           </div>
         </article>
 
-        {/* CTA */}
-        <section className="py-20 px-6 text-center" style={{ background: '#06103C' }}>
-          <h2 className="font-urbanist font-black text-3xl md:text-4xl text-white mb-6">Let&apos;s Connect</h2>
-          <p className="font-jost text-white/80 max-w-2xl mx-auto mb-8">
-            Whether you&apos;re navigating NERC compliance, integrating BESS, or planning grid-scale projects, Keentel Engineering is ready to support your next phase.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="https://calendly.com/keentel-engineering/15min"
-              target="_blank"
-              className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white"
-              style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/newsletters"
-              className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white border border-white/20"
-            >
-              See All Newsletters
-            </Link>
-          </div>
-        </section>
+        <NewsletterConnectCta />
       </main>
       <Footer />
     </>

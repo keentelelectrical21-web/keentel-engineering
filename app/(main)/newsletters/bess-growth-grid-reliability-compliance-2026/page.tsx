@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { NewsletterArticleClosing, NewsletterConnectCta } from '@/components/newsletter/NewsletterClosing'
 
 export const metadata: Metadata = {
   title: 'BESS Growth, Grid Reliability & Compliance in 2026 | Keentel Engineering',
@@ -89,9 +90,11 @@ export default function BessGrowthNewsletterPage() {
         ].map(([href,title,desc])=><Link key={href} href={href} className="group block border-b border-white/10 pb-5 last:border-0 last:pb-0"><p className="font-urbanist font-bold group-hover:text-[#f06ac5]">{title} <span className="inline-block transition group-hover:translate-x-1">→</span></p><p className="mt-1 text-sm leading-6 text-white/55">{desc}</p></Link>)}</div></section>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2"><div className="rounded-2xl border border-slate-200 p-6"><p className="text-xs font-black uppercase tracking-wider text-[#a8228a]">What we&apos;re watching</p><p className="mt-3 font-jost leading-7 text-slate-600">Whether sodium-ion&apos;s lifecycle pitch translates into firm long-duration orders by year-end. The technology now needs bankable operating data at commercial scale.</p></div><div className="rounded-2xl border border-slate-200 p-6"><p className="text-xs font-black uppercase tracking-wider text-[#a8228a]">Pattern of the week</p><p className="mt-3 font-jost leading-7 text-slate-600">Long-dated offtakes connect all three stories—10, 12, and 20-year terms binding developers, utilities, and chemistries into the 2040s.</p></div></div>
+        <NewsletterArticleClosing />
       </article>
 
       <aside className="lg:sticky lg:top-28 lg:self-start"><div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl"><p className="text-xs font-black uppercase tracking-[.16em] text-[#a8228a]">Let&apos;s discuss your project</p><h2 className="mt-3 font-urbanist text-2xl font-black text-[#06103c]">Move from market signal to bankable design.</h2><p className="mt-4 font-jost leading-7 text-slate-600">Talk with our engineers about BESS interconnection, modeling, NERC compliance, or owner&apos;s engineering.</p><Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="mt-6 flex justify-center rounded-xl bg-gradient-to-r from-[#c72e9e] to-[#7d258e] px-5 py-3.5 text-sm font-bold text-white">Schedule a consultation</Link><Link href="/contact" className="mt-3 flex justify-center rounded-xl border border-[#06103c]/15 px-5 py-3.5 text-sm font-bold text-[#06103c]">Contact Keentel</Link></div></aside>
     </div>
+    <NewsletterConnectCta />
   </main><Footer /></>
 }

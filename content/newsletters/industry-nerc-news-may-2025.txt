@@ -1,64 +1,45 @@
-Page URL: https://keentelengineering.com/industry-nerc-news-may-2025
-
-
-Home
-About
-Services
-Power System Studies Services
-Substation Design Services
-POI Interconnection Engineering Support
-Transmission Line Design Services
-Utility Scale Renewable Energy
-Owner’s Engineer Services
-MEP Engineering Services
-NERC O&P 693 Compliance Services
-Our Work
-Keentel’s Grid IQ
-Contact
-Schedule A Consultation 
-Industry NERC News – May 2025 Update﻿
-May 19, 2025 | Blog
+Industry NERC News – May 2025 Update
+May 19, 2025 | Newsletter
 
 Key Compliance Deadlines, IBR Modeling Deficiencies & Grid Reliability Insights
 Stay informed with critical regulatory developments from NERC. This month’s update covers compliance deadlines, modeling alerts for inverter-based resources (IBRs), and upcoming industry standards that impact Bulk Power System (BPS) reliability.
 
 Key NERC Compliance Deadlines & Events – May 2025
 The NERC compliance calendar is packed with essential reporting deadlines, ballot events, and reliability workshops. Don’t miss these critical milestones:
+
 May 15: Cold Weather Preparedness Reporting Due
 All Generator Owners (GOs) must submit the Extreme Cold Weather Temperature Report by May 15, 2025, per FERC/NERC mandates. This report is vital for ensuring grid reliability during cold weather events. Access support tools and training via NERC’s Cold Weather Data Portal.
 
 Active NERC Ballots & Comment Periods
 Be proactive in shaping industry standards. The following projects are open for stakeholder feedback:
-
-
 Project 2020-06: Verification of Models and Data for Generators
 (Initial ballot closed May 12, 2025)
 Project 2022-02: Uniform Modeling Framework for IBRs
 (Ballot closes May 16, 2025)
 Project 2021-01: System Model Validation with IBRs
 (Ballot closes May 21, 2025)
-
-
 These efforts drive critical enhancements in dynamic modeling, especially as IBRs expand across the grid.
 
 Spotlight: IBR Modeling Deficiencies – April 2025 Alert
 NERC’s Level 2 Alert (April 2025) exposes major weaknesses in the quality of Inverter-Based Resource (IBR) models, sparking industry concern.
+
 Key Findings:
 15,000+ MW of IBR loss during 10 major BPS events since 2016.
 Model inconsistencies across .dyr/.dyd files, field data, and planning studies.
 66% of GOs apply protection settings that limit inverter ride-through—a major risk to grid stability.
+
 NERC Recommendations:
 Validate all IBR models for real-world performance.
 Submit both standard and user-defined models to Transmission Planners (TPs) and Planning Coordinators (PCs).
 Enhance data access and collaboration with OEMs.
 Implement stronger benchmarking and verification practices.
-
-
 This alert reinforces the urgency for model accuracy, proactive verification, and industry-wide adoption of modeling best practices.
 
 Standards News: Ballot Results & Pending Standards
+
 Recently Approved:
 Project 2024-01: Revised GO/GOP definitions passed with 86% approval, clarifying compliance roles moving forward.
+
 Standards to Watch:
 TOP-003-6.1, IRO-010-5, and BAL-007-1
 Set for phased enforcement: July 2025 – April 2027
@@ -68,30 +49,20 @@ Operations planning
 Short-term system reliability
 
 System Maintenance Updates
+
 Align System Scheduled Downtime:
 When: May 16 (8 PM ET) – May 17 (4 PM ET)
 Update: Release 7.2.0 – Enhancing usability and data integrity.
 Plan your compliance submissions accordingly.
-👉 Explore Our Power System Studies
+[Explore Our Power System Studies](https://keentelengineering.com/service/power-system-studies)
 
 Upcoming NERC Events – May & June 2025
-Date
-Event Name
-Type
-May 13
-Real-Time Operating Subcommittee Meeting
-Virtual
-May 14
-2025 Summer Reliability Assessment Webinar
-Online
-May 15–29
-Multiple Standards Drafting Team Meetings
-Virtual
-June 3–5
-IBR Milestone 3 Industry Engagement Workshop
-Arlington, VA / Virtual
-
-👉 Explore our NERC compliance services
+Date | Event Name | Type
+May 13 | Real-Time Operating Subcommittee Meeting | Virtual
+May 14 | 2025 Summer Reliability Assessment Webinar | Online
+May 15–29 | Multiple Standards Drafting Team Meetings | Virtual
+June 3–5 | IBR Milestone 3 Industry Engagement Workshop | Arlington, VA / Virtual
+[Explore our NERC compliance services](https://keentelengineering.com/service/nerc-compliance)
 
 Summary – Key Takeaways
 Cold weather reporting and IBR modeling are top compliance priorities.
@@ -99,164 +70,33 @@ Inaccurate IBR models threaten system stability—address gaps proactively.
 Engage with evolving standards to shape future grid reliability policies.
 
 Frequently Asked Questions (FAQ)
-1. What is the deadline for the Cold Weather Generator Data Report?
-All Generator Owners (GOs) must submit the Extreme Cold Weather Temperature (ECWT) report by May 15, 2025. This year, NERC is allowing a grace period until June 15, 2025 for BES units. 
-2. Who is required to submit the ECWT data report?
-Only NERC-registered Generator Owners with BES facilities in the United States are required to submit. Submissions must be completed by the Primary Compliance Contact or Entity Administrator. 
 
+1. What is the deadline for the Cold Weather Generator Data Report?
+All Generator Owners (GOs) must submit the Extreme Cold Weather Temperature (ECWT) report by May 15, 2025. This year, NERC is allowing a grace period until June 15, 2025 for BES units.
+
+2. Who is required to submit the ECWT data report?
+Only NERC-registered Generator Owners with BES facilities in the United States are required to submit. Submissions must be completed by the Primary Compliance Contact or Entity Administrator.
 
 3. What resources are available to help GOs complete the ECWT worksheet?
-A revised worksheet with instructions
-Training videos and materials
-ECWT FAQ document
-All are available on the NERC Cold Weather Data Request page.
-4. What modeling standards ballots are currently open?
-Project 2022-02 – Uniform Modeling Framework for IBRs (closes May 16, 2025)
-Project 2021-01 – System Model Validation with IBRs (closes May 21, 2025).
+A revised worksheet with instructions, training videos and materials, and an ECWT FAQ document are available on the NERC Cold Weather Data Request page.
 
+4. What modeling standards ballots are currently open?
+Project 2022-02 – Uniform Modeling Framework for IBRs (closes May 16, 2025) and Project 2021-01 – System Model Validation with IBRs (closes May 21, 2025).
 
 5. What did the IBR Model Quality Alert reveal?
-The April 2025 aggregated report revealed:
+The April 2025 aggregated report revealed that 66% of protection settings do not use full inverter capability, systemic mismatches exist in model data formats (.dyr/.dyd, field data, and manual entries), and equipment-specific models are not used sufficiently for interconnection studies.
 
-66% of protection settings do not use full inverter capability
-Systemic mismatches in model data formats (.dyr/.dyd, field data, and manual entries)
-Insufficient use of equipment-specific models for interconnection studies.
 6. What are the key recommendations for improving IBR modeling?
-Submit both standard library and user-written PSPD/EMT models
-Maintain up-to-date and site-specific model parameters
-Align models with FERC LGIP/SGIP interconnection standards
-Enhance coordination with OEMs and TPs/PCs.
-
+Submit both standard library and user-written PSPD/EMT models, maintain current site-specific model parameters, align models with FERC LGIP/SGIP interconnection standards, and improve coordination with OEMs and TPs/PCs.
 
 7. Why is reactive power capability reporting important?
-20% of solar PV sites are operating under a “triangle” power factor limitation (0.95 PF), reducing the available reactive support to the grid. NERC urges accurate modeling to reflect true inverter capabilities. 
-
+20% of solar PV sites are operating under a “triangle” power factor limitation (0.95 PF), reducing the available reactive support to the grid. NERC urges accurate modeling to reflect true inverter capabilities.
 
 8. What is the Align system outage schedule?
-Planned maintenance for the Align system is scheduled from:
-May 16, 8:00 p.m. ET to May 17, 4:00 p.m. ET
-System updates will be outlined in Release Notes 7.2.0.
-
+Planned maintenance is scheduled from May 16 at 8:00 p.m. ET to May 17 at 4:00 p.m. ET. System updates will be outlined in Release Notes 7.2.0.
 
 9. Which standards are scheduled for enforcement in 2025–2027?
-July 1, 2025: IRO-010-5, TOP-003-6.1
-Oct 1, 2025: TOP-002-5
-Apr 1, 2026: TPL-008-1, CIP-003-9
-Jul 1, 2026: CIP-012-2
-Apr 1, 2027: BAL-007-1.
+July 1, 2025: IRO-010-5 and TOP-003-6.1; October 1, 2025: TOP-002-5; April 1, 2026: TPL-008-1 and CIP-003-9; July 1, 2026: CIP-012-2; April 1, 2027: BAL-007-1.
+
 10. Where can I find registration links for upcoming NERC events?
-You can access all events and register through the official NERC Calendar, including:
-
-
-IBR Milestone 3 Workshop (June 3–5)
-
-
-Summer Reliability Webinar (May 14)
-
-
-
-
-
-
-
-813-389-7871
-Schedule a Consultation
-contact@keentelengineering.com
-
-
-About the Author:
-Sonny Patel P.E. EC
-IEEE Senior Member
-In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
-Services
-All Engineering Services
-EHV, HV. MV Power System Studies
-Substation Design Services
-POI Interconnection Engineering Support
-Utility Scale Solar Farm Engineering
-Utility Scale BESS Engineering
-MEP Engineering Services
-NERC O&P 693 Compliance Services
-Download Company Profile Flyer 
-
-
-
-Let's Discuss Your Project
-Let's book a call to discuss your electrical engineering project that we can help you with.
-Schedule A Consultation
-Download Company Profile Flyer 
-
-
-
-About the Author:
-Sonny Patel P.E. EC
-IEEE Senior Member
-In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
-Leave a Comment
-Name:
-Email:
-Website
-Comment:
-Related Posts
-
-PSS®/E Python Automation Guide | Keentel
-Learn how to automate PSS®/E with Python for power system studies, API scripting, result extraction, and scalable interconnection workflows.
-
-CenterPoint Energy Interconnection Requirements for Large Data Centers | Keentel
-Learn CenterPoint Energy's interconnection requirements for large data center loads, including primary service, harmonic analysis, emergency generation, protection, and engineering compliance.
-
-Switching Overvoltage Studies in PSCAD/EMTDC Guide
-Learn how switching overvoltage studies, insulation coordination, surge arrester assessment, and PSCAD/EMTDC modeling protect EHV systems.
-
-Concurrent EMTDC: Parallel EMT Simulation Explained
-Learn how Concurrent EMTDC uses data parallelism, task parallelism, PSCAD, and high-performance interconnects to accelerate EMT simulation studies.
-
-Substation Electrical Design: 30%, 60%, 90% & IFC Guide
-Learn the complete substation electrical design process, including 30%, 60%, 90%, and IFC deliverables, engineering reviews, grounding, protection, and interconnection requirements.
-
-WHITE PAPER | PJM's Expedited Interconnection Track (EIT) — What 250 MW+ Developers Must Know
-FERC accepted PJM's Expedited Interconnection Track on June 9, 2026. Learn the eligibility rules, financial requirements, state siting commitment, and engineering checklist for the 10-month fast lane to a signed GIA.
-
-Interconnection Cost Estimation Before You File
-Estimate interconnection costs before entering the queue. Learn how network upgrade costs, POI costs, and feasibility studies impact project success.
-
-Power System Resilience Metrics: A Practical Guide
-Learn how power system resilience metrics measure grid performance during extreme events. Discover resilience assessment methods and practical applications.
-
-Synchronous Condenser Protection: Complete Guide 2026
-Learn synchronous condenser protection, loss of field settings, NERC PRC compliance, and protection philosophy. Discover expert engineering guidance.
-Explore More
-
-Serving for more than two decades, we are a name you can trust and count on for your power system and engineering support needs. We can provide innovative solutions to take your business to greater heights.
-Menu Links
-Home
-About
-Services
-Industries
-Keentel’s Grid IQ
-Contact
-Schedule a Consultation
-Connect with Us
-813-389-7871
-contact@keentelengineering.com
-BD@keentelengineering.com
-Headquarters
-400 N Ashley Dr STE #2600 Tampa, FL 33602
-Austin Office
-5900 Balcones Drive STE 100 Austin, TX 78731 USA
-Sacramento Office
-1401 21st St Ste R Sacramento, CA 95811 USA
-Baltimore Office
-306 W Redwood St, STE 200 Baltimore, MD 21201 USA
-
-
-
-
-
-
-© 2026 
-Copyright 1995-2026 Keentel Engineering All Rights Reserved
-Privacy Policy
-Terms & Conditions
-Legal Disclaimer
-
+Registration is available through the official NERC Calendar, including the IBR Milestone 3 Workshop (June 3–5) and Summer Reliability Webinar (May 14).

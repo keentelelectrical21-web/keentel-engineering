@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { NewsletterArticleClosing, NewsletterConnectCta } from '@/components/newsletter/NewsletterClosing'
 
 export const metadata: Metadata = {
   title: 'ERCOT Energy Market Update 2026 | Keentel Engineering',
@@ -118,7 +119,7 @@ export default function ErcotMarketUpdatePage() {
         <div className="mt-7 space-y-5 font-jost text-[17px] leading-8 text-slate-600">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
         <div className="mt-9 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"><h3 className="font-urbanist text-xl font-black text-[#06103c]">{section.subheading}</h3><p className="mt-3 font-jost leading-7 text-slate-600">{section.detail}</p></div>
         <blockquote className="mt-7 border-l-4 border-[#c72e9e] bg-[#fff5fb] px-6 py-5 font-jost font-semibold leading-7 text-[#06103c]">{section.takeaway}</blockquote>
-      </article></div></section>)}</div>
+      </article></div></section>)}<NewsletterArticleClosing /></div>
       <aside className="hidden lg:block lg:sticky lg:top-28 lg:self-start"><div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl"><p className="text-xs font-black uppercase tracking-[.16em] text-[#a8228a]">Let&apos;s discuss your project</p><h2 className="mt-3 font-urbanist text-2xl font-black leading-tight text-[#06103c]">Turn ERCOT market signals into a bankable design.</h2><p className="mt-4 font-jost leading-7 text-slate-600">Talk with our engineers about large-load interconnection, studies, NERC compliance, BYOG, or grid strategy.</p><Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="mt-6 flex justify-center rounded-xl bg-gradient-to-r from-[#c72e9e] to-[#7d258e] px-5 py-3.5 text-sm font-bold text-white">Schedule a consultation</Link><Link href="/contact" className="mt-3 flex justify-center rounded-xl border border-[#06103c]/15 px-5 py-3.5 text-sm font-bold text-[#06103c]">Contact Keentel</Link></div></aside>
     </div>
 
@@ -126,6 +127,6 @@ export default function ErcotMarketUpdatePage() {
       <div className="mt-10 space-y-4">{faqs.map(([question,answer],i)=><details key={question} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm open:shadow-md"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 bg-[#a8228a] p-4 font-urbanist text-base font-bold text-white sm:px-5"><span><span className="mr-2 text-white/70">Q{i+1}.</span>{question}</span><span className="text-xl text-white transition-transform group-open:rotate-45">+</span></summary><p className="px-5 py-5 font-jost leading-7 text-slate-600 sm:px-6">{answer}</p></details>)}</div>
     </div></section>
 
-    <section className="px-5 py-20 text-center sm:px-8"><div className="mx-auto max-w-4xl rounded-3xl bg-[#f5f7fc] px-6 py-14 sm:px-12"><p className="text-xs font-black uppercase tracking-[.2em] text-[#a8228a]">Have a project-specific question?</p><h2 className="mt-4 font-urbanist text-3xl font-black text-[#06103c] sm:text-4xl">Turn market intelligence into an executable interconnection plan.</h2><p className="mx-auto mt-4 max-w-2xl font-jost leading-7 text-slate-600">Our engineers support large-load developers, utilities, TSPs, and energy buyers across studies, protection, compliance, and grid strategy.</p><Link href="/contact" className="mt-8 inline-flex rounded-full bg-gradient-to-r from-[#c72e9e] to-[#7d258e] px-8 py-4 font-bold text-white shadow-lg transition hover:-translate-y-1">Discuss your project →</Link></div></section>
+    <NewsletterConnectCta />
   </main><Footer /></>
 }

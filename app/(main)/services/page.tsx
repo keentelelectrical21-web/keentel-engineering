@@ -21,6 +21,30 @@ interface BlogPost {
   featuredImage?: string
 }
 
+const heroSlides = [
+  {
+    label: 'Full-Spectrum Electrical Power Engineering',
+    title: 'Full-scale power system engineering services — delivered right the first time.',
+    text: 'At Keentel Engineering, we serve utilities, developers, EPCs, and industrial clients with best-in-class engineering across every phase of a project. ',
+    primary: ['Schedule a Consultation', 'https://calendly.com/keentel-engineering/15min'],
+    secondary: ['Explore Our Services', '#service-portfolio'],
+  },
+  {
+    label: 'Grid Studies & Interconnection',
+    title: 'From POI strategy to utility-ready system performance.',
+    text: 'Transmission planning, load flow, short circuit, protection, RMS and EMT modeling, and interconnection support—coordinated by one engineering team from early screening through approval.',
+    primary: ['Explore Power System Studies', '/service/power-system-studies'],
+    secondary: ['POI Interconnection Services', '/service/poi-interconnection-engineering-support'],
+  },
+  {
+    label: 'Design, Compliance & Field Delivery',
+    title: 'Engineering that stays defensible through energization.',
+    text: 'Substation design, NERC compliance, owner’s engineering, renewable integration, SCADA, testing, and commissioning delivered with traceable assumptions and construction-ready detail.',
+    primary: ['View Substation Services', '/service/substation-design'],
+    secondary: ['Explore NERC Compliance', '/service/nerc-compliance'],
+  },
+] as const
+
 // ── Static service data (exact from Duda) ────────────────
 const services = [
   {
@@ -245,6 +269,9 @@ function BlogCard({ post }: { post: BlogPost }) {
 // ── Main Page ────────────────────────────────────────────
 export default function ServicesPage() {
   const [blogs, setBlogs] = useState<BlogPost[]>([])
+  const [activeHero, setActiveHero] = useState(0)
+  const [heroPaused, setHeroPaused] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(true)
 
   useEffect(() => {
     client.fetch<BlogPost[]>(
@@ -256,13 +283,27 @@ export default function ServicesPage() {
     ).then(setBlogs).catch(() => {})
   }, [])
 
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setReducedMotion(media.matches)
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (heroPaused || reducedMotion) return
+    const timer = window.setInterval(() => setActiveHero(current => (current + 1) % heroSlides.length), 6000)
+    return () => window.clearInterval(timer)
+  }, [heroPaused, reducedMotion])
+
   return (
     <>
       <Header />
       <main className="flex flex-col">
 
         {/* ── HERO ── */}
-        <section className="relative min-h-[500px] flex items-end overflow-hidden">
+        <section className="relative flex min-h-[940px] items-start overflow-hidden sm:min-h-[920px] lg:min-h-[900px]" aria-roledescription="carousel" aria-label="Keentel engineering services" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocusCapture={() => setHeroPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setHeroPaused(false) }}>
           <div className="absolute inset-0 z-0">
             <video autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover object-center" aria-label="Keentel Engineering electrical power services">
               <source src="/videos/service.mp4" type="video/mp4" />
@@ -270,31 +311,27 @@ export default function ServicesPage() {
             </video>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,16,60,0.95) 0%, rgba(6,16,60,0.6) 60%, rgba(6,16,60,0.3) 100%)' }} />
           </div>
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-12 pt-44 sm:px-6 sm:pb-16 sm:pt-48 lg:px-8 lg:pt-52">
             <nav className="flex items-center gap-2 mb-6 text-xs font-jost">
               <Link href="/" className="text-white/50 hover:text-white/80 transition-colors">Home</Link>
               <span className="text-white/30">/</span>
               <span className="text-white/80">Services</span>
             </nav>
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 border border-white/15 rounded-full px-4 py-1.5 mb-5" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-white/70 text-sm font-jost">Full-Spectrum Electrical Power Engineering</span>
+            <div className="max-w-4xl">
+              <div className="relative h-[34rem] min-[390px]:h-[32rem] sm:h-[27rem] lg:h-[26rem]">
+                {heroSlides.map((slide, index) => <article key={slide.label} aria-hidden={activeHero !== index} inert={activeHero !== index} className={`absolute inset-0 transition-[opacity,transform] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${activeHero === index ? 'translate-x-0 opacity-100' : 'pointer-events-none translate-x-4 opacity-0'}`}>
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2"><span className="h-2 w-2 rounded-full bg-green-400" /><span className="font-jost text-xs font-semibold text-white/[0.82] sm:text-sm">{slide.label}</span></div>
+                  <h1 className="max-w-4xl font-urbanist text-3xl font-black leading-[1.06] text-white min-[390px]:text-4xl sm:text-5xl lg:text-6xl">{slide.title}</h1>
+                  <p className="mt-6 max-w-3xl font-jost text-base leading-7 text-white/[0.84] sm:text-lg lg:text-xl">{slide.text}</p>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+                    <Link href={slide.primary[1]} target={slide.primary[1].startsWith('http') ? '_blank' : undefined} rel={slide.primary[1].startsWith('http') ? 'noopener noreferrer' : undefined} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-to-br from-[#C72E9E] to-[#5B2A86] px-6 py-3.5 text-center font-jost text-sm font-semibold text-white transition hover:-translate-y-0.5 sm:w-auto">{slide.primary[0]} <span className="ml-2">→</span></Link>
+                    <Link href={slide.secondary[1]} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/30 bg-white/[0.05] px-6 py-3.5 text-center font-jost text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto">{slide.secondary[0]}</Link>
+                  </div>
+                </article>)}
               </div>
-              <h1 className="font-urbanist font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06] mb-5">
-                Full-Scale Electrical Power System{' '}
-                <span style={{ color: '#C72E9E' }}>Engineering Services.</span>
-              </h1>
-              <p className="text-white/65 text-lg font-jost leading-relaxed max-w-2xl mb-8">
-                At Keentel Engineering, we strive to provide our clients across industries with the best-in-class services to their complete satisfaction. We deliver promptly, with comprehensive attention to detail.
-              </p>
-              <div className="flex flex-wrap gap-4 mb-14 sm:mb-16">
-                <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-white font-semibold text-sm px-6 py-3 rounded-full transition-all hover:-translate-y-0.5"
-                  style={{ background: 'linear-gradient(135deg, #C72E9E, #5B2A86)' }}>
-                  Schedule A Call
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
+
+              <div className="mb-8 mt-3 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-[#06103C]/35 px-3 py-2 backdrop-blur-sm" role="group" aria-label="Choose a services slide">
+                {heroSlides.map((slide, index) => <button key={slide.label} type="button" aria-label={`Show slide ${index + 1}: ${slide.label}`} aria-current={activeHero === index ? 'true' : undefined} onClick={() => setActiveHero(index)} className={`h-2.5 rounded-full border transition-all duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${activeHero === index ? 'w-12 border-[#EF73D0] bg-[#C72E9E] shadow-[0_0_16px_rgba(199,46,158,0.5)]' : 'w-8 border-white/30 bg-white/30 hover:bg-white/55'}`}><span className="sr-only">{slide.label}</span></button>)}
               </div>
 
               <div className="border-t border-white/10 pt-8">
@@ -359,17 +396,19 @@ export default function ServicesPage() {
 
         <SoftwareTools />
 
-        <section className="py-6 text-center" style={{ background: '#06103C' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white mb-5">What We Offer</h2>
-            <p className="font-jost text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>
+        <section className="relative border-t border-[#E1E5EE] bg-[#F6F7FB] py-14 text-center sm:py-16 lg:py-20">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#06103C] via-[#C72E9E] to-[#06103C]" aria-hidden="true" />
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <p className="mb-3 font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Integrated Engineering Services</p>
+            <h2 className="mb-5 font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl lg:text-5xl">What We Offer</h2>
+            <p className="font-jost text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
               At Keentel Engineering, we offer unparalleled expertise in electrical power system engineering and power system planning, design, and integration in and across all three interconnections in accordance with regulatory compliance requirements. Our decades of experience cover the entire spectrum of generation, transmission, and distribution.
             </p>
           </div>
         </section>
 
         {/* ── SERVICES GRID ── */}
-        <section className="py-16 bg-white">
+        <section id="service-portfolio" className="scroll-mt-24 bg-white pb-16 pt-10 sm:pt-12 lg:pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, i) => (

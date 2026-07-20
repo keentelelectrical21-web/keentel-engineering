@@ -106,6 +106,10 @@ export default function SubstationDesignPage() {
                 <Link href="tel:813-389-7871" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-jost font-semibold text-white transition-all hover:border-white/60 sm:w-auto">
                   813-389-7871
                 </Link>
+                <Link href="/ieee-2800-compliance-operational-planning-services" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E44BB8]/35 bg-gradient-to-r from-[#5B2A86] to-[#A8228A] px-8 py-4 text-center font-jost font-semibold text-white shadow-[0_10px_28px_rgba(168,34,138,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_32px_rgba(168,34,138,0.38)] sm:w-auto">
+                  IEEE P2800 Compliance Service
+                  <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0-4 4m4-4H3" /></svg>
+                </Link>
               </div>
 
               <div className="border-t border-white/10 pt-8">
