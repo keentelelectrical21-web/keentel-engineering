@@ -112,12 +112,12 @@ export default function BlogSection({ limit = 3 }: { limit?: number }) {
                 </div>
 
                 <h3 className="font-urbanist font-bold text-xl leading-snug mb-3 group-hover:text-[#A8228A] transition-colors" style={{ color: '#0B1230' }}>
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  <Link href={`/${post.slug}`}>{post.title}</Link>
                 </h3>
                 <p className="text-base font-jost leading-relaxed mb-4 line-clamp-2" style={{ color: '#4B5563' }}>
                   {post.excerpt}
                 </p>
-                <Link href={`/blog/${post.slug}`} className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-all" style={{ color: '#0B1A5B' }}>
+                <Link href={`/${post.slug}`} className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-all" style={{ color: '#0B1A5B' }}>
                   Read post
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />

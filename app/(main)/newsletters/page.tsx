@@ -146,28 +146,31 @@ export default async function NewslettersPage() {
         </section>
 
         {/* ── CTA — exact match to About page ── */}
-        <section className="py-20" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="border-y border-slate-200 bg-[#F4F6FB] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl px-5 py-14 text-center shadow-[0_22px_55px_rgba(6,16,60,.18)] sm:px-10 sm:py-20 lg:px-12" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
+            <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-[radial-gradient(circle,#C72E9E_0%,transparent_70%)] opacity-15 blur-3xl" />
+            <div className="relative mx-auto max-w-4xl">
             <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Let&apos;s Work Together</p>
-            <h2 className="font-urbanist font-black text-4xl sm:text-5xl text-white leading-tight mb-5">Ready to Discuss Your Next Project?</h2>
-            <p className="font-jost text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            <h2 className="mb-5 font-urbanist text-3xl font-black leading-tight text-white sm:text-5xl">Ready to Discuss Your Next Project?</h2>
+            <p className="mx-auto mb-10 max-w-2xl font-jost text-base leading-relaxed text-white/75 sm:text-lg">
               Our licensed engineers are ready to discuss your project requirements, from grid interconnection and substation design to NERC compliance and renewable energy integration.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-xl sm:w-auto"
                 style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
                 Schedule a Free Consultation
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-full border border-white/25 hover:bg-white/10 transition-all">
+              <Link href="/contact" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-semibold text-white transition-all hover:bg-white/10 sm:w-auto">
                 Contact Our Team
               </Link>
               <a href="/files/keentel-company-profile.pdf" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full border border-white/25 hover:bg-white/10 transition-all text-white">
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/25 px-8 py-4 font-semibold text-white transition-all hover:bg-white/10 sm:w-auto">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                 Download Profile
               </a>
+            </div>
             </div>
           </div>
         </section>

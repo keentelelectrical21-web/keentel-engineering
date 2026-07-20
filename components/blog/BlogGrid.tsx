@@ -37,7 +37,7 @@ function BlogCard({ post }: { post: Post }) {
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/${slug}`}
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
     >
       {/* FIX: natural image height — no fixed h-48, image shows fully at its own height */}

@@ -198,7 +198,7 @@ function SearchResults() {
             {results.map((post) => (
               <Link
                 key={post._id}
-                href={`/blog/${post.slug.current.replace(/^\/+/, '')}`}
+                href={`/${post.slug.current.replace(/^\/+/, '')}`}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#E0E3EC] bg-white shadow-[0_8px_30px_rgba(6,16,60,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#A8228A]/30 hover:shadow-[0_18px_45px_rgba(6,16,60,0.12)]"
               >
                 {/* Image */}

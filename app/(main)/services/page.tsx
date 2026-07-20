@@ -251,11 +251,11 @@ function BlogCard({ post }: { post: BlogPost }) {
           </span>
         )}
         <h3 className="font-urbanist font-bold text-base leading-snug mb-2 group-hover:underline line-clamp-2" style={{ color: '#06103C' }}>
-          <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
+          <Link href={`/${post.slug.current}`}>{post.title}</Link>
         </h3>
         <p className="text-xs font-jost mb-3" style={{ color: '#9CA3AF' }}>By Sandip R Patel · {date}</p>
         <p className="text-sm font-jost leading-relaxed line-clamp-2 flex-1 mb-4" style={{ color: '#6B7280' }}>{post.excerpt}</p>
-        <Link href={`/blog/${post.slug.current}`} className="inline-flex items-center gap-1.5 text-sm font-semibold transition-all mt-auto" style={{ color: '#06103C' }}>
+        <Link href={`/${post.slug.current}`} className="inline-flex items-center gap-1.5 text-sm font-semibold transition-all mt-auto" style={{ color: '#06103C' }}>
           Read post
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />

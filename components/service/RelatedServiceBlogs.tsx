@@ -44,7 +44,7 @@ export default function RelatedServiceBlogs({ terms, title = 'Related Technical 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article key={post._id} className="group overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
-              <Link href={`/blog/${post.slug.current}`} className="block">
+              <Link href={`/${post.slug.current}`} className="block">
                 <div className="h-52 overflow-hidden bg-[#F6F7FB] sm:h-56">
                   {Boolean(post.featuredImage) && <img src={urlFor(post.featuredImage).width(900).height(560).url()} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
                 </div>

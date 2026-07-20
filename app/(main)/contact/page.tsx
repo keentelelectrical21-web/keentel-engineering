@@ -106,8 +106,8 @@ export default function ContactPage() {
         throw new Error(data.error || 'Failed to submit')
       }
       setSubmitted(true)
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.')
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -146,7 +146,7 @@ export default function ContactPage() {
                 <span className="text-white/70 text-sm font-jost">Available for New Projects</span>
               </div>
               <h1 className="font-urbanist font-black text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.03] mb-6">
-                Let's Discuss How to{' '}
+                Let&apos;s Discuss How to{' '}
                 <span style={{ color: '#C72E9E' }}>Optimize Your Next Project</span>
               </h1>
               <p className="text-white/70 text-xl font-jost leading-relaxed max-w-2xl">
@@ -394,25 +394,27 @@ export default function ContactPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] blur-3xl rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #C72E9E 0%, transparent 70%)' }} />
-          <Reveal className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#C72E9E' }}>Prefer a Call?</p>
-            <h2 className="font-urbanist font-black text-4xl sm:text-6xl text-white leading-tight mb-6">
-              Schedule a Free 15-Minute Consultation
-            </h2>
-            <p className="font-jost text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              Talk directly with one of our licensed power engineers about your project. No commitment, no sales pitch, just engineering.
-            </p>
-            <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-2xl"
-              style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
-              Book on Calendly
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </Reveal>
+        <section className="border-y border-slate-200 bg-[#F4F6FB] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl shadow-[0_22px_55px_rgba(6,16,60,.18)]" style={{ background: 'linear-gradient(135deg, #06103C 0%, #0B1A5B 50%, #5B2A86 100%)' }}>
+            <div className="absolute right-0 top-0 h-[420px] w-[420px] rounded-full opacity-15 blur-3xl" style={{ background: 'radial-gradient(circle, #C72E9E 0%, transparent 70%)' }} />
+            <Reveal className="relative mx-auto max-w-4xl px-5 py-14 text-center sm:px-10 sm:py-20 lg:px-12">
+              <p className="mb-4 text-xs font-bold uppercase tracking-widest" style={{ color: '#F06AC5' }}>Prefer a Call?</p>
+              <h2 className="mb-6 font-urbanist text-3xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+                Schedule a Free 15-Minute Consultation
+              </h2>
+              <p className="mx-auto mb-9 max-w-2xl font-jost text-base leading-relaxed text-white/75 sm:text-xl sm:leading-8">
+                Talk directly with one of our licensed power engineers about your project. No commitment, no sales pitch, just engineering.
+              </p>
+              <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl sm:w-auto"
+                style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
+                Book on Calendly
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </Reveal>
+          </div>
         </section>
 
       </main>

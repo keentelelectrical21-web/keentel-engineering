@@ -132,7 +132,7 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
               {query.trim().length >= 2 && !searching && (
                 <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-72 overflow-y-auto rounded-xl border border-white/15 bg-[#06103C]/95 p-2 shadow-2xl backdrop-blur">
                   {results.length > 0 ? results.slice(0, 6).map((post) => (
-                    <Link key={post._id} href={`/blog/${post.slug.current.replace(/^\/+/, '')}`} className="block rounded-lg px-3 py-3 font-jost text-sm text-white/85 transition hover:bg-white/10 hover:text-white">
+                    <Link key={post._id} href={`/${post.slug.current.replace(/^\/+/, '')}`} className="block rounded-lg px-3 py-3 font-jost text-sm text-white/85 transition hover:bg-white/10 hover:text-white">
                       {post.title}
                     </Link>
                   )) : <p className="px-3 py-4 font-jost text-sm text-white/55">No blog titles found.</p>}
@@ -209,7 +209,7 @@ export default function BlogHero({ totalPosts, categories = [] }: BlogHeroProps)
                     {results.slice(0, 8).map((post) => (
                       <Link
                         key={post._id}
-                        href={`/blog/${post.slug.current.replace(/^\/+/, '')}`}
+                        href={`/${post.slug.current.replace(/^\/+/, '')}`}
                         onClick={closeSearch}
                         className="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors"
                       >
