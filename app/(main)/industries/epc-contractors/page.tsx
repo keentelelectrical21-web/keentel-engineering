@@ -1,6 +1,14 @@
+'use client'
+
+import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import SoftwareTools from '@/components/sections/SoftwareTools'
+import WhoWeServed from '@/components/service/WhoWeServed'
+import FAQ from '@/components/sections/FAQ'
+import ContactForm from '@/components/sections/ContactForm'
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
 
 const capabilities = [
   ['Power System Studies', 'Load flow, short-circuit, arc-flash, protection coordination, harmonic, and stability studies aligned with owner and utility requirements.'],
@@ -9,51 +17,26 @@ const capabilities = [
   ['Construction Support', 'RFI responses, vendor drawing reviews, field engineering, testing support, and as-built documentation through energization.'],
   ['NERC & Grid Compliance', 'Engineering evidence, model validation, commissioning support, and compliance-ready technical documentation.'],
   ['Owner & Vendor Alignment', 'Clear scope boundaries and coordinated deliverables across owners, OEMs, utilities, contractors, and commissioning teams.'],
-]
+] as const
 
-const outcomes = [
-  'Fewer design conflicts and late-stage changes',
-  'Constructible, clearly scoped engineering packages',
-  'Faster utility review and comment resolution',
-  'Consistent technical assumptions across disciplines',
-  'Reliable handoff from design through commissioning',
-]
+const outcomes = ['Fewer design conflicts and late-stage changes', 'Constructible, clearly scoped engineering packages', 'Faster utility review and comment resolution', 'Consistent technical assumptions across disciplines', 'Reliable handoff from design through commissioning']
+
+const faqs = [
+  ['When should an EPC team engage Keentel Engineering?', 'Early engagement helps define scope boundaries, technical assumptions, utility requirements, and deliverable interfaces before they become schedule risks.'],
+  ['Can Keentel work within an existing EPC project workflow?', 'Yes. Our engineers work within established project controls, document standards, review cycles, and multidisciplinary coordination processes.'],
+  ['What engineering phases can Keentel support?', 'We support concept development, studies, detailed design, procurement, construction, testing, commissioning, and as-built closeout.'],
+  ['Does Keentel coordinate with utilities and equipment vendors?', 'Yes. We support technical applications, review responses, data exchanges, vendor drawing reviews, and issue resolution.'],
+  ['What types of EPC projects does Keentel support?', 'We support substations, generation, renewables, BESS, transmission, industrial plants, and large-load interconnections.'],
+] as const
 
 export default function EpcContractorsPage() {
-  return (
-    <>
-      <Header />
-      <main>
-        <section className="relative flex min-h-[620px] items-end overflow-hidden">
-          <video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="EPC contractors coordinating power infrastructure construction"><source src="/videos/epc.mp4" type="video/mp4" /></video>
-          <div className="absolute inset-0 bg-black/35" />
-          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-40 sm:px-6 lg:px-8">
-            <nav className="mb-6 flex items-center gap-2 font-jost text-xs"><Link href="/" className="text-white/50">Home</Link><span className="text-white/30">/</span><Link href="/industries" className="text-white/50">Industries</Link><span className="text-white/30">/</span><span className="text-white/80">EPC Contractors</span></nav>
-            <div className="max-w-3xl">
-              <p className="mb-4 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Industries We Serve</p>
-              <h1 className="mb-6 font-urbanist text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">Electrical Engineering Support for EPC Contractors</h1>
-              <p className="mb-9 max-w-2xl font-jost text-lg leading-relaxed text-white/75">Keentel helps EPC teams deliver utility, renewable, industrial, and mission-critical power projects with coordinated studies, design packages, compliance support, and field-ready engineering.</p>
-              <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="inline-flex rounded-full px-8 py-4 font-jost font-semibold text-white" style={{ background: 'linear-gradient(135deg,#C72E9E,#5B2A86)' }}>Discuss Your EPC Project</Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white py-20 sm:py-24">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
-            <div><p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Engineering Partner</p><h2 className="mb-6 font-urbanist text-3xl font-black leading-tight sm:text-4xl" style={{ color: '#06103C' }}>Engineering That Fits the EPC Delivery Model</h2><p className="mb-5 font-jost text-lg leading-relaxed text-gray-600">EPC schedules depend on accurate interfaces, timely decisions, and deliverables that are ready for procurement and construction. Our licensed engineers work inside your project controls and design workflow to close technical gaps early.</p><p className="font-jost text-lg leading-relaxed text-gray-600">We support greenfield and brownfield substations, generation, renewables, BESS, transmission, industrial plants, and large-load interconnections nationwide.</p></div>
-            <div className="overflow-hidden rounded-3xl shadow-xl"><img src="/images/services/poi-interconnection/who-2-epc.jpeg" alt="EPC engineering and construction coordination" className="h-[420px] w-full object-cover" /></div>
-          </div>
-        </section>
-
-        <section className="py-20 sm:py-24" style={{ background: '#F6F7FB' }}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="mb-12 max-w-3xl"><p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Capabilities</p><h2 className="font-urbanist text-3xl font-black sm:text-4xl" style={{ color: '#06103C' }}>EPC Engineering Services Across the Project Lifecycle</h2></div><div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">{capabilities.map(([title, desc]) => <article key={title} className="rounded-2xl border border-gray-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-xl"><h3 className="mb-3 font-urbanist text-xl font-bold" style={{ color: '#06103C' }}>{title}</h3><p className="font-jost text-sm leading-relaxed text-gray-600">{desc}</p></article>)}</div></div>
-        </section>
-
-        <section className="bg-white py-20 sm:py-24"><div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8"><div className="overflow-hidden rounded-3xl"><img src="/images/services/poi-interconnection/when-4-epc-handoff.jpeg" alt="EPC project handoff and construction support" className="h-[420px] w-full object-cover" /></div><div><p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest" style={{ color: '#A8228A' }}>Project Outcomes</p><h2 className="mb-7 font-urbanist text-3xl font-black sm:text-4xl" style={{ color: '#06103C' }}>Reduce Risk Between Design and Construction</h2><ul className="space-y-4">{outcomes.map(item => <li key={item} className="flex gap-3 font-jost text-gray-700"><span className="font-bold" style={{ color: '#A8228A' }}>✓</span>{item}</li>)}</ul></div></div></section>
-
-        <section className="py-20 text-center" style={{ background: 'linear-gradient(135deg,#06103C,#0B1A5B 55%,#5B2A86)' }}><div className="mx-auto max-w-3xl px-4"><h2 className="mb-5 font-urbanist text-4xl font-black text-white">Need an Engineering Partner for Your Next EPC Project?</h2><p className="mb-9 font-jost text-lg text-white/70">Bring our licensed power engineers into your project early to strengthen scope, coordination, constructability, and compliance.</p><Link href="/contact" className="inline-flex rounded-full px-8 py-4 font-jost font-semibold text-white" style={{ background: '#C72E9E' }}>Contact Our Team</Link></div></section>
-      </main>
-      <Footer />
-    </>
-  )
+  return <><Header /><main className="overflow-x-clip bg-white">
+    <section className="relative flex min-h-[780px] items-end overflow-hidden bg-[#050D31] pt-32 sm:min-h-[820px] lg:min-h-[760px] lg:items-center"><video autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="EPC contractors coordinating power infrastructure construction"><source src="/videos/epc.mp4" type="video/mp4" /></video><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,13,49,.97)_0%,rgba(5,13,49,.88)_43%,rgba(5,13,49,.25)_100%)]" /><div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,13,49,.96)_0%,transparent_58%)] lg:hidden" /><div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:72px_72px]" /><div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:py-24"><div className="max-w-4xl"><div className="mb-6 flex items-center gap-3"><span className="h-px w-10 bg-[#EE58C4]" /><span className="font-jost text-xs font-bold uppercase tracking-[.22em] text-[#F38AD7]">Industries We Serve · EPC Contractors</span></div><h1 className="font-urbanist text-4xl font-black leading-[1.03] tracking-[-.035em] text-white sm:text-5xl lg:text-[4.25rem]">Electrical engineering support for EPC contractors.</h1><p className="mt-7 max-w-2xl font-jost text-base leading-7 text-white/75 sm:text-lg">Keentel helps EPC teams deliver utility, renewable, industrial, and mission-critical power projects with coordinated studies, design packages, compliance support, and field-ready engineering.</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full bg-gradient-to-r from-[#C82DA0] to-[#832478] px-7 font-jost text-sm font-bold text-white">Discuss Your EPC Project <span className="ml-2">→</span></a><a href="#epc-capabilities" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 font-jost text-sm font-bold text-white">Explore capabilities</a></div></div><div className="mt-14 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 sm:grid-cols-4">{[['Concept / IFC','Design phases'],['Studies / Design','Integrated scope'],['Field-ready','Deliverables'],['Energization','Lifecycle support']].map(([v,l])=><div key={l} className="bg-[#07113D]/85 px-4 py-4"><p className="font-urbanist text-sm font-black text-white sm:text-base">{v}</p><p className="mt-1 font-jost text-[.65rem] uppercase tracking-wider text-white/50">{l}</p></div>)}</div></div></section>
+    <section className="py-20 sm:py-24 lg:py-28"><div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20 lg:px-10"><div><p className="font-jost text-xs font-bold uppercase tracking-[.2em] text-[#A8228A]">Engineering partner</p><h2 className="mt-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">Engineering that fits the EPC delivery model.</h2><p className="mt-6 font-jost text-lg leading-8 text-[#343B55]">EPC schedules depend on accurate interfaces, timely decisions, and deliverables that are ready for procurement and construction. Our licensed engineers work inside your project controls and design workflow to close technical gaps early.</p><p className="mt-5 font-jost leading-7 text-gray-600">We support greenfield and brownfield substations, generation, renewables, BESS, transmission, industrial plants, and large-load interconnections nationwide.</p></div><div className="relative min-h-[340px] overflow-hidden sm:min-h-[500px]"><Image src="/images/services/poi-interconnection/who-2-epc.jpeg" alt="EPC engineering and construction coordination" fill sizes="(max-width:1024px) 100vw,55vw" className="object-cover" /></div></div></section>
+    <section id="epc-capabilities" className="bg-[#F3F5FA] py-20 sm:py-24 lg:py-28"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10"><div className="mb-12 grid gap-5 lg:grid-cols-[1fr_.55fr] lg:items-end"><div><p className="font-jost text-xs font-bold uppercase tracking-[.2em] text-[#A8228A]">Project lifecycle support</p><h2 className="mt-4 font-urbanist text-3xl font-black text-[#06103C] sm:text-4xl lg:text-5xl">EPC engineering services from concept through energization.</h2></div><p className="max-w-lg font-jost leading-7 text-gray-600 lg:justify-self-end">Coordinated technical support that protects schedule, constructability, compliance, and handoff quality.</p></div><div className="border-t-2 border-[#06103C]">{capabilities.map(([title,desc],i)=><article key={title} className="grid gap-4 border-b border-[#BFC5D2] py-8 sm:grid-cols-[5rem_1fr] sm:gap-8 sm:py-10 lg:grid-cols-[7rem_.8fr_1.2fr]"><span className="font-urbanist text-4xl font-black text-[#A8228A]/20">0{i+1}</span><h3 className="font-urbanist text-xl font-black leading-tight text-[#06103C] sm:text-2xl">{title}</h3><p className="font-jost leading-7 text-gray-600 sm:col-start-2 lg:col-start-auto">{desc}</p></article>)}</div></div></section>
+    <section className="bg-[#06103C] py-20 sm:py-24 lg:py-28"><div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10"><div className="relative min-h-[330px] overflow-hidden sm:min-h-[470px]"><Image src="/images/services/poi-interconnection/when-4-epc-handoff.jpeg" alt="EPC project handoff and construction support" fill sizes="(max-width:1024px) 100vw,50vw" className="object-cover" /></div><div><p className="font-jost text-xs font-bold uppercase tracking-[.2em] text-[#F075D2]">Project outcomes</p><h2 className="mt-4 font-urbanist text-3xl font-black text-white sm:text-4xl">Reduce risk between design and construction.</h2><div className="mt-8 border-t border-white/20">{outcomes.map((item,i)=><div key={item} className="flex gap-4 border-b border-white/15 py-4"><span className="font-urbanist text-xs font-black text-[#F075D2]">0{i+1}</span><p className="font-jost text-white/75">{item}</p></div>)}</div></div></div></section>
+    <SoftwareTools heading="Our Software Capabilities" /><ContactForm source="epc-contractors" /><WhoWeServed showHeading /><FAQ items={faqs.map(([q,a])=>({q,a}))} eyebrow="EPC Engineering FAQ" title={<>Frequently Asked<br />Questions</>} description="Straight answers about engineering scope, project coordination, construction support, and utility interfaces." />
+    <section className="py-16 sm:py-20"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10"><div className="flex flex-col items-start justify-between gap-7 rounded-[1.75rem] bg-[linear-gradient(115deg,#F6EAF3,#EEF1FA)] p-7 sm:p-10 lg:flex-row lg:items-center"><div><p className="font-jost text-xs font-bold uppercase tracking-[.2em] text-[#A8228A]">Start early</p><h2 className="mt-3 font-urbanist text-2xl font-black text-[#06103C] sm:text-3xl">Need an engineering partner for your next EPC project?</h2><p className="mt-3 font-jost text-gray-600">Bring our licensed power engineers into your project early to strengthen scope, coordination, constructability, and compliance.</p></div><Link href="/contact" className="inline-flex shrink-0 rounded-full bg-[#06103C] px-7 py-4 font-jost text-sm font-bold text-white">Contact Our Team →</Link></div></div></section>
+    <RelatedServiceBlogs terms={['EPC', 'substation', 'power system', 'engineering design', 'commissioning']} title="EPC Engineering Insights" />
+  </main><Footer /></>
 }

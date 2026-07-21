@@ -1,9 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import SoftwareTools from '@/components/sections/SoftwareTools';
+import WhoWeServed from '@/components/service/WhoWeServed';
+import FAQ from '@/components/sections/FAQ';
+import ContactForm from '@/components/sections/ContactForm';
+import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs';
 
 const coreServices = [
   {
@@ -93,80 +98,6 @@ const benefits = [
   },
 ];
 
-const softwareTabs = [
-  {
-    key: 'psse',
-    name: 'PSS®E',
-    logo: '/images/software-logos/psse.png',
-    faqs: [
-      ['What is PSS®E software?', 'PSS®E is a power system simulation software developed by Siemens for analyzing and planning electrical transmission networks.'],
-      ['What is PSS®E used for?', 'Transmission planning, interconnection studies, contingency analysis, stability simulations, and grid expansion planning.'],
-      ['Who uses PSS®E?', 'Electric utilities, transmission planners, system operators, renewable developers, and consulting firms.'],
-      ['Can it model renewables?', 'Yes, including solar plants, wind farms, and battery energy storage systems.'],
-    ],
-  },
-  {
-    key: 'etap',
-    name: 'ETAP',
-    logo: '/images/software-logos/etap.png',
-    faqs: [
-      ['What is ETAP software?', 'An electrical power system engineering platform for design, simulation, analysis, and operation of utility and industrial networks.'],
-      ['What studies can ETAP perform?', 'Power flow, short circuit, arc flash, protection coordination, harmonic, and dynamic stability studies.'],
-      ['What is the ETAP Electrical Digital Twin?', 'A virtual model that mirrors the physical network for predictive simulation and real-time monitoring.'],
-    ],
-  },
-  {
-    key: 'pscad',
-    name: 'PSCAD',
-    logo: '/images/software-logos/pscad.png',
-    faqs: [
-      ['What is PSCAD?', 'An electromagnetic transient (EMT) simulation software used to analyze fast electrical phenomena in power systems.'],
-      ['What is it used for?', 'HVDC studies, converter modeling, renewable inverter simulations, and lightning surge analysis.'],
-    ],
-  },
-  {
-    key: 'powerworld',
-    name: 'PowerWorld',
-    logo: '/images/software-logos/powerworld.jpg',
-    faqs: [
-      ['What is PowerWorld Simulator?', 'An interactive tool for power flow, contingency analysis, and voltage stability studies.'],
-      ['How large a system can it handle?', 'Up to approximately 250,000 buses.'],
-    ],
-  },
-  {
-    key: 'skm',
-    name: 'SKM PTW',
-    logo: '/images/software-logos/skm.png',
-    faqs: [
-      ['What is SKM PowerTools?', 'An electrical engineering platform for power system design, analysis, and safety evaluation.'],
-      ['What is SKM CAPTOR?', "SKM's protective device coordination module using time-current curves."],
-    ],
-  },
-  {
-    key: 'acade',
-    name: 'AutoCAD Elec.',
-    logo: '/images/software-logos/autocad-electrical.png',
-    faqs: [
-      ['Difference from AutoCAD?', 'AutoCAD Electrical provides intelligent automation: wire numbering, component tagging, and error checking.'],
-      ['Suitable for substation design?', 'Yes, including protection schematics, relay panels, and AC/DC diagrams.'],
-    ],
-  },
-  {
-    key: 'aspen',
-    name: 'ASPEN',
-    logo: '/images/software-logos/aspen.png',
-    faqs: [
-      ['What is ASPEN OneLiner used for?', 'Advanced short circuit analysis and relay coordination to validate protection schemes against ANSI, IEC, and NERC standards.'],
-      ['How does ASPEN support renewables?', 'It models inverter-based resources such as solar, wind, and BESS systems.'],
-    ],
-  },
-];
-
-const clientLogos = [
-  'RRC-ae225119', 'PAE-864f5ced', '49-752adf6f', '48-816ccd8f', '47-363a19ec',
-  '46-ff7bc11f', '45-dfb687e0', '44-18370d1d', '43-10240e91',
-];
-
 const faqs = [
   ['What types of utilities does Keentel Engineering support?', 'We support investor-owned utilities, municipal utilities, cooperative utilities, and transmission system operators.'],
   ['What services do utilities typically require?', 'Power system studies, transmission planning, protection coordination studies, substation design, and grid reliability assessments.'],
@@ -180,420 +111,99 @@ const faqs = [
   ['Why do utilities work with engineering consultants?', 'Consultants provide specialized expertise, advanced modeling capabilities, and additional engineering resources to support utility projects.'],
 ];
 
-function SoftwareFaqWidget() {
-  const [active, setActive] = useState('psse');
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-  const tab = softwareTabs.find((t) => t.key === active)!;
-
-  return (
-    <div className="rounded-2xl border bg-white overflow-hidden" style={{ borderColor: '#E6E8F0' }}>
-      <div className="flex flex-wrap justify-center gap-3 p-6 border-b" style={{ borderColor: '#E6E8F0' }}>
-        {softwareTabs.map((t) => (
-          <button
-            key={t.key}
-            onClick={() => {
-              setActive(t.key);
-              setOpenIdx(0);
-            }}
-            className={`flex flex-col items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all ${
-              active === t.key ? 'shadow-md' : ''
-            }`}
-            style={{
-              borderColor: active === t.key ? '#A8228A' : '#E6E8F0',
-              background: active === t.key ? '#FDF5FC' : '#fff',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={t.logo} alt={t.name} className="h-9 max-w-[100px] object-contain" />
-            <span
-              className="font-jost text-[10px] font-bold uppercase tracking-wider"
-              style={{ color: active === t.key ? '#A8228A' : '#999' }}
-            >
-              {t.name}
-            </span>
-          </button>
-        ))}
-      </div>
-      <div className="p-6 md:p-8">
-        {tab.faqs.map(([q, a], i) => (
-          <div key={i} className="border-b last:border-b-0" style={{ borderColor: '#EEF0F8' }}>
-            <button
-              onClick={() => setOpenIdx(openIdx === i ? null : i)}
-              className="w-full flex items-start justify-between gap-4 py-4 text-left"
-            >
-              <span className="font-jost font-bold text-sm" style={{ color: '#06103C' }}>
-                {q}
-              </span>
-              <span
-                className="flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs"
-                style={{
-                  borderColor: openIdx === i ? '#06103C' : '#E6E8F0',
-                  background: openIdx === i ? '#06103C' : 'transparent',
-                  color: openIdx === i ? '#fff' : '#999',
-                }}
-              >
-                {openIdx === i ? '−' : '+'}
-              </span>
-            </button>
-            {openIdx === i && (
-              <p className="font-jost text-sm text-gray-600 pb-4 leading-relaxed">{a}</p>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function FaqAccordion() {
-  const [open, setOpen] = useState<number | null>(0);
-  return (
-    <div className="max-w-3xl mx-auto space-y-3">
-      {faqs.map(([q, a], i) => (
-        <div
-          key={i}
-          className="rounded-xl border bg-white overflow-hidden"
-          style={{ borderColor: '#E6E8F0' }}
-        >
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
-          >
-            <span className="font-jost font-bold text-sm md:text-base" style={{ color: '#06103C' }}>
-              {i + 1}. {q}
-            </span>
-            <span className="flex-shrink-0 text-lg" style={{ color: '#A8228A' }}>
-              {open === i ? '−' : '+'}
-            </span>
-          </button>
-          {open === i && (
-            <p className="font-jost text-sm text-gray-600 px-5 pb-5 leading-relaxed">{a}</p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function ElectricUtilitiesTransmissionPage() {
   return (
     <>
       <Header />
-      <main>
-        {/* Hero */}
-        <section
-          className="min-h-[70vh] flex items-center relative overflow-hidden"
-          style={{ background: '#06103C' }}
-        >
+      <main className="overflow-x-clip bg-white">
+        <section className="relative flex min-h-[780px] items-end overflow-hidden bg-[#050D31] pt-32 sm:min-h-[820px] lg:min-h-[760px] lg:items-center">
           <video src="/videos/Utilities & Transmission Operators.mov" autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="Utilities and transmission power infrastructure" />
-          <div className="absolute inset-0 bg-black/35" />
-          <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20">
-            <div className="max-w-3xl">
-              <span className="font-jost text-sm uppercase tracking-wider" style={{ color: '#A8228A' }}>
-                Industries We Serve
-              </span>
-              <h1 className="font-urbanist font-black text-3xl md:text-4xl text-white mt-4 mb-6 leading-tight">
-                Engineering Support for Reliable, Compliant, and Future Ready Power Systems
-              </h1>
-              <p className="font-jost text-white/80 mb-8">
-                We provide transmission planning, power system studies, substation
-                engineering, renewable energy integration, and NERC compliance support
-                to help utilities maintain reliable, resilient, and efficient power
-                systems.
-              </p>
-              <a
-                href="https://calendly.com/keentel-engineering/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white"
-                style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}
-              >
-                Schedule a Consultation
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Intro */}
-        <section className="py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="font-jost text-gray-600 mb-10 leading-relaxed">
-              At Keentel Engineering, we provide specialized engineering services to
-              electric utilities, transmission owners, and grid operators. Our team
-              supports grid reliability, infrastructure planning, regulatory
-              compliance, and system modernization through advanced power system
-              analysis and engineering solutions.
-            </p>
-            <h2 className="font-urbanist font-black text-2xl md:text-3xl mb-4" style={{ color: '#06103C' }}>
-              Engineering Services for Utilities and Transmission Operators
-            </h2>
-            <p className="font-jost text-gray-600">
-              Utilities require comprehensive engineering support across multiple
-              areas of grid operation and planning. Keentel Engineering provides a
-              wide range of services tailored to the needs of transmission system
-              operators and electric utilities.
-            </p>
-          </div>
-        </section>
-
-        {/* Core services grid */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {coreServices.map((s) => (
-                <div
-                  key={s.title}
-                  className="bg-white rounded-2xl overflow-hidden border hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                  style={{ borderColor: '#E6E8F0' }}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-6">
-                    <h3
-                      className="font-urbanist font-bold text-base mb-3"
-                      style={{ color: '#06103C' }}
-                    >
-                      {s.title}
-                    </h3>
-                    {s.desc && (
-                      <p className="font-jost text-sm text-gray-600 mb-3">{s.desc}</p>
-                    )}
-                    <ul className="font-jost text-sm text-gray-600 space-y-1.5 list-disc pl-4">
-                      {s.items.map((it) => (
-                        <li key={it}>{it}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2
-              className="font-urbanist font-black text-3xl text-center mb-12"
-              style={{ color: '#06103C' }}
-            >
-              Benefits of Working with Keentel Engineering
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((b) => (
-                <div
-                  key={b.title}
-                  className="rounded-2xl border p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  style={{ borderColor: '#E6E8F0' }}
-                >
-                  <div
-                    className="w-20 h-20 rounded-full border-4 mx-auto mb-4 flex items-center justify-center font-urbanist font-bold"
-                    style={{ borderColor: '#8C1C1C', color: '#06103C' }}
-                  >
-                    {b.step}
-                  </div>
-                  <h3 className="font-urbanist font-bold text-base mb-2" style={{ color: '#06103C' }}>
-                    {b.title}
-                  </h3>
-                  <p className="font-jost text-sm text-gray-600">{b.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Supporting utilities */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-urbanist font-black text-2xl md:text-3xl mb-4" style={{ color: '#06103C' }}>
-                Supporting Utilities in a Changing Grid
-              </h2>
-              <p className="font-jost text-gray-600 mb-4">
-                Electric utilities are navigating a rapidly evolving energy
-                landscape. Increased electrification, renewable integration, and
-                grid modernization initiatives require advanced engineering
-                solutions.
-              </p>
-              <p className="font-jost text-gray-600">
-                Keentel Engineering works closely with utilities and transmission
-                operators to deliver engineering studies, system planning support,
-                and infrastructure design that enable a more reliable and resilient
-                electric grid.
-              </p>
-            </div>
-            <div className="rounded-2xl overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/industries/electric-utilities-transmission/grid-techs.webp"
-                alt="Two technicians working on electrical equipment, one using a laptop."
-                className="w-full"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Software FAQ widget */}
-        <section className="py-20 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2
-              className="font-urbanist font-black text-3xl text-center mb-12"
-              style={{ color: '#06103C' }}
-            >
-              Our Software Capabilities
-            </h2>
-            <SoftwareFaqWidget />
-          </div>
-        </section>
-
-        {/* Why choose us */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="font-urbanist font-black text-3xl mb-4" style={{ color: '#06103C' }}>
-              Why Choose Keentel Engineering
-            </h2>
-            <p className="font-jost text-gray-600 mb-10 max-w-2xl">
-              Keentel Engineering delivers practical engineering solutions for
-              transmission systems, substations, renewable energy integration, and
-              power system reliability, helping clients navigate the challenges of
-              a rapidly evolving electric grid.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {[
-                'Expertise in HV, MV, and EHV power systems',
-                'Advanced power system modeling capabilities',
-                'Experience with utility and ISO planning requirements',
-                'Deep understanding of NERC reliability standards',
-                'Practical engineering solutions for complex power system challenges',
-              ].map((t) => (
-                <div
-                  key={t}
-                  className="bg-white rounded-2xl border p-6"
-                  style={{ borderColor: '#E6E8F0' }}
-                >
-                  <h3 className="font-urbanist font-bold text-base" style={{ color: '#06103C' }}>
-                    {t}
-                  </h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA / Contact */}
-        <section className="py-24" style={{ background: '#06103C' }}>
-          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-urbanist font-black text-3xl text-white mb-4">
-                Contact Keentel Engineering
-              </h2>
-              <p className="font-jost text-white/80 mb-4">
-                Whether you are planning transmission upgrades, integrating
-                renewable energy resources, improving grid reliability, or
-                addressing regulatory compliance requirements, Keentel Engineering
-                provides the technical expertise needed to support critical
-                utility infrastructure projects.
-              </p>
-              <p className="font-jost text-white/80 mb-8">
-                Our team works closely with electric utilities, transmission
-                operators, renewable energy developers, and industrial facilities
-                to deliver practical engineering solutions that improve system
-                performance, reliability, and long-term operational success.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://calendly.com/keentel-engineering/15min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white"
-                  style={{ background: 'linear-gradient(135deg, #A8228A, #5B2A86)' }}
-                >
-                  Schedule A Consultation
-                </a>
-                <a
-                  href="tel:813-389-7871"
-                  className="inline-block rounded-full px-8 py-4 font-jost font-semibold text-white border border-white/20"
-                >
-                  813-389-7871
-                </a>
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,13,49,0.97)_0%,rgba(5,13,49,0.88)_42%,rgba(5,13,49,0.28)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,13,49,0.96)_0%,transparent_55%)] lg:hidden" />
+          <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:72px_72px]" />
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 sm:px-8 sm:pb-20 lg:px-10 lg:py-24">
+            <div className="max-w-4xl">
+              <div className="mb-6 flex items-center gap-3"><span className="h-px w-10 bg-[#EE58C4]" /><span className="font-jost text-xs font-bold uppercase tracking-[0.22em] text-[#F38AD7]">Industries We Serve · Utilities & Transmission</span></div>
+              <h1 className="max-w-4xl font-urbanist text-4xl font-black leading-[1.03] tracking-[-0.035em] text-white sm:text-5xl lg:text-[4.25rem]">Engineering support for reliable, compliant, and future-ready power systems.</h1>
+              <p className="mt-7 max-w-2xl font-jost text-base leading-7 text-white/75 sm:text-lg">We provide transmission planning, power system studies, substation engineering, renewable energy integration, and NERC compliance support to help utilities maintain reliable, resilient, and efficient power systems.</p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full bg-gradient-to-r from-[#C82DA0] to-[#832478] px-7 font-jost text-sm font-bold text-white shadow-[0_16px_35px_rgba(168,34,138,.32)] transition hover:-translate-y-0.5">Schedule a Consultation <span className="ml-2">→</span></a>
+                <a href="#utility-services" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/25 bg-white/10 px-7 font-jost text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/15">Explore capabilities</a>
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/industries/electric-utilities-transmission/contact-techs.png"
-                alt="Two technicians working on electrical equipment, one using a laptop."
-                className="w-full"
-              />
+            <div className="mt-14 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 sm:grid-cols-4">
+              {[['EHV / HV / MV', 'System expertise'], ['NERC', 'Compliance support'], ['ISO / RTO', 'Planning alignment'], ['Grid-ready', 'Engineering output']].map(([value, label]) => <div key={label} className="bg-[#07113D]/85 px-4 py-4 backdrop-blur-md sm:px-5"><p className="font-urbanist text-sm font-black text-white sm:text-base">{value}</p><p className="mt-1 font-jost text-[0.65rem] uppercase tracking-wider text-white/50">{label}</p></div>)}
             </div>
           </div>
         </section>
 
-        {/* Clients */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="max-w-2xl mb-10">
-              <h2 className="font-urbanist font-black text-3xl mb-3" style={{ color: '#06103C' }}>
-                Who We&apos;ve Served
-              </h2>
-              <p className="font-jost text-gray-600">
-                Serving utilities, EPCs, developers, and infrastructure
-                organizations supporting critical power systems nationwide.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              {clientLogos.map((logo) => (
-                <div
-                  key={logo}
-                  className="rounded-2xl border flex items-center justify-center p-8 min-h-[150px]"
-                  style={{ borderColor: '#E6E8F0' }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`/images/clients/${logo}.png`}
-                    alt="Client logo"
-                    className="max-h-20 max-w-full object-contain"
-                  />
-                </div>
+        <section className="relative py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20 lg:px-10">
+            <div><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Utility engineering partner</p><h2 className="mt-4 font-urbanist text-3xl font-black leading-tight tracking-[-0.025em] text-[#06103C] sm:text-4xl">Engineering Services for Utilities and Transmission Operators</h2></div>
+            <div className="border-l-2 border-[#A8228A]/20 pl-6 sm:pl-9"><p className="font-jost text-lg leading-8 text-[#343B55]">At Keentel Engineering, we provide specialized engineering services to electric utilities, transmission owners, and grid operators. Our team supports grid reliability, infrastructure planning, regulatory compliance, and system modernization through advanced power system analysis and engineering solutions.</p><p className="mt-5 font-jost leading-7 text-gray-600">Utilities require comprehensive engineering support across multiple areas of grid operation and planning. Keentel Engineering provides a wide range of services tailored to the needs of transmission system operators and electric utilities.</p></div>
+          </div>
+        </section>
+
+        <section id="utility-services" className="bg-[#F3F5FA] py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <div className="mb-12 grid gap-5 lg:grid-cols-[1fr_.55fr] lg:items-end"><div><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">End-to-end capabilities</p><h2 className="mt-4 font-urbanist text-3xl font-black tracking-[-0.025em] text-[#06103C] sm:text-4xl lg:text-5xl">Critical support across the utility lifecycle.</h2></div><p className="max-w-lg font-jost leading-7 text-gray-600 lg:justify-self-end">Explore a coordinated range of planning, compliance, infrastructure, and modeling capabilities built for complex utility environments.</p></div>
+            <div className="border-t-2 border-[#06103C]">
+              {coreServices.map((service, index) => (
+                <article key={service.title} className="grid gap-6 border-b border-[#BFC5D2] py-10 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-16">
+                  <div className="flex items-center gap-4 lg:col-span-1 lg:block lg:self-start">
+                    <span className="font-urbanist text-4xl font-black text-[#A8228A]/20 sm:text-5xl">0{index + 1}</span>
+                    <span className="h-px flex-1 bg-[#A8228A]/30 lg:mt-5 lg:block lg:w-full" />
+                  </div>
+
+                  <div className={`relative min-h-[250px] overflow-hidden sm:min-h-[360px] lg:col-span-5 lg:min-h-[390px] ${index % 2 === 1 ? 'lg:order-3' : ''}`}>
+                    <Image src={service.image} alt={service.title} fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover transition-transform duration-700 hover:scale-[1.025]" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-[#06103C]/10" />
+                  </div>
+
+                  <div className={`lg:col-span-6 ${index % 2 === 1 ? 'lg:order-2 lg:pr-10' : 'lg:pl-6'}`}>
+                    <p className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#A8228A]">Utility capability · 0{index + 1}</p>
+                    <h3 className="mt-3 font-urbanist text-2xl font-black leading-tight tracking-[-0.02em] text-[#06103C] sm:text-3xl lg:text-4xl">{service.title}</h3>
+                    {service.desc && <p className="mt-5 max-w-xl font-jost text-base leading-7 text-gray-600 sm:text-lg">{service.desc}</p>}
+                    <div className="mt-7 grid gap-x-7 gap-y-3 sm:grid-cols-2">
+                      {service.items.map((item) => (
+                        <div key={item} className="flex items-start gap-3 border-t border-[#CDD2DD] pt-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#A8228A]" />
+                          <span className="font-jost text-sm leading-5 text-[#343B55]">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="py-20" style={{ background: '#F7F8FC' }}>
-          <div className="max-w-6xl mx-auto px-6">
-            <h2
-              className="font-urbanist font-black text-3xl text-center mb-12"
-              style={{ color: '#06103C' }}
-            >
-              Frequently Asked Questions
-            </h2>
-            <FaqAccordion />
+        <section className="bg-[#06103C] py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20"><div><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#F075D2]">Why Keentel</p><h2 className="mt-4 font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl">Benefits of Working with Keentel Engineering</h2><p className="mt-5 font-jost leading-7 text-white/60">A disciplined engineering workflow built around defensible analysis, compliance, and utility-ready delivery.</p></div><div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/10 sm:grid-cols-2">{benefits.map((b, index) => <div key={b.title} className="bg-[#091647] p-7 sm:p-8"><div className="flex items-center justify-between"><span className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[#F075D2]">{b.step}</span><span className="font-urbanist text-3xl font-black text-white/10">0{index + 1}</span></div><h3 className="mt-8 font-urbanist text-lg font-bold text-white">{b.title}</h3><p className="mt-3 font-jost text-sm leading-6 text-white/60">{b.desc}</p></div>)}</div></div>
           </div>
         </section>
 
-        {/* Blog CTA (lightweight, links to blog hub) */}
-        <section className="py-20 bg-white text-center">
-          <div className="max-w-2xl mx-auto px-6">
-            <h2 className="font-urbanist font-black text-2xl mb-4" style={{ color: '#06103C' }}>
-              Keentel&apos;s Grid IQ
-            </h2>
-            <p className="font-jost text-gray-600 mb-6">
-              Explore our latest insights on grid reliability, NERC compliance,
-              and power system engineering.
-            </p>
-            <Link
-              href="/blog"
-              className="inline-block rounded-full px-8 py-4 font-jost font-semibold"
-              style={{ background: '#06103C', color: '#fff' }}
-            >
-              View All Articles
-            </Link>
-          </div>
+        <section className="py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10"><div className="relative"><div className="absolute -inset-5 rounded-[2.25rem] bg-[#A8228A]/10" /><div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] shadow-[0_30px_70px_rgba(6,16,60,.18)]"><Image src="/images/industries/electric-utilities-transmission/grid-techs.webp" alt="Two technicians working on electrical equipment, one using a laptop." fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div><div className="absolute -bottom-6 right-4 rounded-2xl bg-[#06103C] px-6 py-5 shadow-xl sm:right-8"><p className="font-urbanist text-xl font-black text-white">Reliable by design.</p><p className="mt-1 font-jost text-xs text-white/55">Planning through modernization</p></div></div><div><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Modern grid demands</p><h2 className="mt-4 font-urbanist text-3xl font-black leading-tight text-[#06103C] sm:text-4xl">Supporting Utilities in a Changing Grid</h2><p className="mt-6 font-jost text-lg leading-8 text-[#343B55]">Electric utilities are navigating a rapidly evolving energy landscape. Increased electrification, renewable integration, and grid modernization initiatives require advanced engineering solutions.</p><p className="mt-5 font-jost leading-7 text-gray-600">Keentel Engineering works closely with utilities and transmission operators to deliver engineering studies, system planning support, and infrastructure design that enable a more reliable and resilient electric grid.</p></div></div>
         </section>
+
+        <SoftwareTools heading="Our Software Capabilities" />
+
+        <ContactForm source="electric-utilities-transmission" />
+
+        <WhoWeServed showHeading />
+
+        <FAQ
+          items={faqs.map(([q, a]) => ({ q, a }))}
+          eyebrow="Utility Engineering FAQ"
+          title={<>Frequently Asked<br />Questions</>}
+          description="Straight answers to common questions about utility studies, planning, compliance, and grid modernization."
+        />
+
+        <section className="py-16 sm:py-20"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10"><div className="flex flex-col items-start justify-between gap-7 rounded-[1.75rem] bg-[linear-gradient(115deg,#F6EAF3,#EEF1FA)] p-7 sm:p-10 lg:flex-row lg:items-center"><div><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Keentel&apos;s Grid IQ</p><h2 className="mt-3 font-urbanist text-2xl font-black text-[#06103C] sm:text-3xl">Engineering insight for a changing grid.</h2><p className="mt-3 font-jost text-gray-600">Explore our latest insights on grid reliability, NERC compliance, and power system engineering.</p></div><Link href="/blog" className="inline-flex min-h-13 shrink-0 items-center justify-center rounded-full bg-[#06103C] px-7 py-4 font-jost text-sm font-bold text-white transition hover:-translate-y-0.5">View All Articles <span className="ml-2">→</span></Link></div></div></section>
+        <RelatedServiceBlogs terms={['utility', 'transmission', 'grid reliability', 'NERC']} title="Utility & Transmission Insights" />
       </main>
       <Footer />
     </>

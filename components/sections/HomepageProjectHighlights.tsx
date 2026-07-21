@@ -20,9 +20,14 @@ export default function HomepageProjectHighlights() {
           </div>
           <Link href="/clients-and-projects" className="inline-flex w-full items-center justify-center rounded-full bg-[#06103C] px-7 py-4 font-jost font-semibold text-white transition hover:bg-[#A8228A] sm:w-auto">View Client &amp; Projects <span className="ml-2" aria-hidden="true">→</span></Link>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6 xl:grid-cols-5">
           {projects.map((project, index) => (
-            <article key={project.title} className={`group rounded-3xl border border-[#E4E7EF] bg-[#F7F8FB] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#A8228A]/30 hover:shadow-[0_18px_45px_rgba(6,16,60,0.09)] sm:p-7 ${index < 2 ? 'lg:col-span-1' : ''}`}>
+            <article
+              key={project.title}
+              className={`group flex min-h-full flex-col rounded-3xl border border-[#E4E7EF] bg-[#F7F8FB] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#A8228A]/30 hover:shadow-[0_18px_45px_rgba(6,16,60,0.09)] sm:p-7 ${
+                index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'
+              } ${index === projects.length - 1 ? 'md:col-span-2 lg:col-span-3' : ''} xl:col-span-1`}
+            >
               <div className="mb-8 flex items-start justify-between gap-4">
                 <p className="font-urbanist text-3xl font-black text-[#A8228A] sm:text-4xl">{project.value}</p>
                 <span className="font-urbanist text-sm font-black text-[#06103C]/20">0{index + 1}</span>

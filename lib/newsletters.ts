@@ -170,11 +170,16 @@ const ercotMarketUpdate: Newsletter = {
 }
 
 export async function getAllNewsletters(): Promise<Newsletter[]> {
-  const newsletters: Newsletter[] = await client.fetch(
-    `*[_type == "newsletter"] | order(order desc, publishDate desc) {
-      _id, title, slug, edition, publishDate, subtitle, excerpt, heroImage, stats, order
-    }`
-  );
+  let newsletters: Newsletter[] = [];
+  try {
+    newsletters = await client.fetch(
+      `*[_type == "newsletter"] | order(order desc, publishDate desc) {
+        _id, title, slug, edition, publishDate, subtitle, excerpt, heroImage, stats, order
+      }`
+    );
+  } catch {
+    // Local newsletters keep the archive usable when the CMS is unavailable.
+  }
   const locals = [ercotMarketUpdate, ...localNewsletters];
   const localSlugs = new Set(locals.map((newsletter) => newsletter.slug.current));
   const merged = [...locals, ...newsletters.filter((newsletter) => !localSlugs.has(newsletter.slug.current))]

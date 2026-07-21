@@ -19,12 +19,16 @@ export interface CaseStudy {
 }
 
 export async function getAllCaseStudies(): Promise<CaseStudy[]> {
-  return client.fetch(
-    `*[_type == "caseStudy"] | order(category asc, order asc) {
-      _id, title, slug, category, subtitle, client, region, cardImage,
-      background, challenges, solution, outcome, stack, order
-    }`
-  );
+  try {
+    return await client.fetch(
+      `*[_type == "caseStudy"] | order(category asc, order asc) {
+        _id, title, slug, category, subtitle, client, region, cardImage,
+        background, challenges, solution, outcome, stack, order
+      }`
+    );
+  } catch {
+    return [];
+  }
 }
 
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {

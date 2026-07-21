@@ -65,7 +65,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-3">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" aria-label="Keentel Engineering home" className="inline-block mb-4">
               {/* Original logo color — no filter */}
               <img
                 src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10006-f79e5500-307w.png"

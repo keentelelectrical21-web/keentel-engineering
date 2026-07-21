@@ -5,13 +5,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const services = [
-  { short: 'Studies', title: 'Power System Studies', desc: 'Load flow, short circuit, protection coordination, arc flash, harmonics, transient stability, grounding, and cable thermal analysis.', href: '/service/power-system-studies', image: '/images/services/power-system-studies/overview-engineers.jpg', scope: 'PSS®E · ETAP · PSCAD', proof: 'Utility-ready study packages' },
-  { short: 'Substations', title: 'Substation & Electrical Design', desc: 'Primary and secondary HV/MV design, one-lines, layouts, P&C schematics, relay settings, CT/VT sizing, and IEC 61850 automation.', href: '/service/substation-design', image: '/images/services/substation-design/type-transmission.png', scope: 'HV · MV · IEC 61850', proof: 'Construction-ready deliverables' },
-  { short: 'POI', title: 'Transmission Interconnection', desc: 'POI screening, power flow, transient stability, and affected-system support across ERCOT, CAISO, PJM, SPP, and other organized markets.', href: '/service/poi-interconnection-engineering-support', image: '/images/services/poi-interconnection/sunset-towers-hero2.jpeg', scope: 'ERCOT · SPP · PJM · CAISO', proof: 'From screening through approval' },
-  { short: 'RMS + EMT', title: 'Dynamic & EMT Modeling', desc: 'Dynamic load and PSCAD/EMT model development, fault ride-through demonstration, validation, and RMS-versus-EMT benchmarking.', href: '/service/power-system-studies', image: '/images/services/power-system-studies/Transmission-Level RMS & EMT Modeling.jpg', scope: 'PSCAD · PSS®E · Model validation', proof: 'Defensible performance evidence' },
-  { short: 'Compliance', title: 'NERC Compliance Services', desc: 'FAC-008, PRC, TPL, and MOD testing and modeling, with audit support led by a former NERC Regional Entity Audit Team Lead.', href: '/service/nerc-compliance', image: '/images/industries/electric-utilities-transmission/card-nerc-compliance.webp', scope: 'MOD · PRC · FAC · TPL', proof: 'Audit-ready documentation' },
-  { short: 'Large Loads', title: 'Data Centers, BESS & Renewables', desc: 'Electrical design and interconnection for data centers through 1 GW scale, battery storage, solar, wind, and hybrid facilities.', href: '/service/utility-scale-renewable-energy', image: '/images/industries/renewable-interconnection-engineering/solar-wind-bess.webp', scope: '1 GW · Solar · Wind · BESS', proof: 'Grid-scale integration expertise' },
-  { short: 'Field Delivery', title: 'SCADA, Testing & Commissioning', desc: 'SCADA and transmission-line engineering, testing and commissioning up to 765 kV, and practical field support through energization.', href: '/services', image: '/images/services/substation-design/expertise-scada.png', scope: 'SCADA · Protection · 765 kV', proof: 'Field-to-control-room support' },
+  { short: 'POI', title: 'POI Interconnection Support', desc: 'Interconnection strategy, power flow, transient stability, and affected-system support across ERCOT, CAISO, PJM, SPP, and other organized markets.', href: '/service/poi-interconnection-engineering-support', image: '/images/services/service-poi.jpg', scope: 'ERCOT · SPP · PJM · CAISO' },
+  { short: 'Substations', title: 'Substation Design Services', desc: 'Primary and secondary HV/MV design, one-lines, layouts, P&C schematics, relay settings, CT/VT sizing, and IEC 61850 automation.', href: '/service/substation-design', image: '/images/services/service-substation.png', scope: 'HV · MV · IEC 61850' },
+  { short: 'Studies', title: 'EHV, HV & MV Power Studies', desc: 'Load flow, short circuit, protection coordination, arc flash, harmonics, transient stability, grounding, and cable thermal analysis.', href: '/service/power-system-studies', image: '/images/services/service-power-system.jpg', scope: 'PSS®E · ETAP · PSCAD' },
+  { short: "Owner's Engineer", title: "Owner's Engineer Services", desc: 'Independent technical oversight, design reviews, procurement support, and project coordination from development through commissioning.', href: '/service/owners-engineer', image: '/images/services/service-owners-engineer.jpg', scope: 'Design · Procurement · Delivery' },
+  { short: 'Compliance', title: 'NERC Compliance Services', desc: 'FAC-008, PRC, TPL, and MOD testing and modeling, with experienced audit preparation and compliance support.', href: '/service/nerc-compliance', image: '/images/services/service-nerc.jpg', scope: 'MOD · PRC · FAC · TPL' },
+  { short: 'Solar', title: 'Utility Scale Solar Engineering', desc: 'Complete electrical engineering and grid-integration support for reliable, compliant utility-scale solar facilities.', href: '/service/utility-scale-solar-farms', image: '/images/services/service-solar.png', scope: 'Solar · Collection · Interconnection' },
+  { short: 'BESS', title: 'Utility Scale BESS Engineering', desc: 'Electrical design, studies, controls coordination, and interconnection engineering for grid-scale battery storage projects.', href: '/service/utility-scale-battery-storage', image: '/images/services/service-bess.jpg', scope: 'BESS · Controls · Grid Integration' },
+  { short: 'MEP', title: 'MEP Engineering Services', desc: 'Integrated mechanical, electrical, plumbing, and fire-protection engineering for complex commercial and industrial facilities.', href: '/service/mep-engineering', image: '/images/services/service-mep.jpg', scope: 'Mechanical · Electrical · Plumbing' },
+  { short: 'Wind', title: 'Utility Scale Wind Engineering', desc: 'Electrical engineering, collection-system design, studies, and interconnection support for utility-scale wind farms.', href: '/service/utility-scale-wind-farms', image: '/images/services/service-wind.jpg', scope: 'Wind · Collection · Interconnection' },
 ]
 
 export default function Services() {
@@ -35,10 +37,17 @@ export default function Services() {
         </div>
 
         <div className="rounded-[2rem] border border-[#DDE1EA] bg-[#06103C] p-2.5 shadow-[0_30px_80px_rgba(6,16,60,0.18)] sm:p-3 lg:p-4">
-          <div className="mb-2 flex gap-2 overflow-x-auto p-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden" role="tablist" aria-label="Engineering services">
-            {services.map((service, index) => (
-              <button key={service.title} type="button" role="tab" aria-selected={activeIndex === index} onClick={() => setActiveIndex(index)} className={`min-w-max rounded-full border px-4 py-2.5 font-jost text-xs font-semibold transition ${activeIndex === index ? 'border-[#E44BB8] bg-[#A8228A] text-white shadow-[0_6px_18px_rgba(168,34,138,0.3)]' : 'border-white/25 bg-white/[0.08] text-white/[0.82]'}`}>{String(index + 1).padStart(2, '0')} · {service.short}</button>
-            ))}
+          <div className="mb-2 rounded-[1.5rem] border border-white/10 bg-[#07113D] p-3 lg:hidden" role="tablist" aria-label="Engineering services">
+            <div className="flex items-center justify-between px-3 py-2.5"><span className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/[0.68]">Select capability</span><span className="font-urbanist text-xs font-black text-[#F075D2]">01—09</span></div>
+            <div className="grid gap-1 sm:grid-cols-2">
+              {services.map((service, index) => (
+                <button key={service.title} type="button" role="tab" aria-selected={activeIndex === index} onClick={() => setActiveIndex(index)} className={`flex min-h-14 items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-300 ${activeIndex === index ? 'border-[#E44BB8]/55 bg-[linear-gradient(100deg,rgba(168,34,138,0.3),rgba(255,255,255,0.06))]' : 'border-transparent bg-white/[0.025]'}`}>
+                  <span className={`font-urbanist text-xs font-black ${activeIndex === index ? 'text-[#F075D2]' : 'text-white/50'}`}>{String(index + 1).padStart(2, '0')}</span>
+                  <span className="min-w-0 flex-1"><span className="block font-urbanist text-xs font-bold leading-tight text-white">{service.title}</span><span className={`mt-1 block font-jost text-[0.6rem] uppercase tracking-wider ${activeIndex === index ? 'text-[#F075D2]' : 'text-white/45'}`}>{service.short}</span></span>
+                  <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${activeIndex === index ? 'bg-[#E44BB8] shadow-[0_0_10px_rgba(228,75,184,0.8)]' : 'bg-white/35'}`} />
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#09164A] lg:min-h-[570px] lg:grid-cols-[1.4fr_0.6fr]">
@@ -51,15 +60,14 @@ export default function Services() {
                 <div className="mb-4 flex flex-wrap items-center gap-3"><span className="rounded-full border border-[#F075D2]/35 bg-[#A8228A]/30 px-3 py-1.5 font-jost text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#F6A5E3]">Capability {String(activeIndex + 1).padStart(2, '0')}</span><span className="font-jost text-xs font-semibold text-white/[0.88]">{active.scope}</span></div>
                 <h3 className="max-w-2xl font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">{active.title}</h3>
                 <p className="mt-4 max-w-2xl font-jost text-sm leading-relaxed text-white/[0.92] sm:text-base lg:text-lg">{active.desc}</p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6">
                   <Link href={active.href} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-to-r from-[#C72E9E] to-[#8D237F] px-6 py-3 font-jost text-sm font-semibold text-white shadow-[0_10px_26px_rgba(168,34,138,0.28)] transition hover:-translate-y-0.5 sm:w-auto">Explore This Service <span className="ml-2" aria-hidden="true">→</span></Link>
-                  <span className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 bg-[#07113D]/75 px-5 py-3 text-center font-jost text-xs font-semibold text-white/[0.9] backdrop-blur-md sm:text-sm">✓ {active.proof}</span>
                 </div>
               </div>
             </div>
 
             <div className="hidden border-l border-white/10 bg-[#07113D] p-3 lg:flex lg:flex-col" role="tablist" aria-label="Engineering services">
-              <div className="mb-2 flex items-center justify-between px-4 py-3"><span className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/[0.68]">Select capability</span><span className="font-urbanist text-xs font-black text-[#F075D2]">01—07</span></div>
+              <div className="mb-2 flex items-center justify-between px-4 py-3"><span className="font-jost text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/[0.68]">Select capability</span><span className="font-urbanist text-xs font-black text-[#F075D2]">01—09</span></div>
               <div className="flex flex-1 flex-col gap-1.5">
                 {services.map((service, index) => (
                   <button key={service.title} type="button" role="tab" aria-selected={activeIndex === index} onClick={() => setActiveIndex(index)} onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)} className={`group/item flex flex-1 items-center gap-4 rounded-2xl border px-4 text-left transition-all duration-300 ${activeIndex === index ? 'border-[#E44BB8]/45 bg-[linear-gradient(100deg,rgba(168,34,138,0.28),rgba(255,255,255,0.05))] shadow-[0_8px_24px_rgba(0,0,0,0.16)]' : 'border-transparent hover:border-white/10 hover:bg-white/[0.045]'}`}>

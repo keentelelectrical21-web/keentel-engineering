@@ -79,7 +79,7 @@ export default function Header() {
           <div className="flex items-center justify-between gap-4">
 
             {/* Logo — original colors, no filter */}
-            <Link href="/" className="flex items-center flex-shrink-0">
+            <Link href="/" aria-label="Keentel Engineering home" className="flex items-center flex-shrink-0">
               <img
                 src="/images/site%20logo/site-logo.png?v=1"
                 alt="Keentel Engineering"
@@ -191,7 +191,9 @@ export default function Header() {
         <div className={`absolute top-0 right-0 h-full w-full sm:w-96 flex flex-col transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ background: '#fff', borderLeft: '1px solid #E6E8F0' }}>
 
           <div className="flex items-center justify-between px-4 py-5 sm:px-6" style={{ borderBottom: '1px solid #E6E8F0' }}>
-            <img src="/images/site%20logo/site-logo.png?v=1" alt="Keentel Engineering" className="h-8 w-auto" />
+            <Link href="/" aria-label="Keentel Engineering home" onClick={() => setIsOpen(false)}>
+              <img src="/images/site%20logo/site-logo.png?v=1" alt="Keentel Engineering" className="h-8 w-auto" />
+            </Link>
             <button onClick={() => setIsOpen(false)} className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: '#F4F5F9', color: '#0B1A5B' }}>
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>

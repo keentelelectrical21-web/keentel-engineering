@@ -14,6 +14,36 @@ type Post = {
   featuredImage?: unknown
 }
 
+const fallbackPosts: Post[] = [
+  {
+    _id: 'fallback-large-load-interconnection',
+    title: 'NYISO Interconnection Study Guide for Large Loads',
+    slug: { current: 'nyiso-interconnection-study-large-loads' },
+    excerpt: 'A practical guide to interconnection studies, POI strategy, and modeling requirements for large-load and generation projects.',
+    categoryLabel: 'Interconnection',
+    publishedAt: '2026-06-10',
+    featuredImage: '/images/blog-home/nyiso-interconnection.png',
+  },
+  {
+    _id: 'fallback-ercot-reliability',
+    title: 'ERCOT Ride Through Requirements for Large Loads',
+    slug: { current: 'ercot-ride-through-requirements' },
+    excerpt: 'Engineering guidance for data centers, large electronic loads, grid reliability, and ERCOT interconnection compliance.',
+    categoryLabel: 'Grid Reliability',
+    publishedAt: '2026-06-09',
+    featuredImage: '/images/blog-home/ercot-ride-through.png',
+  },
+  {
+    _id: 'fallback-power-systems',
+    title: 'Cable Ampacity and Sizing: Thermal Limits Explained',
+    slug: { current: 'cable-ampacity-sizing' },
+    excerpt: 'Cable sizing, conductor thermal limits, and derating considerations for reliable utility and industrial power systems.',
+    categoryLabel: 'Power Systems',
+    publishedAt: '2026-06-08',
+    featuredImage: '/images/blog-home/cable-ampacity.png',
+  },
+]
+
 export default function RelatedServiceBlogs({ terms, title = 'Related Technical Insights' }: { terms: string[]; title?: string }) {
   const [posts, setPosts] = useState<Post[]>([])
 
@@ -29,7 +59,13 @@ export default function RelatedServiceBlogs({ terms, title = 'Related Technical 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms.join('|')])
 
-  if (!posts.length) return null
+  const visiblePosts = posts.length ? posts : [...fallbackPosts].sort((a, b) => {
+    const score = (post: Post) => {
+      const searchable = `${post.title} ${post.excerpt ?? ''} ${post.categoryLabel ?? ''}`.toLowerCase()
+      return terms.reduce((total, term) => total + (searchable.includes(term.toLowerCase()) ? 1 : 0), 0)
+    }
+    return score(b) - score(a)
+  })
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24">
@@ -42,11 +78,11 @@ export default function RelatedServiceBlogs({ terms, title = 'Related Technical 
           <Link href="/blog" className="font-jost text-sm font-bold text-[#A8228A]">View All Blogs →</Link>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {visiblePosts.slice(0, 3).map((post) => (
             <article key={post._id} className="group overflow-hidden rounded-2xl border border-[#E6E8F0] bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
               <Link href={`/${post.slug.current}`} className="block">
                 <div className="h-52 overflow-hidden bg-[#F6F7FB] sm:h-56">
-                  {Boolean(post.featuredImage) && <img src={urlFor(post.featuredImage).width(900).height(560).url()} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
+                  {Boolean(post.featuredImage) && <img src={typeof post.featuredImage === 'string' ? post.featuredImage : urlFor(post.featuredImage).width(900).height(560).url()} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
                 </div>
                 <div className="p-6">
                   <div className="mb-3 flex flex-wrap items-center gap-2 font-jost text-xs text-gray-500">
