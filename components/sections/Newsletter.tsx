@@ -42,7 +42,7 @@ export default function Newsletter() {
             <p className="text-xl font-jost leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.8)' }}>
               Monthly insights on NERC compliance, IEEE standards, renewable energy integration, and power system engineering — straight from our licensed engineering team.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className="grid grid-cols-1 gap-4 min-[520px]:grid-cols-3 min-[520px]:gap-3">
               {[
                 {
                   icon: <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>,
@@ -59,7 +59,7 @@ export default function Newsletter() {
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
                   {item.icon}
-                  <span className="font-jost text-base font-medium">{item.text}</span>
+                  <span className="whitespace-nowrap font-jost text-sm font-medium">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -105,7 +105,7 @@ export default function Newsletter() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-urbanist font-black text-2xl text-white mb-2">You're subscribed!</h3>
+                <h3 className="font-urbanist font-black text-2xl text-white mb-2">You&apos;re subscribed!</h3>
                 <p className="font-jost text-base" style={{ color: 'rgba(255,255,255,0.7)' }}>Welcome to Grid IQ. Watch your inbox for the next edition.</p>
               </div>
             )}

@@ -150,35 +150,21 @@ export default function Footer() {
         {/* Certifications & Memberships */}
         <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] shadow-[0_20px_55px_rgba(0,0,0,0.14)]">
           <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[#A8228A]/10 blur-3xl" aria-hidden="true" />
-          <div className="relative flex flex-col gap-3 border-b border-white/10 px-5 py-5 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between sm:px-7 lg:px-8">
-            <div className="flex items-center gap-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#E44BB8] shadow-[0_0_14px_rgba(228,75,184,0.75)]" aria-hidden="true" />
-              <h3 className="font-urbanist text-lg font-bold text-white sm:text-xl">Certifications &amp; Memberships</h3>
-            </div>
-            <p className="max-w-lg font-jost text-xs leading-relaxed text-white/50 min-[480px]:text-right sm:text-sm">
-              Credentialed, accountable, and aligned with the standards that shape the power industry.
-            </p>
-          </div>
-
           <div className="relative grid grid-cols-2 gap-px bg-white/10 min-[520px]:grid-cols-3 lg:grid-cols-5">
-            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
-              <div role="img" aria-label="Florida Engineering Society" className="h-16 w-[120px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '0 center' }} />
-              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">Florida Engineering Society</p>
+            <div className="flex min-h-32 items-center justify-center bg-[#07113D] px-3 py-6 sm:min-h-40">
+              <div role="img" aria-label="Florida Engineering Society" className="h-20 w-[150px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '469px 80px', backgroundPosition: '0 center' }} />
             </div>
 
-            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
-              <div role="img" aria-label="D-U-N-S Registered" className="h-16 w-[82px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '-118px center' }} />
-              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">D-U-N-S Registered</p>
+            <div className="flex min-h-32 items-center justify-center bg-[#07113D] px-3 py-6 sm:min-h-40">
+              <div role="img" aria-label="D-U-N-S Registered" className="h-20 w-[103px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '469px 80px', backgroundPosition: '-148px center' }} />
             </div>
 
-            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
-              <div role="img" aria-label="Registered Professional Engineer" className="h-16 w-[62px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '-195px center' }} />
-              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">Professional Engineer</p>
+            <div className="flex min-h-32 items-center justify-center bg-[#07113D] px-3 py-6 sm:min-h-40">
+              <div role="img" aria-label="Registered Professional Engineer" className="h-20 w-[78px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '469px 80px', backgroundPosition: '-244px center' }} />
             </div>
 
-            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
-              <div role="img" aria-label="IEEE Senior Member" className="h-16 w-[132px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: 'right center' }} />
-              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">IEEE Senior Member</p>
+            <div className="flex min-h-32 items-center justify-center bg-[#07113D] px-3 py-6 sm:min-h-40">
+              <div role="img" aria-label="IEEE Senior Member" className="h-20 w-[165px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '469px 80px', backgroundPosition: 'right center' }} />
             </div>
 
             <a
@@ -186,14 +172,13 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View Keentel Engineering's BBB A+ accreditation"
-                className="group col-span-2 flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5 transition hover:bg-[#0A174A] min-[520px]:col-span-1"
+                className="group col-span-2 flex min-h-32 items-center justify-center bg-[#07113D] px-3 py-6 transition hover:bg-[#0A174A] min-[520px]:col-span-1 sm:min-h-40"
               >
                 <img
                   src="/images/trusted.gif"
                   alt="BBB Accredited Business with A+ rating"
-                  className="h-16 w-auto max-w-full rounded-lg object-contain shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition group-hover:scale-[1.025]"
+                  className="h-20 w-auto max-w-full rounded-lg object-contain shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition group-hover:scale-[1.025]"
                 />
-                <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40 transition group-hover:text-[#F6A5E3]">BBB A+ Accredited</p>
             </a>
           </div>
         </div>
