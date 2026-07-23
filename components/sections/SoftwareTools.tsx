@@ -74,7 +74,7 @@ export default function SoftwareTools({ heading = 'Our Engineering Tools', theme
             { val: '10', label: 'Software Platforms', sub: 'Industry-leading tools' },
             { val: '27+', label: 'Years AutoCAD', sub: 'Since inception' },
             { val: '100%', label: 'In-House Capability', sub: 'No outsourcing' },
-            { val: 'All 3', label: 'U.S. Interconnections', sub: 'WECC, ERCOT, Eastern' },
+            { val: 'All 3', label: 'U.S. Interconnections', sub: 'Eastern, Western, Texas' },
           ].map((s, i) => (
             <div key={i} className={`rounded-2xl border p-5 sm:p-6 ${isLight ? 'border-[#E0E4ED] bg-white shadow-[0_8px_24px_rgba(6,16,60,0.05)]' : 'border-white/10 bg-white/[0.05]'}`}>
               <p className={`font-urbanist font-black text-3xl mb-1 ${isLight ? 'text-[#A8228A]' : 'text-white'}`}>{s.val}</p>
