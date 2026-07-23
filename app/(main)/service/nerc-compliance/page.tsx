@@ -8,6 +8,7 @@ import ContactForm from '@/components/sections/ContactForm'
 import SoftwareTools from '@/components/sections/SoftwareTools'
 import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
+import NERCAlert from '@/components/sections/NERCAlert'
 import WhoWeServed from '@/components/service/WhoWeServed'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
 import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
@@ -227,6 +228,8 @@ export default function NercCompliancePage() {
         </section>
 
         {/* ═══ 2. WHAT ARE NERC COMPLIANCE SERVICES ═══ */}
+        <NERCAlert />
+
         <section className="py-20 sm:py-24 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
@@ -338,20 +341,6 @@ export default function NercCompliancePage() {
                   <p className="font-jost text-sm leading-relaxed text-white/95">{c.d}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* NERC Level 3 Alert engineering support */}
-        <section className="py-20 sm:py-24" style={{ background: '#20266F' }}>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-            <div>
-              <p className="mb-3 font-jost text-xs font-bold uppercase tracking-widest text-[#E548B5]">Specialized Compliance Support</p>
-              <h2 className="font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl">NERC Level 3 Alert Engineering Support</h2>
-            </div>
-            <div>
-              <p className="mb-7 font-jost text-base leading-relaxed text-white/85">We specialize in NERC Level 3 Alert compliance services, helping U.S.-based generator owners meet evolving reliability standards. Our team stays ahead of regulatory developments, offering peace of mind and technical accuracy in every submission.</p>
-              <Link href="/nerc-alert-level-3-ibr" className="inline-flex rounded-lg px-6 py-3 font-jost font-semibold text-white transition hover:-translate-y-0.5" style={{ background: '#A8228A' }}>NERC Level 3 Compliance</Link>
             </div>
           </div>
         </section>

@@ -3,7 +3,6 @@ import Hero from '@/components/sections/Hero'
 import HomepageTrustBar from '@/components/sections/HomepageTrustBar'
 import HomepageProjectCTA from '@/components/sections/HomepageProjectCTA'
 import About from '@/components/sections/About'
-import NERCAlert from '@/components/sections/NERCAlert'
 import Services from '@/components/sections/Services'
 import Industries from '@/components/sections/Industries'
 import Precision from '@/components/sections/Precision'
@@ -26,7 +25,6 @@ export default function HomePage() {
         <Hero />
         <HomepageTrustBar />
         <About />
-        <NERCAlert />
         <Services />
         <Industries />
         <Precision />
