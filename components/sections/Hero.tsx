@@ -18,13 +18,6 @@ const slides = [
     primary: { label: 'Explore POI Services', href: '/service/poi-interconnection-engineering-support' },
     secondary: { label: 'View Project Highlights', href: '/clients-and-projects' },
   },
-  {
-    label: 'NERC compliance',
-    title: <>Audit-Ready.</>,
-    description: 'Compliance support led by a former NERC Regional Entity Audit Team Lead, with hands-on expertise across MOD, PRC, FAC-008, and Operations & Planning standards.',
-    primary: { label: 'Explore NERC Services', href: '/service/nerc-compliance' },
-    secondary: { label: 'Talk to a Compliance Engineer', href: 'https://calendly.com/keentel-engineering/15min', external: true },
-  },
 ] as const
 
 export default function Hero() {
@@ -86,15 +79,10 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 h-1/2 w-1/2 rounded-full bg-[radial-gradient(circle,rgba(167,34,138,0.2)_0%,transparent_70%)] blur-3xl" />
       </div>
 
-      <div className="relative z-10 flex flex-1 items-center pb-8 pt-32 sm:pt-36 lg:pt-44">
+      <div className="relative z-10 flex flex-1 items-center pb-8 pt-28 min-[390px]:pt-32 sm:pt-36 lg:pt-44">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 sm:mb-6 sm:px-4">
-              <span className="h-2 w-2 flex-shrink-0 rounded-full bg-green-400 motion-safe:animate-pulse" />
-              <span className="font-jost text-xs font-medium text-white/75 sm:text-sm">U.S. Licensed Electrical Power Engineers</span>
-            </div>
-
-            <div className="relative h-[29.25rem] sm:h-[23rem] lg:h-[27.75rem]">
+            <div className="relative h-[31rem] min-[390px]:h-[29.25rem] sm:h-[23rem] lg:h-[27.75rem]">
               {slides.map((item, index) => (
                 <div
                   key={item.label}
@@ -160,13 +148,31 @@ export default function Hero() {
 
             <div>
               <p className="mb-3 font-jost text-xs uppercase tracking-widest text-white/50 sm:mb-4">Trusted and Certified</p>
-              <Image
-                src="/images/home/certifications.png"
-                alt="BBB Accredited, IEEE Member, NERC Certified, Florida Licensed"
-                width={670}
-                height={147}
-                className="h-auto max-h-20 w-auto max-w-full object-contain opacity-90 brightness-0 invert sm:max-h-24"
-              />
+              <div className="flex max-w-4xl flex-wrap items-center gap-4 sm:gap-6">
+                <Image
+                  src="/images/home/certifications.png"
+                  alt="IEEE Senior Member, NERC Certified, and Florida Licensed"
+                  width={670}
+                  height={147}
+                  className="h-auto w-full max-w-[31rem] object-contain object-left opacity-90 brightness-0 invert sm:w-auto sm:max-w-[35rem]"
+                />
+                <a
+                  href="https://www.bbb.org/us/fl/tampa/profile/electrical-engineer/keentel-engineering-0653-90446480#licensing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Keentel Engineering's BBB A+ accreditation"
+                  className="inline-flex shrink-0 rounded-xl border border-white/15 bg-white p-1 shadow-[0_8px_24px_rgba(6,16,60,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(6,16,60,0.32)] sm:rounded-2xl sm:p-1.5"
+                >
+                  <Image
+                    src="/images/trusted.gif"
+                    alt="BBB Accredited Business with A+ rating"
+                    width={395}
+                    height={276}
+                    unoptimized
+                    className="h-12 w-auto rounded-lg object-contain sm:h-16 sm:rounded-xl"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>

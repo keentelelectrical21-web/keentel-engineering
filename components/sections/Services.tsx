@@ -82,9 +82,6 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[['50', 'States covered'], ['100+', 'Combined years'], ['1 GW', 'Large-load scale'], ['765 kV', 'Field experience']].map(([value, label]) => <div key={label} className="rounded-2xl border border-[#DDE1EA] bg-white px-4 py-4 sm:px-5"><p className="font-urbanist text-xl font-black text-[#A8228A] sm:text-2xl">{value}</p><p className="mt-1 font-jost text-xs font-medium text-gray-500 sm:text-sm">{label}</p></div>)}
-        </div>
       </div>
     </section>
   )

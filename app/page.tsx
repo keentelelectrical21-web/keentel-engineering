@@ -9,6 +9,7 @@ import Industries from '@/components/sections/Industries'
 import Precision from '@/components/sections/Precision'
 import SoftwareTools from '@/components/sections/SoftwareTools'
 import HomepageProjectHighlights from '@/components/sections/HomepageProjectHighlights'
+import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Testimonials from '@/components/sections/Testimonials'
 import YouTube from '@/components/sections/YouTube'
 import BlogSection from '@/components/sections/Blog'
@@ -29,8 +30,9 @@ export default function HomePage() {
         <Services />
         <Industries />
         <Precision />
-        <SoftwareTools />
+        <SoftwareCapabilities />
         <HomepageProjectHighlights />
+        <SoftwareTools />
         <Testimonials />
         <YouTube />
         <HomepageProjectCTA />

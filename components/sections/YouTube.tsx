@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 const videos = [
   { id: '5qG16nbMmEk', ep: '01', title: 'Utility Interconnection for Large Loads', sub: 'Grid stability, load modeling and ride-through' },
@@ -14,15 +14,19 @@ const videos = [
 ]
 
 export default function YouTube() {
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const topScrollRef = useRef<HTMLDivElement>(null)
+  const bottomScrollRef = useRef<HTMLDivElement>(null)
 
   const scroll = (dir: 'left' | 'right') => {
-    if (!scrollRef.current) return
-    scrollRef.current.scrollBy({ left: dir === 'left' ? -380 : 380, behavior: 'smooth' })
+    const distance = dir === 'left' ? -360 : 360
+    topScrollRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
+    bottomScrollRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
   }
 
+  const rows = [videos.slice(0, 4), videos.slice(4, 8)]
+
   return (
-    <section className="py-24 overflow-hidden" style={{ background: '#06103C' }}>
+    <section className="overflow-hidden py-16 sm:py-20 lg:py-24" style={{ background: '#06103C' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -36,7 +40,7 @@ export default function YouTube() {
               Field-tested engineering: NERC, PJM, ERCOT, IBR modeling, data-center interconnection — straight to our channel.
             </p>
           </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:flex-shrink-0">
             <button onClick={() => scroll('left')} aria-label="Previous" className="w-11 h-11 rounded-full flex items-center justify-center transition-all hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontSize: '20px' }}>
               ‹
             </button>
@@ -47,7 +51,7 @@ export default function YouTube() {
               href="https://www.youtube.com/@KeentelEngineering"
               target="_blank"
               rel="noreferrer"
-              className="ml-2 text-white font-bold text-sm px-5 py-3 rounded-full transition-all hover:-translate-y-0.5"
+              className="w-full rounded-full px-5 py-3 text-center text-sm font-bold text-white transition-all hover:-translate-y-0.5 min-[420px]:ml-2 min-[420px]:w-auto"
               style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}
             >
               Subscribe on YouTube
@@ -57,45 +61,46 @@ export default function YouTube() {
 
       </div>
 
-      {/* Scrollable cards - full width */}
-      <div
-        ref={scrollRef}
-        className="flex gap-5 overflow-x-auto pb-4 px-4 sm:px-8 lg:px-16"
-        style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {videos.map((v) => (
-          <a
-            key={v.id}
-            href={`https://www.youtube.com/watch?v=${v.id}`}
-            target="_blank"
-            rel="noreferrer"
-            className="flex-shrink-0 rounded-2xl overflow-hidden group transition-all hover:-translate-y-1 hover:shadow-2xl"
-            style={{ width: '340px', scrollSnapAlign: 'start', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', textDecoration: 'none', color: '#fff' }}
+      {/* Two independently scrollable rows: four videos per row on desktop. */}
+      <div className="mx-auto max-w-7xl space-y-5 px-4 sm:px-6 lg:px-8">
+        {rows.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            ref={rowIndex === 0 ? topScrollRef : bottomScrollRef}
+            className="flex gap-4 overflow-x-auto pb-2"
+            style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            aria-label={`${rowIndex === 0 ? 'First' : 'Second'} row of YouTube videos`}
           >
-            {/* Thumbnail */}
-            <div className="relative overflow-hidden" style={{ paddingBottom: '56.25%', background: '#000' }}>
-              <img
-                src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
-                alt={v.title}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%)' }} />
-              {/* Play button */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #C72E9E, #A8228A)' }}>
-                <div style={{ width: 0, height: 0, borderLeft: '16px solid white', borderTop: '10px solid transparent', borderBottom: '10px solid transparent', marginLeft: '4px' }} />
-              </div>
-              {/* EP badge */}
-              <div className="absolute bottom-2.5 right-2.5 text-xs font-bold px-2 py-0.5 rounded" style={{ background: 'rgba(0,0,0,0.7)', color: '#fff' }}>
-                EP {v.ep}
-              </div>
-            </div>
-            {/* Info */}
-            <div className="p-5">
-              <h3 className="font-urbanist font-bold text-base leading-snug mb-1">{v.title}</h3>
-              <p className="text-sm font-jost" style={{ color: 'rgba(255,255,255,0.55)' }}>{v.sub}</p>
-            </div>
-          </a>
+            {row.map((v) => (
+              <a
+                key={v.id}
+                href={`https://www.youtube.com/watch?v=${v.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="group w-[84vw] max-w-[340px] flex-none snap-start overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] text-white transition-all hover:-translate-y-1 hover:shadow-2xl sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none lg:w-[calc((100%_-_3rem)/4)]"
+              >
+                <div className="relative aspect-video overflow-hidden bg-black">
+                  <img
+                    src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                    alt={v.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/50" />
+                  <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#C72E9E] to-[#A8228A] shadow-lg transition-transform group-hover:scale-110 sm:h-14 sm:w-14">
+                    <div className="ml-1 h-0 w-0 border-b-[9px] border-l-[14px] border-t-[9px] border-b-transparent border-l-white border-t-transparent sm:border-b-[10px] sm:border-l-[16px] sm:border-t-[10px]" />
+                  </div>
+                  <div className="absolute bottom-2.5 right-2.5 rounded bg-black/70 px-2 py-0.5 text-xs font-bold text-white">
+                    EP {v.ep}
+                  </div>
+                </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="mb-1 font-urbanist text-base font-bold leading-snug">{v.title}</h3>
+                  <p className="font-jost text-sm text-white/55">{v.sub}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         ))}
       </div>
 

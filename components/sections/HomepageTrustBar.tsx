@@ -3,7 +3,7 @@ const trustItems = [
   'P.E. Stamped Deliverables — All 50 States',
   'ERCOT IMRE Registered Entity',
   'Certified Minority Business Enterprise',
-  'IEEE',
+  'IEEE Senior Member',
   'Florida Engineering Society',
   'D-U-N-S® Registered',
 ]

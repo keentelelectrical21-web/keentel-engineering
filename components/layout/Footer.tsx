@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <h4 className="font-urbanist font-semibold text-sm uppercase tracking-wider mb-4" style={{ color: '#fff' }}>Company</h4>
             <ul className="space-y-2.5">{company.map((l) => <li key={l.href}><Link href={l.href} className="text-sm font-jost hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>{l.name}</Link></li>)}</ul>
           </div>
@@ -101,7 +101,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h4 className="mb-4 font-urbanist text-sm font-semibold uppercase tracking-wider text-white">Contact Us</h4>
             <div className="space-y-4">
               <a href="tel:+18133897871" className="group flex min-h-10 items-center gap-4 text-white transition hover:text-[#F6A5E3]">
@@ -110,14 +110,11 @@ export default function Footer() {
                 </span>
                 <span className="min-w-0 font-jost text-sm font-bold">813-389-7871</span>
               </a>
-              <div className="flex min-h-10 items-start gap-4">
+              <div className="flex min-h-10 items-start gap-3 sm:gap-4">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#C72E9E] to-[#79269A] text-white shadow-[0_7px_18px_rgba(168,34,138,0.25)]" aria-hidden="true">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m4 4 16 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" /><path d="m22 6-10 7L2 6" /></svg>
                 </span>
-                <div className="min-w-0 pt-0.5 font-jost text-xs font-semibold leading-5 text-white sm:text-[0.8rem]">
-                  <a href="mailto:contact@keentelengineering.com" className="block break-all transition hover:text-[#F6A5E3]">contact@keentelengineering.com</a>
-                  <a href="mailto:BD@keentelengineering.com" className="block break-all transition hover:text-[#F6A5E3]">BD@keentelengineering.com</a>
-                </div>
+                <a href="mailto:contact@keentelengineering.com" className="min-w-0 whitespace-nowrap pt-1.5 font-jost text-[0.68rem] font-semibold text-white transition hover:text-[#F6A5E3] min-[380px]:text-xs">contact@keentelengineering.com</a>
               </div>
               <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-white px-4 py-2.5 text-center font-jost text-xs font-black text-[#06103C] shadow-[0_8px_22px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#F6E9F3] sm:w-auto sm:min-w-[190px]">
                 Schedule a Consultation
@@ -151,27 +148,61 @@ export default function Footer() {
         </div>
 
         {/* Certifications & Memberships */}
-        <div className="mb-10">
-          <p className="mb-5 text-xs font-bold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Certifications &amp; Memberships</p>
-          <div className="flex flex-col items-center gap-7 rounded-2xl px-4 py-6 sm:flex-row sm:justify-center sm:gap-10 sm:px-7 lg:gap-14" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <img
-              src="/images/cert-logos.png"
-              alt="Florida Engineering Society, Registered Professional Engineer, and IEEE Senior Member"
-              className="h-auto w-full max-w-[670px] object-contain"
-            />
-            <img
-              src="/images/logo.webp"
-              alt="Florida Engineering Society"
-              className="h-20 w-28 shrink-0 object-contain sm:h-24 sm:w-32"
-            />
+        <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] shadow-[0_20px_55px_rgba(0,0,0,0.14)]">
+          <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[#A8228A]/10 blur-3xl" aria-hidden="true" />
+          <div className="relative flex flex-col gap-3 border-b border-white/10 px-5 py-5 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between sm:px-7 lg:px-8">
+            <div className="flex items-center gap-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#E44BB8] shadow-[0_0_14px_rgba(228,75,184,0.75)]" aria-hidden="true" />
+              <h3 className="font-urbanist text-lg font-bold text-white sm:text-xl">Certifications &amp; Memberships</h3>
+            </div>
+            <p className="max-w-lg font-jost text-xs leading-relaxed text-white/50 min-[480px]:text-right sm:text-sm">
+              Credentialed, accountable, and aligned with the standards that shape the power industry.
+            </p>
+          </div>
+
+          <div className="relative grid grid-cols-2 gap-px bg-white/10 min-[520px]:grid-cols-3 lg:grid-cols-5">
+            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
+              <div role="img" aria-label="Florida Engineering Society" className="h-16 w-[120px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '0 center' }} />
+              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">Florida Engineering Society</p>
+            </div>
+
+            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
+              <div role="img" aria-label="D-U-N-S Registered" className="h-16 w-[82px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '-118px center' }} />
+              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">D-U-N-S Registered</p>
+            </div>
+
+            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
+              <div role="img" aria-label="Registered Professional Engineer" className="h-16 w-[62px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: '-195px center' }} />
+              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">Professional Engineer</p>
+            </div>
+
+            <div className="flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5">
+              <div role="img" aria-label="IEEE Senior Member" className="h-16 w-[132px] bg-no-repeat" style={{ backgroundImage: 'url(/images/cert-logos.png)', backgroundSize: '375px 64px', backgroundPosition: 'right center' }} />
+              <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40">IEEE Senior Member</p>
+            </div>
+
+            <a
+                href="https://www.bbb.org/us/fl/tampa/profile/electrical-engineer/keentel-engineering-0653-90446480#licensing"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Keentel Engineering's BBB A+ accreditation"
+                className="group col-span-2 flex min-h-36 flex-col items-center justify-center gap-4 bg-[#07113D] px-3 py-5 transition hover:bg-[#0A174A] min-[520px]:col-span-1"
+              >
+                <img
+                  src="/images/trusted.gif"
+                  alt="BBB Accredited Business with A+ rating"
+                  className="h-16 w-auto max-w-full rounded-lg object-contain shadow-[0_8px_24px_rgba(0,0,0,0.2)] transition group-hover:scale-[1.025]"
+                />
+                <p className="text-center font-jost text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/40 transition group-hover:text-[#F6A5E3]">BBB A+ Accredited</p>
+            </a>
           </div>
         </div>
 
         {/* Legal utility links */}
         <nav aria-label="Legal" className="mb-8 border-t border-white/10 pt-6">
-          <div className="mx-auto grid max-w-2xl grid-cols-3 items-stretch">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch min-[390px]:grid-cols-3">
             {legal.map((item, index) => (
-              <div key={item.href} className={`flex items-center ${index > 0 ? 'border-l border-white/15' : ''}`}>
+              <div key={item.href} className={`flex items-center ${index > 0 ? 'border-t border-white/10 min-[390px]:border-l min-[390px]:border-t-0 min-[390px]:border-white/15' : ''}`}>
                 <Link href={item.href} className="inline-flex min-h-11 w-full items-center justify-center rounded-lg px-1.5 text-center font-jost text-[0.68rem] font-medium leading-4 text-white/[0.68] transition hover:bg-white/[0.05] hover:text-white min-[390px]:px-3 min-[390px]:text-xs sm:text-sm">
                   {item.name}
                 </Link>
@@ -184,13 +215,6 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-3 pt-6 sm:flex-row sm:items-center" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex w-full flex-col items-start gap-3 text-left sm:w-auto sm:flex-row sm:items-center">
             <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>Copyright 1995-2026 Keentel Engineering · All Rights Reserved</p>
-            <span className="hidden sm:block text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>·</span>
-            <p className="text-xs font-jost" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Developed & managed by{' '}
-              <a href="https://dexoradigital.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                Dexora Digital
-              </a>
-            </p>
           </div>
           <div className="hidden sm:flex items-center gap-2">
             {socials.map((s) => (
