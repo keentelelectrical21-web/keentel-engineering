@@ -53,7 +53,7 @@ export default function About() {
   }, [])
 
   const stats = [
-    { value: 32, suffix: '', label: 'Engineers', desc: 'Led by experienced senior directors and managers.', delay: 0 },
+    { value: 32, suffix: '', label: 'Electrical Power Engineers', desc: 'Led by experienced senior directors and managers.', delay: 0 },
     { value: 150, suffix: '+', label: 'Combined Years', desc: 'Deep power-industry engineering experience across the team.', delay: 100 },
     { value: 50, suffix: '', label: 'State Coverage', desc: 'P.E. stamped deliverables available nationwide.', delay: 200 },
     { value: 98, suffix: '%', label: 'Repeat Clients', desc: 'Utilities, developers, OEMs, and engineering partners return.', delay: 300 },
