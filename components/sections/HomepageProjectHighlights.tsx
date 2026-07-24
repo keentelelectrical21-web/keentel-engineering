@@ -20,7 +20,7 @@ export default function HomepageProjectHighlights() {
             <h2 className="font-urbanist text-4xl font-black leading-tight text-[#0B1230] sm:text-5xl">Project Highlights</h2>
             <p className="mt-4 font-jost text-sm leading-relaxed text-gray-500 sm:text-base">Client names and locations are withheld for confidentiality. Detailed case studies are available upon request.</p>
           </div>
-          <Link href="/clients-and-projects" className="inline-flex w-full items-center justify-center rounded-full bg-[#06103C] px-7 py-4 font-jost font-semibold text-white transition hover:bg-[#A8228A] sm:w-auto">View Client &amp; Projects <span className="ml-2" aria-hidden="true">→</span></Link>
+          <Link href="/clients-and-projects" className="inline-flex w-full items-center justify-center rounded-full bg-[#06103C] px-7 py-4 font-jost font-semibold text-white transition hover:bg-[#A8228A] sm:w-auto">View Client &amp; Projects</Link>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-6">
           {projects.map((project, index) => (
