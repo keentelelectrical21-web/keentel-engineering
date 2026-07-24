@@ -114,3 +114,25 @@ main > div > section:not([class*="min-h-"]) {
   padding-top: clamp(2.5rem, 3.5vw, 3.75rem) !important;
   padding-bottom: clamp(2.5rem, 3.5vw, 3.75rem) !important;
 }
+img[src*="cert-logos-nspe"] {
+  width: auto !important;
+  height: 3rem !important;
+  max-width: 100% !important;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  img[src*="cert-logos-nspe"] {
+    height: 4rem !important;
+  }
+}
+
+img.hero-certifications {
+  height: 3.75rem !important;
+}
+
+@media (min-width: 640px) {
+  img.hero-certifications {
+    height: 5rem !important;
+  }
+}

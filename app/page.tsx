@@ -29,8 +29,8 @@ export default function HomePage() {
         <Industries />
         <Precision />
         <SoftwareCapabilities />
-        <HomepageProjectHighlights />
         <SoftwareTools />
+        <HomepageProjectHighlights />
         <Testimonials />
         <YouTube />
         <HomepageProjectCTA />

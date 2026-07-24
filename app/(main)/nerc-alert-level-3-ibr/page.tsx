@@ -155,7 +155,7 @@ export default function NercAlertLevel3IbrPage() {
               </div>
               <div className="mt-9 max-w-3xl border-t border-white/15 pt-6 sm:mt-11 sm:pt-7">
                 <p className="mb-4 font-jost text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/45">Certifications &amp; Memberships</p>
-                <Image src="/images/cert-logos.png" alt="BBB Accredited, IEEE Member, NERC Certified, Florida Licensed" width={640} height={180} className="h-auto max-h-16 w-auto max-w-full object-contain brightness-0 invert sm:max-h-24" />
+                <Image src="/images/cert-logos-nspe.png" alt="NSPE, D-U-N-S Registered, Registered Professional Engineer, IEEE Senior Member, and BBB A+ Accredited" width={911} height={147} className="h-auto max-h-16 w-auto max-w-full object-contain sm:max-h-24" />
               </div>
             </div>
           </div>

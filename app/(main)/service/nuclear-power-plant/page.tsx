@@ -63,7 +63,7 @@ export default function NuclearPowerPlantPage() {
           <div className="mt-12 max-w-3xl border-t border-white/10 pt-8">
             <p className="mb-5 font-jost text-xs font-semibold uppercase tracking-widest text-white/50">Certifications &amp; Memberships</p>
             <div className="inline-block max-w-full rounded-2xl px-4 py-4 sm:px-6 sm:py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
-              <img src="/images/cert-logos.png" alt="BBB Accredited IEEE Member NERC Certified FL Licensed" className="h-20 w-auto max-w-full object-contain sm:h-24" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }} />
+              <img src="/images/cert-logos-nspe.png" alt="BBB Accredited IEEE Member NERC Certified FL Licensed" className="h-20 w-auto max-w-full object-contain sm:h-24" onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }} />
             </div>
           </div>
         </div>

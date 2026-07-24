@@ -1,7 +1,5 @@
 'use client'
 
-import { useRef } from 'react'
-
 const videos = [
   { id: '5qG16nbMmEk', ep: '01', title: 'Utility Interconnection for Large Loads', sub: 'Grid stability, load modeling and ride-through' },
   { id: '8GAWzqbEITQ', ep: '02', title: 'How AI Data Centers Are Reshaping U.S. Electricity', sub: 'NERC 2025 explained' },
@@ -14,15 +12,6 @@ const videos = [
 ]
 
 export default function YouTube() {
-  const topScrollRef = useRef<HTMLDivElement>(null)
-  const bottomScrollRef = useRef<HTMLDivElement>(null)
-
-  const scroll = (dir: 'left' | 'right') => {
-    const distance = dir === 'left' ? -360 : 360
-    topScrollRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
-    bottomScrollRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
-  }
-
   const rows = [videos.slice(0, 4), videos.slice(4, 8)]
 
   return (
@@ -41,12 +30,6 @@ export default function YouTube() {
             </p>
           </div>
           <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:flex-shrink-0">
-            <button onClick={() => scroll('left')} aria-label="Previous" className="w-11 h-11 rounded-full flex items-center justify-center transition-all hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontSize: '20px' }}>
-              ‹
-            </button>
-            <button onClick={() => scroll('right')} aria-label="Next" className="w-11 h-11 rounded-full flex items-center justify-center transition-all hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', fontSize: '20px' }}>
-              ›
-            </button>
             <a
               href="https://www.youtube.com/@KeentelEngineering"
               target="_blank"
@@ -66,7 +49,6 @@ export default function YouTube() {
         {rows.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            ref={rowIndex === 0 ? topScrollRef : bottomScrollRef}
             className="flex gap-4 overflow-x-auto pb-2"
             style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             aria-label={`${rowIndex === 0 ? 'First' : 'Second'} row of YouTube videos`}

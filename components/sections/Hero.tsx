@@ -60,7 +60,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[900px] flex-col overflow-hidden bg-[#06103C] sm:min-h-[860px] lg:min-h-[840px]"
+      className="relative flex min-h-[900px] flex-col overflow-hidden bg-[#06103C]"
       aria-roledescription="carousel"
       aria-label="Featured Keentel Engineering services"
       onMouseEnter={() => setIsHovered(true)}
@@ -79,7 +79,7 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 h-1/2 w-1/2 rounded-full bg-[radial-gradient(circle,rgba(167,34,138,0.2)_0%,transparent_70%)] blur-3xl" />
       </div>
 
-      <div className="relative z-10 flex flex-1 items-center pb-8 pt-28 min-[390px]:pt-32 sm:pt-36 lg:pt-44">
+      <div className="relative z-10 flex flex-1 items-center py-24 min-[390px]:py-28 sm:py-32 lg:py-28">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="relative h-[31rem] min-[390px]:h-[29.25rem] sm:h-[23rem] lg:h-[27.75rem]">
@@ -147,31 +147,15 @@ export default function Hero() {
             </div>
 
             <div>
-              <p className="mb-3 font-jost text-xs uppercase tracking-widest text-white/50 sm:mb-4">Trusted and Certified</p>
-              <div className="flex max-w-4xl flex-wrap items-center gap-4 sm:gap-6">
+              <p className="mb-5 font-jost text-xs uppercase tracking-widest text-white/50 sm:mb-6">Certifications &amp; Memberships</p>
+              <div className="flex max-w-4xl flex-wrap items-center gap-5 sm:gap-7">
                 <Image
-                  src="/images/home/certifications.png"
-                  alt="IEEE Senior Member, NERC Certified, and Florida Licensed"
-                  width={670}
+                  src="/images/cert-logos-nspe.png"
+                  alt="NSPE, D-U-N-S Registered, Registered Professional Engineer, and IEEE Senior Member"
+                  width={911}
                   height={147}
-                  className="h-auto w-full max-w-[31rem] object-contain object-left opacity-90 brightness-0 invert sm:w-auto sm:max-w-[35rem]"
+                  className="hero-certifications h-auto w-full max-w-[38rem] object-contain object-left opacity-95 sm:w-auto sm:max-w-[44rem]"
                 />
-                <a
-                  href="https://www.bbb.org/us/fl/tampa/profile/electrical-engineer/keentel-engineering-0653-90446480#licensing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View Keentel Engineering's BBB A+ accreditation"
-                  className="inline-flex shrink-0 rounded-xl border border-white/15 bg-white p-1 shadow-[0_8px_24px_rgba(6,16,60,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(6,16,60,0.32)] sm:rounded-2xl sm:p-1.5"
-                >
-                  <Image
-                    src="/images/trusted.gif"
-                    alt="BBB Accredited Business with A+ rating"
-                    width={395}
-                    height={276}
-                    unoptimized
-                    className="h-12 w-auto rounded-lg object-contain sm:h-16 sm:rounded-xl"
-                  />
-                </a>
               </div>
             </div>
           </div>

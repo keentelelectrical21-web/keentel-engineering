@@ -338,7 +338,7 @@ export default function ServicesPage() {
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
                 <div className="inline-block rounded-2xl px-6 py-5" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                   <img
-                    src="/images/cert-logos.png"
+                    src="/images/cert-logos-nspe.png"
                     alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
                     className="h-20 sm:h-24 object-contain"
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}

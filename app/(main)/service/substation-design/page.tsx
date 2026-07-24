@@ -116,7 +116,7 @@ export default function SubstationDesignPage() {
                 <p className="text-white/50 text-xs uppercase tracking-widest mb-5 font-jost font-semibold">Certifications &amp; Memberships</p>
                 <div className="block w-full rounded-2xl px-4 py-5 sm:inline-block sm:w-auto sm:px-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
                   <img
-                    src="/images/cert-logos.png"
+                    src="/images/cert-logos-nspe.png"
                     alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
                     className="h-auto max-h-20 w-full object-contain sm:h-24 sm:w-auto sm:max-h-24"
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }}
