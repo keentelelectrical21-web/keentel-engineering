@@ -90,7 +90,7 @@ export default function AboutPage() {
     { name: 'Florida Licensed PE', detail: 'Professional Engineer' },
     { name: 'Florida Unlimited EC', detail: 'Electrical Contractor' },
     { name: 'Certified Minority Business Enterprise', detail: 'MBE' },
-    { name: 'ERCOT IMRE Registered Entity', detail: 'D-U-N-S Registered and Florida Engineering Society' },
+    { name: 'ERCOT IMRE Registered Entity', detail: 'D-U-N-S Registered and NSPE Member' },
   ]
 
   return (

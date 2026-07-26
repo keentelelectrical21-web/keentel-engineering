@@ -4,7 +4,7 @@ const trustItems = [
   'ERCOT IMRE Registered Entity',
   'Certified Minority Business Enterprise',
   'IEEE Senior Member',
-  'Florida Engineering Society',
+  'National Society of Professional Engineers (NSPE)',
   'D-U-N-S® Registered',
 ]
 

@@ -1,6 +1,9 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 const videos = [
+  { id: 'iK9KC73rFRg', ep: 'NEW', title: 'The Keentel Engineering Series — Electrical Power Engineering', sub: 'Power-system engineering insights from Keentel Engineering' },
   { id: '5qG16nbMmEk', ep: '01', title: 'Utility Interconnection for Large Loads', sub: 'Grid stability, load modeling and ride-through' },
   { id: '8GAWzqbEITQ', ep: '02', title: 'How AI Data Centers Are Reshaping U.S. Electricity', sub: 'NERC 2025 explained' },
   { id: 'C9tZQM-x_Ho', ep: '03', title: 'PJM Interconnection Explained', sub: 'How data centers connect to the grid' },
@@ -12,7 +15,25 @@ const videos = [
 ]
 
 export default function YouTube() {
-  const rows = [videos.slice(0, 4), videos.slice(4, 8)]
+  const [activeVideo, setActiveVideo] = useState<(typeof videos)[number] | null>(null)
+  const rows = [videos.slice(0, 4), videos.slice(4)]
+
+  useEffect(() => {
+    if (!activeVideo) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveVideo(null)
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [activeVideo])
 
   return (
     <section className="overflow-hidden py-16 sm:py-20 lg:py-24" style={{ background: '#06103C' }}>
@@ -54,12 +75,12 @@ export default function YouTube() {
             aria-label={`${rowIndex === 0 ? 'First' : 'Second'} row of YouTube videos`}
           >
             {row.map((v) => (
-              <a
+              <button
                 key={v.id}
-                href={`https://www.youtube.com/watch?v=${v.id}`}
-                target="_blank"
-                rel="noreferrer"
-                className="group w-[84vw] max-w-[340px] flex-none snap-start overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] text-white transition-all hover:-translate-y-1 hover:shadow-2xl sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none lg:w-[calc((100%_-_3rem)/4)]"
+                type="button"
+                onClick={() => setActiveVideo(v)}
+                aria-label={`Play ${v.title}`}
+                className="group w-[84vw] max-w-[340px] flex-none snap-start overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] text-left text-white transition-all hover:-translate-y-1 hover:border-[#C72E9E]/50 hover:shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F075D2] sm:w-[calc((100%_-_1rem)/2)] sm:max-w-none lg:w-[calc((100%_-_3rem)/4)]"
               >
                 <div className="relative aspect-video overflow-hidden bg-black">
                   <img
@@ -73,18 +94,56 @@ export default function YouTube() {
                     <div className="ml-0.5 h-0 w-0 border-b-[7px] border-l-[11px] border-t-[7px] border-b-transparent border-l-white border-t-transparent" />
                   </div>
                   <div className="absolute bottom-2.5 right-2.5 rounded bg-black/70 px-2 py-0.5 text-xs font-bold text-white">
-                    EP {v.ep}
+                    {v.ep === 'NEW' ? 'NEW' : `EP ${v.ep}`}
                   </div>
                 </div>
                 <div className="p-4 sm:p-5">
                   <h3 className="mb-1 font-urbanist text-base font-bold leading-snug">{v.title}</h3>
                   <p className="font-jost text-sm text-white/55">{v.sub}</p>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         ))}
       </div>
+
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#020718]/90 p-3 backdrop-blur-md sm:p-6"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="youtube-player-title"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setActiveVideo(null)
+          }}
+        >
+          <div className="w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-[#06103C] shadow-[0_30px_100px_rgba(0,0,0,0.65)] sm:rounded-3xl">
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4">
+              <h3 id="youtube-player-title" className="line-clamp-2 font-urbanist text-sm font-bold text-white sm:text-lg">
+                {activeVideo.title}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setActiveVideo(null)}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.07] text-2xl leading-none text-white transition hover:border-[#F075D2]/60 hover:bg-white/[0.12]"
+                aria-label="Close video player"
+              >
+                ×
+              </button>
+            </div>
+            <div className="aspect-video w-full bg-black">
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
+                title={activeVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <style jsx>{`
         div::-webkit-scrollbar { display: none; }

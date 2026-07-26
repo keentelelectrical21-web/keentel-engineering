@@ -140,7 +140,7 @@ export default function IndustriesPage() {
               <div className="mt-8">
                 <p className="mb-3 text-xs font-bold uppercase tracking-widest text-white/70">Certifications &amp; Memberships</p>
                 <div className="inline-flex max-w-full rounded-2xl border border-white/20 bg-black/20 px-3 py-3 sm:px-5 sm:py-4">
-                  <img src="/images/home/certifications.png" alt="BBB Accredited, IEEE Senior Member, Florida Engineering Society and NERC certifications" className="h-auto max-h-14 w-auto max-w-full object-contain sm:max-h-20" />
+                  <img src="/images/home/certifications.png" alt="BBB Accredited, IEEE Senior Member, NSPE member and NERC certifications" className="h-auto max-h-14 w-auto max-w-full object-contain sm:max-h-20" />
                 </div>
               </div>
             </div>
