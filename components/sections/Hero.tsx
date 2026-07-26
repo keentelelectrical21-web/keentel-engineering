@@ -8,14 +8,14 @@ const slides = [
     label: 'Engineering certainty',
     title: <>We Don&apos;t Just Design Systems.<br /><span className="gradient-text">We Engineer Certainty.</span></>,
     description: 'EHV, HV, and MV electrical engineering—from POI interconnection and utility-scale solar, wind, and BESS to NERC-compliant infrastructure delivered across all 50 states.',
-    primary: { label: 'Book a 15-Minute Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
+    primary: { label: 'Book a Consultation', href: 'https://calendly.com/keentel-engineering/15min', external: true },
     secondary: { label: 'Our Capabilities', href: '/services' },
   },
   {
     label: 'Data center interconnection',
     title: <>Interconnecting the Grid&apos;s<br /><span className="gradient-text">Largest New Loads</span></>,
     description: "Supporting a 1 GW hyperscale data center interconnection in ERCOT, with detailed EMT modeling under SPP's HILL framework and grid-performance analysis.",
-    primary: { label: 'Book a 15-Minute Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
+    primary: { label: 'Book a Consultation', href: 'https://calendly.com/keentel-engineering/15min', external: true },
     secondary: { label: 'View Project Highlights', href: '/clients-and-projects' },
   },
 ] as const
