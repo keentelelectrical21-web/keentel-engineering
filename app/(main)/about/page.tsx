@@ -461,7 +461,7 @@ export default function AboutPage() {
           </div>
           <div className="mb-8 flex min-h-28 items-center justify-center overflow-hidden rounded-3xl px-6 py-6 shadow-lg sm:px-12" style={{ background: 'linear-gradient(135deg, #06103C, #18296F)' }}>
             <img
-              src="/images/cert-logos-nspe.png"
+              src="/images/cert-logos-hero-white-spaced-v3.png"
               alt="BBB Accredited IEEE Member NERC Certified FL Licensed"
               className="h-auto max-h-20 w-auto max-w-full object-contain"
               style={{ opacity: 0.96 }}

@@ -10,11 +10,16 @@ const supabase = createClient(
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json()
-    if (!email) return NextResponse.json({ error: 'Email required' }, { status: 400 })
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
+
+    if (!isValidEmail) {
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+    }
 
     const { error } = await supabase
       .from('newsletter_subscribers')
-      .upsert({ email, subscribed_at: new Date().toISOString() }, { onConflict: 'email' })
+      .upsert({ email: normalizedEmail, subscribed_at: new Date().toISOString() }, { onConflict: 'email' })
 
     if (error) throw error
     return NextResponse.json({ ok: true })

@@ -7,12 +7,12 @@ import Link from 'next/link'
 const services = [
   { short: 'POI', title: 'POI Interconnection Support', desc: 'Interconnection strategy, power flow, transient stability, and affected-system support across ERCOT, CAISO, PJM, SPP, and other organized markets.', href: '/service/poi-interconnection-engineering-support', image: '/images/services/service-poi.jpg', scope: 'ERCOT · SPP · PJM · CAISO' },
   { short: 'Substations', title: 'Substation Design Services', desc: 'Primary and secondary HV/MV design, one-lines, layouts, P&C schematics, relay settings, CT/VT sizing, and IEC 61850 automation.', href: '/service/substation-design', image: '/images/services/service-substation.png', scope: 'HV · MV · IEC 61850' },
-  { short: 'Studies', title: 'EHV, HV & MV Power Studies', desc: 'Load flow, short circuit, protection coordination, arc flash, harmonics, transient stability, grounding, and cable thermal analysis.', href: '/service/power-system-studies', image: '/images/services/service-power-system.jpg', scope: 'PSS®E · ETAP · PSCAD' },
-  { short: "Owner's Engineer", title: "Owner's Engineer Services", desc: 'Independent technical oversight, design reviews, procurement support, and project coordination from development through commissioning.', href: '/service/owners-engineer', image: '/images/services/service-owners-engineer.jpg', scope: 'Design · Procurement · Delivery' },
+  { short: 'Studies', title: 'EHV, HV & MV Power Studies', desc: 'Load flow, short circuit, protection coordination, arc flash, harmonics, transient stability, grounding, and cable thermal analysis.', href: '/service/power-system-studies', image: '/images/services/power-system-studies/overview-engineers.jpg', scope: 'PSS®E · ETAP · PSCAD' },
+  { short: "Owner's Engineer", title: "Owner's Engineer Services", desc: 'Independent technical oversight, design reviews, procurement support, and project coordination from development through commissioning.', href: '/service/owners-engineer', image: '/images/services/owners-engineer/construction-workers.jpg', scope: 'Design · Procurement · Delivery' },
   { short: 'Compliance', title: 'NERC Compliance Services', desc: 'FAC-008, PRC, TPL, and MOD testing and modeling, with experienced audit preparation and compliance support.', href: '/service/nerc-compliance', image: '/images/services/service-nerc.jpg', scope: 'MOD · PRC · FAC · TPL' },
   { short: 'Solar', title: 'Utility Scale Solar Engineering', desc: 'Complete electrical engineering and grid-integration support for reliable, compliant utility-scale solar facilities.', href: '/service/utility-scale-solar-farms', image: '/images/services/service-solar.png', scope: 'Solar · Collection · Interconnection' },
   { short: 'BESS', title: 'Utility Scale BESS Engineering', desc: 'Electrical design, studies, controls coordination, and interconnection engineering for grid-scale battery storage projects.', href: '/service/utility-scale-battery-storage', image: '/images/services/service-bess.jpg', scope: 'BESS · Controls · Grid Integration' },
-  { short: 'MEP', title: 'MEP Engineering Services', desc: 'Integrated mechanical, electrical, plumbing, and fire-protection engineering for complex commercial and industrial facilities.', href: '/service/mep-engineering', image: '/images/services/service-mep.jpg', scope: 'Mechanical · Electrical · Plumbing' },
+  { short: 'MEP', title: 'MEP Engineering Services', desc: 'Integrated mechanical, electrical, plumbing, and fire-protection engineering for complex commercial and industrial facilities.', href: '/service/mep-engineering', image: '/images/services/mep-engineering/Integrated MEP Engineering Services for Complex Facility Projects.jpg', scope: 'Mechanical · Electrical · Plumbing' },
   { short: 'Wind', title: 'Utility Scale Wind Engineering', desc: 'Electrical engineering, collection-system design, studies, and interconnection support for utility-scale wind farms.', href: '/service/utility-scale-wind-farms', image: '/images/services/service-wind.jpg', scope: 'Wind · Collection · Interconnection' },
 ]
 
@@ -28,7 +28,6 @@ export default function Services() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-9 flex flex-col gap-6 lg:mb-12 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <div className="mb-4 flex items-center gap-3"><span className="h-px w-9 bg-[#A8228A]" /><p className="font-jost text-xs font-bold uppercase tracking-[0.2em] text-[#A8228A]">Integrated Engineering Platform</p></div>
             <h2 className="font-urbanist text-3xl font-black leading-[1.06] text-[#06103C] sm:text-4xl lg:text-5xl">One team. Every critical<br className="hidden sm:block" /> power-system discipline.</h2>
           </div>
           <div className="max-w-xl">
@@ -55,7 +54,7 @@ export default function Services() {
               {services.map((service, index) => (
                 <Image key={service.title} src={service.image} alt={service.title} fill priority={index === 0} sizes="(max-width: 1024px) 100vw, 68vw" className={`object-cover transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeIndex === index ? 'scale-100 opacity-100' : 'pointer-events-none scale-[1.035] opacity-0'}`} />
               ))}
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,16,60,0.12)_0%,rgba(6,16,60,0.42)_38%,rgba(6,16,60,0.98)_100%)] sm:bg-[linear-gradient(90deg,rgba(6,16,60,0.82)_0%,rgba(6,16,60,0.62)_52%,rgba(6,16,60,0.86)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,16,60,0.04)_0%,rgba(6,16,60,0.14)_48%,rgba(6,16,60,0.78)_100%)]" />
               <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-8 lg:max-w-3xl lg:p-10">
                 <div className="mb-4 flex flex-wrap items-center gap-3"><span className="rounded-full border border-[#F075D2]/35 bg-[#A8228A]/30 px-3 py-1.5 font-jost text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#F6A5E3]">Capability {String(activeIndex + 1).padStart(2, '0')}</span><span className="font-jost text-xs font-semibold text-white/[0.88]">{active.scope}</span></div>
                 <h3 className="max-w-2xl font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">{active.title}</h3>

@@ -138,7 +138,7 @@ export default async function OurWorkPage() {
               <div className="mt-12 border-t border-white/15 pt-7">
                 <p className="mb-4 font-jost text-[11px] font-bold uppercase tracking-[0.2em] text-white/55">Certifications &amp; Memberships</p>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/cert-logos-nspe.png" alt="Keentel certifications and professional memberships" className="h-16 max-w-full object-contain object-left sm:h-20" />
+                <img src="/images/cert-logos-hero-white-spaced-v3.png" alt="Keentel certifications and professional memberships" className="h-16 max-w-full object-contain object-left sm:h-20" />
               </div>
             </div>
           </div>

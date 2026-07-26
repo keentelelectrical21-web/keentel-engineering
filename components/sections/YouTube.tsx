@@ -19,17 +19,17 @@ export default function YouTube() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
-          <div>
+        <div className="mb-6 flex flex-col gap-5 lg:mb-7">
+          <div className="w-full">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#C72E9E' }}>Insights · From our YouTube channel</p>
-            <h2 className="font-urbanist font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-              Power systems,<br />plainly explained.
+            <h2 className="w-full font-urbanist text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
+              Power systems, plainly explained.
             </h2>
-            <p className="mt-3 text-base font-jost max-w-lg" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <p className="mt-3 w-full font-jost text-base" style={{ color: 'rgba(255,255,255,0.6)' }}>
               Field-tested engineering: NERC, PJM, ERCOT, IBR modeling, data-center interconnection — straight to our channel.
             </p>
           </div>
-          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:flex-shrink-0">
+          <div className="flex w-full flex-wrap items-center justify-end gap-3">
             <a
               href="https://www.youtube.com/@KeentelEngineering"
               target="_blank"
@@ -69,8 +69,8 @@ export default function YouTube() {
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent from-50% to-black/50" />
-                  <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-[#C72E9E] to-[#A8228A] shadow-lg transition-transform group-hover:scale-110 sm:h-14 sm:w-14">
-                    <div className="ml-1 h-0 w-0 border-b-[9px] border-l-[14px] border-t-[9px] border-b-transparent border-l-white border-t-transparent sm:border-b-[10px] sm:border-l-[16px] sm:border-t-[10px]" />
+                  <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-br from-[#C72E9E] to-[#A8228A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform group-hover:scale-105 sm:left-4 sm:top-4">
+                    <div className="ml-0.5 h-0 w-0 border-b-[7px] border-l-[11px] border-t-[7px] border-b-transparent border-l-white border-t-transparent" />
                   </div>
                   <div className="absolute bottom-2.5 right-2.5 rounded bg-black/70 px-2 py-0.5 text-xs font-bold text-white">
                     EP {v.ep}

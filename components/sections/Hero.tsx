@@ -8,14 +8,14 @@ const slides = [
     label: 'Engineering certainty',
     title: <>We Don&apos;t Just Design Systems.<br /><span className="gradient-text">We Engineer Certainty.</span></>,
     description: 'EHV, HV, and MV electrical engineering—from POI interconnection and utility-scale solar, wind, and BESS to NERC-compliant infrastructure delivered across all 50 states.',
-    primary: { label: 'Schedule a 15-Minute Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
+    primary: { label: 'Book a 15-Minute Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
     secondary: { label: 'Our Capabilities', href: '/services' },
   },
   {
     label: 'Data center interconnection',
     title: <>Interconnecting the Grid&apos;s<br /><span className="gradient-text">Largest New Loads</span></>,
     description: "Supporting a 1 GW hyperscale data center interconnection in ERCOT, with detailed EMT modeling under SPP's HILL framework and grid-performance analysis.",
-    primary: { label: 'Explore POI Services', href: '/service/poi-interconnection-engineering-support' },
+    primary: { label: 'Book a 15-Minute Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
     secondary: { label: 'View Project Highlights', href: '/clients-and-projects' },
   },
 ] as const
@@ -74,9 +74,8 @@ export default function Hero() {
         <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover object-center">
           <source src="/videos/home.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#06103C]/55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/75 via-[#06103C]/35 to-[#5B2A86]/20" />
-        <div className="absolute bottom-0 left-0 h-1/2 w-1/2 rounded-full bg-[radial-gradient(circle,rgba(167,34,138,0.2)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[#06103C]/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/55 via-[#06103C]/20 to-[#5B2A86]/10" />
       </div>
 
       <div className="relative z-10 flex flex-1 items-center py-24 min-[390px]:py-28 sm:py-32 lg:py-28">
@@ -150,11 +149,11 @@ export default function Hero() {
               <p className="mb-5 font-jost text-xs uppercase tracking-widest text-white/50 sm:mb-6">Certifications &amp; Memberships</p>
               <div className="flex max-w-4xl flex-wrap items-center gap-5 sm:gap-7">
                 <Image
-                  src="/images/cert-logos-nspe.png"
+                  src="/images/cert-logos-hero-white-spaced-v3.png"
                   alt="NSPE, D-U-N-S Registered, Registered Professional Engineer, and IEEE Senior Member"
-                  width={911}
+                  width={948}
                   height={147}
-                  className="hero-certifications h-auto w-full max-w-[38rem] object-contain object-left opacity-95 sm:w-auto sm:max-w-[44rem]"
+                  className="hero-certifications h-auto w-full max-w-[44rem] object-contain object-left drop-shadow-[0_3px_8px_rgba(6,16,60,0.75)] sm:w-auto sm:max-w-[56rem]"
                 />
               </div>
             </div>

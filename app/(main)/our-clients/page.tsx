@@ -205,7 +205,7 @@ export default function OurClientsPage() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
               <div className="mt-8">
-                <img src="/images/cert-logos-nspe.png" alt="BBB Accredited IEEE Member NERC Certified"
+                <img src="/images/cert-logos-hero-white-spaced-v3.png" alt="BBB Accredited IEEE Member NERC Certified"
                   className="h-10 w-auto object-contain opacity-80"
                   onError={(e) => { (e.target as HTMLImageElement).src = 'https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/new+image-640w.png' }} />
               </div>

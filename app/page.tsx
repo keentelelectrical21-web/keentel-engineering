@@ -28,8 +28,8 @@ export default function HomePage() {
         <Services />
         <Industries />
         <Precision />
-        <SoftwareCapabilities />
         <SoftwareTools />
+        <SoftwareCapabilities />
         <HomepageProjectHighlights />
         <Testimonials />
         <YouTube />

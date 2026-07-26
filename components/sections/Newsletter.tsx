@@ -19,10 +19,11 @@ export default function Newsletter() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
-      if (!res.ok) throw new Error()
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Unable to subscribe.')
       setSubmitted(true)
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -76,6 +77,10 @@ export default function Newsletter() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <input
                     type="email"
+                    name="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    aria-label="Email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
@@ -96,10 +101,10 @@ export default function Newsletter() {
                     )}
                   </button>
                 </form>
-                {error && <p className="text-red-300 text-sm font-jost mt-3">{error}</p>}
+                {error && <p className="mt-3 font-jost text-sm text-red-300" role="alert" aria-live="polite">{error}</p>}
               </>
             ) : (
-              <div className="text-center py-6">
+              <div className="py-6 text-center" role="status" aria-live="polite">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(168,34,138,0.3)' }}>
                   <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />

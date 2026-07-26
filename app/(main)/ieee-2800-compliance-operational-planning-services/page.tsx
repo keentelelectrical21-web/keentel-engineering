@@ -110,7 +110,7 @@ export default function Ieee2800CompliancePage() {
               </div>
               <div className="mt-10 max-w-3xl border-t border-white/15 pt-6">
                 <p className="mb-4 font-jost text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/45">Trusted and Certified</p>
-                <Image src="/images/cert-logos-nspe.png" alt="NSPE and Keentel Engineering certifications, memberships, and BBB A+ accreditation" width={911} height={147} className="h-auto max-h-16 w-auto max-w-full object-contain sm:max-h-24" />
+                <Image src="/images/cert-logos-hero-white-spaced-v3.png" alt="NSPE and Keentel Engineering certifications, memberships, and BBB A+ accreditation" width={948} height={147} className="h-auto max-h-16 w-auto max-w-full object-contain sm:max-h-24" />
               </div>
             </div>
           </div>
