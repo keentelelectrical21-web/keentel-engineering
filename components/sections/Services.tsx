@@ -15,7 +15,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F5F9] py-16 sm:py-20 lg:py-24">
+    <section id="services" className="relative overflow-hidden bg-[#F4F5F9] py-16 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A8228A]/40 to-transparent" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-40 top-20 h-[30rem] w-[30rem] rounded-full bg-[#A8228A]/[0.06] blur-[120px]" aria-hidden="true" />
 

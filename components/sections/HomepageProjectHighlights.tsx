@@ -10,7 +10,7 @@ const projects = [
 
 export default function HomepageProjectHighlights() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 sm:py-24">
+    <section id="project-highlights" className="relative overflow-hidden bg-white py-20 sm:py-24">
       <div className="pointer-events-none absolute -left-32 top-16 h-80 w-80 rounded-full bg-[#A8228A]/[0.06] blur-3xl" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#0B1A5B]/[0.06] blur-3xl" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
