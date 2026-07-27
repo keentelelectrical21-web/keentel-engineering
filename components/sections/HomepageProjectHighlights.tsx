@@ -26,18 +26,20 @@ export default function HomepageProjectHighlights() {
           {projects.map((project, index) => (
             <article
               key={project.title}
-              className={`group relative flex min-h-[270px] flex-col overflow-hidden rounded-3xl border border-[#E4E7EF] bg-[linear-gradient(145deg,#FFFFFF_0%,#F5F6FA_100%)] p-6 shadow-[0_12px_35px_rgba(6,16,60,0.05)] transition duration-300 hover:-translate-y-1.5 hover:border-[#A8228A]/35 hover:shadow-[0_22px_55px_rgba(6,16,60,0.12)] sm:p-8 ${
+              className={`group relative flex min-h-[270px] cursor-default flex-col overflow-hidden rounded-3xl border border-[#E4E7EF] bg-[linear-gradient(145deg,#FFFFFF_0%,#F5F6FA_100%)] p-6 shadow-[0_12px_35px_rgba(6,16,60,0.05)] transition duration-500 hover:-translate-y-1.5 hover:border-[#A8228A]/45 hover:shadow-[0_24px_60px_rgba(6,16,60,0.2)] sm:p-8 ${
                 index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'
               } ${index === projects.length - 1 ? 'md:col-span-2 lg:col-span-3' : ''}`}
             >
-              <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[#C72E9E] to-[#5B2A86] transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
-              <div className="mb-10 flex items-start justify-between gap-4">
-                <p className="font-urbanist text-3xl font-black text-[#A8228A] sm:text-4xl">{project.value}</p>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#06103C]/10 bg-white font-urbanist text-xs font-black text-[#06103C]/35">0{index + 1}</span>
+              <div className="absolute inset-0 bg-[linear-gradient(145deg,#101F58_0%,#06103C_62%,#35145A_100%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+              <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#C72E9E]/20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+              <div className="absolute inset-x-0 top-0 z-20 h-1 origin-left scale-x-0 bg-gradient-to-r from-[#F075D2] to-[#8D5CE6] transition-transform duration-500 group-hover:scale-x-100" aria-hidden="true" />
+              <div className="relative z-10 mb-10 flex items-start justify-between gap-4">
+                <p className="font-urbanist text-3xl font-black text-[#A8228A] transition-colors duration-500 group-hover:text-[#F075D2] sm:text-4xl">{project.value}</p>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#06103C]/10 bg-white font-urbanist text-xs font-black text-[#06103C]/35 transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white/70">0{index + 1}</span>
               </div>
-              <div className="mt-auto">
-                <h3 className="mb-3 font-urbanist text-xl font-bold text-[#06103C]">{project.title}</h3>
-                <p className="font-jost text-sm leading-relaxed text-gray-600 sm:text-base">{project.text}</p>
+              <div className="relative z-10 mt-auto">
+                <h3 className="mb-3 font-urbanist text-xl font-bold text-[#06103C] transition-colors duration-500 group-hover:text-white">{project.title}</h3>
+                <p className="font-jost text-sm leading-relaxed text-gray-600 transition-colors duration-500 group-hover:text-white/75 sm:text-base">{project.text}</p>
               </div>
             </article>
           ))}
