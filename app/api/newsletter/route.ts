@@ -17,13 +17,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
     }
 
-    const { error } = await supabase
+    const { data: existingSubscriber, error: lookupError } = await supabase
       .from('newsletter_subscribers')
-      .upsert({ email: normalizedEmail, subscribed_at: new Date().toISOString() }, { onConflict: 'email' })
+      .select('id')
+      .eq('email', normalizedEmail)
+      .maybeSingle()
 
-    if (error) throw error
+    if (lookupError) throw lookupError
+
+    const query = existingSubscriber
+      ? supabase
+          .from('newsletter_subscribers')
+          .update({ source: 'homepage', status: 'active' })
+          .eq('id', existingSubscriber.id)
+      : supabase
+          .from('newsletter_subscribers')
+          .insert({ email: normalizedEmail, source: 'homepage', status: 'active' })
+
+    const { error: saveError } = await query
+
+    if (saveError) throw saveError
     return NextResponse.json({ ok: true })
-  } catch {
+  } catch (error) {
+    console.error('Newsletter subscription failed:', error)
     return NextResponse.json({ error: 'Subscribe failed' }, { status: 500 })
   }
 }
