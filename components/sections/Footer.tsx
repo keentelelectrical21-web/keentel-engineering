@@ -11,11 +11,13 @@ const company = [
 const services = [
   { name: 'Power System Studies', href: '/service/power-system-studies' },
   { name: 'Substation Design', href: '/service/substation-design' },
-  { name: 'POI Interconnection', href: '/service/poi-interconnection-engineering-support' },
   { name: 'NERC Compliance', href: '/service/nerc-compliance' },
+  { name: 'POI Interconnection', href: '/service/poi-interconnection-engineering-support' },
   { name: 'Renewable Energy', href: '/service/utility-scale-renewable-energy' },
+  { name: 'Transmission Line Design', href: '/service/transmission-line-design' },
   { name: 'Nuclear Power Engineering', href: '/service/nuclear-power-plant' },
   { name: "Owner's Engineer", href: '/service/owners-engineer' },
+  { name: 'MEP Engineering', href: '/service/mep-engineering' },
 ]
 
 const resources = [

@@ -201,20 +201,6 @@ export default function ContactPage() {
                     </div>
                   </a>
 
-                  <a href="mailto:BD@keentelengineering.com"
-                    className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: 'rgba(91,42,134,0.04)', border: '1px solid #E6E8F0' }}>
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#fff' }}>
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#5B2A86' }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide mb-0.5" style={{ color: '#9CA3AF' }}>Business Development</p>
-                      <p className="font-urbanist font-bold text-lg" style={{ color: '#06103C' }}>BD@keentelengineering.com</p>
-                    </div>
-                  </a>
-
                   <a href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:shadow-lg hover:-translate-y-0.5"
                     style={{ background: 'rgba(199,46,158,0.04)', border: '1px solid #E6E8F0' }}>

@@ -7,6 +7,7 @@ import ContactForm from '@/components/sections/ContactForm'
 import FAQ from '@/components/sections/FAQ'
 import Blog from '@/components/sections/Blog'
 import WhoWeServed from '@/components/service/WhoWeServed'
+import PoiCaseStudyCards from '@/components/sections/PoiCaseStudyCards'
 import { getAllCaseStudies } from '@/lib/caseStudies'
 
 export const revalidate = 3600
@@ -80,7 +81,7 @@ function ProjectGrid({
 
         <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
           {projects.map((project, index) => (
-            <Link key={project._id} href={`/clients-and-projects/${project.slug.current}`} aria-label={`Open ${project.title} case study`} className="group mx-auto flex h-full w-full max-w-sm flex-col overflow-hidden rounded-2xl border border-[#DDE1EB] bg-white shadow-[0_6px_22px_rgba(6,16,60,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[#A8228A]/35 hover:shadow-[0_20px_42px_rgba(6,16,60,0.14)] sm:max-w-none">
+            <Link key={project._id} href={project.href || `/clients-and-projects/${project.slug.current}`} aria-label={`Open ${project.title} case study`} className="group mx-auto flex h-full w-full max-w-sm flex-col overflow-hidden rounded-2xl border border-[#DDE1EB] bg-white shadow-[0_6px_22px_rgba(6,16,60,0.06)] transition-all duration-300 hover:-translate-y-2 hover:border-[#A8228A]/35 hover:shadow-[0_20px_42px_rgba(6,16,60,0.14)] sm:max-w-none">
               <div className="relative aspect-[2/3] overflow-hidden bg-[#17134F]">
                 {project.cardImage ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -149,6 +150,7 @@ export default async function OurWorkPage() {
         <div id="case-studies">
           <ProjectGrid eyebrow="Power System Studies" title="Power System Case Studies" description="Practical studies addressing renewable interconnection, reactive power, insulation coordination, grounding, GIS transients, equipment duty, and power-quality challenges." projects={powerSystem.map(project => ({ ...project, cardImage: powerSystemImages[project.slug.current] ?? project.cardImage }))} />
           <ProjectGrid eyebrow="Substation Engineering" title="Substation Engineering Case Studies" description="Substation projects delivered across transmission systems, renewable collector facilities, rural electrification, smart cities, BESS, and space-constrained urban sites." projects={substation} background="bg-[#F4F5F9]" />
+          <PoiCaseStudyCards />
         </div>
 
         <Services />

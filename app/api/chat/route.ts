@@ -48,7 +48,6 @@ WEBSITE PAGES — use these exact links when directing visitors:
 CONTACT:
 Phone: 813-389-7871
 Email: contact@keentelengineering.com
-BD Email: BD@keentelengineering.com
 
 SERVICES:
 1. Power System Studies: Load flow, short circuit, harmonic analysis, protective device coordination, arc flash studies. Tools: ETAP, SKM PowerTools, EasyPower. Duration 4 to 12 weeks. Cost $15,000 to $80,000 typically.

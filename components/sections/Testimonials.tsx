@@ -17,6 +17,7 @@ interface CaseStudy {
 }
 
 const fallback: CaseStudy[] = [
+  { _id: 'poi-interconnection-support-case-studies', title: 'Point-of-Interconnection (POI) Support Case Studies', subtitle: 'Four utility-scale POI projects delivered across PJM, ERCOT, WECC, and NYISO.', category: 'power-system', cardImage: '/images/poi.webp', slug: { current: 'casestudies-poi-interconnection-support' }, client: 'Confidential Renewable Developers', region: 'PJM · ERCOT · WECC · NYISO', href: '/casestudies-poi-interconnection-support' },
   { _id: '1', title: '110 kV Outdoor Grid Substation', subtitle: 'Rural electrification across extreme environments.', category: 'substation', slug: { current: 'substation-110kv-outdoor-rural-electrification' }, outcome: ['Stable power distribution achieved with improved grid resilience.'] },
   { _id: '2', title: 'Grid Interconnection & Renewable Penetration Study', subtitle: 'ISO-approved interconnection results for a major renewable developer.', category: 'power-system', slug: { current: 'power-system-grid-interconnection-renewable-penetration' }, client: 'Confidential Renewable Developer', region: 'ERCOT' },
   { _id: '3', title: '230 kV Renewable POI Collector Substation', subtitle: 'Utility-scale renewable interconnection hub.', category: 'substation', slug: { current: 'substation-230kv-renewable-poi-collector' } },
@@ -105,7 +106,11 @@ export default function Testimonials() {
   useEffect(() => {
     fetch('/api/case-studies')
       .then((r) => r.json())
-      .then((data) => { if (data?.length > 0) setCases(data) })
+      .then((data) => {
+        if (data?.length > 0) {
+          setCases([fallback[0], ...data.filter((study: CaseStudy) => study.slug.current !== fallback[0].slug.current)])
+        }
+      })
       .catch(() => {})
   }, [])
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { client } from '@/lib/sanity'
 
@@ -46,7 +47,7 @@ export default function CaseStudies() {
           <Link href={`/clients-and-projects/${featured.slug.current}`} className="rounded-2xl overflow-hidden block group" style={{ border: '1px solid #E6E8F0' }}>
             <div className="relative h-56 overflow-hidden" style={{ background: '#F6F7FB' }}>
               {featured.cardImage && (
-                <img src={featured.cardImage} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src={featured.cardImage} alt={featured.title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
               )}
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, rgba(6,16,60,0.5) 100%)' }} />
               <span className="absolute top-4 left-4 font-urbanist font-black text-3xl" style={{ color: 'rgba(255,255,255,0.9)' }}>01</span>

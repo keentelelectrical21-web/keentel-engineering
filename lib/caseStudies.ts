@@ -16,34 +16,44 @@ export interface CaseStudy {
   outcome?: string[];
   stack?: string;
   order?: number;
+  href?: string;
 }
 
 export async function getAllCaseStudies(): Promise<CaseStudy[]> {
   try {
-    return await client.fetch(
+    const studies = await client.fetch<CaseStudy[]>(
       `*[_type == "caseStudy"] | order(category asc, order asc) {
         _id, title, slug, category, subtitle, client, region, cardImage,
         background, challenges, solution, outcome, stack, order
       }`
     );
+    return studies;
   } catch {
     return [];
   }
 }
 
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
-  return client.fetch(
-    `*[_type == "caseStudy" && slug.current == $slug][0] {
-      _id, title, slug, category, subtitle, client, region, cardImage,
-      background, challenges, solution, outcome, stack, order
-    }`,
-    { slug }
-  );
+  try {
+    return await client.fetch(
+      `*[_type == "caseStudy" && slug.current == $slug][0] {
+        _id, title, slug, category, subtitle, client, region, cardImage,
+        background, challenges, solution, outcome, stack, order
+      }`,
+      { slug }
+    );
+  } catch {
+    return null;
+  }
 }
 
 export async function getAllCaseStudySlugs(): Promise<string[]> {
-  const slugs: { slug: string }[] = await client.fetch(
-    `*[_type == "caseStudy"]{ "slug": slug.current }`
-  );
-  return slugs.map((s) => s.slug);
+  try {
+    const slugs: { slug: string }[] = await client.fetch(
+      `*[_type == "caseStudy"]{ "slug": slug.current }`
+    );
+    return slugs.map((s) => s.slug);
+  } catch {
+    return [];
+  }
 }

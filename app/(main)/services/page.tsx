@@ -129,6 +129,31 @@ const services = [
   },
 ]
 
+const serviceByHref = new Map(services.map((service) => [service.href, service]))
+const orderedServices = [
+  { ...serviceByHref.get('/service/power-system-studies')!, title: 'Power System Studies', image: '/images/services/power-system-studies/overview-engineers.jpg' },
+  { ...serviceByHref.get('/service/substation-design')!, title: 'Substation Design' },
+  { ...serviceByHref.get('/service/nerc-compliance')!, title: 'NERC Compliance Services', image: '/images/services/nerc-compliance/NERC Compliance Services.png' },
+  { ...serviceByHref.get('/service/poi-interconnection-engineering-support')!, title: 'POI Interconnection Engineering' },
+  {
+    ...serviceByHref.get('/service/utility-scale-solar-farms')!,
+    title: 'Utility Scale Renewable Energy',
+    desc: 'Integrated electrical engineering and grid support for utility-scale solar, wind, and battery energy storage projects.',
+    href: '/service/utility-scale-renewable-energy',
+    image: '/images/services/utility-scale-renewable-energy/hero-towers.webp',
+  },
+  {
+    ...serviceByHref.get('/service/utility-scale-battery-storage')!,
+    title: 'Transmission Line Design',
+    desc: 'Electrical and structural engineering, routing, conductor selection, sag-tension analysis, and standards-compliant line design.',
+    href: '/service/transmission-line-design',
+    image: '/images/services/transmission-line-design/renewable-towers.webp',
+  },
+  { ...serviceByHref.get('/service/nuclear-power-plant')!, title: 'Nuclear Power Plant Engineering', image: '/images/services/nuclear/Expert Nuclear Electrical Engineering From Design to Decades of Reliable Operation.webp' },
+  { ...serviceByHref.get('/service/owners-engineer')!, title: "Owner's Engineer Services", image: '/images/services/owners-engineer/construction-workers.jpg' },
+  { ...serviceByHref.get('/service/mep-engineering')!, title: 'MEP Engineering Services', image: '/images/services/mep-engineering/Integrated MEP Engineering Services for Complex Facility Projects.jpg' },
+]
+
 const whyChoose = [
   {
     title: 'Client-Focused Work Approach',
@@ -411,7 +436,7 @@ export default function ServicesPage() {
         <section id="service-portfolio" className="scroll-mt-24 bg-white pb-16 pt-10 sm:pt-12 lg:pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service, i) => (
+              {orderedServices.map((service, i) => (
                 <ServiceCard key={i} service={service} />
               ))}
             </div>

@@ -6,13 +6,13 @@ import Link from 'next/link'
 const services = [
   { name: 'Power System Studies', href: '/service/power-system-studies' },
   { name: 'Substation Design', href: '/service/substation-design' },
+  { name: 'NERC Compliance Services', href: '/service/nerc-compliance' },
   { name: 'POI Interconnection Engineering', href: '/service/poi-interconnection-engineering-support' },
-  { name: 'Transmission Line Design', href: '/service/transmission-line-design' },
   { name: 'Utility Scale Renewable Energy', href: '/service/utility-scale-renewable-energy' },
+  { name: 'Transmission Line Design', href: '/service/transmission-line-design' },
+  { name: 'Nuclear Power Plant Engineering', href: '/service/nuclear-power-plant' },
   { name: "Owner's Engineer Services", href: '/service/owners-engineer' },
   { name: 'MEP Engineering Services', href: '/service/mep-engineering' },
-  { name: 'NERC Compliance Services', href: '/service/nerc-compliance' },
-  { name: 'Nuclear Power Plant Engineering', href: '/service/nuclear-power-plant' },
 ]
 
 const navLinks = [

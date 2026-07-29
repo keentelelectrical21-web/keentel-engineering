@@ -9,7 +9,7 @@ import SoftwareTools from '@/components/sections/SoftwareTools'
 import SoftwareCapabilities from '@/components/sections/SoftwareCapabilities'
 import Industries from '@/components/sections/Industries'
 import RelatedServiceBlogs from '@/components/service/RelatedServiceBlogs'
-import ServiceCaseStudies from '@/components/service/ServiceCaseStudies'
+import PoiCaseStudyCards from '@/components/sections/PoiCaseStudyCards'
 
 interface BlogPost {
   _id: string
@@ -388,7 +388,7 @@ export default function POIInterconnectionPage() {
         </section>
 
         <div className="order-[110]"><Industries /></div>
-        <div className="order-[130]"><ServiceCaseStudies service="poi-interconnection-engineering-support" /></div>
+        <div className="order-[130]"><PoiCaseStudyCards compact /></div>
 
         {/* ═══ 9. CASE STUDIES — dynamic from Sanity, this service only ═══ */}
         <section className="hidden" aria-hidden="true">
