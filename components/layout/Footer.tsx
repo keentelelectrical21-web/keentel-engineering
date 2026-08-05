@@ -130,6 +130,15 @@ export default function Footer() {
                 </span>
                 <a href="mailto:contact@keentelengineering.com" className="min-w-0 break-all pt-1.5 font-jost text-xs font-semibold leading-5 text-white transition hover:text-[#F6A5E3]">contact@keentelengineering.com</a>
               </div>
+              <div className="flex min-h-10 items-start justify-center gap-3 sm:justify-start sm:gap-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#C72E9E] to-[#79269A] text-white shadow-[0_7px_18px_rgba(168,34,138,0.25)]" aria-hidden="true">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-3.8 8-10V5l-8-3-8 3v7c0 6.2 8 10 8 10Z" /><path strokeLinecap="round" strokeLinejoin="round" d="m9 12 2 2 4-4" /></svg>
+                </span>
+                <p className="min-w-0 pt-0.5 font-jost text-xs font-semibold leading-5 text-white">
+                  <span className="block text-white/60">Florida Licenses:</span>
+                  CGC1524228 <span className="text-[#F6A5E3]">•</span> EC13014476
+                </p>
+              </div>
               <Link href="https://calendly.com/keentel-engineering/15min" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-white px-4 py-2.5 text-center font-jost text-xs font-black text-[#06103C] shadow-[0_8px_22px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-[#F6E9F3] sm:w-auto sm:min-w-[190px]">
                 Schedule a Consultation
               </Link>
