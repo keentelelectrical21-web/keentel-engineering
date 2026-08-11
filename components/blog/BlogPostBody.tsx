@@ -197,53 +197,33 @@ function BlogCTA({ heading, subheading, primaryText, primaryLink, secondaryText,
   )
 }
 
-function AuthorSection({ name, title, bio, image, linkedIn }: {
-  name?: string; title?: string; bio?: string; image?: string; linkedIn?: string
-}) {
-  const authorName  = name  || 'Sonny Patel P.E. EC'
-  const authorTitle = title || 'IEEE Senior Member | Licensed PE & EC, Florida'
-  const authorBio   = bio   || "In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois. For three decades he has been shaping the future of engineering as a licensed Professional Engineer across Florida, California, New York, West Virginia, and Minnesota. Founder and CEO of Keentel Engineering."
-  const authorImg   = image || '/images/author-sandip.jpeg'
+function AuthorSection({ image }: { image?: string }) {
+  const authorName = 'Sonny Patel P.E. EC'
+  const authorImg = image || '/images/author-sandip.jpeg'
 
   return (
-    <div className="mt-12 rounded-2xl overflow-hidden" style={{ border: '1px solid #E6E8F0', boxShadow: '0 4px 24px rgba(6,16,60,0.08)' }}>
-      <div className="px-7 py-4" style={{ background: 'linear-gradient(135deg, #06103C, #0B1A5B)' }}>
-        <p className="font-jost text-xs font-semibold uppercase tracking-widest" style={{ color: '#C72E9E' }}>Written by</p>
-      </div>
-      <div className="bg-white px-7 py-6">
-        <div className="flex flex-col sm:flex-row gap-6 items-start">
-          <div className="flex-shrink-0">
-            <img
-              src={authorImg}
-              alt={authorName}
-              className="w-24 h-24 rounded-2xl object-cover object-top"
-              onError={(e) => {
-                const img = e.target as HTMLImageElement
-                img.style.display = 'none'
-                img.parentElement!.innerHTML = `<div style="width:96px;height:96px;border-radius:1rem;background:linear-gradient(135deg,#06103C,#A8228A);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:2rem;color:white">S</div>`
-              }}
-            />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
-              <div>
-                <h3 className="font-urbanist font-black text-xl" style={{ color: '#06103C' }}>{authorName}</h3>
-                <p className="font-jost text-sm mt-0.5" style={{ color: '#A8228A' }}>{authorTitle}</p>
-              </div>
-              {linkedIn && (
-                <a href={linkedIn} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 font-jost text-sm font-semibold px-4 py-2 rounded-full border transition-all hover:bg-[#0077B5] hover:text-white"
-                  style={{ borderColor: '#0077B5', color: '#0077B5' }}>
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
-                  LinkedIn
-                </a>
-              )}
-            </div>
-            <p className="font-jost text-gray-600 text-sm leading-relaxed">{authorBio}</p>
-          </div>
+    <section className="mt-12 overflow-hidden rounded-2xl bg-[#070B68] p-6 shadow-[0_14px_34px_rgba(6,16,60,0.18)] sm:p-8">
+      <div className="flex flex-col items-start gap-6 sm:flex-row sm:gap-8">
+        <div className="flex-shrink-0">
+          <img
+            src={authorImg}
+            alt={authorName}
+            className="h-32 w-32 rounded-full border-4 border-white/10 object-cover object-top sm:h-36 sm:w-36"
+            onError={(e) => {
+              const img = e.target as HTMLImageElement
+              img.style.display = 'none'
+              img.parentElement!.innerHTML = '<div style="width:128px;height:128px;border-radius:9999px;background:linear-gradient(135deg,#A8228A,#5B2A86);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:2rem;color:white">S</div>'
+            }}
+          />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="font-jost text-sm font-bold text-white sm:text-base">About the Author:</p>
+          <h3 className="mt-2 font-urbanist text-2xl font-black text-white sm:text-3xl">{authorName}</h3>
+          <p className="mt-1 font-jost text-sm font-semibold text-white/65">IEEE Senior Member</p>
+          <p className="mt-4 font-jost text-sm leading-7 text-white/90 sm:text-[15px]">In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering. But degrees don&apos;t build legacies—action does. For three decades, he&apos;s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.</p>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -480,11 +460,7 @@ export default function BlogPostBody({ post, slug }: BlogPostBodyProps) {
               )}
 
               <AuthorSection
-                name={post.authorName}
-                title={post.authorTitle}
-                bio={post.authorBio}
                 image={post.authorImage}
-                linkedIn={post.authorLinkedIn}
               />
 
             </div>
