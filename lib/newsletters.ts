@@ -29,6 +29,12 @@ export interface Newsletter {
 
 type LocalNewsletter = Newsletter & { sourceFile?: string };
 
+// These topics are published as full blog posts rather than newsletter issues.
+// Keep their former newsletter URLs out of the archive to avoid duplicate content.
+const blogOnlyNewsletterSlugs = new Set([
+  'nerc-february-2026-event-calendar',
+]);
+
 const localNewsletters: LocalNewsletter[] = [
   {
     _id: 'local-ai-data-center-infrastructure', title: 'AI Power Surge Reshaping Data Center Infrastructure in 2026',
@@ -49,8 +55,9 @@ const localNewsletters: LocalNewsletter[] = [
     heroImage: '/images/newsletters/Powering Reliability in the Age of AI and Large Load Growth.webp', sourceFile: 'february-2026-ai-data-centers-grid-reliability.txt', order: 78,
   },
   {
-    _id: 'local-march-2026', title: 'NERC Strategic & Reliability Updates',
-    slug: { current: 'march-2026-nerc-grid-reliability-updates' }, edition: 'March 2026 Edition', publishDate: '2026-03-01',
+    _id: 'local-march-2026', title: 'Grid Reliability Cyber Security Standards Development Global Energy Storage',
+    slug: { current: 'march-2026-nerc-grid-reliability-updates' }, edition: 'March 2026 Newsletter', publishDate: '2026-03-01',
+    subtitle: 'Grid Reliability • Cyber Security • Standards Development • Global Energy Storage',
     excerpt: 'Key insights on grid reliability, cyber security resilience, NERC standards activity, and global battery energy storage developments shaping the bulk power system.',
     heroImage: '/images/newsletters/Grid Reliability Cyber Security Standards Development Global Energy Storage.webp', sourceFile: 'march-2026-nerc-grid-reliability-updates.txt', order: 80,
   },
@@ -88,13 +95,6 @@ const localNewsletters: LocalNewsletter[] = [
     author: 'Sandip (Sonny) Patel, P.E. EC', authorTitle: 'Principal Engineer & CEO · IEEE Senior Member', authorImage: '/images/newsletters/author-sonny-patel.jpeg',
   },
   {
-    _id: 'local-nerc-february-2026', title: 'February 2026 NERC Event Calendar: Statistical & Strategic Breakdown',
-    slug: { current: 'nerc-february-2026-event-calendar' }, edition: 'February 2026', publishDate: '2026-02-11',
-    excerpt: 'A date-by-date guide to NERC standards, governance, cybersecurity, IBR reliability, and large-load integration activity.',
-    heroImage: '/images/newsletters/February 2026 NERC Event Calendar Statistical & Strategic Breakdown.jpg',
-    sourceFile: 'nerc-february-2026-event-calendar.txt', order: 75,
-  },
-  {
     _id: 'local-industry-nerc-may-2025', title: 'Industry NERC News – May 2025 Update',
     slug: { current: 'industry-nerc-news-may-2025' }, edition: 'May 2025 Update', publishDate: '2025-05-19',
     subtitle: 'Key Compliance Deadlines, IBR Modeling Deficiencies & Grid Reliability Insights',
@@ -116,7 +116,9 @@ function toPortableText(text: string, title: string): PortableTextBlock[] {
   const dateIndex = normalized.findIndex((line) =>
     /(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*[^\n]*20\d{2}|20\d{2}[^\n]*edition/i.test(line)
   );
-  const contentStart = dateIndex >= 0 ? dateIndex + 1 : titleIndex >= 0 ? titleIndex + 1 : 0;
+  const firstContentLine = normalized.find((line) => line.length > 0) || '';
+  const usesContentMarkers = /^(?:## |### |@meta |@callout )/.test(firstContentLine);
+  const contentStart = usesContentMarkers ? 0 : dateIndex >= 0 ? dateIndex + 1 : titleIndex >= 0 ? titleIndex + 1 : 0;
   const untrimmedContent = normalized.slice(contentStart);
   const footerIndex = untrimmedContent.findIndex((line) =>
     ['About the Author:', 'Menu Links', 'Connect with Us', 'Copyright 1995-2026', '813-389-7871'].includes(line)
@@ -125,17 +127,23 @@ function toPortableText(text: string, title: string): PortableTextBlock[] {
   const ignored = new Set(['Home', 'About', 'Services', 'Our Work', 'Keentel’s Grid IQ', 'Contact', 'Schedule A Consultation', 'Keentel Engineering Newsletter']);
   const bodyLines = content
     .map((line, sourceIndex) => ({ line, sourceIndex }))
-    .filter(({ line }) => line && !ignored.has(line) && !line.startsWith('Page URL:') && !line.startsWith('URL:'));
+    .filter(({ line }) => line && !ignored.has(line) && !line.startsWith('Page URL:') && !line.startsWith('URL:') && !line.startsWith('@skip '));
 
-  const majorHeadings = new Set(['IN THIS ISSUE', 'Global Trends in Electrical Power Engineering', 'Regulatory & Compliance Highlights', 'Keentel in Action: Recent Engineering Projects', 'Tech Spotlight: Advancing Electrical Engineering', 'Upcoming Events to Watch', 'Message from Keentel Engineering', 'Let’s Power the Future, Together', 'Key NERC Compliance Deadlines & Events – May 2025', 'Active NERC Ballots & Comment Periods', 'Spotlight: IBR Modeling Deficiencies – April 2025 Alert', 'Standards News: Ballot Results & Pending Standards', 'System Maintenance Updates', 'Upcoming NERC Events – May & June 2025', 'Summary – Key Takeaways', 'Frequently Asked Questions (FAQ)']);
+  const majorHeadings = new Set(['IN THIS ISSUE', 'Global Trends in Electrical Power Engineering', 'Regulatory & Compliance Highlights', 'Keentel in Action: Recent Engineering Projects', 'Tech Spotlight: Advancing Electrical Engineering', 'Upcoming Events to Watch', 'Message from Keentel Engineering', 'Let’s Power the Future, Together', 'Key NERC Compliance Deadlines & Events – May 2025', 'Active NERC Ballots & Comment Periods', 'Spotlight: IBR Modeling Deficiencies – April 2025 Alert', 'Standards News: Ballot Results & Pending Standards', 'System Maintenance Updates', 'Upcoming NERC Events – May & June 2025', 'Summary – Key Takeaways', 'Frequently Asked Questions (FAQ)', 'NERC Strategic & Reliability Updates', '2025 Electricity Information Sharing and Analysis Center (E-ISAC) End-of-Year Report', 'Reliability Insights: Complex Cyber Threats Require Brilliance at the Basics', 'March 2026 Standards & Committee Activity Overview', 'Global Energy Storage Market Highlights – 2026', 'Looking Ahead']);
   const minorHeadings = new Set(['Grid Resilience is Now a Global Priority', 'Surge in Renewable Energy Integration', 'Battery Energy Storage Systems (BESS) Go Mainstream', 'IEEE 2800™-2022 Compliance in Focus', 'NERC PRC-006-5 Implementation', 'MOD-032 Dynamic Model Accuracy', 'May 15: Cold Weather Preparedness Reporting Due', 'Key Findings:', 'NERC Recommendations:', 'Recently Approved:', 'Standards to Watch:', 'Align System Scheduled Downtime:']);
 
   return bodyLines.map(({ line, sourceIndex }, index) => {
+    const explicitH2 = line.startsWith('## ');
+    const explicitH3 = line.startsWith('### ');
+    const metadata = line.startsWith('@meta ');
+    const callout = line.startsWith('@callout ');
+    const displayLine = line.replace(/^(?:## |### |@meta |@callout |- )/, '');
     const isolated = !content[sourceIndex - 1];
-    const majorHeading = majorHeadings.has(line);
-    const heading = minorHeadings.has(line) || /^\d+\.\s/.test(line) || (index > 0 && line.length < 100 && !/[.!?]$/.test(line) && !line.startsWith('http') && isolated);
-    const tableLike = line.includes('\t');
-    const linkMatch = line.match(/^(.*?)\[([^\]]+)\]\((https?:\/\/[^)]+)\)(.*)$/);
+    const majorHeading = explicitH2 || majorHeadings.has(line);
+    const bulletItem = line.startsWith('- ') || line.startsWith('• ');
+    const heading = explicitH3 || minorHeadings.has(line) || /^\d+\.\s/.test(line) || (index > 0 && line.length < 100 && !/[.!?]$/.test(line) && !line.startsWith('http') && isolated);
+    const tableLike = callout || line.includes('\t');
+    const linkMatch = displayLine.match(/^(.*?)\[([^\]]+)\]\((https?:\/\/[^)]+)\)(.*)$/);
     const markDefs = linkMatch ? [{ _key: `link-${index}`, _type: 'link', href: linkMatch[3] }] : [];
     const children = linkMatch
       ? [
@@ -143,9 +151,10 @@ function toPortableText(text: string, title: string): PortableTextBlock[] {
           { _type: 'span', _key: `span-${index}-link`, text: linkMatch[2], marks: [`link-${index}`] },
           { _type: 'span', _key: `span-${index}-after`, text: linkMatch[4], marks: [] },
         ]
-      : [{ _type: 'span', _key: `span-${index}`, text: line.replace(/\t+/g, ' — '), marks: [] }];
+      : [{ _type: 'span', _key: `span-${index}`, text: displayLine.replace(/\t+/g, ' — '), marks: [] }];
     return {
-      _type: 'block', _key: `local-${index}`, style: majorHeading ? 'h2' : heading ? 'h3' : tableLike ? 'blockquote' : 'normal', markDefs,
+      _type: 'block', _key: `local-${index}`, style: majorHeading ? 'h2' : heading ? 'h3' : metadata ? 'meta' : tableLike ? 'blockquote' : 'normal', markDefs,
+      ...(bulletItem ? { listItem: 'bullet' as const, level: 1 } : {}),
       children,
     } satisfies PortableTextBlock;
   });
@@ -183,6 +192,7 @@ export async function getAllNewsletters(): Promise<Newsletter[]> {
   const locals = [ercotMarketUpdate, ...localNewsletters];
   const localSlugs = new Set(locals.map((newsletter) => newsletter.slug.current));
   const merged = [...locals, ...newsletters.filter((newsletter) => !localSlugs.has(newsletter.slug.current))]
+    .filter((newsletter) => !blogOnlyNewsletterSlugs.has(newsletter.slug.current))
     .sort((a, b) => (b.publishDate || '').localeCompare(a.publishDate || ''));
   const seenTitles = new Set<string>();
   return merged.filter((newsletter) => {
@@ -194,6 +204,7 @@ export async function getAllNewsletters(): Promise<Newsletter[]> {
 }
 
 export async function getNewsletterBySlug(slug: string): Promise<Newsletter | null> {
+  if (blogOnlyNewsletterSlugs.has(slug)) return null;
   const local = localNewsletters.find((newsletter) => newsletter.slug.current === slug);
   if (local?.sourceFile) {
     const source = await readFile(path.join(process.cwd(), 'content', 'newsletters', local.sourceFile), 'utf8');
@@ -213,7 +224,7 @@ export async function getAllNewsletterSlugs(): Promise<string[]> {
     `*[_type == "newsletter"]{ "slug": slug.current }`
   );
   return Array.from(new Set([
-    ...localNewsletters.map((newsletter) => newsletter.slug.current),
-    ...slugs.map((s) => s.slug),
+    ...localNewsletters.map((newsletter) => newsletter.slug.current).filter((slug) => !blogOnlyNewsletterSlugs.has(slug)),
+    ...slugs.map((s) => s.slug).filter((slug) => !blogOnlyNewsletterSlugs.has(slug)),
   ]));
 }

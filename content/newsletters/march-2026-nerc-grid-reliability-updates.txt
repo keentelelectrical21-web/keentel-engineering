@@ -1,200 +1,169 @@
-Page URL: https://keentelengineering.com/newsletter/march-2026-nerc-grid-reliability-updates
+@meta March 2026 Edition
 
-
-Home
-About
-Services
-Power System Studies Services
-Substation Design Services
-POI Interconnection Engineering Support
-Transmission Line Design Services
-Utility Scale Renewable Energy
-Owner’s Engineer Services
-MEP Engineering Services
-NERC O&P 693 Compliance Services
-Our Work
-Keentel’s Grid IQ
-Contact
-Schedule A Consultation 
-Keentel Engineering Newsletter
-Grid Reliability Cyber Security Standards Development Global Energy Storage
-
-March 2026 Edition
 As we move through the first quarter of 2026, industry momentum continues to accelerate across reliability standards development, cyber security resilience, inverter-based resource (IBR) performance, and global energy storage expansion. This month’s update highlights major NERC initiatives, strategic reliability milestones, and key international energy storage events shaping the future of the bulk power system.
 
-NERC Strategic & Reliability Updates
-NERC 2023–2025 Three-Year Review
-NERC recently released its 2023–2025 Three-Year Review video, featuring insights from President and CEO Jim Robb.The review highlights measurable progress in:
-Grid reliability and resilience enhancement
-Risk reduction initiatives
-Operational readiness improvements
-Stronger collaboration with industry stakeholders
+## NERC Strategic & Reliability Updates
+
+### NERC 2023–2025 Three-Year Review
+
+NERC recently released its 2023–2025 Three-Year Review video, featuring insights from President and CEO Jim Robb. The review highlights measurable progress in:
+
+- Grid reliability and resilience enhancement
+- Risk reduction initiatives
+- Operational readiness improvements
+- Stronger collaboration with industry stakeholders
+
 The three-year strategic roadmap focused on addressing emerging risks while strengthening North America's bulk power system. NERC is now actively working on its 2026 goals and developing its next strategic plan for 2027–2029, reinforcing its commitment to long-term reliability and security.
+
 NERC and E-ISAC Highlight Strategic Impact and Industry Readiness
 
-2025 Electricity Information Sharing and Analysis Center (E-ISAC) End-of-Year Report
+## 2025 Electricity Information Sharing and Analysis Center (E-ISAC) End-of-Year Report
+
 NERC and E-ISAC Highlight Strategic Impact and Industry Readiness
+
 (Power Grid Cyber Security and Industry Threat Monitoring)
+
 The 2025 E-ISAC report reflects a year marked by rapidly evolving cyber and physical security threats.
+
 Key highlights include:
-Support to more than 1,900 industry members and partners
-Delivery of timely and actionable cyber security intelligence
-Enhanced threat analysis and proactive defense coordination
-Strengthened collective preparedness across the bulk power system
+
+- Support to more than 1,900 industry members and partners
+- Delivery of timely and actionable cyber security intelligence
+- Enhanced threat analysis and proactive defense coordination
+- Strengthened collective preparedness across the bulk power system
+
 Under new E-ISAC CEO Michael Ball, the organization continues to emphasize industry-wide collaboration as a cornerstone of grid security.
 
-Reliability Insights: Complex Cyber Threats Require Brilliance at the Basics
-(January 27, 2026)
+## Reliability Insights: Complex Cyber Threats Require Brilliance at the Basics
+
+@meta January 27, 2026
+
 NERC’s latest Reliability Insights publication underscores a critical message:
-Advanced threats require disciplined execution of foundational cyber security practices.﻿
+
+Advanced threats require disciplined execution of foundational cyber security practices.
+
 While adversarial tactics grow more sophisticated, maintaining excellence in the basics remains essential:
-Access controls and identity management
-Patch management discipline
-Network segmentation
-Incident response readiness
-Configuration management and monitoring
-﻿
+
+- Access controls and identity management
+- Patch management discipline
+- Network segmentation
+- Incident response readiness
+- Configuration management and monitoring
+
 The message is clear: Operational brilliance begins with foundational rigor.
 
-March 2026 Standards & Committee Activity Overview
+## March 2026 Standards & Committee Activity Overview
+
 March reflects significant drafting and oversight activity across multiple critical standards projects. Notable focus areas include:
+
 Events
-IBR & Ride-Through Performance
-Project 2025-05 Ride-Through Revisions (Multiple sessions throughout March)
-Continued efforts to refine ride-through performance requirements for inverter-based resources.
-Supply Chain & Cyber Risk
-Project 2025-06 Supply Chain Risk Management
-Project 2023-09 Risk Management for Third-Party Cloud Services
-Ongoing evaluation of third-party and supply chain vulnerabilities.
-Operational & Modeling Standards
-Project 2025-03 Order No. 901 Operational Studies
-Project 2022-04 EMT Modeling
-Project 2017-01 BAL-003 Phase II Modifications
-IBR Event Reporting
-Project 2023-01 EOP-004 IBR Event Reporting
-Risk Assessment Refinement
-Project 2023-06 CIP-014 Risk Assessment Refinement
-Committee & Subcommittee Meetings
-Event Analysis Subcommittee (EAS)
-Standards Committee Process Subcommittee (SCPS)
-Project Management and Oversight Subcommittee (PMOS)
-Standards Committee In-Person Meeting (Florida)
-RSTC Meetings and Informational Sessions
-NERC Probabilistic Analysis Forum (PAF) – Charlotte, NC
+
+### IBR & Ride-Through Performance
+
+- Project 2025-05 Ride-Through Revisions (Multiple sessions throughout March)
+- Continued efforts to refine ride-through performance requirements for inverter-based resources.
+
+### Supply Chain & Cyber Risk
+
+- Project 2025-06 Supply Chain Risk Management
+- Project 2023-09 Risk Management for Third-Party Cloud Services
+- Ongoing evaluation of third-party and supply chain vulnerabilities.
+
+### Operational & Modeling Standards
+
+- Project 2025-03 Order No. 901 Operational Studies
+- Project 2022-04 EMT Modeling
+- Project 2017-01 BAL-003 Phase II Modifications
+
+### IBR Event Reporting
+
+- Project 2023-01 EOP-004 IBR Event Reporting
+
+### Risk Assessment Refinement
+
+- Project 2023-06 CIP-014 Risk Assessment Refinement
+
+### Committee & Subcommittee Meetings
+
+- Event Analysis Subcommittee (EAS)
+- Standards Committee Process Subcommittee (SCPS)
+- Project Management and Oversight Subcommittee (PMOS)
+- Standards Committee In-Person Meeting (Florida)
+- RSTC Meetings and Informational Sessions
+- NERC Probabilistic Analysis Forum (PAF) – Charlotte, NC
+
 The volume and diversity of meetings in March reflect the industry’s continued emphasis on reliability, modeling accuracy, operational studies, and cyber risk management.
 
-Global Energy Storage Market Highlights – 2026
-As grid transformation accelerates, energy storage continues to emerge as a foundational technology worldwide.
-Energy Storage Summit Australia
-March 17, 2026 – Sydney
+## Global Energy Storage Market Highlights – 2026
+
+@callout As grid transformation accelerates, energy storage continues to emerge as a foundational technology worldwide.
+
+### Energy Storage Summit Australia
+
+@meta March 17, 2026 – Sydney
+
 Australia’s energy storage sector is rapidly positioning itself as a global leader in renewable integration. Key themes include:
-Behind-the-meter storage expansion
-Distribution network capacity growth
-Net-zero transition urgency
-Financial structuring and project bankability
-Grid connection challenges
-﻿
-Energy Storage Summit at The Battery Show Europe
-June 9, 2026 – Stuttgart, Germany
+
+- Behind-the-meter storage expansion
+- Distribution network capacity growth
+- Net-zero transition urgency
+- Financial structuring and project bankability
+- Grid connection challenges
+
+### Energy Storage Summit at The Battery Show Europe
+
+@meta June 9, 2026 – Stuttgart, Germany
+
 Focused on Germany’s utility-scale storage expansion, discussions will include:
-Policy and regulatory frameworks
-Merchant strategies and revenue stacking
-Grid tariff impacts
-Financing models
-Integration targets approaching 24 GW by 2037
-Energy Storage Summit Germany
-September 15, 2026 – Berlin
+
+- Policy and regulatory frameworks
+- Merchant strategies and revenue stacking
+- Grid tariff impacts
+- Financing models
+- Integration targets approaching 24 GW by 2037
+
+### Energy Storage Summit Germany
+
+@meta September 15, 2026 – Berlin
+
 A new standalone event dedicated to Germany’s rapidly expanding storage market. With Germany targeting 80% renewables by 2030, storage deployment is central to the Energiewende.
-﻿
-Battery Asset Management – UK & Ireland
-October 13, 2026 – London
+
+### Battery Asset Management – UK & Ireland
+
+@meta October 13, 2026 – London
+
 Focused on operational excellence for BESS portfolios:
-Degradation management
-Safety considerations
-Performance optimization
-Market design strategy
-﻿
-Battery Asset Management Europe
-December 2, 2026 – Italy
+
+- Degradation management
+- Safety considerations
+- Performance optimization
+- Market design strategy
+
+### Battery Asset Management Europe
+
+@meta December 2, 2026 – Italy
+
 Dedicated to asset owners, operators, and optimization specialists managing operational BESS fleets across Europe, with emphasis on:
-Revenue maximization
-Advanced optimization software
-Regulatory navigation
-Repowering and end-of-life planning
-﻿
 
-Looking Ahead
+- Revenue maximization
+- Advanced optimization software
+- Regulatory navigation
+- Repowering and end-of-life planning
+
+## Looking Ahead
+
 The industry in 2026 is defined by:
-Increased inverter-based resource penetration
-Expanding EMT modeling requirements
-Heightened cyber and supply chain risks
-Global acceleration of battery energy storage systems
-Stronger collaboration between regulators, operators, and technology providers
+
+- Increased inverter-based resource penetration
+- Expanding EMT modeling requirements
+- Heightened cyber and supply chain risks
+- Global acceleration of battery energy storage systems
+- Stronger collaboration between regulators, operators, and technology providers
+
 Reliability, resilience, and security remain the central pillars guiding regulatory evolution and infrastructure investment.
+
 As standards mature and storage deployment expands globally, technical precision and disciplined compliance execution will remain critical to maintaining bulk power system stability.
-For additional information on standards developments, modeling requirements, NERC compliance strategy, or energy storage integration support, please contact our team.﻿
+
+For additional information on standards developments, modeling requirements, NERC compliance strategy, or energy storage integration support, please contact our team.
+
 We appreciate your continued partnership and commitment to strengthening grid reliability.
-Booking Our Consultation
-NERC Compliance Services
-
-
-
-About the Author:
-Sonny Patel P.E. EC
-IEEE Senior Member
-In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
-Services
-All Engineering Services
-EHV, HV. MV Power System Studies
-Substation Design Services
-POI Interconnection Engineering Support
-Utility Scale Solar Farm Engineering
-Utility Scale BESS Engineering
-MEP Engineering Services
-
-
-
-Let's Discuss Your Project
-Let's book a call to discuss your electrical engineering project that we can help you with.
-Schedule A Consultation
-Download Company Profile Flyer
-
-
-
-About the Author:
-Sonny Patel P.E. EC
-IEEE Senior Member
-In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don’t build legacies—action does. For three decades, he’s been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.
-
-Serving for more than two decades, we are a name you can trust and count on for your power system and engineering support needs. We can provide innovative solutions to take your business to greater heights.
-Menu Links
-Home
-About
-Services
-Industries
-Keentel’s Grid IQ
-Contact
-Schedule a Consultation
-Connect with Us
-813-389-7871
-contact@keentelengineering.com
-Headquarters
-400 N Ashley Dr STE #2600 Tampa, FL 33602
-Austin Office
-5900 Balcones Drive STE 100 Austin, TX 78731 USA
-Sacramento Office
-1401 21st St Ste R Sacramento, CA 95811 USA
-Baltimore Office
-306 W Redwood St, STE 200 Baltimore, MD 21201 USA
-
-
-
-
-
-
-© 2026 
-Copyright 1995-2026 Keentel Engineering All Rights Reserved
-Privacy Policy
-Terms & Conditions
-Legal Disclaimer
-

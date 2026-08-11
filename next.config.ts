@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       { source: '/engineering-services-faqs', destination: '/service/software-capabilities-faqs', statusCode: 301 },
       { source: '/substation-engineering-case-studies', destination: '/substation-design-power-system-case-studies', statusCode: 301 },
       { source: '/post-a-review', destination: '/contact', statusCode: 301 },
+      { source: '/newsletters/nerc-february-2026-event-calendar', destination: '/nerc-february-2026-event-calendar', statusCode: 301 },
+      { source: '/2025-grid-reliability-ibr-compliance-newsletter', destination: '/newsletters/2025-grid-reliability-ibr-compliance-newsletter', statusCode: 301 },
+      { source: '/keentel-power-pulse-engineering-the-future-of-the-grid-april-2025', destination: '/newsletters/keentel-power-pulse-engineering-the-future-of-the-grid-april-2025', statusCode: 301 },
+      { source: '/industry-nerc-news-may-2025', destination: '/newsletters/industry-nerc-news-may-2025', statusCode: 301 },
+      { source: '/re-plus-las-vegas-2025', destination: '/newsletters/re-plus-las-vegas-2025', statusCode: 301 },
     ]
   },
 };

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { NewsletterArticleClosing, NewsletterConnectCta } from '@/components/newsletter/NewsletterClosing'
+import { NewsletterSidebar } from '../[slug]/page'
 
 export const metadata: Metadata = {
   title: 'ERCOT Energy Market Update 2026 | Keentel Engineering',
@@ -91,16 +92,23 @@ const faqs = [
   ['What is the market outlook for summer and through 2029?', 'Near-term average pricing remains comparatively moderate, but weather analogs, growing LNG exports, localized transmission constraints, and rapid large-load development create meaningful upside-tail risk. Flexible operations and nodal hedging remain important.'],
 ]
 
+function ErcotStats() {
+  return <div className="mb-10 grid grid-cols-2 overflow-hidden rounded-xl bg-[#06103C] md:grid-cols-4">{[['440k','MW queue requests'],['~30k','MW study-backed'],['~6k','MW energized'],['95%','data-center share']].map(([value,label])=><div key={label} className="border-b border-white/10 px-3 py-6 text-center md:border-b-0 md:border-r last:border-r-0"><p className="font-urbanist text-3xl font-black text-white">{value}</p><p className="mt-1 font-jost text-[11px] uppercase tracking-wide text-white/60">{label}</p></div>)}</div>
+}
+
+function ErcotIntroduction() {
+  return <p className="mb-12 border-b border-[#06103C]/20 pb-8 font-jost text-[15px] leading-7 text-slate-700 sm:text-base">The Electric Reliability Council of Texas is in the middle of the most consequential demand-side transformation in its history. Hundreds of thousands of megawatts of large-load requests—overwhelmingly data centers—have arrived faster than the grid can study, plan, and build for them. This brief distills the policy and market signals that matter most through an <strong className="text-[#06103C]">interconnection-first engineering</strong> lens.</p>
+}
+
 export default function ErcotMarketUpdatePage() {
   return <><Header /><main className="overflow-hidden bg-white">
-    <section className="relative flex min-h-[720px] items-center overflow-hidden bg-[#06103c] py-32 sm:min-h-[780px] sm:py-36">
+    <section className="relative flex min-h-[720px] items-center overflow-hidden bg-[#06103c] px-5 pb-20 pt-32 sm:min-h-[780px] sm:px-8 sm:pb-24 sm:pt-36">
       <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_85%_15%,#c72e9e,transparent_35%)]" />
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="relative mx-auto w-full max-w-6xl">
         <Link href="/newsletters" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white">← Back to newsletters</Link>
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
-          <div><p className="mb-5 text-xs font-black uppercase tracking-[.24em] text-[#ef48b8]">Keentel Engineering Newsletter</p>
-            <h1 className="font-urbanist text-4xl font-black leading-[1.03] text-white sm:text-6xl lg:text-7xl">ERCOT Energy<br/><span className="text-[#ef48b8]">Market Update 2026</span></h1>
-            <p className="mt-5 text-xs font-black uppercase tracking-[.2em] text-[#ef48b8]">July 2026 Edition</p>
+        <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr]">
+          <div><p className="mb-3 font-jost text-sm uppercase tracking-wide text-[#C72E9E]">July 2026 Edition</p>
+            <h1 className="mb-5 max-w-4xl font-urbanist text-4xl font-black leading-[1.06] text-white sm:text-5xl lg:text-6xl">ERCOT Energy Market Update 2026</h1>
             <p className="mt-5 max-w-2xl font-jost text-lg leading-8 text-white/70">Large-load growth, Senate Bill 6, the batch study redesign, and the road to a disciplined interconnection queue.</p>
           </div>
           <div className="relative mx-auto w-full max-w-[520px] overflow-hidden rounded-3xl border border-white/15 bg-white/[.07] p-3 shadow-2xl"><Image src="/images/newsletters/ercot-energy-market-update-july-2026.png" alt="ERCOT Energy Market Update July 2026" width={1200} height={750} priority className="h-auto w-full rounded-2xl bg-white object-contain" /></div>
@@ -108,20 +116,16 @@ export default function ErcotMarketUpdatePage() {
       </div>
     </section>
 
-    <section className="relative z-10 mx-auto -mt-8 max-w-6xl px-5 sm:px-8"><div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl md:grid-cols-4">{[['440k','MW queue requests'],['~30k','MW study-backed'],['~6k','MW energized'],['95%','data-center share']].map(([value,label])=><div key={label} className="border-b border-r border-slate-200 p-6 text-center last:border-r-0 md:border-b-0"><p className="font-urbanist text-3xl font-black text-[#06103c]">{value}</p><p className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-500">{label}</p></div>)}</div></section>
-
-    <section className="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24"><p className="font-jost text-xl leading-9 text-slate-650">The Electric Reliability Council of Texas is in the middle of the most consequential demand-side transformation in its history. Hundreds of thousands of megawatts of large-load requests—overwhelmingly data centers—have arrived faster than the grid can study, plan, and build for them. This brief distills the policy and market signals that matter most through an <strong className="text-[#06103c]">interconnection-first engineering</strong> lens.</p></section>
-
-    <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-24 sm:px-8 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <div>{sections.map((section,index)=><section key={section.number} className={index ? 'border-t-2 border-[#06103c]' : ''}><div className="grid gap-6 py-14 sm:py-20 lg:grid-cols-[110px_1fr]">
-      <div><p className="font-urbanist text-6xl font-black text-[#c72e9e]/20">{section.number}</p><p className="mt-2 text-xs font-black uppercase tracking-[.18em] text-[#a8228a]">Section {section.number}</p></div>
-      <article><p className="mb-3 text-sm font-bold text-[#a8228a]">{section.eyebrow}</p><h2 className="font-urbanist text-3xl font-black leading-tight text-[#06103c] sm:text-4xl">{section.title}</h2>
-        <div className="mt-7 space-y-5 font-jost text-[17px] leading-8 text-slate-600">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
-        <div className="mt-9 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"><h3 className="font-urbanist text-xl font-black text-[#06103c]">{section.subheading}</h3><p className="mt-3 font-jost leading-7 text-slate-600">{section.detail}</p></div>
-        <blockquote className="mt-7 border-l-4 border-[#c72e9e] bg-[#fff5fb] px-6 py-5 font-jost font-semibold leading-7 text-[#06103c]">{section.takeaway}</blockquote>
-      </article></div></section>)}<NewsletterArticleClosing /></div>
-      <aside className="hidden lg:block lg:sticky lg:top-28 lg:self-start"><div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl"><p className="text-xs font-black uppercase tracking-[.16em] text-[#a8228a]">Let&apos;s discuss your project</p><h2 className="mt-3 font-urbanist text-2xl font-black leading-tight text-[#06103c]">Turn ERCOT market signals into a bankable design.</h2><p className="mt-4 font-jost leading-7 text-slate-600">Talk with our engineers about large-load interconnection, studies, NERC compliance, BYOG, or grid strategy.</p><Link href="https://calendly.com/keentel-engineering/15min" target="_blank" className="mt-6 flex justify-center rounded-xl bg-gradient-to-r from-[#c72e9e] to-[#7d258e] px-5 py-3.5 text-sm font-bold text-white">Schedule a consultation</Link><Link href="/contact" className="mt-3 flex justify-center rounded-xl border border-[#06103c]/15 px-5 py-3.5 text-sm font-bold text-[#06103c]">Contact Keentel</Link></div></aside>
-    </div>
+    <div className="bg-[#F6F7FB] px-5 pb-20 sm:px-8 sm:pb-28"><div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_290px] lg:gap-10">
+      <article className="min-w-0 rounded-2xl border border-[#E1E4EC] bg-white px-5 py-8 shadow-[0_10px_28px_rgba(6,16,60,0.06)] sm:px-9 sm:py-10"><ErcotStats /><ErcotIntroduction />{sections.map((section,index)=><section key={section.number} className={index ? 'mt-14 border-t border-[#06103C]/20 pt-8' : ''}><div className="grid gap-4 py-6 first:pt-0 sm:grid-cols-[72px_1fr] sm:gap-6">
+      <div className="flex items-start gap-3 sm:block"><p className="font-urbanist text-2xl font-black leading-none text-[#A8228A] sm:text-3xl">{section.number}</p><p className="font-jost text-xs font-bold uppercase tracking-[0.13em] text-[#A8228A] sm:mt-2">Section</p></div>
+      <div><p className="mb-3 font-jost text-sm font-bold uppercase tracking-[0.08em] text-[#A8228A]">{section.eyebrow}</p><h2 className="font-urbanist text-2xl font-black leading-tight text-[#06103C] md:text-3xl">{section.title}</h2>
+        <div className="mt-6 space-y-5 font-jost text-[15px] leading-7 text-slate-700 sm:text-base">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
+        <div className="mt-8 rounded-xl border border-[#E1E4EC] bg-[#F7F8FC] p-5 sm:p-6"><h3 className="font-urbanist text-xl font-black leading-snug text-[#A8228A]">{section.subheading}</h3><p className="mt-3 font-jost text-[15px] leading-7 text-slate-700 sm:text-base">{section.detail}</p></div>
+        <blockquote className="my-8 rounded-r-lg border-l-[5px] border-[#A8228A] bg-[#FDF5F5] px-6 py-4 font-jost text-[15px] font-semibold leading-7 text-[#06103C] sm:text-base">{section.takeaway}</blockquote>
+      </div></div></section>)}<NewsletterArticleClosing /></article>
+      <NewsletterSidebar />
+    </div></div>
 
     <section className="border-y border-slate-200 bg-white px-5 py-20 sm:px-8 sm:py-28"><div className="mx-auto max-w-4xl"><p className="text-xs font-black uppercase tracking-[.22em] text-[#a8228a]">Technical FAQ</p><h2 className="mt-3 font-urbanist text-4xl font-black text-[#06103c] sm:text-5xl">The 2026 ERCOT market, answered.</h2><p className="mt-5 max-w-2xl font-jost text-lg leading-8 text-slate-600">Questions we hear most often from developers, utilities, and large energy buyers. Answers reflect conditions as of mid-2026; several rulemakings remain in progress.</p>
       <div className="mt-10 space-y-4">{faqs.map(([question,answer],i)=><details key={question} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm open:shadow-md"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 bg-[#a8228a] p-4 font-urbanist text-base font-bold text-white sm:px-5"><span><span className="mr-2 text-white/70">Q{i+1}.</span>{question}</span><span className="text-xl text-white transition-transform group-open:rotate-45">+</span></summary><p className="px-5 py-5 font-jost leading-7 text-slate-600 sm:px-6">{answer}</p></details>)}</div>
