@@ -37,7 +37,6 @@ const legal = [
 const certifications = [
   { name: 'National Society of Professional Engineers', image: '/images/cert-footer-nspe.png' },
   { name: 'D-U-N-S Registered', image: '/images/cert-footer-duns.png' },
-  { name: 'Registered Professional Engineer', image: '/images/cert-footer-pe.png' },
   { name: 'IEEE Senior Member', image: '/images/cert-footer-ieee.png' },
   {
     name: 'BBB Accredited Business with A+ rating',
@@ -173,7 +172,7 @@ export default function Footer() {
         {/* Certifications & Memberships */}
         <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] shadow-[0_20px_55px_rgba(0,0,0,0.14)]">
           <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-[#A8228A]/10 blur-3xl" aria-hidden="true" />
-          <div className="relative grid grid-cols-1 gap-px bg-white/10 min-[380px]:grid-cols-2 sm:grid-cols-3 xl:grid-cols-5">
+          <div className="relative grid grid-cols-1 gap-px bg-white/10 min-[380px]:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4">
             {certifications.map((certification) => {
               const content = (
                 <img
