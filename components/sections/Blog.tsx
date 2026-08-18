@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { client } from '@/lib/sanity'
 
 const fallbackPosts = [
-  { slug: 'nyiso-interconnection-study-large-loads', title: 'NYISO Interconnection Study Guide for Large Loads', excerpt: 'Learn how NYISO interconnection study, Load SIS, POI strategy, and modeling data requirements affect large load and generation projects in New York.', author: 'Sandip R Patel', date: 'June 10, 2026', category: 'Interconnection', image: '/images/blog-home/nyiso-interconnection.png' },
-  { slug: 'ercot-ride-through-requirements', title: 'ERCOT Ride Through Requirements for Large Loads', excerpt: 'Learn ERCOT ride through requirements for Large Electronic Loads, data centers, and interconnection compliance. Discover NOGRR282 engineering steps.', author: 'Sandip R Patel', date: 'June 9, 2026', category: 'ERCOT', image: '/images/blog-home/ercot-ride-through.png' },
-  { slug: 'cable-ampacity-sizing', title: 'Cable Ampacity and Sizing: Thermal Limits Explained', excerpt: 'Learn cable ampacity and sizing methods, conductor thermal limits, derating factors, and cable sizing calculations for reliable power systems.', author: 'Sandip R Patel', date: 'June 8, 2026', category: 'Power Systems', image: '/images/blog-home/cable-ampacity.png' },
+  { slug: 'cable-testing-before-energization', title: 'Cable Testing Before Energization', excerpt: 'Learn the correct cable testing sequence before energization, including VLF, AC/DC withstand, sheath testing, partial discharge, tan delta, and standards.', author: 'Sandip R Patel', date: 'August 16, 2026', category: 'Power Systems', image: '/images/blog-home/cable-ampacity.png' },
+  { slug: 'substation-drawing-sets', title: 'Substation Drawing Sets & Engineering Design', excerpt: 'Explore how substation drawing sets are developed, reviewed and controlled through engineering studies, design milestones, QA/QC and final construction release.', author: 'Sandip R Patel', date: 'August 16, 2026', category: 'Substation Design', image: '/images/blog-home/nyiso-interconnection.png' },
+  { slug: 'grid-forming-vs-grid-following-bess', title: 'Grid-Forming vs Grid-Following BESS Inverters', excerpt: 'Compare grid-forming vs grid-following BESS inverters, control loops, weak-grid stability, protection, compliance, and interconnection study impacts.', author: 'Sandip R Patel', date: 'August 15, 2026', category: 'Power Systems', image: '/images/blog-home/ercot-ride-through.png' },
 ]
 
 type BlogPost = {

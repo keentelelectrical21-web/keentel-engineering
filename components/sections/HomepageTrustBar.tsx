@@ -1,11 +1,11 @@
 const trustItems = [
-  'BBB Accredited — A+ Rating',
-  'P.E. Stamped Deliverables — All 50 States',
-  'ERCOT IMRE Registered Entity',
-  'Certified Minority Business Enterprise',
-  'IEEE Senior Member',
-  'National Society of Professional Engineers (NSPE)',
-  'D-U-N-S® Registered',
+  'IEEE-Aligned Engineering',
+  'NERC Compliance Support',
+  'IEC 61850 & SCADA',
+  'ETAP · PSCAD · PSS®E',
+  'Utility-Grade Studies',
+  'Protection & Control',
+  'Grid Integration',
 ]
 
 export default function HomepageTrustBar() {

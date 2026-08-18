@@ -3,15 +3,15 @@
 import { useEffect, useState } from 'react'
 
 const videos = [
-  { id: 'iK9KC73rFRg', ep: 'NEW', title: 'The Keentel Engineering Series — Electrical Power Engineering', sub: 'Power-system engineering insights from Keentel Engineering' },
-  { id: '5qG16nbMmEk', ep: '01', title: 'Utility Interconnection for Large Loads', sub: 'Grid stability, load modeling and ride-through' },
-  { id: '8GAWzqbEITQ', ep: '02', title: 'How AI Data Centers Are Reshaping U.S. Electricity', sub: 'NERC 2025 explained' },
-  { id: 'C9tZQM-x_Ho', ep: '03', title: 'PJM Interconnection Explained', sub: 'How data centers connect to the grid' },
-  { id: 'AgfRaZtdbh8', ep: '04', title: 'ERCOT Explained', sub: 'How the Texas power grid actually works' },
-  { id: '6setSIIPoFA', ep: '05', title: 'PSCAD Modeling Explained', sub: 'EMT simulations for modern power systems' },
-  { id: 'C_1JbvhLQ2g', ep: '06', title: 'Large Load Interconnection', sub: 'Guidance for utilities, developers and regulators' },
-  { id: 'Ghb2UP1BWbk', ep: '07', title: 'RMS vs EMT', sub: 'How to choose the right simulation tool' },
-  { id: 'E2wC7f9s7Bk', ep: '08', title: 'Large Loads Reshaping the U.S. Grid', sub: 'Xcel, FPL, Duke' },
+  { id: 'iK9KC73rFRg', ep: 'NEW', title: 'The Keentel Engineering Series', sub: 'Start here — an overview of the channel and the topics we cover in each episode.' },
+  { id: '5qG16nbMmEk', ep: '01', title: 'Utility Interconnection for Large Loads', sub: 'What utilities require for large-load connections: stability limits, load modeling and ride-through.' },
+  { id: '8GAWzqbEITQ', ep: '02', title: 'How AI Data Centers Are Reshaping U.S. Electricity', sub: 'Why hyperscale AI demand is straining reliability and forcing utilities to rethink planning.' },
+  { id: 'C9tZQM-x_Ho', ep: '03', title: 'PJM Interconnection Explained', sub: 'How large loads move through the PJM queue, from application to study to energization.' },
+  { id: 'AgfRaZtdbh8', ep: '04', title: 'ERCOT Explained', sub: 'How the independent Texas grid operates, and why its market rules differ from other ISOs.' },
+  { id: '6setSIIPoFA', ep: '05', title: 'PSCAD Modeling Explained', sub: 'EMT simulation for inverter-based resources, weak-grid conditions and switching transients.' },
+  { id: 'C_1JbvhLQ2g', ep: '06', title: 'Large Load Interconnection', sub: 'What utilities, developers and regulators each need from a large-load interconnection study.' },
+  { id: 'Ghb2UP1BWbk', ep: '07', title: 'RMS vs EMT', sub: 'When positive-sequence RMS modeling is enough, and when a study genuinely requires EMT.' },
+  { id: 'E2wC7f9s7Bk', ep: '08', title: 'Large Loads Reshaping the U.S. Grid', sub: 'What recent Xcel, FPL and Duke planning moves signal for large-load developers.' },
 ]
 
 export default function YouTube() {
@@ -47,7 +47,7 @@ export default function YouTube() {
               Power systems, plainly explained.
             </h2>
             <p className="mt-3 w-full font-jost text-base" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              Field-tested engineering: NERC, PJM, ERCOT, IBR modeling, data-center interconnection — straight to our channel.
+              Field-tested engineering insights covering NERC, PJM, ERCOT, IBR modeling, data-center interconnection and modern power-system studies — delivered directly through the Keentel Engineering channel.
             </p>
           </div>
           <div className="flex w-full flex-wrap items-center justify-end gap-3">

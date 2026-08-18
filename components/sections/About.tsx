@@ -53,10 +53,10 @@ export default function About() {
   }, [])
 
   const stats = [
-    { value: 32, suffix: '', label: 'Electrical Power Engineers', desc: 'Led by experienced senior directors and managers.', delay: 0 },
-    { value: 150, suffix: '+', label: 'Combined Years', desc: 'Deep power-industry engineering experience across the team.', delay: 100 },
-    { value: 50, suffix: '', label: 'State Coverage', desc: 'P.E. stamped deliverables available nationwide.', delay: 200 },
-    { value: 98, suffix: '%', label: 'Repeat Clients', desc: 'Utilities, developers, OEMs, and engineering partners return.', delay: 300 },
+    { value: 21, suffix: '', label: 'Electrical Engineering Team', desc: 'Design, grid-modeling, and compliance specialists.', delay: 0 },
+    { value: 6, suffix: '', label: 'Design Engineers', desc: 'Electrical design and calculations for utility-scale and industrial projects.', delay: 100 },
+    { value: 7, suffix: '', label: 'Grid Modeling Specialists', desc: 'PSCAD, PSS®E, and DIgSILENT expertise for grid dynamics.', delay: 200 },
+    { value: 8, suffix: '', label: 'Compliance Specialists', desc: 'OSHA, NFPA 70, NERC, and FERC compliance support.', delay: 300 },
   ]
 
   return (
@@ -81,12 +81,11 @@ export default function About() {
           <div className="lg:w-3/4">
             <h2 className="font-urbanist text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.15] mb-6" style={{ color: '#0B1230' }}>
               We are{' '}
-              <span style={{ color: '#0B1A5B' }}>Keentel Engineering</span> a specialized electrical power engineering firm delivering{' '}
-              <span style={{ color: '#A8228A' }}>precision, compliance, and reliability</span>{' '}
-              for utilities, developers, and EPCs across the U.S.
+              <span style={{ color: '#0B1A5B' }}>Keentel Engineering</span>, your trusted partner in{' '}
+              <span style={{ color: '#A8228A' }}>electrical engineering and power systems.</span>
             </h2>
             <p className="text-lg font-jost leading-relaxed mb-8" style={{ color: '#4B5563' }}>
-              Led by a Principal Engineer with 31 years in the power industry and backed by 150+ years of combined team experience, our 32-member engineering organization supports critical infrastructure nationwide—from substation design and relay protection to NERC compliance and utility-scale renewable integration. We don&apos;t just design systems. We engineer certainty.
+              Across the United States, our 21-member electrical engineering team brings certainty to complexity. Our designers, grid-modeling specialists, and compliance professionals support power system analysis, electrical design, transmission planning, protective relaying, and NERC compliance.
             </p>
             <Link
               href="/about"

@@ -3,15 +3,15 @@
 import Image from 'next/image'
 
 const tools = [
-  { name: 'AutoCAD', years: '27+', desc: 'Drafting & design', logo: '/images/software-logos/autocad.png' },
-  { name: 'DIgSILENT', years: '8+', desc: 'Power system analysis', logo: '/images/software-logos/digsilent.png' },
-  { name: 'ETAP', years: '15+', desc: 'Electrical analysis', logo: '/images/software-logos/etap.png' },
-  { name: 'PSS/E', years: '14+', desc: 'Transmission planning', logo: '/images/software-logos/psse.png' },
+  { name: 'AutoCAD', years: '27+', desc: 'Electrical design', logo: '/images/software-logos/autocad.png' },
+  { name: 'DIgSILENT', years: '8+', desc: 'Grid simulation', logo: '/images/software-logos/digsilent.png' },
+  { name: 'ETAP', years: '15+', desc: 'Power system studies', logo: '/images/software-logos/etap.png' },
+  { name: 'PSS/E', years: '14+', desc: 'Dynamic modeling', logo: '/images/software-logos/psse.png' },
   { name: 'Bentley', years: '14+', desc: 'Infrastructure design', logo: '/images/software-logos/bentley.png' },
-  { name: 'SEL', years: '27+', desc: 'Relay protection', logo: '/images/software-logos/sel.png' },
-  { name: 'EasyPower', years: '10+', desc: 'Arc flash & coordination', logo: '/images/software-logos/easypower.png' },
-  { name: 'PSCAD', years: '5+', desc: 'EMT simulation', logo: '/images/software-logos/pscad.png' },
-  { name: 'SKM PowerTools', years: '15+', desc: 'Power tools analysis', logo: '/images/software-logos/skm.png' },
+  { name: 'SEL', years: '27+', desc: 'Protection & control', logo: '/images/software-logos/sel.png' },
+  { name: 'EasyPower', years: '10+', desc: 'Electrical analysis', logo: '/images/software-logos/easypower.png' },
+  { name: 'PSCAD', years: '5+', desc: 'EMT studies', logo: '/images/software-logos/pscad.png' },
+  { name: 'SKM PowerTools', years: '15+', desc: 'Protection studies', logo: '/images/software-logos/skm.png' },
   { name: 'CYME', years: '27+', desc: 'Distribution analysis', logo: '/images/software-logos/cyme.png' },
 ]
 
@@ -36,7 +36,7 @@ export default function SoftwareTools({ heading = 'Our Engineering Tools', theme
             {heading}
           </h2>
           <p className={`text-base font-jost max-w-2xl mx-auto sm:text-lg ${isLight ? 'text-gray-600' : 'text-white/75'}`}>
-            Precision modeling using the industry&apos;s most trusted power engineering software platforms, with decades of hands-on expertise.
+            Expert modeling with ETAP, SKM, PSCAD, PSS®E, DIgSILENT, and other power engineering software platforms.
           </p>
         </div>
 
@@ -71,10 +71,10 @@ export default function SoftwareTools({ heading = 'Our Engineering Tools', theme
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { val: '10', label: 'Software Platforms', sub: 'Industry-leading tools' },
-            { val: '27+', label: 'Years AutoCAD', sub: 'Since inception' },
-            { val: '100%', label: 'In-House Capability', sub: 'No outsourcing' },
-            { val: 'All 3', label: 'U.S. Interconnections', sub: 'Eastern, Western, Texas' },
+            { val: '10', label: 'Software Platforms', sub: 'Power engineering tools' },
+            { val: '27+', label: 'Years AutoCAD', sub: 'Electrical design' },
+            { val: 'ETAP', label: 'System Studies', sub: 'Analysis and modeling' },
+            { val: 'PSCAD', label: 'EMT Studies', sub: 'Fast transient analysis' },
           ].map((s, i) => (
             <div key={i} className={`rounded-2xl border p-5 sm:p-6 ${isLight ? 'border-[#E0E4ED] bg-white shadow-[0_8px_24px_rgba(6,16,60,0.05)]' : 'border-white/10 bg-white/[0.05]'}`}>
               <p className={`font-urbanist font-black text-3xl mb-1 ${isLight ? 'text-[#A8228A]' : 'text-white'}`}>{s.val}</p>

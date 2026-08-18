@@ -5,23 +5,23 @@ import { useState } from 'react'
 const benefits = [
   {
     title: 'Expertise in HV, MV, and EHV Power Systems',
-    description: 'Design and analysis of high-, medium-, and extra-high-voltage electrical systems for utilities, industrial facilities, renewable energy projects, and critical infrastructure.',
+    description: 'Power and utility system planning, design, control, and analysis for critical electrical infrastructure.',
   },
   {
     title: 'Advanced Power System Modeling Capabilities',
-    description: 'Comprehensive engineering studies using ETAP, PSCAD, PSS®E, SKM, and DIgSILENT to deliver accurate analysis, system performance validation, and reliable project outcomes.',
+    description: 'Detailed power-system analysis using industry-leading software to support accurate engineering studies.',
   },
   {
     title: 'Experience with Utility and ISO Planning Requirements',
-    description: 'Supporting projects across ERCOT, PJM, MISO, CAISO, and other utility territories with interconnection studies, planning support, and grid compliance expertise.',
+    description: 'Practical standards knowledge supporting approval, reliability, and long-term system performance.',
   },
   {
     title: 'Deep Understanding of NERC Reliability Standards',
-    description: 'Assisting clients with NERC compliance through engineering studies, protection coordination, documentation, and reliability-focused technical solutions.',
+    description: 'Engineering support for NERC reliability standards, compliance documentation, studies, and audit readiness.',
   },
   {
     title: 'Practical Engineering Solutions for Complex Power System Challenges',
-    description: 'Delivering practical, cost-effective engineering recommendations backed by more than 30 years of real-world experience across utility, industrial, and renewable energy projects.',
+    description: 'Accurate studies, clear documentation, and engineering solutions that support approval, reliability, and long-term performance.',
   },
 ]
 
@@ -29,12 +29,9 @@ const services = [
   'Power System Studies Services',
   'Substation Design Services',
   'POI Interconnection Engineering Support',
-  'Transmission Line Design Services',
-  'Utility Scale Renewable Energy',
   "Owner's Engineer Services",
-  'MEP Engineering Services',
   'NERC O&P 693 Compliance Services',
-  'Nuclear Power Plant Services',
+  'Utility Scale Solar Farm Engineering',
 ]
 
 const emptyForm = { firstName: '', lastName: '', phone: '', email: '', message: '' }

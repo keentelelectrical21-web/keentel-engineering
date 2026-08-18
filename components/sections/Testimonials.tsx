@@ -17,13 +17,12 @@ interface CaseStudy {
 }
 
 const fallback: CaseStudy[] = [
-  { _id: 'poi-interconnection-support-case-studies', title: 'Point-of-Interconnection (POI) Support Case Studies', subtitle: 'Four utility-scale POI projects delivered across PJM, ERCOT, WECC, and NYISO.', category: 'power-system', cardImage: '/images/poi.webp', slug: { current: 'casestudies-poi-interconnection-support' }, client: 'Confidential Renewable Developers', region: 'PJM · ERCOT · WECC · NYISO', href: '/casestudies-poi-interconnection-support' },
-  { _id: '1', title: '110 kV Outdoor Grid Substation', subtitle: 'Rural electrification across extreme environments.', category: 'substation', slug: { current: 'substation-110kv-outdoor-rural-electrification' }, outcome: ['Stable power distribution achieved with improved grid resilience.'] },
-  { _id: '2', title: 'Grid Interconnection & Renewable Penetration Study', subtitle: 'ISO-approved interconnection results for a major renewable developer.', category: 'power-system', slug: { current: 'power-system-grid-interconnection-renewable-penetration' }, client: 'Confidential Renewable Developer', region: 'ERCOT' },
-  { _id: '3', title: '230 kV Renewable POI Collector Substation', subtitle: 'Utility-scale renewable interconnection hub.', category: 'substation', slug: { current: 'substation-230kv-renewable-poi-collector' } },
-  { _id: '4', title: 'Insulation Coordination & Lightning Study', subtitle: 'Equipment protection for high-voltage substation.', category: 'power-system', slug: { current: 'power-system-insulation-coordination-lightning-tov-trv' }, region: 'Southeast U.S.' },
-  { _id: '5', title: 'BESS Substation 138 kV', subtitle: 'Grid stabilization through fast-response energy storage.', category: 'substation', slug: { current: 'substation-bess-138kv' } },
-  { _id: '6', title: 'Solar & Wind Farm Electrical Design', subtitle: 'Full compliance engineering for a hybrid solar-wind facility.', category: 'power-system', slug: { current: 'power-system-solar-wind-farm-electrical-design' }, client: 'Confidential IPP', region: 'Southwest U.S.' },
+  { _id: 'grid-interconnection-renewable-penetration', title: 'Grid Interconnection & Renewable Penetration Study', subtitle: 'Grid interconnection and renewable-penetration assessment under high renewable scenarios.', category: 'power-system', slug: { current: 'power-system-study-case-studies' }, client: 'Confidential Renewable Developer', region: 'ERCOT', outcome: ['ISO-approved interconnection study results with identified hosting-capacity limits and mitigation paths.'] },
+  { _id: 'reactive-power-compensation', title: 'Reactive Power Compensation & Capacitor Bank Optimization Study', subtitle: 'Reactive compensation study for a transmission-connected facility.', category: 'power-system', slug: { current: 'power-system-study-case-studies' }, client: 'Confidential Transmission-Connected Facility', region: 'MISO', outcome: ['Improved voltage profile and power-factor compliance.'] },
+  { _id: 'insulation-coordination', title: 'Insulation Coordination, Lightning, TOV, and TRV Studies', subtitle: 'Insulation coordination verification for a new high-voltage substation.', category: 'power-system', slug: { current: 'power-system-study-case-studies' }, client: 'Confidential Utility', region: 'Southeast U.S.', outcome: ['Reduced insulation-failure risk and enhanced substation reliability and safety.'] },
+  { _id: '345kv-greenfield-substation', title: '345 kV EHV Greenfield Substation', subtitle: 'New 345 kV / 138 kV transmission substation integrating wind generation.', category: 'substation', slug: { current: 'substation-design-power-system-case-studies' }, outcome: ['Successful substation energization with zero safety incidents.'] },
+  { _id: '230kv-gis-expansion', title: '230 kV GIS Substation Expansion', subtitle: 'Expansion and modernization of an existing gas-insulated substation.', category: 'substation', slug: { current: 'substation-design-power-system-case-studies' }, outcome: ['Expansion completed without a substation outage.'] },
+  { _id: 'wecc-poi-hybrid', title: 'WECC 230 kV POI for Solar + BESS Hybrid', subtitle: 'POI interconnection engineering for a 150 MW PV and 75 MW / 300 MWh BESS hybrid.', category: 'power-system', slug: { current: 'casestudies-poi-interconnection-support' }, client: 'Confidential Renewable Developer', region: 'WECC', outcome: ['EMT modeling report approved without major comments.'] },
 ]
 
 function displayTitle(title: string) {
@@ -105,7 +104,7 @@ export default function Testimonials() {
 
   useEffect(() => {
     fetch('/api/case-studies')
-      .then((r) => r.json())
+      .then((response) => response.json())
       .then((data) => {
         if (data?.length > 0) {
           setCases([fallback[0], ...data.filter((study: CaseStudy) => study.slug.current !== fallback[0].slug.current)])
@@ -133,7 +132,7 @@ export default function Testimonials() {
         <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: '#A8228A' }}>Featured Case Studies</p>
         <h2 className="font-urbanist font-black text-4xl sm:text-5xl mb-4" style={{ color: '#0B1230' }}>Engineering Projects That Deliver Results</h2>
         <p className="text-lg font-jost max-w-3xl mx-auto" style={{ color: '#4B5563' }}>
-          Power system studies, substation engineering, grid interconnection, and protection projects delivered for utilities, developers, EPC contractors, and industrial facilities across the U.S.
+          Power system studies, substation engineering, grid interconnection, and protection projects delivered for utilities, renewable developers, EPC contractors, and industrial facilities.
         </p>
       </div>
 

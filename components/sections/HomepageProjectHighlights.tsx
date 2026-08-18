@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
 const projects = [
-  { value: '1 GW', title: 'Hyperscale Data Center — ERCOT', text: 'Among the largest single-site load interconnections in North America.' },
-  { value: '600 / 500 / 250 MW', title: 'Data Center Campuses', text: 'Complete electrical design packages developed through IFC.' },
-  { value: '385 MW', title: 'Utility-Scale BESS', text: 'Electrical design and coordinated engineering documentation.' },
-  { value: '245 MW', title: 'Data Center — SPP', text: 'Dynamic load and PSCAD EMT modeling under the HILL study framework.' },
-  { value: '9 GW', title: 'Renewable Fleet', text: 'Compliance and PSS®E modeling support led by our Principal Engineer.' },
+  { value: '345 / 138 kV', title: 'EHV Greenfield Substation', text: 'New transmission substation designed to integrate 400 MW of wind generation into the regional grid.' },
+  { value: '250 MW', title: 'PJM Solar + Storage POI', text: 'Full POI engineering for a solar PV and BESS interconnection to a 230 kV PJM transmission line.' },
+  { value: '300 MW', title: 'ERCOT Wind Expansion', text: 'POI interconnection support for a wind farm expansion into the ERCOT 345 kV network.' },
+  { value: '150 MW', title: 'PJM Solar PV Dynamic Modeling', text: 'Dynamic-model development and validation for a New Jersey solar PV plant.' },
+  { value: '100 MW / 400 MWh', title: 'BESS Collector Substation', text: 'EPC-level design for a 115 kV / 34.5 kV battery-energy-storage collector substation.' },
 ]
 
 export default function HomepageProjectHighlights() {

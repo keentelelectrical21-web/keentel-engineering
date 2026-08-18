@@ -4,12 +4,12 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 
 const faqs = [
-  { q: 'How long does a power system study actually take?', a: '4 to 12 weeks depending on grid complexity. We are honest about timelines upfront — nobody benefits from rushed studies.' },
-  { q: 'What if the grid says no?', a: 'Then we redesign to what the grid will say yes to. Mitigation. Equipment changes. Facility redesign. We find the path.' },
-  { q: 'Do you work on small projects?', a: 'Yes. And we tell you if we are overkill for your budget. A 5 MW solar project might need a consultant, not a full engineering firm. We will say so.' },
-  { q: 'What is the cost range?', a: '$15K to $150K+ depending on study scope and grid complexity. We quote after initial assessment, not before.' },
-  { q: 'How do you stay current on NERC standards?', a: '27 years of standards changes. Real clients. Real compliance deadlines. We are not consultants. We are practitioners.' },
-  { q: 'Which interconnects do you cover?', a: 'PJM, MISO, ERCOT, CAISO, NYISO, ISO-NE, SPP and WECC — plus most major IOUs and municipal utilities.' },
+  { q: 'Which power system studies does Keentel perform?', a: 'Keentel performs load flow, contingency, short-circuit and duty analysis, protection coordination, arc-flash, harmonic and power-quality studies, motor starting, voltage drop, transient stability where applicable, and grounding studies.' },
+  { q: 'Why are short-circuit studies critical for EHV, HV, and MV systems?', a: 'Short-circuit studies confirm equipment interrupting ratings and momentary withstand capabilities. They also define protective-device settings, ensure breaker-duty compliance, and reduce equipment-failure risk.' },
+  { q: 'What is the difference between coordination studies and arc-flash studies?', a: 'Coordination studies ensure protective devices operate selectively and quickly for electrical faults. Arc-flash studies estimate incident-energy exposure and define PPE boundaries and equipment-labeling requirements.' },
+  { q: 'How does Keentel evaluate harmonics and power quality?', a: 'Keentel models harmonic sources such as inverters, variable frequency drives, and large rectifiers, calculates distortion levels at key buses, and verifies compliance with applicable limits.' },
+  { q: 'Can Keentel study weak-grid and inverter-based-resource interconnections?', a: 'Yes. Keentel evaluates short-circuit ratio, reactive-power margin, voltage regulation, and control interactions to recommend mitigation for stable and compliant operation.' },
+  { q: 'What does POI interconnection engineering support include?', a: 'POI interconnection engineering covers feasibility review, utility and ISO coordination, POI substation design, protection and control, grounding, study support, construction drawings, commissioning support, and utility acceptance documentation.' },
 ]
 
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
@@ -56,9 +56,9 @@ type FAQProps = {
 
 export default function FAQ({
   items = faqs,
-  eyebrow = 'Questions We Hear',
-  title = <>Answers,<br />before you ask.</>,
-  description = '30 years of client questions. Here are the ones that come up every time.',
+  eyebrow = 'Technical FAQs',
+  title = <>Engineering answers,<br />for critical power systems.</>,
+  description = 'Technical information on power system studies, grid interconnection, protection, and power quality.',
 }: FAQProps = {}) {
   return (
     <section className="py-20 bg-white">

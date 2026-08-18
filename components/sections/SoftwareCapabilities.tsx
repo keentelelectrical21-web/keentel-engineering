@@ -5,39 +5,39 @@ import Link from 'next/link'
 
 const tools = [
   { key: 'psse', name: 'PSS®E', logo: '/images/services/power-system-studies/logo-psse.png', description: 'Power System Simulator for Engineering by Siemens — industry standard for large-scale transmission network analysis.', faqs: [
-    ['What size networks can PSS®E handle?', 'We model networks ranging from focused interconnection cases to large ISO-scale transmission systems.'],
-    ['Can PSS®E model renewable energy assets?', 'Yes. We build solar, wind, and BESS models for load flow, contingency, and dynamic studies.'],
-    ['Do you automate PSS®E workflows?', 'Yes. Python-based automation helps us run large study matrices accurately and efficiently.'],
+    ['What is PSS®E used for?', 'PSS®E is used for transmission planning, interconnection studies, contingency analysis, stability simulations, and grid expansion planning.'],
+    ['Can PSS®E be used for renewable energy integration?', 'Yes. PSS®E supports modeling of inverter-based resources such as solar plants, wind farms, and battery storage.'],
+    ['How does PSS®E perform contingency analysis?', 'It simulates outage scenarios and identifies voltage or thermal violations.'],
   ] },
   { key: 'etap', name: 'ETAP', logo: '/images/services/power-system-studies/logo-etap.png', description: 'Integrated electrical power system platform for design, simulation, analysis, and operational studies.', faqs: [
-    ['Does ETAP cover arc flash studies?', 'Yes. We perform IEEE 1584 and NFPA 70E arc-flash analysis and develop compliant recommendations.'],
-    ['Can ETAP model microgrids and BESS?', 'Yes. We model renewable generation, storage, islanding, and protection scenarios.'],
-    ['Which ETAP study methods do you use?', 'We apply ANSI and IEC methods for short circuit, coordination, load flow, and safety studies.'],
+    ['What is ETAP used for?', 'ETAP supports detailed short-circuit, coordination, arc-flash, harmonic, and facility-level power system studies.'],
+    ['What can short-circuit studies verify?', 'They determine fault-current levels, validate equipment ratings, and verify protection devices operate correctly during abnormal system events.'],
+    ['What does harmonic analysis evaluate?', 'It evaluates waveform distortion from inverter sources and nonlinear loads through harmonic analysis, resonance evaluation, and mitigation studies.'],
   ] },
   { key: 'pscad', name: 'PSCAD', logo: '/images/services/power-system-studies/logo-pscad.png', description: 'Electromagnetic transient simulation for HVDC, converters, switching events, and inverter-based resources.', faqs: [
-    ['When is PSCAD used?', 'PSCAD is used for fast EMT phenomena that require more detail than RMS simulation tools provide.'],
-    ['Can PSCAD model HVDC systems?', 'Yes. We evaluate HVDC controls, fault response, and interaction with the surrounding grid.'],
-    ['Do you simulate grid-forming inverters?', 'Yes. We assess grid-forming and grid-following control behavior in weak-grid conditions.'],
+    ['When is PSCAD used?', 'PSCAD is used for high-fidelity electromagnetic transient and dynamic studies, including weak-grid and fast-transient evaluation.'],
+    ['What does EMT modeling evaluate?', 'EMT modeling evaluates inverter switching impacts, weak-grid conditions, and fast control interactions.'],
+    ['Can PSCAD support renewable interconnections?', 'PSCAD modeling supports utilities and renewable developers in validating grid-interconnection performance, ride-through compliance, and protection schemes.'],
   ] },
   { key: 'powerworld', name: 'PowerWorld', logo: '/images/services/power-system-studies/logo-powerworld.jpg', description: 'Interactive power-system simulation for power flow, contingencies, and transmission planning visualization.', faqs: [
-    ['What is PowerWorld best used for?', 'It is well suited to interactive power flow, contingency analysis, and clear system visualization.'],
-    ['Can PowerWorld run optimal power flow?', 'Yes. We use it for OPF, transfer analysis, and voltage-stability evaluation.'],
-    ['Can it support large planning models?', 'Yes. PowerWorld can efficiently analyze large regional transmission cases.'],
+    ['What is PowerWorld used for?', 'PowerWorld is used for power-flow, contingency, and transmission-planning visualization.'],
+    ['What can transmission planning studies identify?', 'They identify system constraints, evaluate future grid needs, and plan infrastructure upgrades.'],
+    ['What does load-flow analysis evaluate?', 'It evaluates voltage stability, load distribution, and losses during normal and peak demand.'],
   ] },
   { key: 'skm', name: 'SKM PTW', logo: '/images/services/power-system-studies/logo-skm.png', description: 'Electrical engineering platform for industrial power-system design, protection, analysis, and safety.', faqs: [
-    ['What studies does SKM PTW cover?', 'We use SKM for load flow, short circuit, arc flash, and protection coordination studies.'],
-    ['Can SKM evaluate harmonics?', 'Yes. SKM supports harmonic evaluation against applicable IEEE limits.'],
-    ['Where is SKM commonly applied?', 'It is widely used for industrial, utility, commercial, and data-center electrical systems.'],
+    ['What is SKM PTW used for?', 'SKM PTW supports electrical system design, protection, analysis, and safety studies.'],
+    ['What is protective coordination?', 'It optimizes relay and breaker settings using time-current analysis to isolate faults quickly, improve coordination, and minimize system disruption.'],
+    ['What is arc-flash analysis?', 'Arc-flash studies evaluate incident energy exposure and define PPE boundaries and equipment-labeling requirements.'],
   ] },
   { key: 'autocad', name: 'AutoCAD Elec.', logo: '/images/services/power-system-studies/logo-autocad.png', description: 'Electrical design automation for schematics, component tagging, wire numbering, and coordinated documentation.', faqs: [
-    ['What deliverables use AutoCAD Electrical?', 'We produce one-lines, schematics, wiring diagrams, panel designs, cable schedules, and coordinated drawing packages.'],
-    ['Which symbol standards are supported?', 'We work with ANSI, IEC, and client-specific libraries and drafting standards.'],
-    ['How is revision control maintained?', 'Drawings follow structured review, revision, and document-control workflows.'],
+    ['What is AutoCAD Electrical used for?', 'AutoCAD Electrical supports electrical design documentation, schematics, component tagging, wire numbering, and coordinated drawings.'],
+    ['What does a substation designer produce?', 'Detailed engineering drawings and documentation including general arrangements, equipment layouts, wiring diagrams, control schematics, material lists, and cable schedules.'],
+    ['What can construction-ready documentation include?', 'Construction-ready drawings and calculations can include schematics, wiring diagrams, logic diagrams, and detailed design documentation.'],
   ] },
   { key: 'aspen', name: 'ASPEN', logo: '/images/services/power-system-studies/logo-aspen.png', description: 'Short-circuit and relay-coordination software used for detailed protection-system engineering.', faqs: [
-    ['What is ASPEN used for?', 'ASPEN supports short-circuit, relay coordination, and protection-system studies.'],
-    ['Can ASPEN model relay logic?', 'Yes. We model installed relay characteristics and verify selective coordination.'],
-    ['Does ASPEN support renewable systems?', 'Yes. It can support fault and protection studies involving inverter-based resources.'],
+    ['What is ASPEN used for?', 'ASPEN supports short-circuit and relay-coordination analysis for protection-system engineering.'],
+    ['Why are short-circuit studies critical?', 'They confirm equipment interrupting ratings, define protective-device settings, ensure breaker-duty compliance, and reduce equipment-failure risk.'],
+    ['What does protection and control do?', 'Protection and control systems monitor conditions and detect, isolate, and clear faults using relays, breakers, and automation logic.'],
   ] },
 ]
 

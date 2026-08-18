@@ -5,18 +5,18 @@ import Image from 'next/image'
 
 const slides = [
   {
-    label: 'Engineering certainty',
-    title: <>We Don&apos;t Just Design Systems.<br /><span className="gradient-text">We Engineer Certainty.</span></>,
-    description: 'EHV, HV, and MV electrical engineering—from POI interconnection and utility-scale solar, wind, and BESS to NERC-compliant infrastructure delivered across all 50 states.',
-    primary: { label: 'Book a Consultation', href: 'https://calendly.com/keentel-engineering/15min', external: true },
-    secondary: { label: 'Our Capabilities', href: '/services' },
+    label: 'Electrical power engineering',
+    title: <>We&apos;re Ready to Take Charge of Your<br /><span className="gradient-text">EHV, HV &amp; MV Electrical Power Engineering Needs.</span></>,
+    description: 'Keentel Engineering delivers high-quality electrical power engineering solutions for utilities, developers, EPCs, and public agencies. Our expertise includes power system analysis, electrical design, transmission planning, protective relaying, and NERC compliance.',
+    primary: { label: 'Schedule A Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
+    secondary: { label: 'Download Company Profile Flyer', href: 'https://irp.cdn-website.com/1253891b/files/uploaded/Keentel+Engineering+Company+Profile.pdf', external: true },
   },
   {
-    label: 'Data center interconnection',
-    title: <>Interconnecting the Grid&apos;s<br /><span className="gradient-text">Largest New Loads</span></>,
-    description: "Supporting a 1 GW hyperscale data center interconnection in ERCOT, with detailed EMT modeling under SPP's HILL framework and grid-performance analysis.",
-    primary: { label: 'Book a Consultation', href: 'https://calendly.com/keentel-engineering/15min', external: true },
-    secondary: { label: 'View Project Highlights', href: '/clients-and-projects' },
+    label: 'Future-ready infrastructure',
+    title: <>Powering Reliable,<br /><span className="gradient-text">Compliant Energy Infrastructure</span></>,
+    description: 'From substation design and POI interconnection engineering support to utility-scale solar, wind, and BESS engineering, Keentel delivers NERC-compliant, future-ready infrastructure across the U.S.',
+    primary: { label: 'Schedule A Call', href: 'https://calendly.com/keentel-engineering/15min', external: true },
+    secondary: { label: 'Our Services', href: '/services' },
   },
 ] as const
 
@@ -60,7 +60,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[calc(100svh-var(--site-header-height))] flex-col overflow-hidden bg-[#06103C]"
+      className="relative mt-[var(--site-header-height)] flex min-h-[calc(100svh-var(--site-header-height))] flex-col overflow-hidden bg-[#06103C]"
       aria-roledescription="carousel"
       aria-label="Featured Keentel Engineering services"
       onMouseEnter={() => setIsHovered(true)}
@@ -78,7 +78,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/55 via-[#06103C]/20 to-[#5B2A86]/10" />
       </div>
 
-      <div className="relative z-10 flex flex-1 items-center py-24 min-[390px]:py-28 sm:py-32 lg:py-28">
+      <div className="relative z-10 flex flex-1 items-center py-12 min-[390px]:py-14 sm:py-16 lg:py-16">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             <div className="relative h-[31rem] min-[390px]:h-[29.25rem] sm:h-[23rem] lg:h-[27.75rem]">
@@ -93,7 +93,7 @@ export default function Hero() {
                   className={`absolute inset-0 grid will-change-[opacity,transform] transition-[opacity,transform] duration-[1050ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${activeSlide === index ? 'z-10 translate-x-0 scale-100 opacity-100' : `pointer-events-none scale-[0.985] opacity-0 ${index < activeSlide ? '-translate-x-4' : 'translate-x-4'}`}`}
                 >
                   <div className="mb-5 flex min-h-[9.75rem] items-end min-[390px]:min-h-[8.5rem] sm:mb-6 sm:min-h-[9.5rem] lg:min-h-[13.125rem]">
-                    <h1 className="max-w-4xl font-urbanist text-[2.15rem] font-black leading-[1.05] text-white min-[390px]:text-[2.35rem] sm:text-5xl lg:text-6xl xl:text-[4.35rem]">
+                    <h1 className="max-w-4xl font-urbanist text-[2rem] font-black leading-[1.05] text-white min-[390px]:text-[2.2rem] sm:text-4xl lg:text-5xl xl:text-5xl">
                       {item.title}
                     </h1>
                   </div>
