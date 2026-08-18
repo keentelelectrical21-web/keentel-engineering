@@ -142,7 +142,7 @@ export default async function NewsletterDetailPage({ params }: { params: Promise
       <main>
         {/* HERO */}
         <section
-          className="relative flex min-h-[720px] items-center overflow-hidden px-5 pb-20 pt-32 sm:min-h-[780px] sm:px-8 sm:pb-24 sm:pt-36"
+          className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-center overflow-hidden px-5 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-36"
           style={{
             background: '#06103C',
           }}

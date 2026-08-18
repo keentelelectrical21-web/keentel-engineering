@@ -60,7 +60,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[900px] flex-col overflow-hidden bg-[#06103C]"
+      className="relative flex min-h-[calc(100svh-var(--site-header-height))] flex-col overflow-hidden bg-[#06103C]"
       aria-roledescription="carousel"
       aria-label="Featured Keentel Engineering services"
       onMouseEnter={() => setIsHovered(true)}

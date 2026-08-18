@@ -37,6 +37,19 @@ const blogOnlyNewsletterSlugs = new Set([
 
 const localNewsletters: LocalNewsletter[] = [
   {
+    _id: 'local-ferc-nerc-data-center-reliability', title: 'FERC Orders NERC to Bring Data Centres Inside the Reliability Perimeter',
+    slug: { current: 'ferc-nerc-data-center-reliability' }, edition: 'Issue 08', publishDate: '2026-08-01',
+    subtitle: 'FERC & NERC Data Center Reliability Standards / Computational Loads',
+    excerpt: 'August 2026 grid review covering FERC/NERC data center standards, Nighthawk BESS, transmission policy, grid reliability and compliance updates.',
+    heroImage: '/images/newsletters/newslttere-aug2026.webp', sourceFile: 'ferc-nerc-data-center-reliability.txt', order: 105,
+    stats: [
+      { value: '31', unit: 'DEC', label: 'NERC Filing Deadline, Docket RD26-7-000' },
+      { value: '300', unit: 'MW', label: 'Nighthawk BESS, Poway, California' },
+      { value: '$920', unit: 'M', label: 'Nighthawk Capital Stack' },
+      { value: '3', unit: '', label: 'NIETC Corridors Ended by DOE' },
+    ],
+  },
+  {
     _id: 'local-ai-data-center-infrastructure', title: 'AI Power Surge Reshaping Data Center Infrastructure in 2026',
     slug: { current: 'ai-data-center-infrastructure' }, edition: 'April 2026', publishDate: '2026-04-01',
     excerpt: 'Explore how AI is driving hyperscale data center growth, rising power demand, behind-the-meter energy systems, and next-generation engineering design.',

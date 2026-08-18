@@ -23,7 +23,7 @@ export default async function NewslettersPage() {
       <Header />
       <main>
         {/* ── HERO ── */}
-        <section className="relative min-h-[440px] flex items-end overflow-hidden">
+        <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
               src="https://lirp.cdn-website.com/1253891b/dms3rep/multi/opt/10001-b7a9735b-907h.jpg"
@@ -33,7 +33,7 @@ export default async function NewslettersPage() {
             <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,16,60,0.95) 0%, rgba(91,42,134,0.75) 100%)' }} />
             <div className="absolute bottom-0 right-0 w-96 h-96 blur-3xl rounded-full opacity-25" style={{ background: 'radial-gradient(circle, #A8228A 0%, transparent 70%)' }} />
           </div>
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16">
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
             <nav className="flex items-center gap-2 mb-6 text-xs font-jost">
               <Link href="/" className="text-white/50 hover:text-white/80 transition-colors">Home</Link>
               <span className="text-white/30">/</span>
@@ -65,7 +65,7 @@ export default async function NewslettersPage() {
                 className="group grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border hover:shadow-2xl transition-all duration-300"
                 style={{ borderColor: '#E6E8F0' }}
               >
-                <div className="relative min-h-[320px] overflow-hidden" style={{ background: '#F6F7FB' }}>
+                <div className="relative aspect-[4/3] overflow-hidden" style={{ background: '#F6F7FB' }}>
                   {latest.heroImage && (
                     <Image
                       src={latest.heroImage}
@@ -73,7 +73,7 @@ export default async function NewslettersPage() {
                       fill
                       priority
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   )}
                 </div>

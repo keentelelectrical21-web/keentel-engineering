@@ -119,12 +119,12 @@ export default async function OurWorkPage() {
     <>
       <Header />
       <main className="overflow-x-clip">
-        <section className="relative isolate flex min-h-[680px] items-end overflow-hidden bg-[#06103C] sm:min-h-[720px]">
+        <section className="relative isolate flex min-h-[calc(100svh-var(--site-header-height))] items-end overflow-hidden bg-[#06103C]">
           <video autoPlay muted loop playsInline preload="auto" className="absolute inset-0 h-full w-full object-cover" aria-label="Electrical engineering projects">
             <source src="/videos/Our%20Clients%20%26%20Projects.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-[#06103C]/72 via-[#06103C]/42 to-[#06103C]/10" />
-          <div className="relative z-10 mx-auto flex min-h-[680px] w-full max-w-7xl items-end px-4 pb-10 pt-32 sm:min-h-[720px] sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[calc(100svh-var(--site-header-height))] w-full max-w-7xl items-end px-4 pb-10 pt-32 sm:px-6 sm:pb-16 sm:pt-40 lg:px-8">
             <div className="max-w-4xl">
               <nav aria-label="Breadcrumb" className="mb-7 flex items-center gap-2 font-jost text-sm text-white/65">
                 <Link href="/" className="transition hover:text-white">Home</Link><span>/</span><span className="text-white">Client &amp; Projects</span>

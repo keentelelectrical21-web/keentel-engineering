@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (only the variable-name template is tracked)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -40,3 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env.local
+
+# local investigation artifacts
+objects.txt
+.dev-server*.log
+.chrome-*/
+.mobile-*.png

@@ -126,7 +126,7 @@ export default function ContactPage() {
       <main>
 
         {/* ── HERO ── */}
-        <section className="relative min-h-[480px] flex items-end overflow-hidden">
+        <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-end overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src="/images/contact-hero.jpg" alt="" className="w-full h-full object-cover absolute inset-0"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />

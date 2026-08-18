@@ -102,7 +102,7 @@ function ErcotIntroduction() {
 
 export default function ErcotMarketUpdatePage() {
   return <><Header /><main className="overflow-hidden bg-white">
-    <section className="relative flex min-h-[720px] items-center overflow-hidden bg-[#06103c] px-5 pb-20 pt-32 sm:min-h-[780px] sm:px-8 sm:pb-24 sm:pt-36">
+    <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-center overflow-hidden bg-[#06103c] px-5 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-36">
       <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_85%_15%,#c72e9e,transparent_35%)]" />
       <div className="relative mx-auto w-full max-w-6xl">
         <Link href="/newsletters" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white">← Back to newsletters</Link>
@@ -117,8 +117,7 @@ export default function ErcotMarketUpdatePage() {
     </section>
 
     <div className="bg-[#F6F7FB] px-5 pb-20 sm:px-8 sm:pb-28"><div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_290px] lg:gap-10">
-      <article className="min-w-0 rounded-2xl border border-[#E1E4EC] bg-white px-5 py-8 shadow-[0_10px_28px_rgba(6,16,60,0.06)] sm:px-9 sm:py-10"><ErcotStats /><ErcotIntroduction />{sections.map((section,index)=><section key={section.number} className={index ? 'mt-14 border-t border-[#06103C]/20 pt-8' : ''}><div className="grid gap-4 py-6 first:pt-0 sm:grid-cols-[72px_1fr] sm:gap-6">
-      <div className="flex items-start gap-3 sm:block"><p className="font-urbanist text-2xl font-black leading-none text-[#A8228A] sm:text-3xl">{section.number}</p><p className="font-jost text-xs font-bold uppercase tracking-[0.13em] text-[#A8228A] sm:mt-2">Section</p></div>
+      <article className="min-w-0 rounded-2xl border border-[#E1E4EC] bg-white px-5 py-8 shadow-[0_10px_28px_rgba(6,16,60,0.06)] sm:px-9 sm:py-10"><ErcotStats /><ErcotIntroduction />{sections.map((section,index)=><section key={section.number} className={index ? 'mt-14 border-t border-[#06103C]/20 pt-8' : ''}><div className="py-6 first:pt-0">
       <div><p className="mb-3 font-jost text-sm font-bold uppercase tracking-[0.08em] text-[#A8228A]">{section.eyebrow}</p><h2 className="font-urbanist text-2xl font-black leading-tight text-[#06103C] md:text-3xl">{section.title}</h2>
         <div className="mt-6 space-y-5 font-jost text-[15px] leading-7 text-slate-700 sm:text-base">{section.paragraphs.map(p=><p key={p}>{p}</p>)}</div>
         <div className="mt-8 rounded-xl border border-[#E1E4EC] bg-[#F7F8FC] p-5 sm:p-6"><h3 className="font-urbanist text-xl font-black leading-snug text-[#A8228A]">{section.subheading}</h3><p className="mt-3 font-jost text-[15px] leading-7 text-slate-700 sm:text-base">{section.detail}</p></div>

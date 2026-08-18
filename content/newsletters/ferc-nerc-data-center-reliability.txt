@@ -1,0 +1,544 @@
+Page URL: https://keentelengineering.com/newsletter/ferc-nerc-data-center-reliability
+
+FERC Orders NERC to Bring Data Centres Inside the Reliability Perimeter
+August 2026 Edition | Newsletter
+
+31 DEC NERC Filing Deadline, Docket RD26-7-000
+300 MW Nighthawk BESS, Poway, California
+$920 M Nighthawk Capital Stack
+3 NIETC Corridors Ended by DOE
+
+## INSIDE THIS ISSUE
+
+Cover Feature — FERC orders NERC to bring data centres inside the reliability perimeter
+
+Grid-Scale Storage — Arevon energises 300 MW / 1,200 MWh at Nighthawk, Poway, California
+
+Policy — DOE ends review of three National Interest Electric Transmission Corridors
+
+Project Execution — ATC's Grid Forward 345 kV project sets its first structure in Wisconsin
+
+Supply Chain — Rept Battero on the shift from cell vendor to system integrator
+
+Plus — Research & institutions, market outlook, technical corner, compliance calendar and events
+
+## From the Editor's Desk — Three Deadlines, One Grid
+
+There are months in this industry where the news is a collection of unrelated announcements, and there are months where everything quietly points the same way. August 2026 is the second kind.
+
+Look at what landed in the space of a few weeks. A federal regulator told the continent's reliability organisation to write enforceable standards for data centres, with a hard deadline of 31 December. The Department of Energy walked away from three national transmission corridors while simultaneously closing multi-billion-dollar loans to rebuild and reconductor thousands of miles of existing lines. A 1,200 MWh battery in San Diego County entered commercial operation under a utility contract born of a state procurement mandate. A transmission owner in Wisconsin set its first structure on a 345 kV rebuild approved under a regional long-range plan. And in Germany, two executives from a Chinese battery manufacturer explained — with unusual candour — why selling cells and selling systems are entirely different businesses carrying entirely different risks.
+
+Five stories, five regions, one underlying message: the industry has stopped arguing about whether demand is growing and started arguing about who is accountable when it does.
+
+That accountability question is the thread. FERC's order is about accountability for load behaviour during faults. DOE's corridor decision is about accountability for siting authority between federal and state governments. Arevon's Nighthawk is about accountability under a long-term offtake agreement. ATC's cost commentary is about accountability for an estimate made in 2022 dollars and delivered in 2030. And Rept Battero's shift toward a full AC wrap is, in its own words, about accepting warranties and guarantees that are an order of magnitude broader than a cell datasheet.
+
+For engineers, accountability has a very specific meaning. It means the study you sign, the model you submit, the relay setting you calculate and the commissioning test you witness are the evidence base when something goes wrong. That has always been true. What changed this month is that regulators, lenders and offtakers are all asking to see that evidence base sooner, in more detail, and in a form they can audit.
+
+This issue works through each development in depth, and then does the part that matters most: translates it into engineering scope. Where a story creates a study requirement, a modelling obligation, a design review or a commissioning gate, we say so plainly.
+
+As always, if any of this touches a project on your desk, our engineers are a phone call away.
+
+— The Editorial Team, Keentel Engineering
+
+## Cover Feature — The Compliance Clock Starts
+
+FERC orders NERC to bring computational loads inside the mandatory reliability framework
+
+### The Headline
+
+At its monthly open meeting on 16 July 2026, the Federal Energy Regulatory Commission issued a directive in Docket RD26-7-000 instructing the North American Electric Reliability Corporation to finalise, by the end of 2026, both registry criteria and an initial set of Reliability Standards governing how computational loads are integrated into the bulk power system.
+
+In plain language: data centres — and cryptocurrency mining facilities, and any comparable concentration of switching-mode electronic load — are being moved out of the category of "emerging risk that planners should think about" and into the category of "subject matter of enforceable, auditable standards."
+
+The Commission did not stop at the year-end deadline. It also directed NERC to produce, by March 2027, a work plan covering a second phase of additional Reliability Standards for computational loads. NERC has signalled that this matches its own intent to take up further standards in 2027 once the foundational set is settled.
+
+NERC's public response was notably warm. The organisation framed the directives as "meaningful support" for work already under way and welcomed FERC's endorsement of a timeline "consistent with the urgency of the moment."
+
+### How We Got Here
+
+This did not arrive from nowhere. It is the culmination of roughly two years of escalating concern, and understanding the sequence matters because it tells you what the standards are likely to contain.
+
+### TIMELINE
+
+July 2025 — the diagnosis. NERC published a white paper on the characteristics and risks of emerging large loads, identifying three highest-priority risk categories: long-term planning, operations and balancing, and system stability.
+
+March 2026 — the gap analysis. A second white paper assessed where existing industry practice falls short and issued eleven recommendations. NERC filed its Large Loads Action Plan with FERC — centrepiece: three draft foundational Reliability Standards.
+
+4 May 2026 — the alarm. NERC issued a Level 3 Alert on computational load modelling, operations, protection and control. Recipients had to acknowledge receipt by 11 May and report on Essential Action status by 3 August 2026.
+
+16 July 2026 — the directive. FERC's order in RD26-7-000.
+
+August 2026 — the drafting. NERC expects to post proposed standards and draft registry criteria for public comment during August, ahead of the FERC filing.
+
+### What Actually Triggered the Alarm
+
+The technical driver is a behaviour that traditional load models simply do not represent. Conventional planning practice treats aggregate load as a broadly passive, broadly predictable quantity that responds to voltage and frequency excursions in reasonably well-characterised ways. Large computational facilities do not behave that way. Their power electronics, protective settings and internal ride-through logic can cause very large blocks of demand to disconnect from the system in seconds in response to a disturbance elsewhere on the network — a disturbance the facility itself may be electrically remote from.
+
+Analysis of events across the Eastern and Texas Interconnections since 2022 has identified multiple instances where computational load disconnected unexpectedly and, critically, in ways that current planning studies did not predict. Reporting on the more severe of these incidents in the 2024–2025 window describes more than a gigawatt of data centre load dropping off effectively simultaneously.
+
+Consider what that means from a balancing authority's perspective. A generation contingency of that magnitude is a studied, planned-for event with reserve products standing behind it. An unplanned load rejection of that magnitude is the mirror image: a sudden surplus of generation, a frequency excursion in the opposite direction, potential over-voltage on lightly loaded circuits, and — because it was never in the study case — no pre-positioned response.
+
+That is why the alert language moved from "monitor" to "essential action."
+
+@callout NERC's registry determines who is a registered entity and therefore who is subject to mandatory standards and compliance enforcement. Some data centre operators — historically end-use customers with no direct NERC obligations — could find themselves registered functional entities. — KEENTEL ENGINEERING ANALYSIS
+
+### The Seven Essential Actions, Translated
+
+NERC's Level 3 Alert set out seven Essential Actions. Formally these are not penalty-bearing obligations — but they are a very reliable preview of what the foundational standards will require. Here is each one rendered as engineering scope.
+
+▸1. Modelling data and parameter requirements. Ride-through settings, protective trip thresholds, internal UPS/rectifier behaviour, power factor and reactive response, harmonic signature. Scope: load model development, parameter collection protocols, model validation against measured response.
+
+▸2. System studies for computational loads. Annual stability margin studies incorporating the above models. Scope: transient and voltage stability analysis, contingency screening, recurring margin reporting.
+
+▸3. Qualified change trigger definitions. A campus that adds a phase, swaps UPS topology or changes trip settings may materially change grid behaviour without changing nameplate. Scope: change-management criteria, restudy triggers, notification obligations.
+
+▸4. Commissioning processes. Formal field verification that the facility behaves as modelled. Scope: site acceptance test procedures, witnessed testing, ride-through verification, as-commissioned model reconciliation.
+
+▸5. Corrective actions and ride-through protocols. Measures to prevent firm load loss during system faults. Scope: protection coordination review, settings changes, ride-through performance negotiation.
+
+▸6. Dynamic fault recording installation. High-resolution capture of disturbance behaviour. Scope: DFR specification, point selection, communications/data architecture, event analysis capability.
+
+▸7. Direct communication capabilities with computational loads. Real-time operational communication with the facility. Scope: SCADA and telemetry integration, operating agreements, operator-to-operator protocols.
+
+Read as a package, those seven items describe a body of work that most transmission planners and owners did not budget for eighteen months ago.
+
+### Registry Criteria — the Sleeper Issue
+
+The registry question may end up mattering more than the standards themselves. Introducing criteria for a Computational Load Entity category means that some data centre operators — historically end-use customers with no direct NERC obligations — could find themselves registered functional entities, with all the audit, evidence-retention and self-certification machinery that implies.
+
+Where the threshold lands (a MW figure? a share of local peak? a stability-impact test?) will determine whether this captures a handful of hyperscale campuses or a much broader population. Anyone developing, hosting or interconnecting large computational load should be watching the August public comment window very closely, because the comment period is the moment to influence that line.
+
+### KEENTEL'S READ
+
+First, the modelling work is the long pole. The organisations that fare best in 2027 will be those that started collecting dynamic parameters from their large-load customers in 2026 — that requires commercial and contractual work, not just engineering.
+
+Second, this reaches beyond the utility. Developers, colocation operators and hyperscalers who assumed their obligations ended at the meter should reassess.
+
+Third, the 3 August reporting date has passed, but the work has not. Closing self-assessed gaps is now the programme of work for the next two years.
+
+Keentel maintains a dedicated NERC Level 3 Alert engineering support practice alongside our [NERC compliance services](/service/nerc-compliance) precisely for this work. Where clients need load modelling, stability margin studies, protection review or commissioning procedures developed against the Essential Actions, we can mobilise directly into the gap.
+
+## Grid-Scale Storage — Nighthawk Goes Live
+
+Arevon energises 300 MW / 1,200 MWh in Poway, California
+
+### The Project
+
+On 12 August 2026, renewable energy developer-operator Arevon Energy announced that its Nighthawk Energy Storage Project in Poway, San Diego County, had entered commercial operation. At 300 MW / 1,200 MWh, it is the largest battery energy storage system in Arevon's portfolio, and among the largest standalone storage assets in the United States.
+
+The facility uses Tesla Megapack systems built on lithium iron phosphate (LFP) chemistry. Arevon developed, constructed, owns and operates the asset, which sells its capacity under a long-term agreement with Pacific Gas and Electric Company. Commissioning was marked with an on-site ribbon-cutting attended by project partners, local officials, business leaders and community members.
+
+@callout Power rating | 300 MW
+Energy capacity | 1,200 MWh
+Duration | 4 hours
+Location | Poway, San Diego County, California
+Technology | Tesla Megapack, lithium iron phosphate (LFP)
+Owner / operator | Arevon Energy
+Offtaker | Pacific Gas and Electric Company (PG&E)
+Contract type | Long-term agreement
+Commercial operation | August 2026
+Construction start | Summer 2025
+Peak construction workforce | 130+
+Lifetime property tax contribution | US$30 million+ (est.)
+Procurement driver | CPUC directive to load-serving entities
+
+### The Origin Story Is Worth Reading Twice
+
+Nighthawk did not begin life as an Arevon project. Tenaska was the greenfield developer. In 2020, Arevon acquired the Falcon portfolio from Tenaska — Nighthawk plus eight other standalone California BESS projects — and partnered with Tenaska on their development. In September 2023, having built out its internal development team, Arevon took over development of Nighthawk and the remainder of the Falcon assets.
+
+That five-and-a-half-year arc from acquisition to commercial operation is the single most useful data point in this story. It is a realistic benchmark for a large standalone storage asset in California including origination, permitting, interconnection, financing, procurement, construction and commissioning. Anyone modelling a similar development on a three-year timeline should look hard at their assumptions.
+
+The project traces back to California Public Utilities Commission directives requiring the state's load-serving entities, including utilities, to procure additional energy resources to strengthen the grid. Nighthawk is one of a series of projects flowing from those orders — a reminder that in California, a regulatory procurement mandate remains one of the most reliable predictors of where steel eventually goes in the ground.
+
+### The Capital Stack
+
+In March 2026, Arevon closed a US$920 million financing package for Nighthawk. The structure:
+
+@callout Debt facility | US$482 million | CIBC (lead arranger), with ING Capital LLC, NORD/LB, Santander, Zions Bancorporation
+Preferred equity | US$169 million | Arranged with Goldman Sachs Alternatives, structured to streamline monetisation of tax credits
+Tax credit transfer | US$268 million | Agreement with a corporate buyer
+
+Two features stand out. The debt facility is syndicated across five institutions including two European banks — evidence that a well-structured Californian storage asset with a creditworthy utility offtaker remains financeable across a broad lender base. And the combination of preferred equity plus a tax credit transfer agreement shows the transferability market functioning as intended: monetising credits without the friction of traditional tax equity.
+
+### ENGINEERING TAKEAWAY
+
+A $920 million financing is also a reminder of who reads your drawings. Independent engineer reviews, lender technical due diligence, and the conditions precedent to each drawdown all rest on documentation quality. Design packages that are internally coherent, standards-compliant and traceable are not a nicety at this scale — they are a financing condition.
+
+### Community and Local Economics
+
+Arevon has been explicit about the local case. Over its operating life Nighthawk is expected to generate more than US$30 million in property tax revenue, supporting local schools, public safety, infrastructure improvements and community services. Peak construction employed more than 130 workers and generated activity for local businesses.
+
+The company also detailed a sustained community engagement programme across Poway and greater San Diego — youth programmes, first responders, special needs adult services, climate education and local non-profits.
+
+It would be easy to file this under public relations. That would be a mistake. Community opposition and local permitting risk are now among the most significant schedule risks in the storage sector, particularly following high-profile thermal events elsewhere in California. A developer that has spent five years building local relationships is materially de-risking its next project in the same county. Engineering firms should expect community-facing technical explanation — fire suppression design, thermal runaway propagation testing, emergency response planning, setback rationale — to become a standard deliverable rather than an occasional request.
+
+### What Comes Next for Arevon
+
+Also in March 2026, Arevon began construction of the 250 MW / 1,000 MWh Cormorant BESS in Daly City, California, expected online in 2027 under a long-term offtake agreement with MCE Community Choice Energy. Between Nighthawk and Cormorant, Arevon will have added 550 MW / 2,200 MWh of four-hour storage to the California grid in roughly eighteen months.
+
+### The Engineering Angle
+
+Four-hour LFP systems at this scale concentrate a specific set of technical challenges, all of which sit squarely in the interconnection and substation engineering domain:
+
+▸Point of interconnection design. A 300 MW bidirectional resource requires careful attention to short circuit contribution, transformer sizing and impedance, and coordination with the transmission owner's protection scheme.
+
+▸Reactive capability and voltage control. Modern inverter-based resources are expected to provide voltage support across a defined operating envelope; demonstrating compliance requires study work and, ultimately, field verification.
+
+▸Protection and ride-through. Inverter-based resource ride-through has been the subject of sustained NERC attention following multiple disturbance reports. Settings, control parameters and their documented justification matter.
+
+▸Model quality. The models submitted for interconnection studies must reflect what is actually built and commissioned. The gap between generic and site-specific models is a persistent source of study error.
+
+▸Grounding and safety. IEEE Std 80-based grounding design for a large battery yard with extensive DC infrastructure and containerised equipment carries its own complications.
+
+Keentel supports developers, EPCs and owners on precisely this scope — [POI interconnection engineering](/service/poi-interconnection-engineering-support), substation design, power system studies and owner's engineer oversight — across BESS, solar and wind projects nationwide.
+
+## Policy — Washington Pulls the Plug on Three Transmission Corridors
+
+DOE ends NIETC review for Lake Erie–Canada, Southwestern Grid Connector and Tribal Energy Access
+
+### The Decision
+
+On 12 August 2026, the U.S. Department of Energy announced it will not proceed with designating three proposed National Interest Electric Transmission Corridors that had been advanced into the review process in December 2024:
+
+▸Lake Erie–Canada Corridor
+
+▸Southwestern Grid Connector Corridor
+
+▸Tribal Energy Access Corridor
+
+DOE said the decision followed a review incorporating public feedback and stakeholder input, which "made clear that the current designation process for these three proposed transmission corridors should not continue." The Department added that the process had created confusion in some communities about the scope and intent of NIETC authority.
+
+"Transmission policy must serve the American people — not special interests or a climate-alarmist agenda that drives up costs, worsens reliability, and disregards the concerns of local communities." — CHRIS WRIGHT, U.S. SECRETARY OF ENERGY
+
+### What a NIETC Actually Does
+
+Because the acronym gets used loosely, it is worth being precise. A NIETC is a geographic area designated by DOE where transmission development is deemed to be in the national interest. The designation is procedural rather than financial: it unlocks pathways for addressing development obstacles — most significantly, it can open a route to federal backstop siting authority in circumstances where a project struggles to obtain state or local approval, and it can enable access to certain federal financing tools.
+
+Ending the review therefore does one clear thing: it returns siting authority for these corridors squarely to the states. For developers whose project economics assumed a federal backstop as a fallback, that assumption is gone.
+
+### Where the Money Actually Went
+
+The most instructive part of DOE's announcement is what it lists alongside the cancellation. The Department pointed to a series of recent actions as evidence of continued commitment to transmission:
+
+@callout Oct 2025 | Loan guarantee to AEP Transmission — reconductoring and rebuilding nearly 5,000 miles of line across five states | US$1.6 billion
+Feb 2026 | Loans to Georgia Power and Alabama Power (Southern Company) for generation and grid investment, including 1,300+ miles of transmission and grid enhancement | US$26.5 billion
+Mar 2026 | SPARK funding opportunity (Office of Electricity) targeting grid capacity, reliability and affordability | US$1.9 billion
+Jul 2026 | Loan to AEP Texas — construction, rebuild or reconductoring of more than 2,800 miles of line | ~US$3.3 billion
+Jul 2026 | Release of the draft 2026 National Transmission Needs Study | —
+
+DOE cited alignment with the executive orders Unleashing American Energy and Strengthening the Reliability and Security of the United States Electric Grid, together with Secretary Wright's February 2025 Secretarial Order, Unleashing the Golden Era of American Energy Dominance.
+
+### Reading the Signal
+
+Strip away the rhetoric and a coherent strategy is visible. Federal transmission policy is shifting away from greenfield corridor designation and federal siting preemption, and toward capital deployment into existing rights-of-way.
+
+Look at the verbs in that table. Reconductoring. Rebuilding. Nearly 5,000 miles in one transaction and more than 2,800 in another — overwhelmingly work on corridors that already exist, already have easements, and already have community familiarity.
+
+For engineering firms, this is arguably the most commercially significant item in this issue. Rebuild and reconductor programmes generate a different and, in volume terms, larger workload than greenfield lines:
+
+▸Structural analysis of existing assets — can the current structures carry advanced conductor at higher tension and temperature?
+
+▸Advanced conductor evaluation — ACCC, ACSS and composite-core options each carry distinct sag-tension, clearance and hardware implications.
+
+▸Thermal and clearance studies — uprating requires rigorous ground clearance verification under revised operating temperatures.
+
+▸Outage planning and constructability — rebuilding an energised corridor is a sequencing problem before it is an engineering one.
+
+▸Protection and relay re-coordination — changed line impedance and rating changes settings.
+
+▸Substation terminal work — new conductor frequently drives terminal equipment, bus and protection upgrades at both ends.
+
+Every one of those is a study and design scope, not a construction scope. Firms positioned in [transmission line design](/service/transmission-line-design), power system studies and substation engineering should expect strong demand through this cycle. The draft 2026 National Transmission Needs Study is the document to read for where that demand concentrates geographically.
+
+## Project Execution — Steel in the Ground in Central Wisconsin
+
+ATC's Grid Forward project sets its first structure — and delivers a masterclass in cost communication
+
+### Status Report
+
+American Transmission Co. has moved its Grid Forward – Central Wisconsin Project from planning into active construction. Line construction began in the second quarter of 2026, and the project's first transmission structure has now been installed. ATC reports the project is approximately 5% complete and remains on schedule for a December 2030 in-service date.
+
+The project was approved as part of MISO's Long Range Transmission Planning Tranche 1 portfolio. Its scope combines rebuilding existing infrastructure with construction of new 345 kV facilities, intended to strengthen the regional transmission system, support long-term reliability, and improve the grid's ability to meet future energy needs across central Wisconsin and the wider Midwest.
+
+Recent progress reported by ATC:
+
+▸First transmission structure installed, marking the transition to active construction
+
+▸Detailed engineering and design advancing across multiple line segments and substations
+
+▸Permitting and material procurement continuing to support future construction
+
+▸December 2030 in-service date maintained
+
+"Grid Forward is an important investment in the region's electric infrastructure and future reliability. Construction is underway, major milestones are being achieved and the project remains on track." — ERIC LUNDBERG, ATC SENIOR VICE PRESIDENT OF ASSET DELIVERY
+
+### The Cost Discussion Is the Real Story
+
+ATC reported that the project is forecast to remain within the cost range approved by the Public Service Commission of Wisconsin, and within approximately 2.5% of MISO's original cost estimate when compared on a time-value-of-money basis.
+
+It then did something that deserves industry-wide imitation: it explained why that comparison requires care.
+
+MISO's original estimate was developed during the planning process and expressed in 2022 dollars. The current forecast reflects additional years of inflation, refined engineering, project development activities and approved project modifications accumulated as the project moved through regulatory review into construction.
+
+"As projects move from planning to construction, it is important that cost information be evaluated on a comparable basis and with appropriate context. A simple comparison between an early planning-level cost estimate and a current construction forecast does not always tell the complete story." — ERIC LUNDBERG, ATC
+
+He is right, and the point generalises well beyond Wisconsin.
+
+### SIDEBAR — WHY PLANNING ESTIMATES AND CONSTRUCTION FORECASTS ARE NOT THE SAME NUMBER
+
+A planning-level estimate produced for a regional portfolio study is developed at low design maturity — often at or below 10% engineering. It is typically built from unit-cost parameters (dollars per mile by voltage and structure type, dollars per terminal position) benchmarked against historical projects, expressed in the study's base-year dollars, and carrying a contingency appropriate to that maturity. Its purpose is portfolio comparison: does this project beat alternatives on a benefit-to-cost basis?
+
+A construction forecast is a fundamentally different artefact. It rests on issued-for-construction or near-final design, actual routing after regulatory review, real material quotes in current-year dollars, contracted labour rates, known site conditions, and any modifications approved during permitting.
+
+Comparing the two directly, without escalating the base-year estimate to current dollars and without accounting for approved scope change, produces a number that looks like a cost overrun but may simply be the passage of time.
+
+Three practices worth adopting:
+
+1. Always state the base year. An estimate without a dollar-year is uninterpretable.
+
+2. Track scope change separately from cost change. Regulator-approved modifications are not overruns; conflating them destroys the credibility of your variance reporting.
+
+3. Report on a time-value-of-money basis when comparing across years. ATC's 2.5% figure is meaningful precisely because the comparison basis is stated.
+
+For owners, this is stakeholder management. For engineers and owner's engineers, it is a documentation discipline that should be established at project inception — because reconstructing the basis of estimate five years later is very much harder than recording it at the time.
+
+### Customer Benefit
+
+ATC's revenue requirement analysis estimates approximately US$1.75 billion in net savings for Wisconsin customers over the project's life — approximately US$142 million on a discounted basis. The gap between those two figures is itself a useful illustration of how discounting reshapes long-horizon infrastructure benefits, and why the choice of discount rate is never a neutral technical assumption in a regulatory proceeding.
+
+## Supply Chain — From Cell Vendor to System Integrator
+
+Rept Battero's overseas leadership on what changes when you take on the whole project
+
+Speaking at The Smarter E Europe (Intersolar) in Germany in June, two executives from Chinese battery manufacturer Rept Battero gave an unusually frank account of what it takes for a Chinese OEM to succeed in overseas grid-scale markets. Andy Tang, head of overseas business — previously with system integrator Wärtsilä — was joined by Simon Wardell, global head of delivery.
+
+Rept Battero is the fifth-largest supplier of cells for BESS globally, and by some counts the largest in the residential and commercial & industrial segments. Its ambition is to convert that position into grid-scale market share. It currently manufactures in China and Indonesia.
+
+### The Risk Transfer Nobody Talks About
+
+Tang's central observation is the one every procurement team should internalise:
+
+"There's an evolution going in China among the battery OEMs and that is about moving away from just being a cell and module producer and seller, a process which starts and stops in China. The performance warranties and guarantees in that business model are actually a reasonably small subset of what happens when you become an AC-DC block provider or system integrator." — ANDY TANG, REPT BATTERO
+
+He described the internal challenge candidly: bringing the organisation to the point of understanding that these are "fundamentally different risks along the integration line" from anything the company has previously carried. The questions change from cell specifications to: how do you make sure these projects come together? How do you make sure equipment shows up on site on time? How do you commission the system?
+
+That is the correct framing. A cell warranty is a product warranty — bounded, testable, and enforced against a datasheet. A system integration wrap is a project delivery obligation covering interface management, logistics, schedule, commissioning, grid code compliance and long-term performance guarantees. The two are not adjacent businesses. They are different businesses that happen to share a component.
+
+### Building the Delivery Organisation
+
+Wardell's answer is organisational rather than technical: hire a best-in-class workforce around the new risk profile, build long-term delivery capability, and make service consistent across regions.
+
+"We've started really building out the team in both Europe and Australia and we're also building out the systems, the processes and controls to make sure that, as a lot of our customers now are sort of global, that they see a one-way process no matter where they are." — SIMON WARDELL, REPT BATTERO
+
+He tied that directly to contract performance — accountability through the commissioning steps and grid connection process — and flagged a 20-year long-term service agreement (LTSA) offering to support projects across their life.
+
+Wardell described the operating model as 80% globally standardised, 20% locally adapted, with the local portion driven by grid connection standards and commissioning requirements. That is a sensible split, and close to what mature Western integrators have converged on.
+
+### The Commissioning Problem, Named Out Loud
+
+Tang was direct about an industry pain point that developers and IPPs have raised privately for years:
+
+"If you look at my peers, my competitors in Europe, they have really pursued a model where they are sending people from China to do the commissioning on the systems. And that is a model that I think really has to shift and really has to change. At Rept we believe we really need locally based people that can speak the local language, are hands on, and can be that customer touchpoint. I think that's really a critical issue." — ANDY TANG, REPT BATTERO
+
+The practical consequences of fly-in commissioning are familiar to anyone who has managed one: visa and mobilisation delays that stall energisation, language barriers during witnessed testing, no local presence when a fault occurs six months post-COP, and documentation produced for a different regulatory culture. Local commissioning capability is not a customer-service nicety — it is a schedule risk and warranty-response variable that belongs in the bid evaluation.
+
+### AC Wrap Ambitions, and Hard-Won Experience
+
+Rept Battero is moving toward a full AC wrap offering: procuring the power conversion system, supplying the BESS, and integrating the project. Wardell was candid that this is a different animal from DC block supply, adding: "I've done two very large AC wrap projects in the last few years that have had bumps along the way, and I'm bringing those learnings to Rept."
+
+He did not name the projects. As reported by Energy-Storage.news, Wardell served as VP projects in Australia for system integrator Powin from March 2023 until June 2025, when Powin entered Chapter 11 bankruptcy protection; its assets were subsequently acquired by FlexGen. During that period Powin deployed the 850 MW Waratah Super Battery for IPP Akaysha Energy in New South Wales. That asset suffered a catastrophic transformer failure in November, reducing its capacity ahead of a later planned full shutdown, and returned to 700 MW — 82% of maximum — last month as its second transformer came back online.
+
+### OWNER'S ENGINEER NOTE
+
+We include that context not as criticism but because it is precisely the kind of experience that makes delivery leadership valuable. It also underlines a point owners should sit with: on a project of that scale, the transformer was the single point of failure — not the batteries. Balance-of-plant engineering, spare strategy and transformer specification deserve the same scrutiny routinely applied to cell selection.
+
+### The Battery Passport and the IT Backbone
+
+The 80:20 model extends to IT and service systems, which Tang connected to Europe's Battery Passport requirements:
+
+"The Battery Passport requires full traceability including on raw materials. But it relies on this IT backbone that Simon was talking about, that helps store the information and to give you that level of traceability and transparency." — ANDY TANG, REPT BATTERO
+
+His illustration of why scale changes the problem is the clearest we have heard:
+
+"It's one thing if you have a 20 MWh site. It's a completely different thing if you have a 1 GWh site in terms of, for example, discovering a batch of batteries or a BMS that is defective. Without this backbone in place, your ability to go and figure out what to replace in the field is highly limited." — ANDY TANG, REPT BATTERO
+
+That is a defect-recall problem, and it is fundamentally an information architecture problem. Serial-number-level traceability from cell through module, rack, container and site position — maintained through construction, commissioning and years of operation and maintenance swaps — is the difference between replacing 400 modules and de-rating a 1 GWh asset while you work out which ones are affected.
+
+### OWNER'S ENGINEER NOTE
+
+Traceability data structure, handover format and access rights belong in the supply contract, not in a post-COP conversation. It is a cheap term to negotiate before award and an expensive one to retrofit.
+
+### Europe Splits Into Two Markets
+
+Asked about demand for full AC wrap versus DC block supply, Tang described a clear regional divide. Central and Eastern Europe has a population of highly entrepreneurial IPPs willing to take on system integration themselves, and therefore buy DC blocks alone. Western Europe continues to demand fully wrapped solutions — though Tang also sees acceleration in the "splitting up" of solutions into separate contracts for equipment supply and balance-of-plant works.
+
+That divide explains why many Chinese OEMs' first European projects — Rept's included — have landed in the CEE region: it is the market segment where the buyer absorbs integration risk.
+
+### On Local Manufacturing — a Notably Honest Answer
+
+Asked whether Rept Battero might establish manufacturing in Europe, as some Chinese OEMs are doing, Tang declined the easy answer:
+
+"It's a very challenging issue because it's not really just a simple capital investment. It's actually a geopolitical decision and it has ramifications both in the host country wherever we would decide to build that facility, but also back in China. I would state that there is equal pressure in China about whether or not to allow the technology to leave China." — ANDY TANG, REPT BATTERO
+
+The bidirectional pressure point is under-appreciated in Western commentary, which tends to frame localisation purely as a question of host-country trade policy. Export controls on manufacturing technology operate in both directions.
+
+This conversation sits against the backdrop of the EU's funding ban on Chinese inverters in subsidised solar and BESS projects — a measure driving the industry toward supply chain optionality and resiliency, and a reminder that procurement strategy is now inseparable from policy monitoring.
+
+## Research & Institutions — NERC Signs Research MOU With the National Laboratory of the Rockies
+
+On 23 July 2026, NERC and the U.S. Department of Energy's National Laboratory of the Rockies (NLR) — the laboratory formerly known as the National Renewable Energy Laboratory, renamed in December 2025 — signed a memorandum of understanding establishing a strategic research partnership supporting the reliability and resilience of the North American bulk power system.
+
+The agreement creates a framework for the two organisations to share expertise, exchange information, and pursue joint research and technical analysis on emerging energy challenges.
+
+John Moura, NERC's director of Reliability Assessments and Performance Analysis, framed the value as analytical: combining NERC's reliability expertise with NLR's research capabilities to enhance both organisations' analytical capabilities, improve coordination on reliability research, and identify new opportunities to address future challenges.
+
+"By working alongside NERC, we can turn decades of DOE investment in energy research into practical tools and insights that help keep the lights on for communities across North America." — KATE ANDERSON, DIRECTOR, GRID PLANNING AND ANALYSIS CENTER, NLR
+
+The partnership is positioned as supporting a reliable and resilient energy future for 400 million North Americans.
+
+### WHY IT MATTERS
+
+Read alongside the cover feature, this is capability-building for exactly the analytical problem FERC has just put on a deadline. Writing standards for computational load behaviour requires modelling science that does not fully exist yet in production-ready form. A formal channel between the reliability organisation and a national laboratory is how that science gets built and, eventually, how it reaches the tools practising engineers use.
+
+### Eleven NERC Engineers at IEEE PES General Meeting
+
+NERC staff joined more than 3,000 power system practitioners at the IEEE Power and Energy Society General Meeting, held 19–23 July 2026 in Montréal. This year's theme: Powering the Digital Era.
+
+Eleven NERC technical staff participated as authors and co-authors of peer-reviewed papers, tutorial instructors, presenters, panellists and technical committee members:
+
+@callout Stephen Crutchfield | Manager, Power Risk Issues and Strategic Management
+Hasala Dharmawardena | Senior Engineer, Power Systems Modeling
+Svetlana Ekisheva | Principal Data Science Advisor
+Jack Gibfried | Engineer II, Engineering and Security Integration
+Latrice Harkness | Director, Engineering
+Bill Lamanna | Senior Engineer, Reliability Assessment Technical Committees
+Saad Malik | Manager, Transmission Assessments
+Mark Olson | Manager, Reliability Assessments
+Mohamed Osman | Principal Engineer, Transmission Assessments
+John "JP" Skeath | Manager, Engineering and Security Integration
+Aung Thant | Principal Engineer
+
+Mark Lauby, NERC Fellow and chief engineer — and an IEEE Fellow — noted that collaboration and coordination with industry experts is one of four core components of NERC's mission as the Electric Reliability Organization, and called the conference theme "especially timely as the unprecedented growth and concentration of large loads presents new challenges to the reliability of the North American bulk power system." He participated in three panels. NERC was a Silver sponsor of the event.
+
+When the reliability organisation's chief engineer sits on three panels at a conference themed Powering the Digital Era, in the same quarter his organisation is drafting computational load standards under a FERC deadline, the technical consensus is being formed in real time — in conference rooms, ahead of the ballot. Engineers who want to understand where standards are heading should be reading PES papers, not waiting for the final standard language.
+
+## Market Outlook — Five Threads, One Direction of Travel
+
+Pull the month's stories together and five distinct trends emerge — each with a clear commercial consequence.
+
+▸1. Load is now a reliability subject, not just a forecasting subject. For a century, planning treated load as the input and generation as the variable to be managed. FERC's directive formally inverts part of that: certain loads now carry modelling, commissioning, telemetry and ride-through expectations that look a great deal like generator interconnection requirements. Expect the volume of load-side study work to grow substantially through 2027–2028.
+
+▸2. Federal transmission strategy has moved from siting to financing. The NIETC cancellations plus the loan and grant activity constitute a coherent pivot: less federal preemption over state siting, more federal capital deployed into existing corridors. Practically, this favours reconductoring, rebuilds and uprating over greenfield lines — a shift in the type of engineering demanded, and one that plays to firms with strong structural, clearance and protection re-coordination capability.
+
+▸3. Storage is a financeable, bankable asset class at gigawatt-hour scale. Nighthawk's US$920 million package, syndicated across five lenders and combining preferred equity with a tax credit transfer, is not an experiment. It is a repeatable structure. The consequence for engineers is that documentation quality is now a financing variable.
+
+▸4. Supply chain risk has migrated from cells to integration and balance of plant. Cell supply is broadly abundant and cost-competitive. The failure modes now surfacing are integration-side: transformer failures, commissioning delays, traceability gaps, warranty ambiguity across an AC wrap boundary. Procurement diligence should follow the risk.
+
+▸5. Duration is standardising at four hours in capacity-driven markets. Nighthawk at 300 MW / 1,200 MWh and Cormorant at 250 MW / 1,000 MWh both sit at exactly four hours. That is a market design artefact — the product of capacity accreditation rules — and it is worth watching, because if accreditation rules shift toward longer durations, the design basis for the next procurement cycle shifts with them.
+
+### What We Are Watching Next
+
+▸The NERC public comment window on proposed standards and draft registry criteria — the single highest-leverage opportunity to shape the computational load framework
+
+▸The draft 2026 National Transmission Needs Study, for where federal financing attention concentrates next
+
+▸Whether other states follow California's CPUC-directed procurement model as their reserve margins tighten
+
+▸The 31 December 2026 NERC filing to FERC, and the March 2027 Phase II work plan
+
+▸Advanced conductor supply chain capacity, given the scale of reconductoring commitments now funded
+
+## Technical Corner — Your Load Model Is Now a Compliance Artefact
+
+A short technical note on the practical implications of the computational load standards for planning and protection engineers
+
+Ride-through is the central concept. Generator ride-through requirements — the obligation to remain connected through defined voltage and frequency excursions rather than tripping — are well established and heavily studied. The computational load framework applies analogous thinking to the demand side. A facility's internal protection, rectifier controls and UPS transfer logic determine whether a remote fault results in a momentary voltage dip the site rides through, or an instantaneous disconnection of hundreds of megawatts.
+
+The difficulty is that this behaviour is largely determined by equipment the utility does not own, specify or configure, inside a facility whose operator has entirely rational reasons — protecting expensive compute hardware — for conservative trip settings. Reconciling those incentives is as much a contractual exercise as a technical one.
+
+Dynamic fault recording closes the evidence loop. You cannot validate a load model against reality without high-resolution measurement of how the load actually behaved during a disturbance. The Essential Action requiring DFR installation exists to build that evidence base. Engineers scoping this work should think carefully about measurement point selection, sampling rates adequate to capture sub-cycle behaviour, time synchronisation, and the data architecture needed to retrieve and analyse records after an event — not just the hardware.
+
+Qualified change definitions are where compliance programmes will fail. It is comparatively straightforward to model a facility correctly at interconnection. It is much harder to keep that model accurate over ten years of phased build-out, equipment refresh cycles, control firmware updates and changes in computing workload profile. Without a clear, contractually enforceable definition of what constitutes a change requiring notification and restudy, model accuracy degrades silently — and the first indication is an event the studies did not predict.
+
+### RECOMMENDED ACTION FOR PLANNING ORGANISATIONS
+
+Treat load model parameter collection as a formal data management programme with named ownership, defined refresh cycles and version control. The organisations that already run this discipline for generator models have a significant head start; those treating it as an ad-hoc study input do not.
+
+## Compliance & Standards Watch — Dates to Diarise
+
+@callout 4 May 2026 | NERC Level 3 Alert issued — computational load modelling, operations, protection and control | TOs, TPs, TOPs, PCs, RCs, BAs
+11 May 2026 | Alert acknowledgement deadline | Alert recipients
+3 Aug 2026 | Status reporting deadline — responses to Essential Action question set | Alert recipients
+Aug 2026 | NERC posts proposed standards and draft registry criteria for public comment | All interested parties
+31 Dec 2026 | NERC filing to FERC — registry criteria and initial Reliability Standards (Docket RD26-7-000) | —
+Mar 2027 | NERC Phase II work plan for additional computational load standards | —
+2027 | Anticipated development of additional standards following foundational set | —
+
+Registered entities should confirm all dates and obligations against official NERC and FERC issuances. This table is a planning aid, not a compliance instrument.
+
+## Events Calendar — Where to Find the Industry This Autumn
+
+### Battery Asset Management Summit USA 2026 & Solar and Storage Finance USA
+
+15–16 September 2026 | Hyatt Regency Orange County, Garden Grove, California
+
+For the first time, the Battery Asset Management Summit USA and Solar & Storage Finance USA are co-locating, under the banner Where Capital Meets Asset Performance: Maximizing BESS and Solar Value. Organisers position the combined event as placing attendees closer to some of the country's largest battery storage projects, pipelines and stakeholders driving the next wave of growth.
+
+The Battery Asset Management agenda runs two tracks — Technical Asset Management and Commercial Asset Management — with emphasis on artificial intelligence, cybersecurity and second-life applications. The event is hosted by Solar Media, part of the Informa Group and publisher of Energy-Storage.news.
+
+The co-location is well timed. The gap between how a storage asset is financed and how it actually performs is where value is won or lost, and putting the finance and asset management communities in the same building is overdue. Given that the venue sits a short drive from a dense concentration of Californian storage assets — Nighthawk among them — the hallway conversations may be as valuable as the agenda.
+
+Registration: batterysummit.solarenergyevents.com
+
+### RE+ 2026
+
+Las Vegas, Nevada
+
+Keentel Engineering will be exhibiting at RE+ Las Vegas 2026 — Booth C4995. If you are attending, come and talk to our engineers about interconnection, substation design, storage integration or NERC compliance support.
+
+## Keentel Capability Spotlight — How We Support Clients Through Everything in This Issue
+
+Every story in this issue creates engineering scope. Here is where Keentel fits.
+
+If you are responding to the NERC computational load framework: Our NERC Level 3 Alert engineering support and NERC O&P 693 compliance practices cover load model development and validation, stability margin studies, protection coordination review, ride-through assessment, dynamic fault recording specification, commissioning procedure development and qualified-change criteria. We work with transmission owners, planning coordinators and data centre developers on both sides of the interconnection.
+
+If you are developing or interconnecting utility-scale storage: We provide point of interconnection engineering, EHV/HV/MV substation design, power system studies, and owner's engineer services across solar, wind and BESS. That includes load flow, short circuit, arc flash, transient stability, harmonic and grounding studies, plus IEEE Std 80-compliant grounding design, protection and control engineering, and SCADA/IEC 61850 integration.
+
+If you are executing a transmission rebuild or reconductoring programme: Our transmission line design and power system studies teams support structural assessment, advanced conductor evaluation, sag-tension and clearance analysis, outage sequencing input, protection re-coordination and terminal substation upgrades.
+
+If you need independent oversight: Our [owner's engineer services](/service/owners-engineer) cover the full project lifecycle: design reviews at 30%, 60% and 90% milestones for code compliance and constructability; procurement support including vendor evaluation, RFP development and bid structuring; construction QA/QC, lead-time tracking and contractor oversight; and commissioning support spanning factory and site acceptance testing, relay validation, SCADA integration and energisation. We are deliberately independent of EPC delivery — our role is to represent the owner's interest, not to review our own work.
+
+If your project involves data centre infrastructure: We support hyperscale and colocation clients on large load interconnection for data centers, electrical infrastructure and power systems, from interconnection strategy through substation design and MEP engineering.
+
+### Our Technical Platform
+
+ETAP, PSS®E, PSCAD, DIgSILENT PowerFactory, SKM PowerTools, EasyPower, CYME, AutoCAD, Bentley MicroStation and SEL — supported by decades of combined application experience across our engineering staff.
+
+Sectors served: utilities, energy developers, EPCs, public agencies, generator owners, data centres and renewable energy projects.
+
+## About Keentel Engineering — Keentel Engineering
+
+Keentel Engineering is a U.S.-based electrical power engineering firm specialising in EHV, HV and MV power systems, with a focus on grid reliability, interconnection and NERC compliance. We serve utilities, developers, EPCs, public agencies, generator owners and data centre clients nationwide, backed by roughly three decades of collective engineering experience.
+
+Services: Power System Studies · Substation Design · POI Engineering Support · Transmission Line Design · Utility-Scale Renewable Energy (Solar, Wind, BESS) · Owner's Engineer · MEP Engineering · NERC O&P 693 Compliance · NERC Level 3 Alert Support · Nuclear Power Plant Services
+
+### Offices
+
+@callout Tampa, FL (Head Office) | 400 N Ashley Dr, Ste 2600, Tampa, FL 33602 | (813) 389-7871
+Austin, TX | 5900 Balcones Drive, Ste 100, Austin, TX 78731 | (512) 591-0752
+Sacramento, CA | 1401 21st St, Ste R, Sacramento, CA 95811 | (916) 913-4524
+Baltimore, MD | 306 W Redwood St, Ste 200, Baltimore, MD 21201 | (410) 225-2181
+
+### Have a Project That Touches Any of This?
+
+Whether you are closing gaps against the NERC Essential Actions, planning an interconnection, scoping a reconductoring programme or evaluating an OEM's scope of supply, our engineers are available for an initial technical conversation at no cost.
+
+CONTACT KEENTEL — contact@keentelengineering.com
+
+About the Author:
+
+Sonny Patel P.E. EC
+
+IEEE Senior Member
+
+In 1995, Sandip (Sonny) R. Patel earned his Electrical Engineering degree from the University of Illinois, specializing in Electrical Engineering . But degrees don't build legacies—action does. For three decades, he's been shaping the future of engineering, not just as a licensed Professional Engineer across multiple states (Florida, California, New York, West Virginia, and Minnesota), but as a doer. A builder. A leader. Not just an engineer. A Licensed Electrical Contractor in Florida with an Unlimited EC license. Not just an executive. The founder and CEO of KEENTEL LLC—where expertise meets execution. Three decades. Multiple states. Endless impact.

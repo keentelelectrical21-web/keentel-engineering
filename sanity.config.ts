@@ -12,6 +12,7 @@ import category from './sanity/schemas/category'
 export default defineConfig({
   name: 'keentel-engineering',
   title: 'Keentel Engineering CMS',
+  basePath: '/studio',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
   plugins: [structureTool(), visionTool()],

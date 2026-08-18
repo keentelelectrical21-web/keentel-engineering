@@ -114,6 +114,23 @@ main > div > section:not([class*="min-h-"]) {
   padding-top: clamp(2.5rem, 3.5vw, 3.75rem) !important;
   padding-bottom: clamp(2.5rem, 3.5vw, 3.75rem) !important;
 }
+
+/* The header is fixed, so a full-screen hero must reserve its visible height.
+   Keep this scoped to each page's first hero section, never regular content. */
+:root {
+  --site-header-height: 68px;
+}
+
+main > section:first-child[class*="min-h-"],
+main > div:first-child > section:first-child[class*="min-h-"] {
+  min-height: calc(100svh - var(--site-header-height)) !important;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --site-header-height: 60px;
+  }
+}
 img[src*="cert-logos-hero-white-spaced-v3"] {
   width: auto !important;
   height: 3rem !important;

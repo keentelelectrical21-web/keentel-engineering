@@ -98,7 +98,7 @@ export default function AboutPage() {
       <Header />
       <main>
       {/* ── HERO ── */}
-      <section className="relative min-h-[650px] flex items-end overflow-hidden">
+      <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay

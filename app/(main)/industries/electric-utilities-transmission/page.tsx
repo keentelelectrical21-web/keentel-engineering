@@ -116,7 +116,7 @@ export default function ElectricUtilitiesTransmissionPage() {
     <>
       <Header />
       <main className="overflow-x-clip bg-white">
-        <section className="relative flex min-h-[780px] items-end overflow-hidden bg-[#050D31] pt-32 sm:min-h-[820px] lg:min-h-[760px] lg:items-center">
+        <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-end overflow-hidden bg-[#050D31] pt-32 lg:items-center">
           <video src="/videos/Utilities & Transmission Operators.mov" autoPlay muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover" aria-label="Utilities and transmission power infrastructure" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,13,49,0.97)_0%,rgba(5,13,49,0.88)_42%,rgba(5,13,49,0.28)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,13,49,0.96)_0%,transparent_55%)] lg:hidden" />

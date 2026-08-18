@@ -328,7 +328,7 @@ export default function ServicesPage() {
       <main className="flex flex-col">
 
         {/* ── HERO ── */}
-        <section className="relative flex min-h-[940px] items-start overflow-hidden sm:min-h-[920px] lg:min-h-[900px]" aria-roledescription="carousel" aria-label="Keentel engineering services" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocusCapture={() => setHeroPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setHeroPaused(false) }}>
+        <section className="relative flex min-h-[calc(100svh-var(--site-header-height))] items-start overflow-hidden" aria-roledescription="carousel" aria-label="Keentel engineering services" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocusCapture={() => setHeroPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setHeroPaused(false) }}>
           <div className="absolute inset-0 z-0">
             <video autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover object-center" aria-label="Keentel Engineering electrical power services">
               <source src="/videos/service.mp4" type="video/mp4" />

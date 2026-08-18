@@ -21,7 +21,7 @@ const capabilities = [
 ]
 
 const systems = [
-  ['Off-Site Power System', <><Link href="https://keentelengineering.com/service/power-system-studies/transmission-planning-studies" className="font-semibold text-[#A8228A] underline decoration-[#A8228A]/40 underline-offset-2 transition hover:decoration-[#A8228A]">The transmission grid</Link> and switchyard connecting the plant. Supplies AC power across all operating modes and carries generated power to the grid. Robust design dampens disturbances and limits voltage and frequency deviations.</>],
+  ['Off-Site Power System', <><Link href="/service/power-system-studies/transmission-planning-studies" className="font-semibold text-[#A8228A] underline decoration-[#A8228A]/40 underline-offset-2 transition hover:decoration-[#A8228A]">The transmission grid</Link> and switchyard connecting the plant. Supplies AC power across all operating modes and carries generated power to the grid. Robust design dampens disturbances and limits voltage and frequency deviations.</>],
   ['On-Site Power System', 'Distribution systems within the plant providing AC and DC supplies for controlled shutdown. Includes main generator, transformers, switchgear, batteries, UPS, and standby AC sources organised by safety significance.'],
   ['Preferred Power Supply', 'The normal source for every plant system important to safety. Spans off-site and on-site systems, with reliability dependent on engineering that treats grid connection, generator path, and in-plant distribution as one coordinated whole.'],
 ]
